@@ -1,14 +1,9 @@
 <template>
-  <div class="text-center">Home
-    <Cards/>
-  </div>
+    <h2>Michel EDIGHOFFER</h2>
 </template>
 
 <script>
-import Cards from "../components/Cards.vue";
-
 export default {
-  components: { Cards },
   name: "HomeLayout"
 };
 </script>

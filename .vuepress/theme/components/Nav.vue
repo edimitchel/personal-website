@@ -1,8 +1,6 @@
 <template>
   <nav class="nav flex items-center justify-between flex-wrap p-6 text-right">
-    <div class="block lg:hidden">
-
-    </div>
+    <div class="block lg:hidden"></div>
 
     <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div class="nav-text text-med lg:flex-grow">

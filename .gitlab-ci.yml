@@ -1,0 +1,44 @@
+stages:
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+build:
+  stage: build
+  image: node:10
+  script:
+    - npm install
+    - ./node_modules/.bin/vuepress build
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - .vuepress/dist/
+  only:
+    - master
+    - develop
+
+# upload job, see https://lftp.yar.ru/lftp-man.html
+deploy-prod:
+  stage: deploy
+  image: mwienk/docker-lftp:latest
+  script:
+    - lftp -e "mirror -R .vuepress/dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+  dependencies:
+    - build
+  only:
+    - master
+  when: manual
+    
+deploy-dev:
+  stage: deploy
+  image: mwienk/docker-lftp:latest
+  script:
+    - lftp -e "mirror -R .vuepress/dist /www/website-dev -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+  dependencies:
+    - build
+  only:
+    - develop
