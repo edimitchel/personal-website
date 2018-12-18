@@ -1,0 +1,30 @@
+{
+	"name": "personal-website",
+	"version": "1.0.0",
+	"description": "Michel Edighoffer - Website",
+	"repository": {
+		"type": "git",
+		"url": "git+https://tools.micheledighoffer.fr/edimitchel/personal-website.git"
+	},
+	"keywords": [
+		"Michel EDIGHOFFER",
+		"front-end",
+		"france",
+		"engineer",
+		"Vue.js",
+		"blog"
+	],
+	"author": "Michel Edighoffer",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://tools.micheledighoffer.fr/edimitchel/personal-website/issues"
+	},
+	"homepage": "https://tools.micheledighoffer.fr/edimitchel/personal-website",
+	"devDependencies": {
+		"tailwindcss": "^0.7.2",
+		"autoprefixer": "^9.3.1",
+		"postcss-import": "^12.0.1",
+		"postcss-loader": "^3.0.0",
+		"postcss-url": "^8.0.0"
+	}
+}
