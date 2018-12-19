@@ -33,8 +33,6 @@ module.exports = {
     sidebar: false,
   },
   chainWebpack: (config, isServer) => {
-    if (!isServer) {
-      config.resolve.alias.set('@components', path.resolve(__dirname, '..', 'components'));
-    }
+    config.resolve.alias.set('@components', path.resolve(__dirname, '..', 'components'));
   },
 }

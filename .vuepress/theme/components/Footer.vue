@@ -5,12 +5,10 @@
   </footer>
 </template>
 <script>
-import CircleBackground from "@components/CircleBackground";
-
 export default {
   name: "Footer",
   components: {
-    CircleBackground
+    // CircleBackground
   },
   data: () => ({
     circleColor: undefined

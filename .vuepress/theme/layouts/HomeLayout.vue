@@ -5,9 +5,6 @@
 </template>
 
 <script>
-import CurvedText from '@components/CurvedText';
-import CircleBackground from '@components/CircleBackground';
-
 export default {
   name: "HomeLayout",
 };
