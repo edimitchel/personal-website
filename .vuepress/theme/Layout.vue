@@ -1,10 +1,8 @@
 <template>
-  <div class="wrapper">
-    <div class="markdown-body m-10">
-      <Nav/>
-      <component :is="layout"></component>
-      <Footer/>
-    </div>
+  <div>
+    <Nav/>
+    <component class="main-content me-container" :is="layout"></component>
+    <Footer/>
   </div>
 </template>
 <script>
@@ -25,4 +23,13 @@ export default {
 
 <style lang="stylus">
 @import './styles/theme.styl';
+
+@css {
+  body {
+    @apply me-font-mono;
+  }
+  .main-content {
+    @apply me-p-16 me-pt-8 me-border-t;
+  }
+}
 </style>

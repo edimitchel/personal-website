@@ -1,8 +1,8 @@
 <template>
-  <div class="blog-body m-10 text-blue-darkest">
-    <h1 class="pb-5">{{$page.frontmatter.title}}</h1>
+  <main>
+    <h1>{{$page.frontmatter.title}}</h1>
     <Content/>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -10,3 +10,12 @@ export default {
   name: "BlogLayout"
 };
 </script>
+<style lang="stylus" scoped>
+@css {
+  main {
+  }
+  h1 {
+    @apply me-pb-5;
+  }
+}
+</style>

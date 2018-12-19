@@ -1,38 +1,109 @@
 <template>
-  <nav class="nav flex items-center justify-between flex-wrap p-6 text-right">
-    <div class="block lg:hidden"></div>
-
-    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-      <div class="nav-text text-med lg:flex-grow">
-        <span v-for="item in $site.themeConfig.nav">
-          <a
-            :href="item.link"
-            class="block m-4 lg:inline-block lg:mt-0 no-underline text-blue-darker hover:text-blue-darkest"
-          >{{item.text}}</a>
-        </span>
-        
-        <a class="m-4 no-underline text-blue-darker" href="http://github.com/edimitchel">
-          <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <title>GitHub</title>
-            <path
-              d="M10 0a10 10 0 0 0-3.16 19.49c.5.1.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85l-.01 2.75c0 .26.18.58.69.48A10 10 0 0 0 10 0"
-            ></path>
-          </svg>
-        </a>
-        <a class="m-4 no-underline text-blue-darker" href="http://twitter.com/edimitchel">
-          <svg class="fill-current w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-            <title>Twitter</title>
-            <path
-              d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84"
-            ></path>
-          </svg>
-        </a>
-      </div>
+  <header>
+    <circle-background class="background" :color="circleColor"/>
+    <div class="icons">
+      <twitter-icon url="https://twitter.com/edimitchel"/>
+      <github-icon url="https://github.com/edimitchel"/>
     </div>
-  </nav>
+    <img :src="$withBase('/images/michel-photo.png')" alt="Michel's picture" class="logo">
+    <curved-text class="title-header">Michel Edighoffer</curved-text>
+    <curved-text class="subtitle-header">{{description}}{{message ? ' - ' : ''}}{{message}}</curved-text>
+
+    <nav>
+      <router-link
+        v-for="item in $site.themeConfig.nav"
+        :key="item.link"
+        :to="item.link"
+      >{{item.text}}</router-link>
+    </nav>
+  </header>
 </template>
 <script>
+import {
+  CurvedText,
+  CircleBackground,
+  GithubIcon,
+  TwitterIcon
+} from "@components/index";
+
 export default {
-  name: "Nav"
+  name: "Nav",
+  components: {
+    CurvedText,
+    CircleBackground,
+    GithubIcon,
+    TwitterIcon
+  },
+  computed: {
+    description() {
+      return this.$site.description;
+    },
+    message() {
+      const { message } = this.$page.frontmatter;
+      if (Array.isArray(message)) {
+        return message[Math.round((message.length - 1) * Math.random())];
+      }
+      return message;
+    },
+    circleColor() {
+      return this.$page.frontmatter.headerColor || undefined;
+    }
+  }
 };
 </script>
+<style lang="stylus" scoped>
+.logo {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+@css {
+  header { 
+    @apply me-flex me-items-center me-flex-col me-text-center me-pt-5;
+  }
+  .icons {
+    max-width: 200px;
+    @apply me-flex me-justify-between me-absolute me-w-full;
+  }
+  .title-header {
+    margin-top: -15px;
+    @apply me-text-xl me-font-mono me-font-bold;  
+  }
+  @screen md {
+    .title-header {
+        @apply me-text-3xl;
+    }
+  }
+  .subtitle-header {
+    margin-top: -65px;
+    @apply me-text-xs;  
+  }
+  @screen md {
+    .subtitle-header {
+        @apply me-text-base;
+    }
+  }
+  .background {
+    @apply me-absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+  }
+
+  nav {
+    @apply me-flex;
+  
+  }
+  nav a {
+    @apply me-m-4 me-text-grey-dark me-p-2 me-rounded me-no-underline;
+  }
+  nav a:hover,
+  nav a:focus,
+  nav a.router-link-exact-active
+  {
+    @apply me-bg-grey-dark me-text-white;
+  }
+}
+</style>

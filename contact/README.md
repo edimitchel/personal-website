@@ -1,5 +1,6 @@
 ---
+title: Contact me
 layout: BlogLayout
----    
-
-# Contact me 
+headerColor: rgba(225, 95, 65, .5)
+message: Helloooo
+---
