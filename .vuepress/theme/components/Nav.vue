@@ -41,7 +41,7 @@ export default {
     message() {
       const { message } = this.$page.frontmatter;
       if (Array.isArray(message)) {
-        return message[Math.round((message.length - 1) * Math.random())];
+        return message[Math.floor(message.length * Math.random())];
       }
       return message;
     },
