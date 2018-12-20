@@ -5,10 +5,9 @@
         r="400"
         cx="50%"
         :cy="!reversed ? '-32%' : '90%'"
-        :class="{'pulse': pulse}"
-        :style="{ fill: color }"
+        :style="{ fill: color, opacity: .8  }"
       ></circle>
-      <circle v-if="!reversed" r="450" cx="50%" cy="-55%" :style="{ fill: color, opacity: 1 }"></circle>
+      <circle v-if="!reversed" r="450" cx="50%" cy="-55%" :style="{ fill: color }"></circle>
     </svg>
   </div>
 </template>
@@ -23,7 +22,6 @@ export default {
       type: Number,
       default: 500
     },
-    pulse: Boolean,
     reversed: Boolean
   },
   data: props => ({

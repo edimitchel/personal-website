@@ -12,7 +12,7 @@
         <curved-text
           :key="message"
           class="subtitle-header"
-        >{{description}}{{message ? ' - ' : ''}}{{message}}</curved-text>
+        >{{message ? message : description}}</curved-text>
       </transition>
     </ClientOnly>
 

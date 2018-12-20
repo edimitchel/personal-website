@@ -38,8 +38,7 @@ module.exports = {
     search: false,
     sidebar: false
   },
-  chainWebpack: (config, isServer) => {
-    console.log(config.resolve.alias);
+  chainWebpack: (config) => {
     config.resolve.alias.set(
       "@vuepress",
       path.resolve(__dirname)

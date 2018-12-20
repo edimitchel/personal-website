@@ -3,7 +3,7 @@
     <transition name="slide-down" mode="out-in">
       <h1 :key="$page.frontmatter.title">{{$page.frontmatter.title}}</h1>
     </transition>
-    <transition name="slide-down" mode="out-in" :duration="400">
+    <transition name="slide-down" mode="out-in" duration="300">
       <Content v-show="show.content"/>
     </transition>
   </main>

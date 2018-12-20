@@ -10,3 +10,10 @@ export const isBirthday = date => {
 export const randomEmoji = list => {
   return list[Math.floor(Math.random() * list.length)];
 };
+
+export const getImage = post => {
+  const { path, frontmatter } = post;
+  const { image = "headline-image.png" } = frontmatter;
+
+  return path + image;
+};
