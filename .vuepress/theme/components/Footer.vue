@@ -28,10 +28,6 @@ export default {
       me-flex-col 
       me-text-center 
       me-p-4
-      me-border-0 
-      me-border-t 
-      me-border-grey 
-      me-border-solid;
   }
   .background {
     @apply me-absolute;

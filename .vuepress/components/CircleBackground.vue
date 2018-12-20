@@ -2,12 +2,13 @@
   <div>
     <svg width="100%" :height="height" fill="none">
       <circle
-        r="360"
+        r="400"
         cx="50%"
-        :cy="!reversed ? '-20%' : '90%'"
+        :cy="!reversed ? '-32%' : '90%'"
         :class="{'pulse': pulse}"
         :style="{ fill: color }"
       ></circle>
+      <circle v-if="!reversed" r="450" cx="50%" cy="-55%" :style="{ fill: color, opacity: 1 }"></circle>
     </svg>
   </div>
 </template>
@@ -16,18 +17,18 @@ export default {
   props: {
     color: {
       type: String,
-      default: "#c5c5c5",
+      default: "#c5c5c5"
     },
     height: {
       type: Number,
-      default: 500,
+      default: 500
     },
     pulse: Boolean,
-    reversed: Boolean,
+    reversed: Boolean
   },
   data: props => ({
-    fillColor: props.color,
-  }),
+    fillColor: props.color
+  })
 };
 </script>
 <style scoped>
@@ -37,25 +38,23 @@ div {
 }
 circle {
   transform-origin: 50% 0;
-  transition: all 600ms ease;
+  transition: all 600ms linear;
 }
 
 @keyframes pulse {
   0% {
     transform: translateY(0);
-    opacity: 1;
   }
   50% {
-    transform: translateY(-5px);
-    opacity: 0.5;
+    transform: scaleY(0.9);
   }
   100% {
     transform: translateY(0);
-    opacity: 1;
   }
 }
 
 .pulse {
-  animation: pulse 600ms alternate infinite linear;
+  animation: pulse 600ms alternate infinite
+    cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
 </style>

@@ -7,6 +7,10 @@
 		"type": "git",
 		"url": "git+https://tools.micheledighoffer.fr/edimitchel/personal-website.git"
 	},
+	"scripts": {
+		"start": "vuepress dev",
+		"build": "vuepress build"
+	},
 	"keywords": [
 		"Michel EDIGHOFFER",
 		"front-end",
