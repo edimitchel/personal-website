@@ -1,16 +1,19 @@
 <template>
   <header>
-    <circle-background class="background" :color="circleColor"/>
+    <circle-background class="background" :color="circleColor" :pulse="pulse"/>
     <div class="icons">
       <twitter-icon url="https://twitter.com/edimitchel"/>
       <github-icon url="https://github.com/edimitchel"/>
     </div>
     <img :src="$withBase('/images/michel-photo.png')" alt="Michel's picture" class="logo">
     <curved-text class="title-header">Michel Edighoffer</curved-text>
-    <curved-text class="subtitle-header">{{description}}{{message ? ' - ' : ''}}{{message}}</curved-text>
+    <ClientOnly>
+      <curved-text class="subtitle-header">{{description}}{{message ? ' - ' : ''}}{{message}}</curved-text>
+    </ClientOnly>
 
     <nav>
       <router-link
+        exact
         v-for="item in $site.themeConfig.nav"
         :key="item.link"
         :to="item.link"
@@ -19,27 +22,35 @@
   </header>
 </template>
 <script>
-import {
-  CurvedText,
-  CircleBackground,
-  GithubIcon,
-  TwitterIcon
-} from "@components/index";
+import { debounce } from "debounce";
+// import {
+//   CurvedText,
+//   CircleBackground,
+//   GithubIcon,
+//   TwitterIcon
+// } from "@components/index";
+
+let d;
 
 export default {
   name: "Nav",
   components: {
-    CurvedText,
-    CircleBackground,
-    GithubIcon,
-    TwitterIcon
+    // CurvedText,
+    // CircleBackground,
+    // GithubIcon,
+    // TwitterIcon
+  },
+  data() {
+    return {
+      pulse: false
+    };
   },
   computed: {
     description() {
       return this.$site.description;
     },
     message() {
-      const { message } = this.$page.frontmatter;
+      const message = this.$page.frontmatter.message;
       if (Array.isArray(message)) {
         return message[Math.floor(message.length * Math.random())];
       }
@@ -47,6 +58,21 @@ export default {
     },
     circleColor() {
       return this.$page.frontmatter.headerColor || undefined;
+    }
+  },
+  methods: {
+    stopPulse: function() {
+      this.pulse = false;
+    }
+  },
+  mounted() {
+    d = debounce(this.stopPulse, 600);
+  },
+  watch: {
+    $page(page) {
+      this.pulse = true;
+      d && d.clear();
+      d();
     }
   }
 };
@@ -60,7 +86,7 @@ export default {
 
 @css {
   header { 
-    @apply me-flex me-items-center me-flex-col me-text-center me-pt-5;
+    @apply me-overflow-hidden me-flex me-items-center me-flex-col me-text-center me-pt-5;
   }
   .icons {
     max-width: 200px;
@@ -100,8 +126,8 @@ export default {
     @apply me-m-4 me-text-grey-dark me-p-2 me-rounded me-no-underline;
   }
   nav a:hover,
-  nav a:focus,
-  nav a.router-link-exact-active
+nav a:focus,
+nav a.router-link-active
   {
     @apply me-bg-grey-dark me-text-white;
   }

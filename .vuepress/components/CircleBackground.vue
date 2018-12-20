@@ -5,7 +5,7 @@
         r="360"
         cx="50%"
         :cy="!reversed ? '-20%' : '90%'"
-        :class="{pulse: pulse}"
+        :class="{'pulse': pulse}"
         :style="{ fill: color }"
       ></circle>
     </svg>
@@ -16,17 +16,17 @@ export default {
   props: {
     color: {
       type: String,
-      default: "#c5c5c5"
+      default: "#c5c5c5",
     },
     height: {
       type: Number,
-      default: 500
+      default: 500,
     },
-    reversed: Boolean
+    pulse: Boolean,
+    reversed: Boolean,
   },
   data: props => ({
     fillColor: props.color,
-    pulse: false,
   }),
 };
 </script>
@@ -36,22 +36,26 @@ div {
   height: 300px;
 }
 circle {
-  transition: all 0.5s ease;
+  transform-origin: 50% 0;
+  transition: all 600ms ease;
 }
 
 @keyframes pulse {
   0% {
+    transform: translateY(0);
     opacity: 1;
   }
   50% {
+    transform: translateY(-5px);
     opacity: 0.5;
   }
   100% {
+    transform: translateY(0);
     opacity: 1;
   }
 }
 
 .pulse {
-  animation: pulse 2s alternate infinite linear;
+  animation: pulse 600ms alternate infinite linear;
 }
 </style>

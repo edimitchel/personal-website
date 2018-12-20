@@ -1,14 +1,16 @@
 <template>
   <div>
     <svg width="500" fill="none">
-      <path id="curve" d="M 0 -25 Q 250 150 500 -25 "></path>
+      <path id="curve" d="M 0 -25 Q 250 150 500 -25"></path>
       <text :text-anchor="textAlign" :style="textStyle">
         <textPath xlink:href="#curve" startOffset="50%" :fill="color">
           <slot></slot>
         </textPath>
       </text>
     </svg>
-    <h1><slot /></h1>
+    <h1>
+      <slot/>
+    </h1>
   </div>
 </template>
 <script>
