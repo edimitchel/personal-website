@@ -24,7 +24,7 @@ View the full documentation at https://tailwindcss.com.
 |
 */
 
-let defaultConfig = require('tailwindcss/defaultConfig')()
+// let defaultConfig = require('tailwindcss/defaultConfig')()
 
 
 /*
@@ -88,14 +88,6 @@ let colors = {
   'green-lighter': '#a2f5bf',
   'green-lightest': '#e3fcec',
 
-  'teal-darkest': '#0d3331',
-  'teal-darker': '#20504f',
-  'teal-dark': '#38a89d',
-  'teal': '#4dc0b5',
-  'teal-light': '#64d5ca',
-  'teal-lighter': '#a0f0ed',
-  'teal-lightest': '#e8fffe',
-
   'blue-darkest': '#12283a',
   'blue-darker': '#1c3d5a',
   'blue-dark': '#2779bd',
@@ -103,30 +95,6 @@ let colors = {
   'blue-light': '#6cb2eb',
   'blue-lighter': '#bcdefa',
   'blue-lightest': '#eff8ff',
-
-  'indigo-darkest': '#191e38',
-  'indigo-darker': '#2f365f',
-  'indigo-dark': '#5661b3',
-  'indigo': '#6574cd',
-  'indigo-light': '#7886d7',
-  'indigo-lighter': '#b2b7ff',
-  'indigo-lightest': '#e6e8ff',
-
-  'purple-darkest': '#21183c',
-  'purple-darker': '#382b5f',
-  'purple-dark': '#794acf',
-  'purple': '#9561e2',
-  'purple-light': '#a779e9',
-  'purple-lighter': '#d6bbfc',
-  'purple-lightest': '#f3ebff',
-
-  'pink-darkest': '#451225',
-  'pink-darker': '#6f213f',
-  'pink-dark': '#eb5286',
-  'pink': '#f66d9b',
-  'pink-light': '#fa7ea8',
-  'pink-lighter': '#ffbbca',
-  'pink-lightest': '#ffebef',
 }
 
 module.exports = {
@@ -144,7 +112,7 @@ module.exports = {
   |
   */
 
-  colors: colors,
+  colors,
 
 
   /*
@@ -212,9 +180,11 @@ module.exports = {
       'serif',
     ],
     'mono': [
-      'Menlo',
-      'Monaco',
+      'Source Code Pro',
+      'Space Mono',
       'Consolas',
+      'Monaco',
+      'Menlo',
       'Liberation Mono',
       'Courier New',
       'monospace',
@@ -921,10 +891,7 @@ module.exports = {
   */
 
   plugins: [
-    require('tailwindcss/plugins/container')({
-      // center: true,
-      // padding: '1rem',
-    }),
+    require('tailwindcss/plugins/container')(),
   ],
 
 
@@ -939,9 +906,9 @@ module.exports = {
   */
 
   options: {
-    prefix: '',
+    prefix: 'me-',
     important: false,
-    separator: ':',
+    separator: '-',
   },
 
 }

@@ -1,5 +1,5 @@
 ---
+title: Blog articles
 layout: BlogLayout
----    
-
-# Blog entry 
+headerColor: rgba(119, 139, 235, .5)
+---

@@ -13,6 +13,7 @@ build:
   script:
     - npm install
     - ./node_modules/.bin/vuepress build
+    - cp humans.txt .vuepress/dist
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
@@ -26,6 +27,7 @@ deploy-prod:
   stage: deploy
   image: mwienk/docker-lftp:latest
   script:
+    - "[[ ${HIDE_ON_WEB} ]] && { cp robots.txt .vuepress/dist; }"
     - lftp -e "mirror -R .vuepress/dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
     - build
@@ -37,6 +39,7 @@ deploy-dev:
   stage: deploy
   image: mwienk/docker-lftp:latest
   script:
+    - cp robots.txt .vuepress/dist
     - lftp -e "mirror -R .vuepress/dist /www/website-dev -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
     - build
