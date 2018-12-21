@@ -1,11 +1,6 @@
 ---
 home: true
 layout: HomeLayout
-message: 
-    - for Altran
-    - ❤ my wife 👩
-    - elsass ❤
-    - christian ✝
 headerColor: rgba(89, 98, 117, .5)
 meta:
   - name: description
@@ -14,17 +9,17 @@ meta:
     content: front-end, developer, france, vue.js
 
   - property: og:title
-    content: My Page Title ← My Site
+    content: Website - Michel EDIGHOFFER
   - property: og:site_name
-    content: My Site
+    content: Website - Michel EDIGHOFFER
   - property: og:type
     content: website
   - property: og:url
-    content: https://www.my-site.com/my-special-page
+    content: https://website.micheledighoffer.fr
   - property: og:image
-    content: https://www.my-site.com/my-special-image.jpg
+    content: https://website.micheledighoffer.fr/images/michel-photo.png
   - property: og:description
-    content: I have things here on my site
+    content: front-end developer, working in France
 
     # // Twitter card
     # {name: 'twitter:card', content: 'summary'},
@@ -40,3 +35,5 @@ meta:
     # {itemprop: 'description': 'I have things here on my site.'},
     # {itemprop: 'image', content: 'https://www.my-site.com/my-special-image.jpg'}
 ---
+
+Under contruction

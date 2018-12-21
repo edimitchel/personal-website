@@ -1,0 +1,4 @@
+AuthName "Website micheledighoffer.fr"
+AuthType Basic
+AuthUserFile "/home/micheled/www/.htpasswd"
+Require valid-user

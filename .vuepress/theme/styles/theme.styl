@@ -1,4 +1,53 @@
- @tailwind preflight;
+@tailwind preflight
 
-@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,700');
-@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700')
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,600')
+
+.slide-down-enter-active, .slide-down-leave-active
+  transition: all 0.2s
+  position: relative
+
+.slide-down-enter, .slide-down-leave-to
+  opacity: 0
+  top: -10px
+
+.slide-down-enter-to, .slide-down-leave
+  opacity: 1
+  top: 0
+
+.slide-left-enter-active, .slide-left-leave-active
+  transition: all .3s
+  position: relative
+
+.slide-left-enter
+  opacity: 0
+  left: -10px
+
+.slide-left-leave,
+.slide-left-enter-to
+  opacity: 1
+  left: 0
+
+.slide-left-leave-to
+  opacity: 0
+  left: 10px
+
+.slide-right-enter-active, .slide-right-leave-active
+  transition: all .3s
+  position: relative
+
+.slide-right-enter
+  opacity: 0
+  right: -10px
+
+.slide-right-leave,
+.slide-right-enter-to
+  opacity: 1
+  right: 0
+
+.slide-right-leave-to
+  opacity: 0
+  right: 10px
+
+.header-anchor
+  display none

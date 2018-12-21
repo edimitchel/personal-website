@@ -1,7 +1,6 @@
 <template>
-  <a class="me-no-underline me-p-0 me-px-2 md-me-p-2 me-text-black" :href="url" target="_blank">
+  <a :href="url" target="_blank">
     <svg
-      class="me-fill-current me-w-5 me-h-5"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
     >
@@ -17,4 +16,25 @@ export default {
   props: ["url"]
 };
 </script>
+<style lang="stylus" scoped>
+  @css {
+    a {
+      @apply
+        me-flex
+        me-items-center
+        me-justify-center
+        me-no-underline
+        me-w-8
+        me-h-8
+        me-m-0
+        me-mx-2
+        me-bg-black
+        me-text-white
+        me-rounded-full;
+    }
+    svg {
+      @apply me-fill-current me-w-5 me-h-5;
+    }
+  }
+</style>
 

@@ -163,12 +163,6 @@ module.exports = {
  
 
   fonts: {
-    'lato': [
-      'Lato',
-      '-apple-system',
-      'Segoe UI',
-      'sans-serif',
-    ],
     'sans': [
       'Work Sans',
       'Helvetica', 
@@ -891,7 +885,9 @@ module.exports = {
   */
 
   plugins: [
-    require('tailwindcss/plugins/container')(),
+    require('tailwindcss/plugins/container')({
+      center: true,
+    }),
   ],
 
 

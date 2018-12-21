@@ -7,6 +7,10 @@
 		"type": "git",
 		"url": "git+https://tools.micheledighoffer.fr/edimitchel/personal-website.git"
 	},
+	"scripts": {
+		"start": "vuepress dev",
+		"build": "vuepress build"
+	},
 	"keywords": [
 		"Michel EDIGHOFFER",
 		"front-end",
@@ -32,6 +36,8 @@
 		"vuepress": "^0.14.8"
 	},
 	"dependencies": {
-		"debounce": "^1.2.0"
+		"debounce": "^1.2.0",
+		"slugify": "^1.3.4",
+		"vue-moment": "^4.0.0"
 	}
 }
