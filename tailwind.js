@@ -163,12 +163,6 @@ module.exports = {
  
 
   fonts: {
-    'lato': [
-      'Lato',
-      '-apple-system',
-      'Segoe UI',
-      'sans-serif',
-    ],
     'sans': [
       'Work Sans',
       'Helvetica', 

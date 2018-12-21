@@ -5,9 +5,9 @@
         r="400"
         cx="50%"
         :cy="!reversed ? '-32%' : '90%'"
-        :style="{ fill: color, opacity: .8  }"
+        :style="{ fill: fillColor.bottom, opacity: .8  }"
       ></circle>
-      <circle v-if="!reversed" r="450" cx="50%" cy="-55%" :style="{ fill: color }"></circle>
+      <circle v-if="!reversed" r="450" cx="50%" cy="-55%" :style="{ fill: fillColor.top }"></circle>
     </svg>
   </div>
 </template>
@@ -15,8 +15,8 @@
 export default {
   props: {
     color: {
-      type: String,
-      default: "#c5c5c5"
+      type: [String, Array],
+      default: ["white", "#c5c5c5"]
     },
     height: {
       type: Number,
@@ -24,9 +24,18 @@ export default {
     },
     reversed: Boolean
   },
-  data: props => ({
-    fillColor: props.color
-  })
+  computed: {
+    fillColor() {
+      const color = Array.isArray(this.color)
+        ? this.color
+        : this.color.split(/,\|/);
+      const [top, bottom = top] = color;
+      return {
+        top,
+        bottom
+      };
+    }
+  }
 };
 </script>
 <style scoped>

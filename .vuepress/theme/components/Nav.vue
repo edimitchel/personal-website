@@ -29,7 +29,7 @@
 <script>
 import { debounce } from "debounce";
 
-import { randomEmoji, isBirthday } from "@vuepress/utils";
+import { randomEmoji, isBirthday } from "@vpress/utils";
 
 let d;
 

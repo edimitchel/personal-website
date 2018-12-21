@@ -5,6 +5,7 @@ const autoprefixer = require("autoprefixer");
 module.exports = {
   description: "a french front-end developer",
   title: "Michel Edighoffer, front-end developer",
+  head: [["link", { rel: "author", href: "/humans.txt", type: "text-plain" }]],
   plugins: [
     [
       "@vuepress/pwa",
@@ -38,10 +39,7 @@ module.exports = {
     search: false,
     sidebar: false
   },
-  chainWebpack: (config) => {
-    config.resolve.alias.set(
-      "@vuepress",
-      path.resolve(__dirname)
-    );
+  chainWebpack: config => {
+    config.resolve.alias.set("@vpress", path.resolve(__dirname));
   }
 };

@@ -15,5 +15,17 @@ export const getImage = post => {
   const { path, frontmatter } = post;
   const { image = "headline-image.png" } = frontmatter;
 
-  return path + image;
+  if (image && image.indexOf("http") >= 0) {
+    return image;
+  }
+
+  return "/images" + path + image;
 };
+
+import * as slugifyLib from "slugify";
+
+export const slugify = s =>
+  slugifyLib(s, {
+    replacement: "-",
+    lower: true
+  });

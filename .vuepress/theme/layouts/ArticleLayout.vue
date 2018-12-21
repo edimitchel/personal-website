@@ -1,14 +1,14 @@
 <template>
   <main>
-    <img :src="image" alt />
+    <img :src="image" alt>
 
-    <h1>{{$page.frontmatter.title}}</h1>
-    <Content/>
+    <h1 v-html="$page.frontmatter.title"/>
+    <Content class="article-content"/>
   </main>
 </template>
 
 <script>
-import { getImage } from '@vuepress/utils';
+import { getImage } from "@vpress/utils";
 
 export default {
   name: "BlogLayout",
@@ -25,6 +25,10 @@ export default {
   }
   h1 {
     @apply me-pb-5 me-text-4xl me-uppercase me-text-center;
+  }
+
+  .article-content {
+    @apply me-leading-loose me-font-sans;
   }
 }
 </style>
