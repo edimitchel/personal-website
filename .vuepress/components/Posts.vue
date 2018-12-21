@@ -1,31 +1,29 @@
 <template>
-  <div>
+  <div class="posts">
     <div class="categories">
       <button
-        @click.prevent="changeCategory(key)"
-        v-for="(name, key) in categoryList"
+        @click.prevent="changeCategory(category.name)"
+        v-for="(category, key) in categoryList"
         :key="key"
         class="category"
-      >{{ name }}</button>
+        :class="{active: isCategorySelected(category.name)}"
+      >{{ category.name }} ({{ category.count }})</button>
     </div>
     <div class="posts" v-if="posts.length">
-      <router-link :key="post.path" :to="post.path" class="post" v-for="post in posts">
-        <div>
-          <img :src="$withBase(getImage(post))" alt>
-        </div>
-        <h2>{{post.frontmatter.title}}</h2>
-        <p>{{post.frontmatter.description}}</p>
-        <small
-          :title="post.frontmatter.date | moment('LLLL')"
-        >{{post.frontmatter.date | moment("calendar")}}</small>
-        <hr>
-      </router-link>
+      <Post
+        v-for="post in posts"
+        :key="post.path"
+        :to="post.path"
+        :post="post"
+        :isCurrentCategory="isCategorySelected"
+        @changeCategory="changeCategory"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import { getImage, slugify } from "@vpress/utils";
+import { slugify } from "@vpress/utils";
 
 export default {
   props: {
@@ -41,11 +39,30 @@ export default {
     return {
       filter: {
         category: this.categories
-      },
-      categoryList: {}
+      }
     };
   },
   computed: {
+    categoryList() {
+      const list = {};
+      this.$site.pages.forEach(post => {
+        const postCategories = post.frontmatter.category;
+
+        postCategories &&
+          postCategories.forEach(c => {
+            const k = slugify(c);
+            if (!list[k]) {
+              list[k] = {
+                name: c,
+                count: 1
+              };
+            } else {
+              list[k].count++;
+            }
+          });
+      });
+      return list;
+    },
     posts() {
       let currentPage = this.page ? this.page : this.$page.path;
       let posts = this.$site.pages
@@ -54,19 +71,15 @@ export default {
             new RegExp(`(${currentPage}).+(?=.*html)?`)
           );
 
+          const selectedCategories = this.filter.category;
           const postCategories = post.frontmatter.category;
 
-          postCategories &&
-            postCategories.forEach(c => {
-              if (!this.categoryList[slugify(c)]) {
-                this.categoryList[slugify(c)] = c;
-              }
-            });
-
           const categoryMatch =
-            this.filter.category.length === 0 ||
+            selectedCategories.length === 0 ||
             (postCategories &&
-              this.filter.category.includes(postCategories.map(slugify)));
+              postCategories
+                .map(slugify)
+                .find(c => selectedCategories.includes(c)));
           return pageMatch && categoryMatch;
         })
         .sort((a, b) => {
@@ -76,8 +89,11 @@ export default {
     }
   },
   methods: {
-    getImage,
-    changeCategory(categoryKey) {
+    isCategorySelected(name) {
+      return name && this.filter.category.includes(slugify(name));
+    },
+    changeCategory(category) {
+      const categoryKey = slugify(category);
       const index = this.filter.category.indexOf(categoryKey);
       index >= 0
         ? this.filter.category.splice(index, 1)
@@ -89,10 +105,33 @@ export default {
 <style lang="stylus" scoped>
 @css {
   .posts {
-    @apply me-font-sans;
+    @apply 
+      me-relative
+      me-font-sans
   }
-  .post {
-    @apply me-no-underline me-text-black;
+
+  .categories {
+    @apply
+      me-flex
+      me-flex-wrap
+      me-justify-between
+  }
+  .category {
+    transition: all 300ms ease;
+    @apply
+      me-sticky
+      me-pin-t
+      me-p-2
+      me-mx-2
+      me-outline-none
+      me-rounded-full
+      me-text-black
+      me-mb-2
+  }
+  .category.active {
+    @apply
+      me-bg-blue
+      me-text-white
   }
 }
 </style>

@@ -28,6 +28,7 @@ deploy-prod:
   image: mwienk/docker-lftp:latest
   script:
     - "[[ ${HIDE_ON_WEB} ]] && { cp robots.txt .vuepress/dist; }"
+    - "[[ ${HIDE_ON_WEB} ]] && { cp .htaccess .vuepress/dist; }"
     - lftp -e "mirror -R .vuepress/dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
     - build

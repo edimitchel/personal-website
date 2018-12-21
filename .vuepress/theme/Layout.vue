@@ -1,7 +1,9 @@
 <template>
   <div>
     <Nav/>
-    <component class="main-content" :is="layout" :show="show"></component>
+    <transition :name="transitionName" mode="out-in" duration="300">
+      <component class="main-content" :is="layout" :show="show"></component>
+    </transition>
     <Footer/>
   </div>
 </template>
@@ -14,14 +16,15 @@ export default {
   components: {
     Nav,
     Footer,
-    ...layouts,
+    ...layouts
   },
   data() {
     return {
+      transitionName: "slide-left",
       show: {
         title: false,
-        content: false,
-      },
+        content: false
+      }
     };
   },
   computed: {
@@ -29,6 +32,13 @@ export default {
       return this.$page.frontmatter.layout || "HomeLayout";
     }
   },
+  watch: {
+    $route(to, from) {
+      const toDepth = to.path.split("/").length;
+      const fromDepth = from.path.split("/").length;
+      this.transitionName = toDepth > fromDepth ? "slide-right" : "slide-left";
+    }
+  }
 };
 </script>
 
@@ -40,7 +50,13 @@ export default {
   }
   .main-content {
     max-width: config(screens.md);
-    @apply me-p-4 me-border-solid me-border-grey me-border-0 me-border-t me-border-b me-mx-auto;
+    @apply me-p-4 me-border-0 me-mx-auto;
+  }
+  @screen md {
+    .main-content {
+      max-width: config(screens.lg);
+      @apply me-border-solid me-border-grey me-border-0 me-border-t me-border-b;
+    }
   }
 
   @screen md {

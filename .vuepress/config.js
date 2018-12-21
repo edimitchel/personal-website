@@ -27,7 +27,6 @@ module.exports = {
     birthdate: "1993-02-28",
     lastUpdated: "Last Updated",
     nav: [
-      { text: "Home", link: "/" },
       { text: "Blog", link: "/blog/" },
       { text: "About", link: "/about/" },
       { text: "Contact", link: "/contact/" }

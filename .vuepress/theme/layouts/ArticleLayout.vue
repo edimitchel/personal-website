@@ -1,9 +1,11 @@
 <template>
-  <main>
-    <img :src="image" alt>
+  <main class="article">
+    <transition name="slide-down">
+      <img :src="image" alt class="article__image" v-show="showImg">
+    </transition>
 
-    <h1 v-html="$page.frontmatter.title"/>
-    <Content class="article-content"/>
+    <h1 class="article__title" v-html="$page.frontmatter.title"/>
+    <Content class="article__content"/>
   </main>
 </template>
 
@@ -11,7 +13,15 @@
 import { getImage } from "@vpress/utils";
 
 export default {
-  name: "BlogLayout",
+  name: "ArticleLayout",
+  data() {
+    return {
+      showImg: false,
+    }
+  },
+  mounted() {
+    this.showImg = true;
+  },
   computed: {
     image() {
       return this.$withBase(getImage(this.$page));
@@ -27,8 +37,21 @@ export default {
     @apply me-pb-5 me-text-4xl me-uppercase me-text-center;
   }
 
-  .article-content {
-    @apply me-leading-loose me-font-sans;
+  .article {
+    @apply me-leading-loose me-font-sans
+  }
+
+  .article__image {
+    @apply 
+      me-min-w-full
+  }
+
+  .article__title {
+    @apply me-leading-normal
+  }
+
+  .article__content {
+    @apply me-leading-loose me-font-sans
   }
 }
 </style>

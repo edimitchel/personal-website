@@ -16,7 +16,7 @@ export default {
   props: {
     color: {
       type: [String, Array],
-      default: ["white", "#c5c5c5"]
+      default: () => ["white", "#c5c5c5"]
     },
     height: {
       type: Number,

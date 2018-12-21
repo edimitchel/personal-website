@@ -1,6 +1,6 @@
 ---
 title: "ALTRAN à la nuit de l’info – Sa première expérience à Strasbourg"
-description: "Vous en avez certainement entendu parlé – ou peut-être pas – en tout cas, la dixième édition de la nuit de l’info a eu lieu en cette fin d’année 2017 le 7 et 8 décembre."
+description: "Vous en avez certainement entendu parler – ou peut-être pas – en tout cas, la dixième édition de la nuit de l’info a eu lieu en cette fin d’année 2017 le 7 et 8 décembre."
 layout: ArticleLayout
 image: https://micheledighoffer.fr/blog/wp-content/uploads/2017/12/tb_altran-1ere-nuitinfo.png
 date: 2017-12-11 23:52:16
@@ -9,15 +9,14 @@ category:
     - Défis personnels
 ---
 
-[_Read the english version_](http://notes.zouhairj.com/altran-info-night-2017/)
+[Read the english version](http://notes.zouhairj.com/altran-info-night-2017/)
 
-Vous en avez certainement [entendu parlé](https://book.micheledighoffer.fr/article/nuit-info-2017-un-nouveau-defi) – ou peut-être pas – en tout cas, la dixième édition de la [nuit de l’info](https://www.nuitdelinfo.com/) a eu lieu en cette fin d’année 2017 le 7 et 8 décembre.
+Vous en avez certainement [entendu parler](https://book.micheledighoffer.fr/article/nuit-info-2017-un-nouveau-defi) – ou peut-être pas – en tout cas, la dixième édition de la [nuit de l’info](https://www.nuitdelinfo.com/) a eu lieu en cette fin d’année 2017 le 7 et 8 décembre.
 
 ![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/12/lanuitdelinfo_altran_hd.png)
 
 Quelques chiffres de la nuit  
-
-===============================
+============================
 
 **13 heures** pour répondre à une problématique par une solution informatique orientée web pour la plupart.
 
@@ -48,7 +47,7 @@ Les grands gagnants de la nuit !
 
 Parmi les 25 équipes des 53 inscrites, les **White Walkers** (_référence à la série télévisée Game Of Thrones_) remportent le gros lot : 1000 € de chèques cadeaux et 10 € de bon d’achat par personne. Ils ont su dompter un framework javascript (parmi les trois proposés : Angular, React et Vue) et éprouver leur rigueur dans leur travail collaboratif par l’usage de l’outil de versioning git.
 
-_Témoignage_
+Témoignage
 ------------
 
 > Merci à ALTRAN d’avoir proposé ce défi qui nous a beaucoup plu.
@@ -61,7 +60,7 @@ _Témoignage_
 
 Parmi les 10 équipes des 20 inscrites, les **Anonymousse** (_référence aux anonymous_) réussissent le défi sur le “Teletyping” par une proposition originale et efficace ! Ils remportent le lot de 200 € de chèques cadeaux et de 10 € de bons d’achat personne.
 
-_Témoignage_
+Témoignage
 ------------
 
 > Je suis vraiment très heureux d’avoir participé au concours, déjà parce que l’ambiance au sein de notre groupe était présente et que l’on s’est amusé jusqu.’à la dernière minute.  
