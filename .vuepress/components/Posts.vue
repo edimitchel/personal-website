@@ -35,13 +35,6 @@ export default {
       default: () => []
     }
   },
-  data() {
-    return {
-      filter: {
-        category: this.categories
-      }
-    };
-  },
   computed: {
     categoryList() {
       const list = {};
@@ -71,7 +64,7 @@ export default {
             new RegExp(`(${currentPage}).+(?=.*html)?`)
           );
 
-          const selectedCategories = this.filter.category;
+          const selectedCategories = this.filterCategory;
           const postCategories = post.frontmatter.category;
 
           const categoryMatch =
@@ -86,18 +79,28 @@ export default {
           return new Date(b.frontmatter.date) - new Date(a.frontmatter.date);
         });
       return posts;
+    },
+    filterCategory(){
+      console.log(this.$route.hash)
+      if(this.$route.hash.length > 0) {
+        return this.$route.hash.replace('#', '').split(',');
+      } else {
+        return [];
+      }
     }
   },
   methods: {
     isCategorySelected(name) {
-      return name && this.filter.category.includes(slugify(name));
+      return name && this.filterCategory.includes(slugify(name));
     },
     changeCategory(category) {
       const categoryKey = slugify(category);
-      const index = this.filter.category.indexOf(categoryKey);
+      const index = this.filterCategory.indexOf(categoryKey);
       index >= 0
-        ? this.filter.category.splice(index, 1)
-        : this.filter.category.push(categoryKey);
+        ? this.filterCategory.splice(index, 1)
+        : this.filterCategory.push(categoryKey);
+
+      this.$router.push({hash: this.filterCategory.join(',')});
     }
   }
 };
