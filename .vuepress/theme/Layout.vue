@@ -55,7 +55,6 @@ export default {
   @screen md {
     .main-content {
       max-width: config(screens.lg);
-      @apply me-border-solid me-border-grey me-border-0 me-border-t me-border-b;
     }
   }
 

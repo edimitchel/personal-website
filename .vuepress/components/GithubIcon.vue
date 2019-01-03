@@ -30,10 +30,13 @@ export default {
         me-mx-2
         me-bg-black
         me-text-white
-        me-rounded-full;
+        me-rounded-full
     }
     svg {
-      @apply me-fill-current me-w-5 me-h-5;
+      @apply
+        me-fill-current
+        me-w-5
+        me-h-5
     }
   }
 </style>

@@ -26,7 +26,7 @@ export default {
 <style lang="stylus" scoped>
 @css {
   h1 {
-    @apply me-uppercase me-pb-5 me-text-center;
+    @apply me-uppercase me-pb-5 me-text-center
   }
 }
 </style>

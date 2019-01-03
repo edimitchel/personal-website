@@ -130,54 +130,54 @@ export default {
       me-items-center
       me-flex-col
       me-text-center
-      me-pt-3;
+      me-pt-3
   }
   .icons {
     max-width: 200px;
+    top: 130px;
     @apply
       me-flex
       me-justify-between
       me-absolute
-      me-w-full;
-    top: 130px;
+      me-w-full
   }
   .title-header {
     margin-top: -15px;
     @apply
       me-text-xl
       me-font-mono
-      me-font-bold;
+      me-font-bold
   }
   @screen md {
     .title-header {
       @apply
-        me-text-3xl;
+        me-text-3xl
     }
   }
   .subtitle-header {
     margin-top: -65px;
     @apply
-      me-text-xs;
+      me-text-xs
   }
   @screen md {
     .subtitle-header {
       @apply
-        me-text-base;
+        me-text-base
     }
   }
   .background {
-    @apply
-      me-absolute;
     top: 0;
     left: 0;
     right: 0;
     z-index: -1;
+    @apply
+      me-absolute
   }
 
   nav {
     @apply
       me-flex
-      me-uppercase;
+      me-uppercase
   }
   nav a {
     @apply
@@ -185,13 +185,13 @@ export default {
       me-text-grey-dark
       me-p-2
       me-rounded
-      me-no-underline;
+      me-no-underline
   }
   nav a:hover, nav a:focus, nav a.router-link-active
   {
     @apply
       me-bg-grey-dark
-      me-text-white;
+      me-text-white
   }
 }
 </style>

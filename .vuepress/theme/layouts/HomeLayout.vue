@@ -14,7 +14,7 @@ export default {
   main {
   }
   h1 {
-    @apply me-pb-5;
+    @apply me-pb-5
   }
 }
 </style>

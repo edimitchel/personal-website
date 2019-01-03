@@ -34,7 +34,7 @@ export default {
   main {
   }
   h1 {
-    @apply me-pb-5 me-text-4xl me-uppercase me-text-center;
+    @apply me-pb-5 me-text-4xl me-uppercase me-text-center
   }
 
   .article {
