@@ -29,3 +29,17 @@ export const slugify = s =>
     replacement: "-",
     lower: true
   });
+
+export const calculateAge = date => {
+  const birthdate = new Date(date);
+  const now = new Date();
+  let years = now.getFullYear() - birthdate.getFullYear();
+  if (
+    birthdate.getMonth() > now.getMonth() ||
+    (birthdate.getMonth() == now.getMonth() &&
+      birthdate.getDate() > now.getDate())
+  ) {
+    years--;
+  }
+  return years;
+};

@@ -1,13 +1,6 @@
 <script>
-const getAge = (date) => {
-  const birthdate = new Date(date);
-  const now = new Date();
-  const years = now.getFullYear() - birthdate.getFullYear();
-  const isNotPassed =
-    birthdate.getMonth() == now.getMonth() &&
-    birthdate.getDate() > now.getDate();
-  return isNotPassed ? years - 1 : years;
-};
+import { calculateAge } from "@vpress/utils";
+
 export default {
   props: {
     date: {
@@ -15,8 +8,13 @@ export default {
       required: true
     }
   },
+  computed: {
+    age() {
+      return calculateAge(this.date);
+    }
+  },
   render(h) {
-    return h("span", getAge(this.date));
+    return h("span", this.age);
   }
 };
 </script>
