@@ -44,7 +44,7 @@ deploy-prod:
     - "[[ ${HIDE_ON_WEB} ]] && { cp .htaccess .vuepress/dist; }"
     - lftp -e "mirror -R .vuepress/dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
-    - build
+    - build-prod
   only:
     - master
   when: manual
@@ -56,6 +56,6 @@ deploy-dev:
     - cp robots.txt .vuepress/dist
     - lftp -e "mirror -R .vuepress/dist /www/website-dev -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
-    - build
+    - build-dev
   only:
     - develop
