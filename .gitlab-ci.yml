@@ -7,7 +7,7 @@ cache:
   paths:
     - node_modules/
 
-build:
+build-prod:
   stage: build
   image: node:10
   script:
@@ -20,6 +20,19 @@ build:
       - .vuepress/dist/
   only:
     - master
+
+build-dev:
+  stage: build
+  image: node:10
+  script:
+    - npm install
+    - ./node_modules/.bin/vuepress build --debug
+    - cp humans.txt .vuepress/dist
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - .vuepress/dist/
+  only:
     - develop
 
 # upload job, see https://lftp.yar.ru/lftp-man.html
