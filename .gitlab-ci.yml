@@ -26,7 +26,7 @@ build-dev:
   image: node:10
   script:
     - npm install
-    - ./node_modules/.bin/vuepress build --debug
+    - ./node_modules/.bin/vuepress build
     - cp humans.txt .vuepress/dist
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
