@@ -6,7 +6,7 @@
       <github-icon url="https://github.com/edimitchel"/>
     </div>
     <img
-      :src="$withBase('/images/michel-photo.png')"
+      :src="$withBase('/images/self-image.jpg')"
       alt="Michel's picture"
       class="logo"
       @click="goHome"
@@ -30,6 +30,7 @@
         v-for="item in $site.themeConfig.nav"
         :key="item.link"
         :to="item.link"
+        :class="item.class"
       >{{item.text}}</router-link>
     </nav>
   </header>
@@ -46,7 +47,6 @@ export default {
   data() {
     return {
       pulse: false,
-      forceChange: 0,
       counter: {}
     };
   },
@@ -105,6 +105,7 @@ export default {
   height: 150px;
   border-radius: 100%;
   cursor: pointer;
+  z-index: 100;
 }
 
 .fade-enter-active, .fade-leave-active, .appear {
@@ -187,10 +188,30 @@ export default {
       me-rounded
       me-no-underline
   }
-  nav a:hover, nav a:focus, nav a.router-link-active
+  nav a.blog
+  {
+    transition: all .3s ease;
+    @apply
+      me-text-blue
+      me-font-bold
+  }
+  nav a:hover, nav a:focus
+  {
+    @apply
+      me-bg-grey
+      me-text-white
+  }
+  nav a.router-link-active
   {
     @apply
       me-bg-grey-dark
+      me-text-white
+  }
+  nav a.blog.router-link-active
+  {
+    @apply
+      me-bg-blue
+      me-font-bold
       me-text-white
   }
 }

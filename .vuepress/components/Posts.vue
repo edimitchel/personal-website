@@ -81,7 +81,6 @@ export default {
       return posts;
     },
     filterCategory(){
-      console.log(this.$route.hash)
       if(this.$route.hash.length > 0) {
         return this.$route.hash.replace('#', '').split(',');
       } else {

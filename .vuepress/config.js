@@ -25,10 +25,9 @@ module.exports = {
   themeConfig: {
     name: "Michel EDIGHOFFER",
     birthdate: "1993-02-28",
-    lastUpdated: "Last Updated",
     nav: [
-      { text: "Blog", link: "/blog/" },
       { text: "About", link: "/about/" },
+      { text: "Blog", link: "/blog/", class: "blog" },
       { text: "Contact", link: "/contact/" }
     ],
     emoji: {
