@@ -95,6 +95,9 @@ let colors = {
   'blue-light': '#6cb2eb',
   'blue-lighter': '#bcdefa',
   'blue-lightest': '#eff8ff',
+
+  'twitter': '#1da1f2',
+  'github': '#333333',
 }
 
 module.exports = {

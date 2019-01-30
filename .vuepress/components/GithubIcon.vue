@@ -28,7 +28,7 @@ export default {
         me-h-8
         me-m-0
         me-mx-2
-        me-bg-black
+        me-bg-github
         me-text-white
         me-rounded-full
     }
