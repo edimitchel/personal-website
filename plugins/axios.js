@@ -1,7 +1,6 @@
 export default ({ $axios, redirect }) => {
-  $axios.
-
   $axios.onRequest((config) => {
+    // eslint-disable-next-line no-console
     console.log('Making request to ' + config.url)
   })
 

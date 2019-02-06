@@ -1,10 +1,22 @@
 require('dotenv').config()
+const path = require('path')
 
-const pkg = require('./package')
-const { options } = require('./package')
+const { options, ...pkg } = require(path.join(__dirname, '/package'))
+
+const devConfig = () =>
+  process.env.NODE_ENV === 'development' && {
+    debug: true,
+    server: {
+      timing: {
+        total: true
+      }
+    }
+  }
 
 module.exports = {
   mode: 'universal',
+
+  ...devConfig(),
 
   /*
    ** Headers of the page
@@ -16,7 +28,14 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700|Work+Sans:400,600'
+      }
+    ]
   },
 
   /*
@@ -32,7 +51,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/axios'],
 
   /*
    ** Nuxt.js modules
@@ -46,24 +65,14 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-    baseURL: process.env.API_URL || 'localhost'
+    // baseURL: process.env.API_URL || 'localhost'
   },
 
   env: {
     appOptions: Object.assign(options, {
       emojis: {
-        birthday: [
-          '🥳',
-          '🙌',
-          '🎂',
-          '🍰',
-          '🎈',
-          '🎉',
-          '🎁'
-        ],
-        normal: [
-          '👋'
-        ]
+        birthday: ['🥳', '🙌', '🎂', '🍰', '🎈', '🎉', '🎁'],
+        normal: ['👋']
       }
     })
   },
@@ -85,6 +94,12 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+    },
+
+    build: {
+      watch: ['server']
     }
-  }
+  },
+
+  serverMiddleware: ['~/server/data']
 }

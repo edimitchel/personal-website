@@ -4,5 +4,6 @@
     "javascript.preferences.quoteStyle": "single",
     "prettier.arrowParens": "always",
     "javascript.format.insertSpaceAfterSemicolonInForStatements": false,
-    "prettier.semi": false
+    "prettier.semi": false,
+    "npm.scriptExplorerAction": "run"
 }
