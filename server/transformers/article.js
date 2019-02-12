@@ -1,19 +1,18 @@
 import { transform } from './index'
 
-export default (article) => {
-  const contents = transform('contents', article.contents)
+export default async (article) => {
+  const contents = await transform('localizedcontents', article.localized_contents)
   const defaultLanguage = article['default-language']
 
-  article.defaultContent = contents.find(
+  article.content = contents.find(
     content => content.language === defaultLanguage
   )
-  if (article.defaultContent) {
+  if (article.content) {
     delete article['default-language']
     article.options = Object.assign(
       article.options,
-      article.defaultContent.options
+      article.content.options
     )
-    delete article.contents
   }
 
   return article

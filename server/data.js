@@ -7,7 +7,7 @@ const Axios = axios.create({
   baseURL: process.env.API_URL
 })
 
-const request = async ({ url, method }) => {
+const request = async ({ url, method = 'GET' }) => {
   const { resource, endpoint } = endpoints.match(url)
 
   const { data } = await Axios.request(endpoint, {
@@ -26,11 +26,11 @@ const transformData = ({ resource, data }) => {
   return transform(resource, data)
 }
 
-const handleRequest = async (req) => {
+export const requestData = async (req) => {
   const result = await request(req)
   if (result !== null) {
     try {
-      return Promise.resolve(transformData(result))
+      return transformData(result)
     } catch (e) {
       return Promise.reject(e)
     }
@@ -38,7 +38,7 @@ const handleRequest = async (req) => {
 }
 
 const handler = (req, res, next) => {
-  handleRequest(req)
+  requestData(req)
     .then((data) => {
       res.setHeader('Content-Type', 'application/json')
       res.end(JSON.stringify(data))
@@ -46,4 +46,4 @@ const handler = (req, res, next) => {
     .catch(next)
 }
 
-module.exports = { path: '/api', handler: handler }
+export default { path: '/api', handler: handler }

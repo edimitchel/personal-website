@@ -1,7 +1,11 @@
 import article from './article'
+import content from './content'
+import localizedcontent from './localizedcontent'
 
 const transformers = {
-  articles: article
+  articles: article,
+  contents: content,
+  localizedcontents: localizedcontent,
 }
 
 const getTransformer = (dataType) => {

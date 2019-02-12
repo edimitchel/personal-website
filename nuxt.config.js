@@ -1,5 +1,6 @@
 require('dotenv').config()
 const path = require('path')
+const axios = require('axios')
 
 const { options, ...pkg } = require(path.join(__dirname, '/package'))
 
@@ -76,6 +77,17 @@ module.exports = {
       }
     })
   },
+
+  // generate: {
+  //   routes: () => {
+  //     return axios.get('/api/articles')
+  //     .then((res) => {
+  //       return res.data.map((article) => {
+  //         return '/users/' + article.id
+  //       })
+  //     })
+  //   }
+  // },
 
   /*
    ** Build configuration
