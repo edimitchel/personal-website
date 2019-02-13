@@ -78,16 +78,21 @@ module.exports = {
     })
   },
 
-  // generate: {
-  //   routes: () => {
-  //     return axios.get('/api/articles')
-  //     .then((res) => {
-  //       return res.data.map((article) => {
-  //         return '/users/' + article.id
-  //       })
-  //     })
-  //   }
-  // },
+  generate: {
+    routes: () => {
+      return axios.get('/api/articles')
+        .then((res) => {
+          let blogPosts = []
+          res.forEach((article) => {
+            blogPosts.concat(article.localizedContent.map(content =>`/blog/${content.language}/${content.slug}`))
+          })
+          return blogPosts
+        })
+        .catch((e) => {
+          console.error(e);
+        })
+    }
+  },
 
   /*
    ** Build configuration
