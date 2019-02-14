@@ -13,7 +13,7 @@
 export default {
   layout: 'blog',
   async asyncData({ $axios }) {
-    const data = await $axios.$get('/api/articles')
+    const data = await $axios.get('http://localhost:3000/api/articles')
     return data
   }
 }

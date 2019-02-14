@@ -1,25 +1,26 @@
 const endpoints = {
   articles: 'articles',
   article: (id) => `articles/${id}`,
-  articlecontents: 'articlecontents',
-  articlecontent: (id) => `articlecontents/${id}`,
+  localizedcontents: 'localizedcontents',
+  localizedcontent: (id) => `localizedcontents/${id}`,
   comments: (articleId) => `articles/${articleId}/comments`,
   comment: (commentId) => `comments/${commentId}`
 }
 
-const match = (url) => {
+const match = (url, method = 'GET') => {
   const resourceMatch = url.match(/^\/?([a-zA-Z-]+)/)
   const resource = resourceMatch !== null ? resourceMatch[1] : ''
   const params = url
     .replace(resource, '')
     .split('/')
     .filter((p) => p)
+
   if (resource) {
     const endpoint = endpoints[resource]
     if (endpoint instanceof Function) {
-      return { resource, endpoint: endpoint.apply(params) }
+      return { resource, endpoint: endpoint.apply(this, params), method }
     } else {
-      return { resource, endpoint }
+      return { resource, endpoint, method }
     }
   }
   throw new Error('No endpoint found')

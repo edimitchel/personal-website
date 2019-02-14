@@ -7,34 +7,34 @@ const Axios = axios.create({
   baseURL: process.env.API_URL
 })
 
-const request = async ({ url, method = 'GET' }) => {
-  const { resource, endpoint } = endpoints.match(url)
-
+const request = async ({ url, method }) => {
+  const { resource, endpoint, method: m } = endpoints.match(url, method)
   const { data } = await Axios.request(endpoint, {
-    method: method.toLowerCase()
-    // add axios more request config here
+    method: m.toLowerCase()
+    // add more axios request config here
   })
 
   return { resource, data }
 }
 
-const transformData = ({ resource, data }) => {
+const transformData = async ({ resource, data }) => {
   if (!data) {
     throw new Error('No data')
   }
 
-  return transform(resource, data)
+  return await transform(resource, data)
 }
 
 export const requestData = async (req) => {
   const result = await request(req)
   if (result !== null) {
     try {
-      return transformData(result)
+      return Promise.resolve(transformData(result))
     } catch (e) {
       return Promise.reject(e)
     }
   }
+  return Promise.reject(new Error('No result data'))
 }
 
 const handler = (req, res, next) => {

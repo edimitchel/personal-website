@@ -12,14 +12,14 @@ const getTransformer = (dataType) => {
   return dataType in transformers ? transformers[dataType] : null
 }
 
-function transform(type, data) {
+const transformFn = transformer => data => Promise.resolve(transformer(data))
+
+export const transform = (type, data) => {
   const transformer = getTransformer(type)
   if (transformer === null) {
     return data
   }
-  if (Array.isArray(data)) return data.map(transformer)
+  if (Array.isArray(data)) return Promise.all(data.map(transformFn(transformer)));
 
-  return transformer(data)
+  return transformFn(transformer)(data) 
 }
-
-export { transform }

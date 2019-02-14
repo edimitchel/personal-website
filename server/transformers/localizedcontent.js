@@ -1,11 +1,9 @@
-import { requestData } from '../data';
+import { requestData } from '../data'
 
 export default async (localizedContent) => {
   const contents = await requestData({
-    url: `/articlecontent/${localizedContent.id}`,
-  });
-
-  localizedContent.contents = contents
-
+    url: `/localizedcontent/${localizedContent.id}`
+  })
+  localizedContent.contents = contents.contents
   return localizedContent
 }

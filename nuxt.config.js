@@ -66,7 +66,7 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-    // baseURL: process.env.API_URL || 'localhost'
+    baseURL: process.env.LOCALHOST_URL || 'localhost'
   },
 
   env: {
@@ -84,7 +84,7 @@ module.exports = {
         .then((res) => {
           let blogPosts = []
           res.forEach((article) => {
-            blogPosts.concat(article.localizedContent.map(content =>`/blog/${content.language}/${content.slug}`))
+            blogPosts.concat(article.localized_contents.map(content =>`/blog/${content.language}/${content.slug}`))
           })
           return blogPosts
         })
