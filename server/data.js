@@ -7,6 +7,8 @@ const Axios = axios.create({
   baseURL: process.env.API_URL
 })
 
+const cache = new Map();
+
 const request = async ({ url, method }) => {
   const { resource, endpoint, method: m } = endpoints.match(url, method)
   const { data } = await Axios.request(endpoint, {
@@ -26,10 +28,15 @@ const transformData = async ({ resource, data }) => {
 }
 
 export const requestData = async (req) => {
+  if(req.method === 'GET' && cache.has(req.url.replace('/', '-'))) {
+    return Promise.resolve(cache.get(req.url.replace('/', '-')));
+  }
   const result = await request(req)
   if (result !== null) {
     try {
-      return Promise.resolve(transformData(result))
+      const transformed = transformData(result)
+      cache.set(req.url.replace('/', '-'), transformed)
+      return Promise.resolve(transformed)
     } catch (e) {
       return Promise.reject(e)
     }
