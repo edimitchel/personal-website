@@ -1,37 +1,47 @@
 <template>
-  <router-link class="post" :to="to">
+  <!-- eslint-disable vue/no-v-html -->
+  <nuxt-link class="post" :to="`/blog/${to}`">
     <div class="post__image">
       <div class="post__tags">
-        <small
+        <!-- <small
           class="post__tag"
-          v-if="post.frontmatter.category"
-          v-for="category of post.frontmatter.category"
+          v-if="post.category"
+          v-for="category of post.category"
           @click.prevent="changeCategory(category)"
           :class="{active: isCurrentCategory && isCurrentCategory(category)}"
-        >{{category}}</small>
+        >{{ category }}</small> -->
       </div>
-      <img :src="$withBase(getImage(post))" :alt="post.frontmatter.title">
+      <!-- <img :src="$withBase(getImage(post))" :alt="post.title"> -->
     </div>
     <small
+      v-if="post.date"
       class="post__date"
-      :title="post.frontmatter.date | moment('LLLL')"
-    >{{post.frontmatter.date | moment("calendar")}}</small>
-    <h2 class="post__title" v-html="post.frontmatter.title"/>
-    <p class="post__description" v-html="post.frontmatter.description"/>
+      :title="post.date | moment('LLLL')"
+    >
+      {{ post.date | moment('calendar') }}
+    </small>
+    <h2 class="post__title" v-html="post.title" />
+    <p class="post__description" v-html="post.description" />
     <hr>
-  </router-link>
+  </nuxt-link>
 </template>
 <script>
-import { getImage, slugify } from "@@/utils";
+import moment from 'moment'
 export default {
-  props: ["post", "to", "isCurrentCategory"],
-  methods: {
-    getImage,
-    changeCategory(name) {
-      this.$emit("changeCategory", name);
+  props: {
+    post: {
+      type: Object,
+      default: () => {}
+    },
+    to: {
+      type: String,
+      default: ''
     }
+  },
+  methods: {
+    moment
   }
-};
+}
 </script>
 
 <style lang="stylus" scoped>

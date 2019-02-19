@@ -1,11 +1,7 @@
-import article from './article'
-import content from './content'
-import localizedcontent from './localizedcontent'
+import story from './story'
 
 const transformers = {
-  articles: article,
-  contents: content,
-  localizedcontents: localizedcontent,
+  story
 }
 
 const getTransformer = (dataType) => {
@@ -19,7 +15,7 @@ export const transform = (type, data) => {
   if (transformer === null) {
     return data
   }
-  if (Array.isArray(data)) return Promise.all(data.map(transformFn(transformer)));
+  if (Array.isArray(data)) return Promise.all(data.map(transformFn(transformer)))
 
-  return transformFn(transformer)(data) 
+  return transformFn(transformer)(data)
 }

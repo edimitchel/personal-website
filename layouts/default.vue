@@ -25,7 +25,7 @@ const {
   description,
   navLinks,
   ...options
-} = process.env.appOptions
+} = process.env.app
 
 export default {
   components: {

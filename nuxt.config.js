@@ -4,8 +4,10 @@ const axios = require('axios')
 
 const { options, ...pkg } = require(path.join(__dirname, '/package'))
 
+const isDev = process.env.DEV || process.env.NODE_ENV === 'development'
+
 const devConfig = () =>
-  process.env.NODE_ENV === 'development' && {
+  isDev && {
     debug: true,
     server: {
       timing: {
@@ -52,7 +54,10 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/axios'],
+  plugins: [
+    '~/plugins/axios',
+    '~/plugins/moment'
+  ],
 
   /*
    ** Nuxt.js modules
@@ -60,17 +65,24 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/markdownit',
+    ['@nuxtjs/moment', { locales: ['fr'], defaultLocale: 'en' }],
+    [
+      'storyblok-nuxt',
+      {
+        accessToken: process.env.STORYBLOK_API_KEY,
+        cacheProvider: 'memory'
+      }
+    ]
   ],
-  /*
-   ** Axios module configuration
-   */
-  axios: {
-    baseURL: process.env.LOCALHOST_URL || 'localhost'
+
+  markdownit: {
+    injected: true
   },
 
   env: {
-    appOptions: Object.assign(options, {
+    app: Object.assign(options, {
       emojis: {
         birthday: ['🥳', '🙌', '🎂', '🍰', '🎈', '🎉', '🎁'],
         normal: ['👋']
@@ -79,17 +91,29 @@ module.exports = {
   },
 
   generate: {
-    routes: () => {
-      return axios.get('/api/articles')
-        .then((res) => {
-          let blogPosts = []
-          res.forEach((article) => {
-            blogPosts.concat(article.localized_contents.map(content =>`/blog/${content.language}/${content.slug}`))
-          })
-          return blogPosts
-        })
-        .catch((e) => {
-          console.error(e);
+    routes: function(callback) {
+      const token = process.env.STORYBLOK_API_KEY
+      const version = isDev ? 'draft' : 'published'
+      let cacheVersion = 0
+
+      const routes = ['/blog/en']
+
+      axios
+        .get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
+        .then((spaceRes) => {
+          cacheVersion = spaceRes.data.space.version
+          axios
+            .get(
+              `https://api.storyblok.com/v1/cdn/stories?starts_with=${`blog-posts`}&token=${token}&version=${version}&cv=${cacheVersion}`
+            )
+            .then((res) => {
+              res.data.stories.forEach((story) => {
+                routes.push('/blog/' + story.slug)
+                routes.push('/blog/en/' + story.slug)
+              })
+
+              callback(null, routes)
+            })
         })
     }
   },
@@ -116,7 +140,5 @@ module.exports = {
     build: {
       watch: ['server']
     }
-  },
-
-  serverMiddleware: ['~/server/data']
+  }
 }

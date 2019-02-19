@@ -43,3 +43,7 @@ export const calculateAge = (date) => {
   }
   return years
 }
+
+export const getDefaultLang = (lang, defaultLang, suffix = '/') => {
+  return lang === defaultLang ? '' : lang + suffix
+}
