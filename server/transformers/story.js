@@ -1,17 +1,25 @@
-export default (story) => { 
+import { transform } from '@/server/transformers';
+
+export default async (story) => {
   const {
     slug,
-    published_at
+    published_at,
+    lang,
+    name,
   } = story
 
   // Remove useless
   const {
-    component,
-    ...content
+    title,
+    visions,
   } = story.content
-
+  
+  const mappedVisions = await transform('vision', visions)
+  
   return {
-    ...content,
+    title,
+    lang,
+    visions: mappedVisions,
     date: published_at,
     slug
   }

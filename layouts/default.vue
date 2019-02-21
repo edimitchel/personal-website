@@ -66,5 +66,26 @@ export default {
       @apply me-p-16 me-pt-8;
     }
   }
+
+  .right-enter-active, .right-leave-active {
+    transition: all .3s;
+    position: relative;
+  }
+
+  .right-enter {
+    opacity: 0;
+    left: 10px;
+  }
+
+  .right-leave,
+  .right-enter-to {
+    opacity: 1;
+    left: 0;
+  }
+
+  .right-leave-to {
+    opacity: 0;
+    left: -10px;
+  }
 }
 </style>

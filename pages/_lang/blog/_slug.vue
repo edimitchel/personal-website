@@ -19,17 +19,7 @@ import { transform } from '@/server/transformers'
 export default {
   computed: {
     content() {
-      const { content } = this.story
-      return {
-        title: content.title,
-        visions: this.mapVisions(content.visions)
-      }
-    }
-  },
-  methods: {
-    async mapVisions(visions) {
-      const result = await transform('vision', visions)
-      return result
+      return this.story
     }
   },
   asyncData({ app, params, query, env, error }) {
@@ -39,15 +29,19 @@ export default {
       .get(`cdn/stories/${getDefaultLang(lang, env.app.defaultLang)}blog-posts/${slug}`, {
         version
       })
-      .then((res) => {
-        return res.data
-      })
+      .then(res => res.data)
       .catch((res) => {
         // TODO: Resolve this error with an critical error
         error({
           statusCode: res.response.status,
           message: res.response.data
         })
+      })
+      .then(async (data) => {
+        const story = await transform('story', data.story)
+        return {
+          story
+        }
       })
   }
 }

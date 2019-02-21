@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable vue/no-v-html -->
-  <nuxt-link class="post" :to="`/blog/${to}`">
+  <nuxt-link class="post" :to="blogUri">
     <div class="post__image">
       <div class="post__tags">
         <!-- <small
@@ -16,9 +16,9 @@
     <small
       v-if="post.date"
       class="post__date"
-      :title="post.date | moment('LLLL')"
+      :title="$moment(new Date(post.date), 'LLLL',)"
     >
-      {{ post.date | moment('calendar') }}
+      {{ $moment(new Date(post.date), 'calendar') }}
     </small>
     <h2 class="post__title" v-html="post.title" />
     <p class="post__description" v-html="post.description" />
@@ -26,7 +26,6 @@
   </nuxt-link>
 </template>
 <script>
-import moment from 'moment'
 export default {
   props: {
     post: {
@@ -38,8 +37,11 @@ export default {
       default: ''
     }
   },
-  methods: {
-    moment
+  computed: {
+    blogUri() {
+      const { lang } = this.$route.params
+      return `/${lang}/blog/${this.to}`
+    }
   }
 }
 </script>

@@ -5,12 +5,15 @@
       <twitter-icon v-if="options.twitter" :url="options.twitter" />
       <github-icon v-if="options.github" :url="options.github" />
     </div>
-    <img
-      src="~assets/images/self-image.jpg"
-      alt="Michel's picture"
+    <nuxt-link
+      :to="getPath()"
       class="logo"
-      @click="goHome"
     >
+      <img
+        src="~assets/images/self-image.jpg"
+        alt="Michel's picture"
+      >
+    </nuxt-link>
     <curved-text class="title-header">
       {{ name }}
     </curved-text>
@@ -30,7 +33,7 @@
       <n-link
         v-for="item in links"
         :key="item.path"
-        :to="item.path"
+        :to="getPath(item.path)"
         :class="item.class"
         exact
       >
@@ -131,8 +134,9 @@ export default {
     stopPulse() {
       this.pulse = false
     },
-    goHome() {
-      this.$router.push({ path: '/' })
+    getPath(path = '') {
+      const { lang } = this.$route.params
+      return ({ path: '/' + lang + '/' + path })
     }
   }
 }
@@ -145,6 +149,7 @@ export default {
   border-radius: 100%;
   cursor: pointer;
   z-index: 100;
+  overflow: hidden;
 }
 
 .fade-enter-active, .fade-leave-active, .appear {

@@ -54,20 +54,17 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    '~/plugins/axios',
-    '~/plugins/moment'
-  ],
+  plugins: ['~/plugins/axios'],
 
   /*
    ** Nuxt.js modules
    */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/markdownit',
-    ['@nuxtjs/moment', { locales: ['fr'], defaultLocale: 'en' }],
+    '@nuxtjs/redirect-module',
+    '@nuxtjs/moment',
     [
       'storyblok-nuxt',
       {
@@ -77,9 +74,15 @@ module.exports = {
     ]
   ],
 
+  moment: {
+    locales: ['fr'],
+  },
+
   markdownit: {
     injected: true
   },
+
+  redirect: [{ from: '^/$', to: '/' + options.defaultLang }],
 
   env: {
     app: Object.assign(options, {
@@ -90,13 +93,18 @@ module.exports = {
     })
   },
 
+  transition: {
+    name: 'right',
+    mode: 'out-in'
+  },
+
   generate: {
     routes: function(callback) {
       const token = process.env.STORYBLOK_API_KEY
       const version = isDev ? 'draft' : 'published'
       let cacheVersion = 0
 
-      const routes = ['/blog/en']
+      const routes = ['/fr/blog', '/en/blog']
 
       axios
         .get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
@@ -108,8 +116,8 @@ module.exports = {
             )
             .then((res) => {
               res.data.stories.forEach((story) => {
-                routes.push('/blog/' + story.slug)
-                routes.push('/blog/en/' + story.slug)
+                routes.push('/fr/blog/' + story.slug)
+                routes.push('/en/blog/' + story.slug)
               })
 
               callback(null, routes)
