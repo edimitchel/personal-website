@@ -22,10 +22,17 @@ export default {
       return this.story
     }
   },
-  asyncData({ app, params, query, env, error }) {
+  head() {
+    return {
+      meta: {
+        title: this.story.title
+      }
+    }
+  },
+  async asyncData({ app, params, query, env, error, isDev }) {
     const { lang = 'default', slug } = params
-    const version = query._storyblok || process.env.DEV ? 'draft' : 'published'
-    return app.$storyapi
+    const version = query._storyblok || isDev ? 'draft' : 'published'
+    const { story } = await app.$storyapi
       .get(`cdn/stories/${getDefaultLang(lang, env.app.defaultLang)}blog-posts/${slug}`, {
         version
       })
@@ -37,15 +44,12 @@ export default {
           message: res.response.data
         })
       })
-      .then(async (data) => {
-        const story = await transform('story', data.story)
-        return {
-          story
-        }
-      })
+
+    return {
+      story: await transform('story', story)
+    }
   }
 }
 </script>
 <style lang="stylus" scoped>
-
 </style>

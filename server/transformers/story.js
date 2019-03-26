@@ -6,20 +6,19 @@ export default async (story) => {
     published_at,
     lang,
     name,
+    content
   } = story
 
   // Remove useless
   const {
     title,
     visions,
-  } = story.content
-  
-  const mappedVisions = await transform('vision', visions)
-  
+  } = content
+    
   return {
     title,
     lang,
-    visions: mappedVisions,
+    visions: await transform('vision', visions),
     date: published_at,
     slug
   }

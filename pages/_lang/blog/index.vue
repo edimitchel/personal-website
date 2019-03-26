@@ -18,27 +18,22 @@ export default {
   components: {
     Posts
   },
-  asyncData({ app, params, query, env, error }) {
+  async asyncData({ app, params, query, env, error, isDev }) {
     const { lang } = params
-    const version = query._storyblok || process.env.DEV ? 'draft' : 'published'
-    return app.$storyapi
+    const version = query._storyblok || isDev ? 'draft' : 'published'
+    const { stories } = await app.$storyapi
       .get(`cdn/stories`, {
         starts_with: getDefaultLang(lang, env.app.defaultLang) + 'blog-posts',
         version
       })
-      .then(async (res) => {
-        const { stories } = res.data
-        const posts = await transform('story', stories)
-        return {
-          posts
-        }
-      })
+      .then(res => res.data)
       .catch((res) => {
         error({
           statusCode: res.response.status,
           message: res.response.data
         })
       })
+    return { posts: await transform('story', stories) }
   }
 }
 </script>
