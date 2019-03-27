@@ -28,7 +28,6 @@ build-dev:
   script:
     - npm install
     - ./node_modules/.bin/nuxt generate
-    - cp humans.txt ./dist
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
