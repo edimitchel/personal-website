@@ -1,7 +1,9 @@
 import story from './story'
+import vision from './vision'
 
 const transformers = {
-  story
+  story,
+  vision,
 }
 
 const getTransformer = (dataType) => {

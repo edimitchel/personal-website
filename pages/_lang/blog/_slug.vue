@@ -31,7 +31,7 @@ export default {
   },
   async asyncData({ app, params, query, env, error, isDev }) {
     const { lang = 'default', slug } = params
-    const version = query._storyblok || isDev ? 'draft' : 'published'
+    const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
     const { story } = await app.$storyapi
       .get(`cdn/stories/${getDefaultLang(lang, env.app.defaultLang)}blog-posts/${slug}`, {
         version

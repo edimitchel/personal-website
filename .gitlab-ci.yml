@@ -32,6 +32,8 @@ build-dev:
     name: "$CI_COMMIT_REF_NAME"
     paths:
       - dist/
+  variables:
+      - DEV: true
   only:
     - develop
     - switch-to-nuxt

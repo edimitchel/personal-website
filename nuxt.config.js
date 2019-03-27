@@ -82,7 +82,7 @@ module.exports = {
     injected: true
   },
 
-  // redirect: [{ from: '^/$', to: '/' + options.defaultLang }],
+  redirect: [{ from: '^/$', to: '/' + options.defaultLang }],
 
   router: {
     middleware: 'lang-redirect',
