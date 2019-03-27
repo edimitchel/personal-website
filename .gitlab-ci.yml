@@ -25,6 +25,8 @@ build-prod:
 build-dev:
   stage: build
   image: node:10
+  variables:
+    DEV: 'true'
   script:
     - npm install
     - ./node_modules/.bin/nuxt generate
@@ -32,8 +34,6 @@ build-dev:
     name: "$CI_COMMIT_REF_NAME"
     paths:
       - dist/
-  variables:
-      - DEV: true
   only:
     - develop
     - switch-to-nuxt
