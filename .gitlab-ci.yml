@@ -1,0 +1,62 @@
+stages:
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+build-prod:
+  stage: build
+  image: node:10
+  script:
+    - npm install
+    - ./node_modules/.bin/nuxt generate
+    - "[[ ! ${HIDE_ON_WEB} ]] && { rm dist/robots.txt; }"
+    - "[[ ! ${HIDE_ON_WEB} ]] && { rm dist/.htaccess; }"
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - ./dist/
+  only:
+    - master
+
+build-dev:
+  stage: build
+  image: node:10
+  script:
+    - npm install
+    - ./node_modules/.bin/nuxt generate
+    - cp humans.txt ./dist
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    paths:
+      - dist/
+  only:
+    - develop
+    - switch-to-nuxt
+
+# upload job, see https://lftp.yar.ru/lftp-man.html
+deploy-prod:
+  stage: deploy
+  image: mwienk/docker-lftp:latest
+  script:
+    - lftp -e "mirror -R ./dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+  dependencies:
+    - build-prod
+  only:
+    - master
+  when: manual
+    
+deploy-dev:
+  stage: deploy
+  image: mwienk/docker-lftp:latest
+  script:
+    - lftp -e "mirror -R ./dist /www/website-dev -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+  dependencies:
+    - build-dev
+  only:
+    - develop
+    - switch-to-nuxt
+  when: manual
