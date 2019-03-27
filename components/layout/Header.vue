@@ -136,7 +136,7 @@ export default {
     },
     getPath(path = '') {
       const { lang } = this.$route.params
-      return ({ path: '/' + lang + '/' + path })
+      return ({ path: '/' + lang + '/' + path + '/' })
     }
   }
 }
