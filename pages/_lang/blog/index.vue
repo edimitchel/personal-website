@@ -18,22 +18,31 @@ export default {
   components: {
     Posts
   },
-  async asyncData({ app, params, query, env, error, isDev }) {
-    const { lang } = params
-    const version = query._storyblok || isDev ? 'draft' : 'published'
-    const { stories } = await app.$storyapi
-      .get(`cdn/stories`, {
-        starts_with: getDefaultLang(lang, env.app.defaultLang) + 'blog-posts',
-        version
-      })
-      .then(res => res.data)
-      .catch((res) => {
-        error({
-          statusCode: res.response.status,
-          message: res.response.data
+  asyncData({ app, params, query, payload, env, error, isDev }) {
+    const { lang = 'default' } = params
+    const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
+    let promise
+    if (payload) {
+      promise = Promise.resolve(payload)
+    } else {
+      promise = app.$storyapi
+        .get(`cdn/stories`, {
+          starts_with: getDefaultLang(lang, env.app.defaultLang) + 'blog-posts',
+          version
         })
-      })
-    return { posts: await transform('story', stories) }
+        .then(res => res.data)
+        .then(({ stories }) => stories)
+        .catch((res) => {
+          error({
+            statusCode: res.response.status,
+            message: res.response.data
+          })
+        })
+    }
+
+    return promise.then(async stories => ({
+      posts: await transform('story', stories)
+    }))
   }
 }
 </script>

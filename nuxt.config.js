@@ -103,7 +103,7 @@ module.exports = {
   },
 
   generate: {
-    routes: function(callback) {
+    routes: (callback) => {
       const token = process.env.STORYBLOK_API_KEY
       const version = isDev ? 'draft' : 'published'
       let cacheVersion = 0
@@ -120,8 +120,14 @@ module.exports = {
             )
             .then((res) => {
               res.data.stories.forEach((story) => {
-                routes.push('/fr/blog/' + story.slug)
-                routes.push('/en/blog/' + story.slug)
+                routes.push({
+                  route: '/fr/blog/' + story.slug,
+                  payload: story
+                })
+                routes.push({
+                  route: '/en/blog/' + story.slug,
+                  payload: story
+                })
               })
 
               callback(null, routes)

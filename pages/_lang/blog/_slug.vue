@@ -29,25 +29,30 @@ export default {
       }
     }
   },
-  async asyncData({ app, params, query, env, error, isDev }) {
+  asyncData({ app, params, query, payload, env, error, isDev }) {
     const { lang = 'default', slug } = params
-    const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
-    const { story } = await app.$storyapi
-      .get(`cdn/stories/${getDefaultLang(lang, env.app.defaultLang)}blog-posts/${slug}`, {
-        version
-      })
-      .then(res => res.data)
-      .catch((res) => {
-        // TODO: Resolve this error with an critical error
-        error({
-          statusCode: res.response.status,
-          message: res.response.data
+    const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
+    let promise
+    if (payload) {
+      promise = Promise.resolve(payload)
+    } else {
+      promise = app.$storyapi
+        .get(`cdn/stories/${getDefaultLang(lang, env.app.defaultLang)}blog-posts/${slug}`, {
+          version
         })
-      })
-
-    return {
-      story: await transform('story', story)
+        .then(res => res.data)
+        .then(({ story }) => story)
+        .catch((res) => {
+          error({
+            statusCode: res.response.status,
+            message: res.response.data
+          })
+        })
     }
+
+    return promise.then(async story => ({
+      story: await transform('story', story)
+    }))
   }
 }
 </script>
