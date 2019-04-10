@@ -42,12 +42,16 @@ export default {
   },
   methods: {
     run() {
-      if (timerId) {
+      if (timerId || this.dataList.length < 1) {
         clearInterval(timerId)
+
+        if (this.dataList.length < 1) {
+          return
+        }
       }
       timerId = setInterval(() => {
         if (this.dataList.length > 0) {
-          this.setIndex((this.index + 1) % this.dataList.length)
+          this.index = (this.index + 1) % this.dataList.length
         }
       }, this.duration)
     }

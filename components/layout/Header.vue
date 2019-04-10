@@ -251,7 +251,7 @@ export default {
     transform: rotateZ(13deg) translateY(-10px);
   }
   nav a:last-child {
-    transform: rotateZ(-13deg) translateY(-10px);
+    transform: rotateZ(-11.5deg) translateY(-10px);
   }
   nav a.blog
   {

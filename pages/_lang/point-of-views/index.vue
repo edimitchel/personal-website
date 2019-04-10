@@ -26,20 +26,23 @@ export default {
   head: {
     title: 'Point of View'
   },
-  asyncData({ app, params, query, payload, env, error, isDev, store }) {
+  asyncData({ app, params, query, $axios, $payloadURL, route, env, error, isDev, store }) {
     const { lang = 'default' } = params
     const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
-    let promise
-    if (payload) {
-      promise = Promise.resolve(payload)
+    if (process.client && process.static) {
+      return $axios.get($payloadURL(route))
+        .then(({ data }) => data)
     } else {
-      promise = app.$storyapi
+      return app.$storyapi
         .get(`cdn/stories`, {
           starts_with: getDefaultLang(lang, env.app.defaultLang) + 'blog-posts',
           version
         })
         .then(res => res.data)
         .then(({ stories }) => stories)
+        .then(async stories => ({
+          posts: await transform('story', stories)
+        }))
         .catch((res) => {
           error({
             statusCode: res.response.status,
@@ -47,10 +50,6 @@ export default {
           })
         })
     }
-
-    return promise.then(async stories => ({
-      posts: await transform('story', stories)
-    }))
   }
 }
 </script>
