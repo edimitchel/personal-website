@@ -2,8 +2,8 @@ require('dotenv').config()
 const path = require('path')
 const axios = require('axios')
 
-const { options, ...pkg } = require(path.join(__dirname, '/package'))
-
+const { options } = require(path.join(__dirname, '/package'))
+const title = options.title;
 const isDev = process.env.DEV || process.env.NODE_ENV === 'development'
 
 const devConfig = () =>
@@ -25,11 +25,16 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    title: options.title,
+    titleTemplate: function (titleChunk) {
+      const { title, meta } = this.$options.head
+      const description = meta.find(m => m.hid === 'description').content;
+      return title === titleChunk ? `${title} - ${description}` : `${titleChunk} - ${title}`
+    },
+    title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: options.description }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -75,7 +80,7 @@ module.exports = {
   ],
 
   moment: {
-    locales: ['fr'],
+    locales: ['fr']
   },
 
   markdownit: {
@@ -85,7 +90,7 @@ module.exports = {
   redirect: [{ from: '^/$', to: '/' + options.defaultLang }],
 
   router: {
-    middleware: 'lang-redirect',
+    middleware: 'lang-redirect'
   },
 
   env: {
@@ -98,7 +103,7 @@ module.exports = {
   },
 
   transition: {
-    name: 'right',
+    name: 'fade',
     mode: 'out-in'
   },
 

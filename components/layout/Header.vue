@@ -6,7 +6,7 @@
       <github-icon v-if="options.github" :url="options.github" />
     </div>
     <nuxt-link
-      :to="getPath()"
+      :to="path()"
       class="logo"
     >
       <img
@@ -14,28 +14,31 @@
         alt="Michel's picture"
       >
     </nuxt-link>
-    <curved-text class="title-header">
-      {{ name }}
-    </curved-text>
-    <transition
-      appear
-      appear-class="appear"
-      appear-to-class="appear-active"
-      mode="out-in"
-      name="fade"
-    >
-      <curved-text v-show="computedMessage" :key="computedMessage" class="subtitle-header">
-        {{ computedMessage }}
-      </curved-text>
-    </transition>
+    <div class="titles">
+      <no-ssr>
+        <curved-text
+          class="title-header"
+          :class="{ alone: !computedMessage }"
+          :text-style="!computedMessage ? 'letter-spacing: 3px' : ''"
+        >
+          {{ computedName }}
+        </curved-text>
+        <transition
+          name="fade"
+        >
+          <curved-text v-show="computedMessage" class="subtitle-header">
+            {{ computedMessage }}
+          </curved-text>
+        </transition>
+      </no-ssr>
+    </div>
 
     <nav v-if="links.length > 0">
       <n-link
         v-for="item in links"
         :key="item.path"
-        :to="getPath(item.path)"
+        :to="path(item.path)"
         :class="item.class"
-        exact
       >
         {{ item.title }}
       </n-link>
@@ -43,7 +46,7 @@
   </header>
 </template>
 <script>
-import { randomEmoji } from '@@/utils'
+import { random } from '@@/utils'
 import CircleBackground from '@/components/CircleBackground'
 import GithubIcon from '@/components/GithubIcon'
 import TwitterIcon from '@/components/TwitterIcon'
@@ -64,7 +67,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'Main menu'
+      default: ''
     },
     description: {
       type: String,
@@ -72,9 +75,7 @@ export default {
     },
     message: {
       type: [Array, String],
-      default: () => [
-        ''
-      ]
+      default: () => []
     },
     headerColor: {
       type: String,
@@ -104,25 +105,22 @@ export default {
   },
   computed: {
     computedName() {
-      const name = this.name
-      if (!name) {
+      if (!this.name) {
         return
       }
-      const n = name.split(' ')
-
+      const n = this.name.split(' ')
       if (this.options.isBirthday) {
-        n.splice(1, 0, randomEmoji(this.emoji.birthday))
+        n.splice(1, 0, random(this.emojis.birthday))
       } else {
-        n.splice(1, 0, randomEmoji(this.emoji.normal))
+        n.splice(1, 0, random(this.emojis.normal))
       }
-
       return n.join(' ')
     },
     computedMessage() {
       const message = this.message
 
       if (Array.isArray(message)) {
-        return message[Math.floor(message.length * Math.random())]
+        return random(message)
       }
       return message
     },
@@ -134,9 +132,9 @@ export default {
     stopPulse() {
       this.pulse = false
     },
-    getPath(path = '') {
+    path(path) {
       const { lang } = this.$route.params
-      return ({ path: '/' + lang + '/' + path + '/' })
+      return ({ path: '/' + lang + '/' + (path ? path + '/' : '') })
     }
   }
 }
@@ -186,12 +184,21 @@ export default {
       me-absolute
       me-w-full
   }
+  .titles {
+    height: 80px;
+  }
   .title-header {
+    transition: all .3s;
+    position: relative;
+    top: 0;
     margin-top: -15px;
     @apply
       me-text-xl
       me-font-mono
       me-font-bold
+  }
+  .title-header.alone {
+    top: 10px;
   }
   @screen md {
     .title-header {
@@ -231,6 +238,12 @@ export default {
       me-p-2
       me-rounded
       me-no-underline
+  }
+  nav a:first-child {
+    transform: rotateZ(13deg) translateY(-10px);
+  }
+  nav a:last-child {
+    transform: rotateZ(-13deg) translateY(-10px);
   }
   nav a.blog
   {

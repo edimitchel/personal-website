@@ -1,7 +1,7 @@
 <template>
   <div>
-    <svg width="500" fill="none">
-      <path id="curve" d="M 0 -25 Q 250 150 500 -25" />
+    <svg :width="width" fill="none" viewBox="0 0 500 80">
+      <path id="curve" :d="path" />
       <text :text-anchor="textAlign" :style="textStyle">
         <textPath xlink:href="#curve" startOffset="50%" :fill="color">
           <slot />
@@ -27,6 +27,10 @@ export default {
     textStyle: {
       type: [String, Object],
       default: undefined
+    },
+    width: {
+      type: Number,
+      default: 500
     }
   },
   computed: {
@@ -42,6 +46,9 @@ export default {
         default:
           return 'middle'
       }
+    },
+    path() {
+      return `M 0 -25 Q ${this.width / 2} 150 ${this.width} -25`
     }
   }
 }
@@ -52,5 +59,8 @@ h1 {
 }
 svg {
   height: 80px;
+}
+text {
+  transition: all .2s;
 }
 </style>

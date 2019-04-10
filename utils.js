@@ -9,7 +9,7 @@ export const isBirthday = (date) => {
   )
 }
 
-export const randomEmoji = (list) => {
+export const random = (list) => {
   return list[Math.floor(Math.random() * list.length)]
 }
 

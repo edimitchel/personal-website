@@ -4,6 +4,8 @@
       :links="navLinks"
       :name="title"
       :description="description"
+      :message="message"
+      :header-color="headerColor"
       :emojis="emojis"
       :options="options"
     />
@@ -34,6 +36,7 @@ export default {
   },
   data() {
     return {
+      headerColor: '',
       emojis,
       title,
       description,
@@ -42,6 +45,10 @@ export default {
         ...options.references
       })
     }
+  },
+  computed: {
+    message() { return this.$store.state.layout.message },
+    headerColo() { return this.$store.state.layout.color }
   }
 }
 </script>
@@ -67,25 +74,25 @@ export default {
     }
   }
 
-  .right-enter-active, .right-leave-active {
-    transition: all .3s;
+  .fade-enter-active, .fade-leave-active {
+    transition: all 150ms ease;
     position: relative;
   }
 
-  .right-enter {
+  .fade-enter {
     opacity: 0;
-    left: 10px;
+    top: -10px;
   }
 
-  .right-leave,
-  .right-enter-to {
+  .fade-leave,
+  .fade-enter-to {
     opacity: 1;
-    left: 0;
+    top: 0;
   }
 
-  .right-leave-to {
+  .fade-leave-to {
     opacity: 0;
-    left: -10px;
+    top: 10px;
   }
 }
 </style>

@@ -23,10 +23,12 @@ export default {
     }
   },
   head() {
+    const { title, description } = this.story
     return {
-      meta: {
-        title: this.story.title
-      }
+      title,
+      meta: [
+        { hid: 'description', name: 'description', content: description }
+      ]
     }
   },
   asyncData({ app, params, query, payload, env, error, isDev }) {

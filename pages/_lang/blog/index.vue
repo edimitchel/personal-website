@@ -18,6 +18,14 @@ export default {
   components: {
     Posts
   },
+  data() {
+    return {
+      posts: []
+    }
+  },
+  head: {
+    title: 'Point of View'
+  },
   asyncData({ app, params, query, payload, env, error, isDev }) {
     const { lang = 'default' } = params
     const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
