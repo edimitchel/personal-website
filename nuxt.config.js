@@ -90,7 +90,7 @@ module.exports = {
   redirect: [{ from: '^/$', to: '/' + options.defaultLang }],
 
   router: {
-    middleware: 'lang-redirect'
+    middleware: ['lang-redirect', 'page-name-blog']
   },
 
   env: {
@@ -113,7 +113,14 @@ module.exports = {
       const version = isDev ? 'draft' : 'published'
       let cacheVersion = 0
 
-      const routes = ['/fr/blog', '/en/blog']
+      const routes = []
+
+      options.availableLangs.forEach((lang) => {
+        routes.push('/' + lang)
+        options.navLinks.forEach(({ path }) => {
+          routes.push('/' + lang + '/' + path)
+        })
+      })
 
       axios
         .get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
@@ -125,13 +132,11 @@ module.exports = {
             )
             .then((res) => {
               res.data.stories.forEach((story) => {
-                routes.push({
-                  route: '/fr/blog/' + story.slug,
-                  payload: story
-                })
-                routes.push({
-                  route: '/en/blog/' + story.slug,
-                  payload: story
+                options.availableLangs.forEach((lang) => {
+                  routes.push({
+                    route: '/' + lang + '/point-of-views/' + story.slug,
+                    payload: story
+                  })
                 })
               })
 

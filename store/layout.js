@@ -1,22 +1,17 @@
 export const state = () => ({
   message: [],
-  color: null
+  pageName: undefined,
+  color: undefined
 })
 
 export const mutations = {
   setMessage(state, messages) {
     state.message = messages
   },
+  setCustomPageName(state, pageName) {
+    state.pageName = pageName
+  },
   setColor(state, color) {
     state.color = color
-  }
-}
-
-export const getters = {
-  getMessages(state) {
-    return state.messages
-  },
-  getColor(state) {
-    return state.color
   }
 }

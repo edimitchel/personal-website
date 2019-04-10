@@ -2,8 +2,9 @@
     "prettier.singleQuote": true,
     "typescript.preferences.quoteStyle": "single",
     "javascript.preferences.quoteStyle": "single",
-    "prettier.arrowParens": "always",
     "javascript.format.insertSpaceAfterSemicolonInForStatements": false,
+    "npm.scriptExplorerAction": "run",
     "prettier.semi": false,
-    "npm.scriptExplorerAction": "run"
+    "prettier.jsxSingleQuote": true,
+    "prettier.arrowParens": "always"
 }

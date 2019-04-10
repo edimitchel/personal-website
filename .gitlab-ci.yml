@@ -25,11 +25,9 @@ build-prod:
 build-dev:
   stage: build
   image: node:10
-  variables:
-    DEV: 'true'
   script:
     - npm install
-    - ./node_modules/.bin/nuxt generate
+    - DEV=true ./node_modules/.bin/nuxt generate
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:

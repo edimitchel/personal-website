@@ -16,20 +16,27 @@
     </nuxt-link>
     <div class="titles">
       <no-ssr>
-        <curved-text
-          class="title-header"
-          :class="{ alone: !computedMessage }"
-          :text-style="!computedMessage ? 'letter-spacing: 3px' : ''"
-        >
-          {{ computedName }}
-        </curved-text>
-        <transition
-          name="fade"
-        >
-          <curved-text v-show="computedMessage" class="subtitle-header">
-            {{ computedMessage }}
+        <transition mode="out-in" name="fade">
+          <curved-text
+            :key="computedName"
+            class="title-header"
+            :class="{ alone: !message.length }"
+            :text-style="!message.length ? 'letter-spacing: 3px' : ''"
+          >
+            {{ computedName }}
           </curved-text>
         </transition>
+        <message-carousel
+          :data-list="message"
+        >
+          <template
+            slot-scope="{ data }"
+          >
+            <curved-text :key="data" class="subtitle-header">
+              {{ data }}
+            </curved-text>
+          </template>
+        </message-carousel>
       </no-ssr>
     </div>
 
@@ -50,6 +57,7 @@ import { random } from '@@/utils'
 import CircleBackground from '@/components/CircleBackground'
 import GithubIcon from '@/components/GithubIcon'
 import TwitterIcon from '@/components/TwitterIcon'
+import MessageCarousel from '@/components/MessageCarousel'
 import CurvedText from '@/components/CurvedText'
 
 export default {
@@ -58,7 +66,8 @@ export default {
     CircleBackground,
     GithubIcon,
     TwitterIcon,
-    CurvedText
+    CurvedText,
+    MessageCarousel
   },
   props: {
     links: {
@@ -74,7 +83,7 @@ export default {
       default: 'Description'
     },
     message: {
-      type: [Array, String],
+      type: Array,
       default: () => []
     },
     headerColor: {
@@ -95,6 +104,10 @@ export default {
         isBirthday: false,
         twitter: ''
       })
+    },
+    withEmoji: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -107,6 +120,8 @@ export default {
     computedName() {
       if (!this.name) {
         return
+      } else if (this.withEmoji) {
+        return this.name
       }
       const n = this.name.split(' ')
       if (this.options.isBirthday) {
@@ -115,14 +130,6 @@ export default {
         n.splice(1, 0, random(this.emojis.normal))
       }
       return n.join(' ')
-    },
-    computedMessage() {
-      const message = this.message
-
-      if (Array.isArray(message)) {
-        return random(message)
-      }
-      return message
     },
     circleColor() {
       return this.headerColor || undefined
@@ -134,7 +141,7 @@ export default {
     },
     path(path) {
       const { lang } = this.$route.params
-      return ({ path: '/' + lang + '/' + (path ? path + '/' : '') })
+      return { path: '/' + lang + '/' + (path ? path + '/' : '') }
     }
   }
 }
@@ -186,6 +193,7 @@ export default {
   }
   .titles {
     height: 80px;
+    margin-top: -15px;
   }
   .title-header {
     transition: all .3s;

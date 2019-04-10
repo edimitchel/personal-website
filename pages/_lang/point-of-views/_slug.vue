@@ -31,7 +31,7 @@ export default {
       ]
     }
   },
-  asyncData({ app, params, query, payload, env, error, isDev }) {
+  asyncData({ app, params, query, payload, env, error, store, isDev }) {
     const { lang = 'default', slug } = params
     const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
     let promise
@@ -52,9 +52,19 @@ export default {
         })
     }
 
-    return promise.then(async story => ({
-      story: await transform('story', story)
-    }))
+    return promise.then(async (story) => {
+      const storyModel = await transform('story', story)
+      if (storyModel.titleExcerpt) {
+        store.commit('layout/setMessage', [storyModel.titleExcerpt])
+      }
+
+      return {
+        story: storyModel
+      }
+    })
+  },
+  destroyed() {
+    this.$store.commit('layout/setMessage', [])
   }
 }
 </script>

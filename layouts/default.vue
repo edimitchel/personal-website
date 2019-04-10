@@ -2,7 +2,8 @@
   <div>
     <Header
       :links="navLinks"
-      :name="title"
+      :name="customPageName || title"
+      :with-emoji="!!customPageName"
       :description="description"
       :message="message"
       :header-color="headerColor"
@@ -36,7 +37,6 @@ export default {
   },
   data() {
     return {
-      headerColor: '',
       emojis,
       title,
       description,
@@ -47,8 +47,9 @@ export default {
     }
   },
   computed: {
+    customPageName() { return this.$store.state.layout.pageName },
     message() { return this.$store.state.layout.message },
-    headerColo() { return this.$store.state.layout.color }
+    headerColor() { return this.$store.state.layout.color }
   }
 }
 </script>

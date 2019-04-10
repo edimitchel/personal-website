@@ -40,7 +40,7 @@ export default {
   computed: {
     blogUri() {
       const { lang } = this.$route.params
-      return `/${lang}/blog/${this.to}`
+      return `/${lang}/point-of-views/${this.to}`
     }
   }
 }

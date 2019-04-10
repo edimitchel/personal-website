@@ -9,7 +9,7 @@
       </text>
     </svg>
     <h1>
-      {{ $slots.default.text }}
+      {{ text }}
     </h1>
   </div>
 </template>
@@ -48,7 +48,10 @@ export default {
       }
     },
     path() {
-      return `M 0 -25 Q ${this.width / 2} 150 ${this.width} -25`
+      return `M 0 0 Q ${this.width / 2} 150 ${this.width} 0`
+    },
+    text() {
+      return this.$slots.default[0].text.replace(/\s/g, '')
     }
   }
 }

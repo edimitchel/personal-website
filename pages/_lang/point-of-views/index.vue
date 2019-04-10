@@ -26,7 +26,7 @@ export default {
   head: {
     title: 'Point of View'
   },
-  asyncData({ app, params, query, payload, env, error, isDev }) {
+  asyncData({ app, params, query, payload, env, error, isDev, store }) {
     const { lang = 'default' } = params
     const version = query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
     let promise

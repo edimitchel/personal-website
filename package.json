@@ -6,6 +6,7 @@
   "options": {
     "title": "Michel EDIGHOFFER",
     "description": "Michel's website about him and his thoughts",
+    "availableLangs": ["fr", "en"],
     "defaultLang": "fr",
     "references": {
       "twitter": "edimitchel",
@@ -18,13 +19,16 @@
       },
       {
         "title": "blog",
-        "path": "blog"
+        "path": "point-of-views"
       },
       {
         "title": "contact",
         "path": "contact"
       }
-    ]
+    ],
+    "blog": {
+      "title": "Point of View"
+    }
   },
   "private": true,
   "scripts": {

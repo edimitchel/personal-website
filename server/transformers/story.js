@@ -5,18 +5,18 @@ export default async (story) => {
     slug,
     published_at,
     lang,
-    name,
     content
   } = story
 
-  // Remove useless
   const {
     title,
+    titleExcerpt,
     visions,
   } = content
     
   return {
     title,
+    titleExcerpt,
     lang,
     visions: await transform('vision', visions),
     date: published_at,
