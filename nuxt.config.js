@@ -70,6 +70,7 @@ module.exports = {
     '@nuxtjs/markdownit',
     '@nuxtjs/redirect-module',
     '@nuxtjs/moment',
+    'nuxt-payload-extractor',
     [
       'storyblok-nuxt',
       {

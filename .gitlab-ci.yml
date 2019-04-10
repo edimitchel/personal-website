@@ -47,6 +47,8 @@ deploy-prod:
     - lftp -e "mirror -R ./dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
     - build-prod
+  environment:
+    name: production
   only:
     - master
   when: manual
