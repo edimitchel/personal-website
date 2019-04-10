@@ -27,11 +27,14 @@ build-dev:
   image: node:10
   script:
     - npm install
-    - DEV=true ./node_modules/.bin/nuxt generate
+    - echo "DEV=true" > .env
+    - ./node_modules/.bin/nuxt generate
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
       - dist/
+  environment:
+    name: development
   only:
     - develop
     - switch-to-nuxt
