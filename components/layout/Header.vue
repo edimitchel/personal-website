@@ -15,24 +15,28 @@
       >
     </nuxt-link>
     <div class="titles">
+      <transition mode="out-in" name="fade">
+        <curved-text
+          :key="computedName"
+          class="title-header"
+          :class="{ alone: !message.length }"
+          :text-style="!message.length ? 'letter-spacing: 3px' : ''"
+        >
+          {{ computedName }}
+        </curved-text>
+      </transition>
       <no-ssr>
-        <transition mode="out-in" name="fade">
-          <curved-text
-            :key="computedName"
-            class="title-header"
-            :class="{ alone: !message.length }"
-            :text-style="!message.length ? 'letter-spacing: 3px' : ''"
-          >
-            {{ computedName }}
-          </curved-text>
-        </transition>
         <message-carousel
           :data-list="message"
         >
           <template
             slot-scope="{ data }"
           >
-            <curved-text :key="data" class="subtitle-header">
+            <curved-text
+              :key="data"
+              title-level="2"
+              class="subtitle-header"
+            >
               {{ data }}
             </curved-text>
           </template>
@@ -155,21 +159,6 @@ export default {
   cursor: pointer;
   z-index: 100;
   overflow: hidden;
-}
-
-.fade-enter-active, .fade-leave-active, .appear {
-  transition: all 200ms ease;
-  position: relative;
-  top: 0;
-}
-
-.fade-enter-to {
-  transition-delay: 200ms;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-  top: -5px;
 }
 
 @css {

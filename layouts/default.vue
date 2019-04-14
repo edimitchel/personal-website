@@ -22,13 +22,7 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
-const {
-  emojis,
-  title,
-  description,
-  navLinks,
-  ...options
-} = process.env.app
+const { emojis, title, description, navLinks, ...options } = process.env.app
 
 export default {
   components: {
@@ -41,15 +35,21 @@ export default {
       title,
       description,
       navLinks,
-      options: ({
+      options: {
         ...options.references
-      })
+      }
     }
   },
   computed: {
-    customPageName() { return this.$store.state.layout.pageName },
-    message() { return this.$store.state.layout.message },
-    headerColor() { return this.$store.state.layout.color }
+    customPageName() {
+      return this.$store.state.layout.pageName
+    },
+    message() {
+      return this.$store.state.layout.message
+    },
+    headerColor() {
+      return this.$store.state.layout.color
+    }
   }
 }
 </script>
@@ -75,25 +75,19 @@ export default {
     }
   }
 
-  .fade-enter-active, .fade-leave-active {
-    transition: all 150ms ease;
+  .fade-enter-active, .fade-leave-active, .appear {
+    transition: all 200ms ease;
     position: relative;
-  }
-
-  .fade-enter {
-    opacity: 0;
-    top: -10px;
-  }
-
-  .fade-leave,
-  .fade-enter-to {
-    opacity: 1;
     top: 0;
   }
 
-  .fade-leave-to {
+  .fade-enter-to {
+    transition-delay: 200ms;
+  }
+
+  .fade-enter, .fade-leave-to {
     opacity: 0;
-    top: 10px;
+    top: -5px;
   }
 }
 </style>

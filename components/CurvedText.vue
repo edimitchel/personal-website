@@ -8,9 +8,9 @@
         </textPath>
       </text>
     </svg>
-    <h1>
+    <component :is="'h' + titleLevel" :aria-label="text" class="sr-only">
       {{ text }}
-    </h1>
+    </component>
   </div>
 </template>
 <script>
@@ -19,6 +19,10 @@ export default {
     color: {
       type: String,
       default: 'black'
+    },
+    titleLevel: {
+      type: Number,
+      default: 1
     },
     align: {
       type: String,
@@ -57,7 +61,7 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
-h1 {
+.sr-only {
   display: none;
 }
 svg {

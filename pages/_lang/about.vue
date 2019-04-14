@@ -11,11 +11,12 @@ export default {
   },
   mounted() {
     this.$store.commit('layout/setMessage', [
-      '🕊 christian ✝️',
+      'front-end engineer',
       'Vue enthusiast',
+      '🕊 christian ✝️',
       'Alsace ❤',
       'aeromodelism ❤',
-      'front-end engineer'
+      'love my wife'
     ])
   },
   destroyed() {
