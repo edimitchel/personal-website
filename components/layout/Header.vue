@@ -66,7 +66,7 @@ import TwitterIcon from '@/components/TwitterIcon'
 import MessageCarousel from '@/components/MessageCarousel'
 import CurvedText from '@/components/CurvedText'
 
-const defaultImage = require('~/assets/images/self-image.jpg');
+const defaultImage = require('~/assets/images/self-image.png')
 
 export default {
   name: 'Header',
