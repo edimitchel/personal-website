@@ -31,10 +31,8 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scoped>
-@css {
+<style scoped>
   h1 {
     @apply me-uppercase me-pb-5 me-text-center
   }
-}
 </style>

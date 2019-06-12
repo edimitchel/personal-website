@@ -54,8 +54,7 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-@css {
+<style>
   body {
     @apply me-font-mono;
   }
@@ -82,12 +81,27 @@ export default {
   }
 
   .fade-enter-to {
-    transition-delay: 200ms;
+    transition-delay: 150ms;
   }
 
   .fade-enter, .fade-leave-to {
     opacity: 0;
     top: -5px;
   }
-}
+
+  .up-enter-active, .up-leave-active, .appear {
+    transition: opacity 400ms ease, top 400ms ease;
+    position: relative;
+    top: 0;
+  }
+
+  .up-leave-to {
+    transition-delay: 200ms;
+  }
+
+  .up-enter, .up-leave-to {
+    opacity: 0;
+    top: -15px;
+    z-index: -1;
+  }
 </style>

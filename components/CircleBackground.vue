@@ -38,7 +38,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scoped>
+<style scoped>
 div {
   overflow: hidden;
   height: 300px;

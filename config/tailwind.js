@@ -39,60 +39,8 @@ View the full documentation at https://tailwindcss.com.
 | 'secondary', or even a numeric scale like '100' and '200', go for it.
 |
 */
-
+const { colors: defaultColors } = require('tailwindcss/defaultTheme')
 const colors = {
-  transparent: 'transparent',
-
-  black: '#22292f',
-  'grey-darkest': '#3d4852',
-  'grey-darker': '#606f7b',
-  'grey-dark': '#8795a1',
-  grey: '#b8c2cc',
-  'grey-light': '#dae1e7',
-  'grey-lighter': '#f1f5f8',
-  'grey-lightest': '#f8fafc',
-  white: '#ffffff',
-
-  'red-darkest': '#3b0d0c',
-  'red-darker': '#621b18',
-  'red-dark': '#cc1f1a',
-  red: '#e3342f',
-  'red-light': '#ef5753',
-  'red-lighter': '#f9acaa',
-  'red-lightest': '#fcebea',
-
-  'orange-darkest': '#462a16',
-  'orange-darker': '#613b1f',
-  'orange-dark': '#de751f',
-  orange: '#f6993f',
-  'orange-light': '#faad63',
-  'orange-lighter': '#fcd9b6',
-  'orange-lightest': '#fff5eb',
-
-  'yellow-darkest': '#453411',
-  'yellow-darker': '#684f1d',
-  'yellow-dark': '#f2d024',
-  yellow: '#ffed4a',
-  'yellow-light': '#fff382',
-  'yellow-lighter': '#fff9c2',
-  'yellow-lightest': '#fcfbeb',
-
-  'green-darkest': '#0f2f21',
-  'green-darker': '#1a4731',
-  'green-dark': '#1f9d55',
-  green: '#38c172',
-  'green-light': '#51d88a',
-  'green-lighter': '#a2f5bf',
-  'green-lightest': '#e3fcec',
-
-  'blue-darkest': '#12283a',
-  'blue-darker': '#1c3d5a',
-  'blue-dark': '#2779bd',
-  blue: '#375369',
-  'blue-light': '#6cb2eb',
-  'blue-lighter': '#bcdefa',
-  'blue-lightest': '#eff8ff',
-
   twitter: '#1da1f2',
   github: '#333333'
 }
@@ -111,7 +59,15 @@ module.exports = {
   |
   */
 
-  colors,
+  theme: {
+    colors: {
+      ...colors,
+      ...defaultColors
+    },
+    container: {
+      center: true
+    }
+  },
 
   /*
   |-----------------------------------------------------------------------------
@@ -845,12 +801,6 @@ module.exports = {
   |
   */
 
-  plugins: [
-    require('tailwindcss/plugins/container')({
-      center: true
-    })
-  ],
-
   /*
   |-----------------------------------------------------------------------------
   | Advanced Options         https://tailwindcss.com/docs/configuration#options
@@ -861,9 +811,5 @@ module.exports = {
   |
   */
 
-  options: {
-    prefix: 'me-',
-    important: false,
-    separator: '-'
-  }
-};
+  prefix: 'me-'
+}

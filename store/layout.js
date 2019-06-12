@@ -1,7 +1,8 @@
 export const state = () => ({
   message: [],
   pageName: undefined,
-  color: undefined
+  color: undefined,
+  hideMenu: false,
 })
 
 export const mutations = {
@@ -13,5 +14,8 @@ export const mutations = {
   },
   setColor(state, color) {
     state.color = color
+  },
+  setHideMenu(state, hide) {
+    state.hideMenu = hide
   }
 }

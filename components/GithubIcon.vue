@@ -21,27 +21,25 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scoped>
-  @css {
-    a {
-      @apply
-        me-flex
-        me-items-center
-        me-justify-center
-        me-no-underline
-        me-w-8
-        me-h-8
-        me-m-0
-        me-mx-2
-        me-bg-github
-        me-text-white
-        me-rounded-full
-    }
-    svg {
-      @apply
-        me-fill-current
-        me-w-5
-        me-h-5
-    }
+<style scoped>
+  a {
+    @apply
+      me-flex
+      me-items-center
+      me-justify-center
+      me-no-underline
+      me-w-8
+      me-h-8
+      me-m-0
+      me-mx-2
+      me-bg-github
+      me-text-white
+      me-rounded-full
+  }
+  svg {
+    @apply
+      me-fill-current
+      me-w-5
+      me-h-5
   }
 </style>

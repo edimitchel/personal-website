@@ -21,7 +21,7 @@ export default {
       default: 'black'
     },
     titleLevel: {
-      type: Number,
+      type: [Number, String],
       default: 1
     },
     align: {
@@ -60,7 +60,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scoped>
+<style scoped>
 .sr-only {
   display: none;
 }

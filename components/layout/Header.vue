@@ -10,7 +10,7 @@
       class="logo"
     >
       <img
-        src="~assets/images/self-image.jpg"
+        :src="headerImage"
         alt="Michel's picture"
       >
     </nuxt-link>
@@ -44,16 +44,18 @@
       </no-ssr>
     </div>
 
-    <nav v-if="links.length > 0">
-      <n-link
-        v-for="item in links"
-        :key="item.path"
-        :to="path(item.path)"
-        :class="item.class"
-      >
-        {{ item.title }}
-      </n-link>
-    </nav>
+    <transition name="up">
+      <nav v-if="links.length > 0 && !hideMenu">
+        <n-link
+          v-for="item in links"
+          :key="item.path"
+          :to="path(item.path)"
+          :class="item.class"
+        >
+          {{ item.title }}
+        </n-link>
+      </nav>
+    </transition>
   </header>
 </template>
 <script>
@@ -63,6 +65,8 @@ import GithubIcon from '@/components/GithubIcon'
 import TwitterIcon from '@/components/TwitterIcon'
 import MessageCarousel from '@/components/MessageCarousel'
 import CurvedText from '@/components/CurvedText'
+
+const defaultImage = require('~/assets/images/self-image.jpg');
 
 export default {
   name: 'Header',
@@ -94,6 +98,10 @@ export default {
       type: String,
       default: ''
     },
+    headerImage: {
+      type: String,
+      default: defaultImage
+    },
     emojis: {
       type: Object,
       default: () => ({
@@ -121,6 +129,9 @@ export default {
     }
   },
   computed: {
+    hideMenu() {
+      return this.$store.state.layout.hideMenu
+    },
     computedName() {
       if (!this.name) {
         return
@@ -150,7 +161,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scoped>
+<style>
 .logo {
   width: 150px;
   min-width: 150px;
@@ -159,114 +170,102 @@ export default {
   cursor: pointer;
   z-index: 100;
   overflow: hidden;
+  transition: all 150ms ease;
+}
+.logo:hover {
+  transform: scale(0.95);
 }
 
-@css {
-  header {
-    @apply
-      me-overflow-hidden
+header {
+  @apply me-overflow-hidden
       me-flex
       me-items-center
       me-flex-col
       me-text-center
-      me-pt-3
-  }
-  .icons {
-    max-width: 200px;
-    top: 130px;
-    @apply
-      me-flex
+      me-pt-3;
+}
+.icons {
+  max-width: 200px;
+  top: 130px;
+  @apply me-flex
       me-justify-between
       me-absolute
-      me-w-full
-  }
-  .titles {
-    height: 80px;
-    margin-top: -15px;
-  }
-  .title-header {
-    transition: all .3s;
-    position: relative;
-    top: 0;
-    margin-top: -15px;
-    @apply
-      me-text-xl
+      me-w-full;
+}
+.titles {
+  height: 80px;
+  margin-top: -15px;
+}
+.title-header {
+  transition: all 0.3s;
+  position: relative;
+  top: 0;
+  margin-top: -15px;
+  @apply me-text-xl
       me-font-mono
-      me-font-bold
+      me-font-bold;
+}
+.title-header.alone {
+  top: 10px;
+}
+@screen md {
+  .title-header {
+    @apply me-text-3xl;
   }
-  .title-header.alone {
-    top: 10px;
-  }
-  @screen md {
-    .title-header {
-      @apply
-        me-text-3xl
-    }
-  }
+}
+.subtitle-header {
+  margin-top: -60px;
+  @apply me-text-xs;
+}
+@screen md {
   .subtitle-header {
-    margin-top: -65px;
-    @apply
-      me-text-xs
+    @apply me-text-base;
   }
-  @screen md {
-    .subtitle-header {
-      @apply
-        me-text-base
-    }
-  }
-  .background {
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    @apply
-      me-absolute
-  }
+}
+.background {
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  @apply me-absolute;
+}
 
-  nav {
-    @apply
-      me-flex
-      me-uppercase
-  }
-  nav a {
-    @apply
-      me-m-4
-      me-text-grey-dark
+nav {
+  @apply me-flex
+      me-uppercase;
+}
+nav a {
+  @apply me-m-4
+      me-text-gray-900
       me-p-2
       me-rounded
-      me-no-underline
-  }
-  nav a:first-child {
-    transform: rotateZ(13deg) translateY(-10px);
-  }
-  nav a:last-child {
-    transform: rotateZ(-11.5deg) translateY(-10px);
-  }
-  nav a.blog
-  {
-    transition: all .3s ease;
-    @apply
-      me-text-blue
+      me-leading-none
+      me-align-middle
+      me-no-underline;
+}
+nav a:first-child {
+  transform: rotateZ(13deg) translateY(-10px);
+}
+nav a:last-child {
+  transform: rotateZ(-11.5deg) translateY(-10px);
+}
+nav a.blog {
+  transition: all 0.3s ease;
+  @apply me-text-blue-500
+      me-font-bold;
+}
+nav a:hover,
+nav a:focus {
+  @apply me-bg-gray-500
+      me-text-white;
+}
+nav a.nuxt-link-active {
+  @apply me-bg-gray-900
+      me-text-white;
+}
+nav a.blog.nuxt-link-active {
+  @apply me-bg-blue-500
       me-font-bold
-  }
-  nav a:hover, nav a:focus
-  {
-    @apply
-      me-bg-grey
-      me-text-white
-  }
-  nav a.nuxt-link-active
-  {
-    @apply
-      me-bg-grey-dark
-      me-text-white
-  }
-  nav a.blog.nuxt-link-active
-  {
-    @apply
-      me-bg-blue
-      me-font-bold
-      me-text-white
-  }
+      me-text-white;
 }
 </style>

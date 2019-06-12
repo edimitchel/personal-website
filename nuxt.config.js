@@ -1,9 +1,13 @@
+import path from 'path'
+import axios from 'axios'
+
+import PurgecssPlugin from 'purgecss-webpack-plugin'
+import glob from 'glob-all'
+
 require('dotenv').config()
-const path = require('path')
-const axios = require('axios')
 
 const { options } = require(path.join(__dirname, '/package'))
-const title = options.title;
+const title = options.title
 const isDev = process.env.DEV || process.env.NODE_ENV === 'development'
 
 const devConfig = () =>
@@ -27,7 +31,7 @@ module.exports = {
   head: {
     titleTemplate: function (titleChunk) {
       const { title, meta } = this.$options.head
-      const description = meta.find(m => m.hid === 'description').content;
+      const description = meta.find(m => m.hid === 'description').content
       return title === titleChunk ? `${title} - ${description}` : `${titleChunk} - ${title}`
     },
     title,
@@ -52,14 +56,13 @@ module.exports = {
   loading: false,
 
   /*
-   ** Global CSS
-   */
-  css: ['assets/style/tailwind'],
-
-  /*
    ** Plugins to load before mounting the App
    */
   plugins: ['~/plugins/axios'],
+
+  devModules: [
+    '@nuxtjs/tailwindcss'
+  ],
 
   /*
    ** Nuxt.js modules
@@ -79,6 +82,11 @@ module.exports = {
       }
     ]
   ],
+
+  tailwindcss: {
+    configPath: '~/config/tailwind.js',
+    cssPath: '~/assets/style/tailwind.css'
+  },
 
   moment: {
     locales: ['fr']
@@ -103,7 +111,7 @@ module.exports = {
     })
   },
 
-  transition: {
+  pageTransition: {
     name: 'fade',
     mode: 'out-in'
   },
@@ -157,14 +165,15 @@ module.exports = {
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+        // config.module.rules.push({
+        //   enforce: 'pre',
+        //   test: /\.(js|vue)$/,
+        //   loader: 'eslint-loader',
+        //   exclude: /(node_modules)/
+        // })
       }
     },
+    extractCSS: true,
 
     build: {
       watch: ['server']

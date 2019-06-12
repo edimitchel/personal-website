@@ -35,7 +35,6 @@ export default {
 }
 </script>
 <style scoped>
-@css {
   main {
   }
   h1 {
@@ -58,5 +57,4 @@ export default {
   .article__content {
     @apply me-leading-loose me-font-sans
   }
-}
 </style>

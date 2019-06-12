@@ -36,8 +36,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scoped>
-@css {
+<style scoped>
   .posts {
     @apply
       me-relative
@@ -54,7 +53,6 @@ export default {
     transition: all 300ms ease;
     @apply
       me-sticky
-      me-pin-t
       me-p-2
       me-mx-2
       me-outline-none
@@ -64,8 +62,7 @@ export default {
   }
   .category.active {
     @apply
-      me-bg-blue
+      me-bg-blue-500
       me-text-white
   }
-}
 </style>

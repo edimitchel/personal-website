@@ -46,8 +46,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-@css {
+<style scoped>
   .post {
     @apply
       me-block
@@ -56,7 +55,7 @@ export default {
       me-pb-4
       me-text-black
       me-border-b
-      me-border-grey
+      me-border-gray-500
       me-overflow-hidden
   }
   .post__image {
@@ -69,9 +68,6 @@ export default {
   .post__tags {
     @apply
       me-absolute
-      me-pin-b
-      me-pin-r
-      me-pin-l
       me-mb-2
       me-text-center
   }
@@ -86,7 +82,7 @@ export default {
   }
   .post__tag.active {
     @apply
-      me-bg-blue
+      me-bg-blue-500
       me-text-white
   }
   .post__date {
@@ -106,5 +102,4 @@ export default {
     @apply
       me-truncate
   }
-}
 </style>
