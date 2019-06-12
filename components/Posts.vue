@@ -1,16 +1,5 @@
 <template>
   <div class="posts">
-    <!-- <div class="categories">
-      <button
-        v-for="(category, key) in categoryList"
-        :key="key"
-        class="category"
-        :class="{active: isCategorySelected(category.name)}"
-        @click.prevent="changeCategory(category.name)"
-      >
-        {{ category.name }} ({{ category.count }})
-      </button>
-    </div> -->
     <div v-if="posts.length" class="posts">
       <Post
         v-for="post in posts"

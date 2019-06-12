@@ -16,9 +16,9 @@
     <small
       v-if="post.date"
       class="post__date"
-      :title="$moment(new Date(post.date), 'LLLL',)"
+      :title="formatDate(post.date, true)"
     >
-      {{ $moment(new Date(post.date), 'calendar') }}
+      {{ formatDate(post.date) }}
     </small>
     <h2 class="post__title" v-html="post.title" />
     <p class="post__description" v-html="post.description" />
@@ -39,67 +39,87 @@ export default {
   },
   computed: {
     blogUri() {
+      return `/${this.lang}/point-of-views/${this.to}`
+    },
+    lang() {
       const { lang } = this.$route.params
-      return `/${lang}/point-of-views/${this.to}`
+      return lang
+    }
+  },
+  methods: {
+    formatDate(date, simple = false) {
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric'
+      }
+      return Intl.DateTimeFormat(
+        this.lang,
+        simple ? undefined : options
+      ).format(date)
     }
   }
 }
 </script>
 
 <style scoped>
-  .post {
-    @apply
-      me-block
+.post {
+  @apply me-block
       me-no-underline
       me-mb-4
-      me-pb-4
+      me-py-4
       me-text-black
       me-border-b
-      me-border-gray-500
-      me-overflow-hidden
+      me-border-gray-200
+      me-overflow-hidden;
+}
+
+@screen md {
+  .post {
+    @apply me-py-2;
   }
-  .post__image {
-    position: relative;
-  }
-  .post__image img {
-    @apply
-      me-min-w-full
-  }
-  .post__tags {
-    @apply
-      me-absolute
+}
+.post__image {
+  position: relative;
+}
+.post__image img {
+  @apply me-min-w-full;
+}
+.post__tags {
+  @apply me-absolute
       me-mb-2
-      me-text-center
-  }
-  .post__tag {
-    @apply
-      me-p-1
+      me-text-center;
+}
+.post__tag {
+  @apply me-p-1
       me-mx-2
       me-outline-none
       me-rounded-full
       me-bg-white
-      me-text-black
-  }
-  .post__tag.active {
-    @apply
-      me-bg-blue-500
-      me-text-white
-  }
-  .post__date {
-    @apply
-      me-mt-2
-      me--mb-2
+      me-text-black;
+}
+.post__tag.active {
+  @apply me-bg-blue-500
+      me-text-white;
+}
+.post__date {
+  @apply me--mb-2
       me-block
       me-text-center
-      me-font-bold
-  }
-  .post__title {
-    @apply
-      me-py-2
+      me-text-gray-600
+      me-font-bold;
+}
+.post__title {
+  @apply me-py-2
       me-leading-tight
-  }
-  .post__description {
-    @apply
-      me-truncate
-  }
+      me-text-2xl
+      me-font-semibold
+      me-text-center;
+}
+.post__description {
+  @apply me-text-center;
+}
 </style>

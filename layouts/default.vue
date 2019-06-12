@@ -10,7 +10,7 @@
       :emojis="emojis"
       :options="options"
     />
-    <main class="main-content">
+    <main class="container mx-auto">
       <nuxt v-if="!$slots.default" />
       <slot />
     </main>
@@ -55,21 +55,14 @@ export default {
 </script>
 
 <style>
-  body {
-    @apply me-font-mono;
-  }
-  .main-content {
-    max-width: config(screens.md);
+  .container {
     @apply me-p-4 me-border-0 me-mx-auto;
-  }
-  @screen md {
-    .main-content {
-      max-width: config(screens.lg);
-    }
+    @apply me-font-sans;
   }
 
   @screen md {
-    .main-content {
+    .container {
+      max-width: theme('screens.lg');
       @apply me-p-16 me-pt-8;
     }
   }
@@ -90,7 +83,7 @@ export default {
   }
 
   .up-enter-active, .up-leave-active, .appear {
-    transition: opacity 400ms ease, top 400ms ease;
+    transition: opacity 300ms ease, top 400ms ease;
     position: relative;
     top: 0;
   }
@@ -101,7 +94,7 @@ export default {
 
   .up-enter, .up-leave-to {
     opacity: 0;
-    top: -15px;
+    top: -5px;
     z-index: -1;
   }
 </style>

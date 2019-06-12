@@ -7,7 +7,30 @@
         :cy="!reversed ? '-32%' : '90%'"
         :style="{ fill: fillColor.bottom, opacity: .8 }"
       />
-      <circle v-if="!reversed" r="450" cx="50%" cy="-55%" :style="{ fill: fillColor.top }" />
+      <circle
+        v-if="!reversed"
+        ref="innerCircle"
+        r="450"
+        cx="50%"
+        cy="-55%"
+        :style="{ fill: fillColor.top }"
+      />
+      <defs>
+        <mask v-if="image" id="imageClip">
+          <!-- La forme crée par le détourage est un simple cercle. -->
+          <circle r="450" cx="50%" cy="-55%" :style="{ fill: fillColor.top }" />
+        </mask>
+      </defs>
+      <image
+        v-if="image"
+        id="image"
+        :x="imageLeft"
+        y="0"
+        :width="imageWidth"
+        mask="url(#imageClip)"
+        :xlink:href="image"
+        preserveAspectRatio
+      />
     </svg>
   </div>
 </template>
@@ -22,7 +45,17 @@ export default {
       type: Number,
       default: 500
     },
-    reversed: Boolean
+    reversed: Boolean,
+    image: {
+      type: String,
+      default: undefined
+    }
+  },
+  data() {
+    return {
+      imageLeft: 0,
+      imageWidth: '100%'
+    }
   },
   computed: {
     fillColor() {
@@ -35,6 +68,25 @@ export default {
         bottom
       }
     }
+  },
+  mounted() {
+    this.resizeImage()
+    window.addEventListener('resize', this.resizeImage.bind(this))
+  },
+  methods: {
+    resizeImage() {
+      if (this.image) {
+        const { innerCircle } = this.$refs
+        if (innerCircle) {
+          const { left, width } = innerCircle.getBoundingClientRect()
+          this.imageLeft = left
+          this.imageWidth = width
+        }
+      }
+    }
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.resizeImage.bind(this))
   }
 }
 </script>
@@ -46,6 +98,9 @@ div {
 circle {
   transform-origin: 50% 0;
   transition: all 600ms linear;
+}
+#image {
+  opacity: 0.8;
 }
 
 @keyframes pulse {

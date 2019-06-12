@@ -1,6 +1,6 @@
 <template>
   <header>
-    <circle-background class="background" :color="circleColor" :pulse="pulse" />
+    <circle-background class="background" :color="circleColor" :pulse="pulse" :image="headerFullImage" />
     <div class="icons">
       <twitter-icon v-if="options.twitter" :url="options.twitter" />
       <github-icon v-if="options.github" :url="options.github" />
@@ -10,6 +10,7 @@
       class="logo"
     >
       <img
+        v-show="headerImage"
         :src="headerImage"
         alt="Michel's picture"
       >
@@ -66,8 +67,6 @@ import TwitterIcon from '@/components/TwitterIcon'
 import MessageCarousel from '@/components/MessageCarousel'
 import CurvedText from '@/components/CurvedText'
 
-const defaultImage = require('~/assets/images/self-image.png')
-
 export default {
   name: 'Header',
   components: {
@@ -98,10 +97,6 @@ export default {
       type: String,
       default: ''
     },
-    headerImage: {
-      type: String,
-      default: defaultImage
-    },
     emojis: {
       type: Object,
       default: () => ({
@@ -129,6 +124,12 @@ export default {
     }
   },
   computed: {
+    headerImage() {
+      return this.$store.state.layout.headerImage
+    },
+    headerFullImage() {
+      return this.$store.state.layout.headerFullImage
+    },
     hideMenu() {
       return this.$store.state.layout.hideMenu
     },
@@ -195,6 +196,7 @@ header {
 .titles {
   height: 80px;
   margin-top: -15px;
+  z-index: -1;
 }
 .title-header {
   transition: all 0.3s;
