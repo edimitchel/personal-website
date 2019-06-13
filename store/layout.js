@@ -6,7 +6,7 @@ export const state = () => ({
   color: undefined,
   hideMenu: false,
   headerImage: defaultImage,
-  headerFullImage: undefined
+  headerCover: undefined
 })
 
 export const mutations = {
@@ -28,7 +28,7 @@ export const mutations = {
   setDefaultHeaderImage(state) {
     state.headerImage = defaultImage
   },
-  setHeaderFullImage(state, image) {
-    state.headerFullImage = image
+  setHeaderCover(state, image) {
+    state.headerCover = image
   }
 }

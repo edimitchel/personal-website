@@ -1,7 +1,7 @@
 <template>
   <footer class="me-sticky">
     <div class="me-text-med me-text-center">
-      &copy; 2018 Michel Edighoffer
+      &copy; {{ year }} Michel Edighoffer
     </div>
   </footer>
 </template>
@@ -15,7 +15,8 @@ export default {
         this.$page.frontmatter.headerColor ||
         undefined
       )
-    }
+    },
+    year() { return new Date().getFullYear() }
   }
 }
 </script>

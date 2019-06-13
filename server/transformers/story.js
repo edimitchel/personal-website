@@ -1,4 +1,4 @@
-import { transform } from '@/server/transformers';
+import { transform } from '.';
 
 export default async (story) => {
   const {
@@ -18,21 +18,17 @@ export default async (story) => {
     cover,
   } = content
 
-  let date = published_at;
-
-  if (process.env.NODE_ENV === 'development') {
-    date = created_at;
-  }
+  let date = new Date(published_at || created_at);
 
   return {
     title,
     titleExcerpt,
     description,
+    date,
     thumbnail,
     cover,
     lang,
     visions: await transform('vision', visions),
-    date: new Date(date),
     slug,
   }
 }

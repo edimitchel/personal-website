@@ -1,6 +1,6 @@
 <template>
   <header>
-    <circle-background class="background" :color="circleColor" :pulse="pulse" :image="headerFullImage" />
+    <circle-background class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
     <div class="icons">
       <twitter-icon v-if="options.twitter" :url="options.twitter" />
       <github-icon v-if="options.github" :url="options.github" />
@@ -127,8 +127,8 @@ export default {
     headerImage() {
       return this.$store.state.layout.headerImage
     },
-    headerFullImage() {
-      return this.$store.state.layout.headerFullImage
+    headerCover() {
+      return this.$store.state.layout.headerCover
     },
     hideMenu() {
       return this.$store.state.layout.hideMenu

@@ -14,7 +14,7 @@ const getTransformer = (dataType) => {
   return dataType in transformers ? transformers[dataType] : null
 }
 
-const transformFn = (t, c) => data => data ? Promise.resolve(t.apply(this, [data, c])) : {}
+const transformFn = (t, c = {}) => data => data ? Promise.resolve(t.apply(this, [data, c])) : {}
 
 export const transform = (type, data, context = contextStatic) => {
   const transformer = getTransformer(type)

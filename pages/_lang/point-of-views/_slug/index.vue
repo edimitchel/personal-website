@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     content() {
-      return this.story
+      return this.post
     },
     isVisionChosen() {
       return !!this.$route.params.vision
@@ -55,7 +55,7 @@ export default {
     }
   },
   head() {
-    const { title, description } = this.story
+    const { title, description } = this.post
     return {
       title,
       meta: [{ hid: 'description', name: 'description', content: description }]
@@ -77,25 +77,24 @@ export default {
     const version =
       query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
 
-    const done = ({ story }) => {
-      if (story.titleExcerpt) {
-        store.commit('layout/setMessage', [story.titleExcerpt])
+    const done = ({ post }) => {
+      if (post.titleExcerpt) {
+        store.commit('layout/setMessage', [post.titleExcerpt])
       }
-      if (story.thumbnail) {
-        store.commit('layout/setHeaderImage', story.thumbnail)
+      if (post.thumbnail) {
+        store.commit('layout/setHeaderImage', post.thumbnail)
       }
-      if (story.cover) {
-        store.commit('layout/setHeaderFullImage', story.cover)
-        if (!story.thumbnail) {
+      if (post.cover) {
+        store.commit('layout/setHeaderCover', post.cover)
+        if (!post.thumbnail) {
           store.commit('layout/setHeaderImage', undefined)
         }
       }
-      return { story, slug }
+      return { post, slug }
     }
 
     if (process.client && process.static) {
-      return $axios
-        .get($payloadURL(route))
+      return $axios.get($payloadURL(route))
         .then(({ data }) => data)
         .then(done)
     } else {
@@ -112,23 +111,18 @@ export default {
         .then(res => res.data)
         .then(({ story }) => story)
         .then(async story => ({
-          story: await transform('story', story, {
+          post: await transform('story', story, {
             api: app.$storyapi,
             version
           })
         }))
         .then(done)
-        .catch(res =>
-          console.error(res) && error({
-            statusCode: res.response.status,
-            message: res.response.data
-          })
-        )
+        .catch(res => error(res))
     }
   },
   destroyed() {
     this.$store.commit('layout/setMessage', [])
-    this.$store.commit('layout/setHeaderFullImage', undefined)
+    this.$store.commit('layout/setHeaderCover', undefined)
     this.$store.commit('layout/setDefaultHeaderImage')
   }
 }

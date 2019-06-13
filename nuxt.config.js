@@ -1,8 +1,6 @@
 import path from 'path'
-import axios from 'axios'
 
-import PurgecssPlugin from 'purgecss-webpack-plugin'
-import glob from 'glob-all'
+import { generateRoutes } from './server/data'
 
 require('dotenv').config()
 
@@ -119,39 +117,7 @@ module.exports = {
   generate: {
     routes: (callback) => {
       const token = process.env.STORYBLOK_API_KEY
-      const version = isDev ? 'draft' : 'published'
-      let cacheVersion = 0
-
-      const routes = []
-
-      options.availableLangs.forEach((lang) => {
-        routes.push('/' + lang)
-        options.navLinks.forEach(({ path }) => {
-          routes.push('/' + lang + '/' + path)
-        })
-      })
-
-      axios
-        .get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
-        .then((spaceRes) => {
-          cacheVersion = spaceRes.data.space.version
-          axios
-            .get(
-              `https://api.storyblok.com/v1/cdn/stories?starts_with=${`blog-posts`}&token=${token}&version=${version}&cv=${cacheVersion}`
-            )
-            .then((res) => {
-              res.data.stories.forEach((story) => {
-                options.availableLangs.forEach((lang) => {
-                  routes.push({
-                    route: '/' + lang + '/point-of-views/' + story.slug,
-                    payload: story
-                  })
-                })
-              })
-
-              callback(null, routes)
-            })
-        })
+      return generateRoutes({ token, isDev, options }, callback)
     }
   },
 

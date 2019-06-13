@@ -47,7 +47,7 @@ export default {
     }
   },
   methods: {
-    formatDate(date, simple = false) {
+    formatDate(date = new Date(), simple = false) {
       const options = {
         weekday: 'long',
         year: 'numeric',
@@ -59,7 +59,7 @@ export default {
       return Intl.DateTimeFormat(
         this.lang,
         simple ? undefined : options
-      ).format(date)
+      ).format(new Date(date))
     }
   }
 }
