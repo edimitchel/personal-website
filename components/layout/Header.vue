@@ -167,7 +167,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .logo {
   width: 150px;
   min-width: 150px;
