@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section>
     <div>
       <h2 class="subtitle">
         Michel&#39;s website about him and his thoughts

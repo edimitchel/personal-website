@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <section>
     <div>
       <posts :posts="posts" />
     </div>

@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable vue/no-v-html -->
-  <section class="container">
+  <section>
     <h1>{{ content.title }}</h1>
     <p class="description">
       {{ content.description }}

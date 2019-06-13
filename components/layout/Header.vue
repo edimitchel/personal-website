@@ -45,18 +45,23 @@
       </no-ssr>
     </div>
 
-    <transition name="up">
-      <nav v-if="links.length > 0 && !hideMenu">
-        <n-link
-          v-for="item in links"
-          :key="item.path"
-          :to="path(item.path)"
-          :class="item.class"
-        >
-          {{ item.title }}
-        </n-link>
-      </nav>
-    </transition>
+    <nav>
+      <transition name="up">
+        <ul v-if="links.length > 0 && !hideMenu">
+          <li
+            v-for="item in links"
+            :key="item.path"
+          >
+            <n-link
+              :to="path(item.path)"
+              :class="item.class"
+            >
+              {{ item.title }}
+            </n-link>
+          </li>
+        </ul>
+      </transition>
+    </nav>
   </header>
 </template>
 <script>
@@ -233,10 +238,21 @@ header {
 }
 
 nav {
-  @apply me-flex
-      me-uppercase;
+  @apply me-uppercase me-mt-4;
+  height: 40px;
 }
-nav a {
+ul {
+  @apply me-flex me-m-0 me-p-0 me-list-none;
+}
+ul li {
+  @apply
+      me-p-2
+      me-rounded
+      me-leading-none
+      me-align-middle
+      me-no-underline;
+}
+ul a {
   @apply me-m-4
       me-text-gray-900
       me-p-2
@@ -245,27 +261,27 @@ nav a {
       me-align-middle
       me-no-underline;
 }
-nav a:first-child {
+ul li:first-child {
   transform: rotateZ(13deg) translateY(-10px);
 }
-nav a:last-child {
+ul li:last-child {
   transform: rotateZ(-11.5deg) translateY(-10px);
 }
-nav a.blog {
+ul a.blog {
   transition: all 0.3s ease;
   @apply me-text-blue-500
       me-font-bold;
 }
-nav a:hover,
-nav a:focus {
+ul a:hover,
+ul a:focus {
   @apply me-bg-gray-500
       me-text-white;
 }
-nav a.nuxt-link-active {
-  @apply me-bg-gray-900
+ul a.nuxt-link-active {
+  @apply me-bg-gray-600
       me-text-white;
 }
-nav a.blog.nuxt-link-active {
+ul a.blog.nuxt-link-active {
   @apply me-bg-blue-500
       me-font-bold
       me-text-white;

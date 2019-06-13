@@ -56,7 +56,7 @@ export default {
 
 <style>
   .container {
-    @apply me-p-4 me-border-0 me-mx-auto;
+    @apply me-px-4 me-border-0 me-mx-auto;
     @apply me-font-sans;
   }
 
