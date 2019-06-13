@@ -1,6 +1,7 @@
 <template>
   <transition
     :name="transitionName"
+    mode="out-in"
   >
     <slot :data="dataList[index]" />
   </transition>
