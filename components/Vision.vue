@@ -14,14 +14,21 @@ export default {
   props: ['content']
 }
 </script>
-<style scoped>
+<style scoped lang="postcss">
 article {
-  @apply me-py-8;
+  @apply
+    me-py-8
 }
 .vision-title {
-  @apply me-text-3xl me-text-center me-font-bold me-uppercase;
+  @apply
+    me-text-3xl
+    me-text-center
+    me-font-bold
+    me-uppercase
 }
 .vision-excerpt {
-  @apply me-text-center me-my-2;
+  @apply
+    me-text-center
+    me-my-2
 }
 </style>

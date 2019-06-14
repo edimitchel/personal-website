@@ -21,7 +21,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="postcss">
   a {
     @apply
       me-flex

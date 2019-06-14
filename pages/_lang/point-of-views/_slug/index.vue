@@ -25,7 +25,6 @@
       </nuxt-link>
     </section>
     <section v-else-if="content.visions.length === 1">
-      <hr />
       <Vision :content="content.visions[0]" />
     </section>
     <section v-if="isVisionChosen">
@@ -127,46 +126,77 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="postcss">
 h1 {
-  @apply me-font-bold me-text-4xl me-text-center;
+  @apply
+    me-font-bold
+    me-text-4xl
+    me-text-center
 }
 .description {
-  @apply me-text-center;
+  @apply
+    me-text-center
 }
 .visions {
-  @apply me-py-10 me-flex me-flex-row me-flex-wrap me-overflow-x-auto;
+  @apply
+    me-py-10
+    me-flex
+    me-flex-row
+    me-flex-wrap
+    me-overflow-x-auto
 }
 .visions.minified {
-  @apply me-p-0 me-flex-no-wrap;
+  @apply
+    me-p-0
+    me-flex-no-wrap
 }
 .visions.minified .vision-title {
-  @apply me-text-sm me-text-gray-600 me-font-normal;
+  @apply
+    me-text-sm
+    me-text-gray-600
+    me-font-normal
 }
 .visions.minified .vision-description {
   display: none;
 }
 .visions .vision {
-  @apply me-border me-rounded-lg me-p-4;
   margin: 1%;
   flex-basis: 48%;
+  @apply
+    me-border
+    me-rounded-lg
+    me-p-4
+}
+.visions.minified .vision-description {
+  flex-basis: 100px;
 }
 .visions .vision.nuxt-link-active {
-  @apply me-bg-gray-600;
+  @apply
+    me-bg-gray-600
 }
 .visions .vision.nuxt-link-active .vision-type {
-  @apply me-text-white;
+  @apply
+    me-text-white
 }
 .visions.minified .vision.nuxt-link-active .vision-title {
-  @apply me-text-white;
+  @apply
+    me-text-white
 }
 .vision-type {
-  @apply me-text-gray-800 me-text-lg me-text-center;
+  @apply
+    me-text-gray-800
+    me-text-lg
+    me-text-center
 }
 .vision-title {
-  @apply me-font-bold me-text-2xl me-text-center;
+  @apply
+    me-font-bold
+    me-text-2xl
+    me-text-center
 }
 .vision-description {
-  @apply me-text-center me-text-sm;
+  @apply
+    me-text-center
+    me-text-sm
 }
 </style>

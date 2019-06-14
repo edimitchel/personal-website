@@ -90,7 +90,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="postcss">
 div {
   overflow: hidden;
   height: 300px;

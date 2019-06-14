@@ -54,16 +54,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="postcss">
   .container {
-    @apply me-px-4 me-border-0 me-mx-auto;
-    @apply me-font-sans;
+    @apply
+      me-px-4
+      me-border-0
+      me-mx-auto
+      me-font-sans
   }
 
   @screen md {
     .container {
       max-width: theme('screens.lg');
-      @apply me-p-16 me-pt-8;
+      @apply
+        me-p-16
+        me-pt-8
     }
   }
 

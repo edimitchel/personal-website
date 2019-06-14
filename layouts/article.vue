@@ -34,15 +34,21 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="postcss">
   main {
   }
   h1 {
-    @apply me-pb-5 me-text-4xl me-uppercase me-text-center
+    @apply
+      me-pb-5
+      me-text-4xl
+      me-uppercase
+      me-text-center
   }
 
   .article {
-    @apply me-leading-loose me-font-sans
+    @apply
+      me-leading-loose
+      me-font-sans
   }
 
   .article__image {
@@ -51,10 +57,13 @@ export default {
   }
 
   .article__title {
-    @apply me-leading-normal
+    @apply
+      me-leading-normal
   }
 
   .article__content {
-    @apply me-leading-loose me-font-sans
+    @apply
+      me-leading-loose
+      me-font-sans
   }
 </style>
