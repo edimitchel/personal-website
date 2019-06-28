@@ -11,24 +11,29 @@
 </template>
 <script>
 export default {
-  props: ['content']
+  props: {
+    content: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  }
 }
 </script>
 <style scoped lang="postcss">
 article {
-  @apply
-    me-py-8
+  @apply me-py-8;
 }
 .vision-title {
-  @apply
+  @apply me-mb-5
     me-text-3xl
     me-text-center
     me-font-bold
-    me-uppercase
+    me-uppercase;
 }
 .vision-excerpt {
-  @apply
-    me-text-center
-    me-my-2
+  @apply me-text-center
+    me-my-2;
 }
 </style>

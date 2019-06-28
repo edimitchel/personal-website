@@ -183,22 +183,20 @@ export default {
 }
 
 header {
-  @apply
-    me-overflow-hidden
+  @apply me-overflow-hidden
     me-flex
     me-items-center
     me-flex-col
     me-text-center
-    me-pt-3
+    me-pt-3;
 }
 .icons {
   max-width: 200px;
   top: 130px;
-  @apply
-    me-flex
+  @apply me-flex
     me-justify-between
     me-absolute
-    me-w-full
+    me-w-full;
 }
 .titles {
   height: 80px;
@@ -210,26 +208,25 @@ header {
   position: relative;
   top: 0;
   margin-top: -15px;
-  @apply
-    me-text-xl
+  @apply me-text-xl
     me-font-mono
-    me-font-bold
+    me-font-bold;
 }
 .title-header.alone {
   top: 10px;
 }
 @screen md {
   .title-header {
-    @apply me-text-3xl
+    @apply me-text-3xl;
   }
 }
 .subtitle-header {
   margin-top: -60px;
-  @apply me-text-xs
+  @apply me-text-xs;
 }
 @screen md {
   .subtitle-header {
-    @apply me-text-base
+    @apply me-text-base;
   }
 }
 .background {
@@ -237,39 +234,35 @@ header {
   left: 0;
   right: 0;
   z-index: -1;
-  @apply me-absolute
+  @apply me-absolute;
 }
 
 nav {
   height: 40px;
-  @apply
-    me-uppercase
-    me-mt-4
+  @apply me-uppercase
+    me-mt-4;
 }
 ul {
-  @apply
-    me-flex
+  @apply me-flex
     me-m-0
     me-p-0
-    me-list-none
+    me-list-none;
 }
 ul li {
-  @apply
-    me-p-2
+  @apply me-p-2
     me-rounded
     me-leading-none
     me-align-middle
-    me-no-underline
+    me-no-underline;
 }
 ul a {
-  @apply
-    me-m-4
+  @apply me-m-4
     me-text-gray-900
     me-p-2
     me-rounded
     me-leading-none
     me-align-middle
-    me-no-underline
+    me-no-underline;
 }
 ul li:first-child {
   transform: rotateZ(13deg) translateY(-10px);
@@ -279,25 +272,21 @@ ul li:last-child {
 }
 ul a.blog {
   transition: all 0.3s ease;
-  @apply
-    me-text-blue-500
-    me-font-bold
+  @apply me-text-blue-500
+    me-font-bold;
 }
 ul a:hover,
 ul a:focus {
-  @apply
-    me-bg-gray-500
-    me-text-white
+  @apply me-bg-gray-500
+    me-text-white;
 }
 ul a.nuxt-link-active {
-  @apply
-    me-bg-gray-600
-    me-text-white
+  @apply me-bg-gray-600
+    me-text-white;
 }
 ul a.blog.nuxt-link-active {
-  @apply
-    me-bg-blue-500
+  @apply me-bg-blue-500
     me-font-bold
-    me-text-white
+    me-text-white;
 }
 </style>

@@ -35,35 +35,30 @@ export default {
 }
 </script>
 <style scoped lang="postcss">
-  main {
-  }
-  h1 {
-    @apply
-      me-pb-5
+main {
+}
+h1 {
+  @apply me-pb-5
       me-text-4xl
       me-uppercase
-      me-text-center
-  }
+      me-text-center;
+}
 
-  .article {
-    @apply
-      me-leading-loose
-      me-font-sans
-  }
+.article {
+  @apply me-leading-loose
+      me-font-sans;
+}
 
-  .article__image {
-    @apply
-      me-min-w-full
-  }
+.article__image {
+  @apply me-min-w-full;
+}
 
-  .article__title {
-    @apply
-      me-leading-normal
-  }
+.article__title {
+  @apply me-leading-normal;
+}
 
-  .article__content {
-    @apply
-      me-leading-loose
-      me-font-sans
-  }
+.article__content {
+  @apply me-leading-loose
+      me-font-sans;
+}
 </style>

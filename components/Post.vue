@@ -67,15 +67,14 @@ export default {
 
 <style scoped lang="postcss">
 .post {
-  @apply
-    me-block
+  @apply me-block
     me-no-underline
     me-mb-4
     me-py-4
     me-text-black
     me-border-b
     me-border-gray-200
-    me-overflow-hidden
+    me-overflow-hidden;
 }
 
 @screen md {
@@ -87,47 +86,40 @@ export default {
   position: relative;
 }
 .post__image img {
-  @apply
-    me-min-w-full
+  @apply me-min-w-full;
 }
 .post__tags {
-  @apply
-    me-absolute
+  @apply me-absolute
     me-mb-2
-    me-text-center
+    me-text-center;
 }
 .post__tag {
-  @apply
-    me-p-1
+  @apply me-p-1
     me-mx-2
     me-outline-none
     me-rounded-full
     me-bg-white
-    me-text-black
+    me-text-black;
 }
 .post__tag.active {
-  @apply
-    me-bg-blue-500
-    me-text-white
+  @apply me-bg-blue-500
+    me-text-white;
 }
 .post__date {
-  @apply
-    me--mb-2
+  @apply me--mb-2
     me-block
     me-text-center
     me-text-gray-600
-    me-font-bold
+    me-font-bold;
 }
 .post__title {
-  @apply
-    me-py-2
+  @apply me-py-2
     me-leading-tight
     me-text-2xl
     me-font-semibold
-    me-text-center
+    me-text-center;
 }
 .post__description {
-  @apply
-    me-text-center
+  @apply me-text-center;
 }
 </style>

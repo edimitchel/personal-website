@@ -55,51 +55,55 @@ export default {
 </script>
 
 <style lang="postcss">
-  .container {
-    @apply
-      me-px-4
+.container {
+  @apply me-px-4
       me-border-0
       me-mx-auto
-      me-font-sans
-  }
+      me-font-sans;
+}
 
-  @screen md {
-    .container {
-      max-width: theme('screens.lg');
-      @apply
-        me-p-16
-        me-pt-8
-    }
+@screen md {
+  .container {
+    max-width: theme('screens.lg');
+    @apply me-p-16
+        me-pt-8;
   }
+}
 
-  .fade-enter-active, .fade-leave-active, .appear {
-    transition: all 200ms ease;
-    position: relative;
-    top: 0;
-  }
+.fade-enter-active,
+.fade-leave-active,
+.appear {
+  transition: all 200ms ease;
+  position: relative;
+  top: 0;
+}
 
-  .fade-enter-to {
-    transition-delay: 150ms;
-  }
+.fade-enter-to {
+  transition-delay: 150ms;
+}
 
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
-    top: -5px;
-  }
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+  top: -5px;
+}
 
-  .up-enter-active, .up-leave-active, .appear {
-    transition: opacity 300ms ease, top 400ms ease;
-    position: relative;
-    top: 0;
-  }
+.up-enter-active,
+.up-leave-active,
+.appear {
+  transition: opacity 300ms ease, top 400ms ease;
+  position: relative;
+  top: 0;
+}
 
-  .up-leave-to {
-    transition-delay: 200ms;
-  }
+.up-leave-to {
+  transition-delay: 200ms;
+}
 
-  .up-enter, .up-leave-to {
-    opacity: 0;
-    top: -5px;
-    z-index: -1;
-  }
+.up-enter,
+.up-leave-to {
+  opacity: 0;
+  top: -5px;
+  z-index: -1;
+}
 </style>

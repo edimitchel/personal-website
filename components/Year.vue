@@ -1,5 +1,5 @@
 <script>
-import { calculateAge } from "@@/utils";
+import { calculateAge } from '@@/utils'
 
 export default {
   props: {
@@ -10,11 +10,11 @@ export default {
   },
   computed: {
     age() {
-      return calculateAge(this.date);
+      return calculateAge(this.date)
     }
   },
   render(h) {
-    return h("span", this.age);
+    return h('span', this.age)
   }
-};
+}
 </script>

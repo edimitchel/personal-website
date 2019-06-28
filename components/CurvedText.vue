@@ -68,6 +68,6 @@ svg {
   height: 80px;
 }
 text {
-  transition: all .2s;
+  transition: all 0.2s;
 }
 </style>

@@ -6,7 +6,7 @@
       {{ content.description }}
     </p>
 
-    <section v-if="content.visions.length > 1" class="visions" :class="{ minified: isVisionChosen}">
+    <header v-if="content.visions.length > 1" class="visions" :class="{ minified: isVisionChosen}">
       <nuxt-link
         v-for="vision of content.visions"
         :key="vision._uid"
@@ -23,12 +23,12 @@
           <p v-if="vision.excerpt" class="vision-description" v-html="$md.render(vision.excerpt)" />
         </no-ssr>
       </nuxt-link>
-    </section>
+    </header>
     <section v-else-if="content.visions.length === 1">
       <Vision :content="content.visions[0]" />
     </section>
     <section v-if="isVisionChosen">
-      <Vision :content="getVision" />
+      <Vision :content="selectedVision" />
     </section>
   </section>
 </template>
@@ -48,15 +48,23 @@ export default {
     isVisionChosen() {
       return !!this.$route.params.vision
     },
-    getVision() {
+    selectedVision() {
       const { vision } = this.$route.params
       return this.content.visions.find(v => v.type.slug === vision)
+    },
+    pageTitle() {
+      const { title: postTitle } = this.post
+      if (this.selectedVision) {
+        const { title: visionTitle, type } = this.selectedVision
+        return `${postTitle} : ${type.name} - ${visionTitle}`
+      }
+      return postTitle
     }
   },
   head() {
-    const { title, description } = this.post
+    const { description } = this.post
     return {
-      title,
+      title: this.pageTitle,
       meta: [{ hid: 'description', name: 'description', content: description }]
     }
   },
@@ -93,7 +101,8 @@ export default {
     }
 
     if (process.client && process.static) {
-      return $axios.get($payloadURL(route))
+      return $axios
+        .get($payloadURL(route))
         .then(({ data }) => data)
         .then(done)
     } else {
@@ -126,35 +135,31 @@ export default {
   }
 }
 </script>
-<style scoped lang="postcss">
+<style lang="postcss" scoped>
 h1 {
-  @apply
-    me-font-bold
+  @apply me-font-bold
     me-text-4xl
-    me-text-center
+    me-text-center;
 }
 .description {
-  @apply
-    me-text-center
+  @apply me-text-center;
 }
 .visions {
-  @apply
-    me-py-10
+  @apply me-py-10
     me-flex
     me-flex-row
     me-flex-wrap
-    me-overflow-x-auto
+    me-overflow-x-auto;
 }
 .visions.minified {
-  @apply
-    me-p-0
-    me-flex-no-wrap
+  @apply me-p-0
+    me-pt-5
+    me-flex-no-wrap;
 }
 .visions.minified .vision-title {
-  @apply
-    me-text-sm
+  @apply me-text-sm
     me-text-gray-600
-    me-font-normal
+    me-font-normal;
 }
 .visions.minified .vision-description {
   display: none;
@@ -162,41 +167,34 @@ h1 {
 .visions .vision {
   margin: 1%;
   flex-basis: 48%;
-  @apply
-    me-border
+  @apply me-border
     me-rounded-lg
-    me-p-4
+    me-p-4;
 }
 .visions.minified .vision-description {
   flex-basis: 100px;
 }
 .visions .vision.nuxt-link-active {
-  @apply
-    me-bg-gray-600
+  @apply me-bg-gray-600;
 }
 .visions .vision.nuxt-link-active .vision-type {
-  @apply
-    me-text-white
+  @apply me-text-white;
 }
 .visions.minified .vision.nuxt-link-active .vision-title {
-  @apply
-    me-text-white
+  @apply me-text-white;
 }
 .vision-type {
-  @apply
-    me-text-gray-800
+  @apply me-text-gray-800
     me-text-lg
-    me-text-center
+    me-text-center;
 }
 .vision-title {
-  @apply
-    me-font-bold
+  @apply me-font-bold
     me-text-2xl
-    me-text-center
+    me-text-center;
 }
 .vision-description {
-  @apply
-    me-text-center
-    me-text-sm
+  @apply me-text-center
+    me-text-sm;
 }
 </style>
