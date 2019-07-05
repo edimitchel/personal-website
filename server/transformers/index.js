@@ -1,6 +1,7 @@
 import story from './story'
 import vision from './vision'
 import type from './type'
+import siteInformation from './siteInformation'
 
 let contextStatic = {};
 
@@ -8,6 +9,7 @@ const transformers = {
   story,
   vision,
   type,
+  siteInformation,
 }
 
 const getTransformer = (dataType) => {

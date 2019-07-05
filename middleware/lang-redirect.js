@@ -1,7 +1,7 @@
 /*eslint-disable */
 
-export default ({ env: { app }, route, redirect }) => {
-  const { defaultLang } = app
+export default ({ env: { info }, route, redirect }) => {
+  const { defaultLang } = info
 
   if (!route) {
     return

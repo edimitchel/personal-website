@@ -56,7 +56,7 @@
               :to="path(item.path)"
               :class="item.class"
             >
-              {{ item.title }}
+              {{ item.name }}
             </n-link>
           </li>
         </ul>
@@ -263,12 +263,6 @@ ul a {
     me-leading-none
     me-align-middle
     me-no-underline;
-}
-ul li:first-child {
-  transform: rotateZ(13deg) translateY(-10px);
-}
-ul li:last-child {
-  transform: rotateZ(-11.5deg) translateY(-10px);
 }
 ul a.blog {
   transition: all 0.3s ease;

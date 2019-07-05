@@ -10,28 +10,7 @@
       "fr",
       "en"
     ],
-    "defaultLang": "fr",
-    "references": {
-      "twitter": "edimitchel",
-      "github": "edimitchel"
-    },
-    "navLinks": [
-      {
-        "title": "about",
-        "path": "about"
-      },
-      {
-        "title": "blog",
-        "path": "point-of-views"
-      },
-      {
-        "title": "contact",
-        "path": "contact"
-      }
-    ],
-    "blog": {
-      "title": "POINT OF VIEW"
-    }
+    "defaultLang": "fr"
   },
   "private": true,
   "scripts": {

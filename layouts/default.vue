@@ -1,14 +1,14 @@
 <template>
   <div>
     <Header
-      :links="navLinks"
-      :name="customPageName || title"
+      :links="info.navLinks"
+      :name="customPageName || info.title"
       :with-emoji="!!customPageName"
-      :description="description"
+      :description="info.description"
       :message="message"
       :header-color="headerColor"
-      :emojis="emojis"
-      :options="options"
+      :emojis="info.emojis"
+      :options="info.references"
     />
     <main class="container mx-auto">
       <nuxt v-if="!$slots.default" />
@@ -19,37 +19,32 @@
 </template>
 
 <script>
+import { mapGetters, mapState, mapActions } from 'vuex'
+
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-
-const { emojis, title, description, navLinks, ...options } = process.env.app
 
 export default {
   components: {
     Footer,
     Header
   },
-  data() {
-    return {
-      emojis,
-      title,
-      description,
-      navLinks,
-      options: {
-        ...options.references
-      }
-    }
-  },
   computed: {
-    customPageName() {
-      return this.$store.state.layout.pageName
-    },
-    message() {
-      return this.$store.state.layout.message
-    },
-    headerColor() {
-      return this.$store.state.layout.color
-    }
+    ...mapGetters('informations', {
+      info: 'get'
+    }),
+    ...mapState('layout', {
+      customPageName: 'pageName',
+      message: 'message',
+      headerColor: 'color'
+    })
+  },
+  mounted() {
+    const { lang } = this.$route.params
+    this.setCurrentLang(lang)
+  },
+  methods: {
+    ...mapActions('informations', ['setCurrentLang'])
   }
 }
 </script>

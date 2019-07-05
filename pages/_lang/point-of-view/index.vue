@@ -43,7 +43,7 @@ export default {
     } else {
       return app.$storyapi
         .get(`cdn/stories`, {
-          starts_with: getDefaultLang(lang, env.app.defaultLang) + 'blog-posts',
+          starts_with: getDefaultLang(lang, env.info.defaultLang) + 'blog-posts',
           version
         })
         .then(res => res.data)

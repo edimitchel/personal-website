@@ -41,6 +41,11 @@ export default {
   components: {
     Vision
   },
+  data() {
+    return {
+      post: {}
+    }
+  },
   computed: {
     content() {
       return this.post
@@ -110,7 +115,7 @@ export default {
         .get(
           `cdn/stories/${getDefaultLang(
             lang,
-            env.app.defaultLang
+            env.info.defaultLang
           )}blog-posts/${slug}`,
           {
             version

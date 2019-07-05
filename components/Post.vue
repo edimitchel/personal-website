@@ -39,11 +39,14 @@ export default {
   },
   computed: {
     blogUri() {
-      return `/${this.lang}/point-of-views/${this.to}`
+      return `/${this.lang}/${this.blogTitle}/${this.to}`
     },
     lang() {
       const { lang } = this.$route.params
       return lang
+    },
+    blogTitle() {
+      return 'point-of-view'
     }
   },
   methods: {
