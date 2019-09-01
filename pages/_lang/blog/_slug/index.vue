@@ -12,7 +12,7 @@
         :key="vision._uid"
         :to="`/${$route.params.lang}/${blogSlug}/${slug}/${vision.type.slug}`"
         class="vision"
-        replace
+        :replace="hasChosenOne"
       >
         <no-ssr>
           <h3 class="vision-type">
@@ -28,9 +28,7 @@
     <section v-else-if="content.visions.length === 1">
       <Vision :content="content.visions[0]" />
     </section>
-    <section v-if="isVisionChosen">
-      <Vision :content="selectedVision" />
-    </section>
+    <nuxt-child :selectedVision="selectedVision" />
   </section>
 </template>
 
@@ -40,12 +38,20 @@ import { getDefaultLang } from '@@/utils'
 import { transform } from '@/server/transformers'
 import Vision from '@/components/Vision'
 export default {
+  head() {
+    const { description } = this.post
+    return {
+      title: this.pageTitle,
+      meta: [{ hid: 'description', name: 'description', content: description }]
+    }
+  },
   components: {
     Vision
   },
   data() {
     return {
-      post: {}
+      post: {},
+      hasChosenOne: false,
     }
   },
   computed: {
@@ -71,11 +77,9 @@ export default {
       return postTitle
     }
   },
-  head() {
-    const { description } = this.post
-    return {
-      title: this.pageTitle,
-      meta: [{ hid: 'description', name: 'description', content: description }]
+  watch: {
+    $route({ params }) {
+      this.hasChosenOne = !!params.vision
     }
   },
   asyncData({

@@ -122,7 +122,7 @@ export const forEachChildren = (routes, payload, fn, level = 0) => {
  */
 export const replaceBlogSlug = (route, payload, level) => {
   const newRoutes = [];
-  if (level < 2 && route.name.indexOf('blog') >= 0) {
+  if (level < 1 && route.name.indexOf('blog') >= 0) {
     payload.forEach(({ blog }) => {
       const newRoute = { ...route }
       newRoute.path = newRoute.path.replace('blog', blog.slug)
