@@ -4,7 +4,9 @@
  @property {String} title
  @property {String} description
  @property {String} defaultLocale
- @property {String} blogTitle
+ @property {Object} blog
+ @property {String} blog.title
+ @property {String} blog.slug
  @property {Object} references
  @property {Object} emojis
  @property {Array.<String>} emojis.normal
@@ -20,6 +22,7 @@ export default ({
     description,
     defaultLocale,
     blogTitle,
+    blogSlug,
     normalEmojis,
     birthdayEmojis,
     navLinks,
@@ -33,14 +36,17 @@ export default ({
 
     const references = {
         github,
-        twitter,
+        twitter
     }
 
     return {
         title,
         description,
         defaultLocale,
-        blogTitle,
+        blog: {
+            title: blogTitle,
+            slug: blogSlug,
+        },
         references,
         emojis,
         navLinks: navLinks.map((link) => {

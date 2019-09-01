@@ -22,7 +22,6 @@
     </small>
     <h2 class="post__title" v-html="post.title" />
     <p class="post__description" v-html="post.description" />
-    <hr>
   </nuxt-link>
 </template>
 <script>
@@ -35,18 +34,19 @@ export default {
     to: {
       type: String,
       default: ''
+    },
+    blogSlug: {
+      type: String,
+      default: 'blog'
     }
   },
   computed: {
     blogUri() {
-      return `/${this.lang}/${this.blogTitle}/${this.to}`
+      return `/${this.lang}/${this.blogSlug}/${this.to}`
     },
     lang() {
       const { lang } = this.$route.params
       return lang
-    },
-    blogTitle() {
-      return 'point-of-view'
     }
   },
   methods: {
@@ -78,6 +78,10 @@ export default {
     me-border-b
     me-border-gray-200
     me-overflow-hidden;
+}
+
+.post:last-child {
+  @apply me-border-0;
 }
 
 @screen md {

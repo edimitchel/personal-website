@@ -6,6 +6,7 @@
         :key="post.slug"
         :to="post.slug"
         :post="post"
+        :blogSlug="blog.slug"
       />
     </div>
   </div>
@@ -21,6 +22,10 @@ export default {
     posts: {
       type: Array,
       default: () => []
+    },
+    blog: {
+      type: Object,
+      default: () => {}
     }
   }
 }

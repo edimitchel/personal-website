@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header
-      :links="info.navLinks"
+      :links="links"
       :name="customPageName || info.title"
       :with-emoji="!!customPageName"
       :description="info.description"
@@ -31,7 +31,8 @@ export default {
   },
   computed: {
     ...mapGetters('informations', {
-      info: 'get'
+      info: 'get',
+      links: 'navLinks'
     }),
     ...mapState('layout', {
       customPageName: 'pageName',

@@ -3,7 +3,8 @@ import Storyblok from 'storyblok-js-client'
 import { transform } from './transformers'
 import { getDefaultLang } from '../utils'
 
-export const generateRoutes = async ({ token, isDev, options: { availableLangs, navLinks, defaultLang } }, callback) => {
+export const generateRoutes = async ({ token, isDev, data: { siteInformation, blogSlugs } }, callback) => {
+  const { availableLangs, defaultLang, navLinks } = siteInformation;
   const $storyapi = new Storyblok({
     accessToken: token,
     cache: {
@@ -11,20 +12,21 @@ export const generateRoutes = async ({ token, isDev, options: { availableLangs, 
       type: 'memory'
     }
   });
-
+  
+  const blogRoute = lang => blogSlugs[lang];
   const version = isDev ? 'draft' : 'published'
-  let cacheVersion = 0
-
   let routes = []
 
   availableLangs.forEach((lang) => {
     routes.push('/' + lang)
     navLinks.forEach(({ path }) => {
-      routes.push('/' + lang + '/' + path)
+      if (path === 'blog') {
+        routes.push('/' + lang + '/' + blogRoute(lang))
+      } else {
+        routes.push('/' + lang + '/' + path)
+      }
     })
   })
-
-  const blogRoute = navLinks.find(link => link.name === 'blog')
 
   const blogRoutes = availableLangs.map(async (lang) => {
     return $storyapi
@@ -37,12 +39,12 @@ export const generateRoutes = async ({ token, isDev, options: { availableLangs, 
         const transformedStories = await transform('story', data.stories, { api: $storyapi, version })
         transformedStories.forEach((story) => {
           newRoutes.push({
-            route: `/${lang}/${blogRoute.path}/${story.slug}`,
+            route: `/${lang}/${blogRoute(lang)}/${story.slug}`,
           })
           story.visions.forEach((vision) => {
             if (vision.type.slug) {
               newRoutes.push({
-                route: `/${lang}/${blogRoute.path}/${story.slug}/${vision.type.slug}`,
+                route: `/${lang}/${blogRoute(lang)}/${story.slug}/${vision.type.slug}`,
               })
             }
           })
@@ -50,7 +52,7 @@ export const generateRoutes = async ({ token, isDev, options: { availableLangs, 
         return newRoutes;
       });
   })
-  return Promise.all(blogRoutes).then((localizedRoutes) => { 
+  return Promise.all(blogRoutes).then((localizedRoutes) => {
     localizedRoutes.forEach(r => {
       routes = routes.concat(r)
     })
@@ -90,4 +92,43 @@ export const getSiteInformation = async ({ token, langs, isDev, defaultLang }) =
     }
     return acc
   }, {})
+}
+
+/**
+ * Execute fn for each route and its children
+ * @param {Array} routes 
+ * @param {Array} payload 
+ * @param {Function} fn 
+ */
+export const forEachChildren = (routes, payload, fn) => {
+  const newRoutes = routes;
+  for (let i = routes.length - 1;i > 0;i--) {
+    const route = routes[i];
+    if (route.children) {
+      route.children = forEachChildren(route.children, payload, fn);
+    }
+    const mappedRoutes = fn(route, payload)
+    newRoutes.splice(i, 1, ...mappedRoutes);
+  }
+  return newRoutes;
+}
+
+/**
+ * Replace all blog slug by the one specified on payload
+ * @param {Object} route 
+ * @param {Array} payload 
+ */
+export const replaceBlogSlug = (route, payload) => {
+  const newRoutes = [];
+  if (route.name.indexOf('blog') >= 0) {
+    payload.forEach(({ blog }) => {
+      const newRoute = { ...route }
+      newRoute.path = newRoute.path.replace('blog', blog.slug)
+      newRoute.name = newRoute.name.replace('blog', blog.slug)
+      newRoutes.push(newRoute);
+    })
+    return newRoutes;
+  } else {
+    return [route];
+  }
 }

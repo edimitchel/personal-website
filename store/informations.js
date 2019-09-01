@@ -25,6 +25,19 @@ export const getters = {
   },
   get(state, getters) {
     return state[getters.currentLang]
+  },
+  navLinks(_, getters) {
+    const { navLinks, blog } = getters.get;
+    return navLinks.map(({ name, path }) => name === 'blog' ? ({
+      name: blog.title,
+      path: blog.slug
+    }): ({
+      name, path
+    }))
+  },
+  blogSlug(_, getters) {
+    const { blog } = getters.get;
+    return blog.slug
   }
 }
 

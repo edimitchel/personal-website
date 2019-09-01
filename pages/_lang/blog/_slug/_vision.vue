@@ -10,8 +10,9 @@
       <nuxt-link
         v-for="vision of content.visions"
         :key="vision._uid"
-        :to="`/${$route.params.lang}/point-of-view/${slug}/${vision.type.slug}`"
+        :to="`/${$route.params.lang}/${blogSlug}/${slug}/${vision.type.slug}`"
         class="vision"
+        replace
       >
         <no-ssr>
           <h3 class="vision-type">
@@ -34,6 +35,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import { getDefaultLang } from '@@/utils'
 import { transform } from '@/server/transformers'
 import Vision from '@/components/Vision'
@@ -47,6 +49,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('informations', [
+      'blogSlug'
+    ]),
     content() {
       return this.post
     },

@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { generateRoutes, getSiteInformation } from './server/data'
+import { generateRoutes, getSiteInformation, forEachChildren, replaceBlogSlug } from './server/data'
 
 require('dotenv').config()
 
@@ -26,11 +26,18 @@ export default async () => {
     isDev,
     defaultLang: options.defaultLang
   })
-
+  
   const siteInformation = {
-    ...siteInformations[options.defaultLang],
-    ...options
+    ...options,
+    ...siteInformations[options.defaultLang]
   }
+  const blogSlugs = Object.entries(siteInformations)
+    .map(([lang, info]) => ({ [lang]: info.blog.slug }))
+    .reduce((acc, obj) => {
+      const [lang, slug] = Object.entries(obj)[0];
+      acc[lang] = slug;
+      return acc;
+    }, {})
 
   return {
     mode: 'universal',
@@ -41,7 +48,7 @@ export default async () => {
      ** Headers of the page
      */
     head: {
-      titleTemplate: function(titleChunk) {
+      titleTemplate: function (titleChunk) {
         if (this) {
           const { title, meta } = this.$options.head
           const description = meta.find(m => m.hid === 'description').content
@@ -114,7 +121,11 @@ export default async () => {
     // redirect: [{ from: '^/$', to: '/' + siteInformation.defaultLocale }],
 
     router: {
-      middleware: ['lang-redirect', 'page-name-blog']
+      middleware: ['lang-redirect', 'page-name-blog'],
+
+      extendRoutes(routes) {
+        forEachChildren(routes, Object.values(siteInformations), replaceBlogSlug);
+      },
     },
 
     env: {
@@ -130,7 +141,12 @@ export default async () => {
 
     generate: {
       routes: (callback) => {
-        return generateRoutes({ token, isDev, options: siteInformation }, callback)
+        return generateRoutes({
+          token, isDev, data: {
+            siteInformation,
+            blogSlugs
+          }
+        }, callback)
       }
     },
 

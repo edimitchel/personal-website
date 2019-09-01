@@ -5,15 +5,10 @@
       <twitter-icon v-if="options.twitter" :url="options.twitter" />
       <github-icon v-if="options.github" :url="options.github" />
     </div>
-    <nuxt-link
-      :to="path()"
-      class="logo"
-    >
-      <img
-        v-show="headerImage"
-        :src="headerImage"
-        alt="Michel's picture"
-      >
+    <nuxt-link :to="path()" class="logo">
+      <transition name="fade">
+        <img v-show="headerImage" :key="headerImage" :src="headerImage" alt="Michel's picture" />
+      </transition>
     </nuxt-link>
     <div class="titles">
       <transition mode="out-in" name="fade">
@@ -22,46 +17,26 @@
           class="title-header"
           :class="{ alone: !message.length }"
           :text-style="!message.length ? 'letter-spacing: 3px' : ''"
-        >
-          {{ computedName }}
-        </curved-text>
+        >{{ computedName }}</curved-text>
       </transition>
       <no-ssr>
-        <message-carousel
-          :data-list="message"
-        >
-          <template
-            slot-scope="{ data }"
-          >
-            <curved-text
-              :key="data"
-              title-level="2"
-              class="subtitle-header"
-            >
-              {{ data }}
-            </curved-text>
+        <message-carousel :data-list="message">
+          <template slot-scope="{ data }">
+            <curved-text :key="data" title-level="2" class="subtitle-header">{{ data }}</curved-text>
           </template>
         </message-carousel>
       </no-ssr>
     </div>
 
-    <nav>
-      <transition name="up">
-        <ul v-if="links.length > 0 && !hideMenu">
-          <li
-            v-for="item in links"
-            :key="item.path"
-          >
-            <n-link
-              :to="path(item.path)"
-              :class="item.class"
-            >
-              {{ item.name }}
-            </n-link>
+    <transition name="up">
+      <nav v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
+        <ul>
+          <li v-for="item in links" :key="item.path">
+            <n-link :to="path(item.path)" :class="item.class">{{ item.name }}</n-link>
           </li>
         </ul>
-      </transition>
-    </nav>
+      </nav>
+    </transition>
   </header>
 </template>
 <script>
@@ -137,6 +112,9 @@ export default {
     },
     hideMenu() {
       return this.$store.state.layout.hideMenu
+    },
+    noMenu() {
+      return this.links.length > 0
     },
     computedName() {
       if (!this.name) {
@@ -239,8 +217,13 @@ header {
 
 nav {
   height: 40px;
+  transition: all 300ms ease;
   @apply me-uppercase
     me-mt-4;
+}
+nav.hidden {
+  height: 0;
+  opacity: 0;
 }
 ul {
   @apply me-flex

@@ -1,7 +1,7 @@
 <template>
   <section>
     <div>
-      <posts :posts="posts" />
+      <posts :posts="posts" :blog="blog" />
     </div>
   </section>
 </template>
@@ -35,6 +35,7 @@ export default {
     isDev,
     store
   }) {
+    const get = store.getters['informations/get']
     const { lang = 'default' } = params
     const version =
       query._storyblok || isDev || process.env.DEV ? 'draft' : 'published'
@@ -49,9 +50,10 @@ export default {
         .then(res => res.data)
         .then(({ stories }) => stories)
         .then(async stories => ({
-          posts: await transform('story', stories, { api: app.$storyapi, version })
+          posts: await transform('story', stories, { api: app.$storyapi, version }),
+          blog: get.blog,
         }))
-        .catch(res =>
+        .catch(res => console.log(res) ||
           error({
             statusCode: res.response.status,
             message: res.response.data

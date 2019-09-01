@@ -39,7 +39,7 @@ export default {
   props: {
     color: {
       type: [String, Array],
-      default: () => ['white', '#c5c5c5']
+      default: () => ['white', '#ddd']
     },
     height: {
       type: Number,
