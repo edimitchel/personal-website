@@ -4,7 +4,7 @@ import { transform } from './transformers'
 import { getDefaultLang } from '../utils'
 
 export const generateRoutes = async ({ token, isDev, data: { siteInformation, blogSlugs } }, callback) => {
-  const { availableLangs, defaultLang, navLinks } = siteInformation;
+  const { availableLangs, defaultLang, navLinks } = siteInformation;
   const $storyapi = new Storyblok({
     accessToken: token,
     cache: {
@@ -12,7 +12,7 @@ export const generateRoutes = async ({ token, isDev, data: { siteInformation, bl
       type: 'memory'
     }
   });
-  
+
   const blogRoute = lang => blogSlugs[lang];
   const version = isDev ? 'draft' : 'published'
   let routes = []
@@ -99,15 +99,16 @@ export const getSiteInformation = async ({ token, langs, isDev, defaultLang }) =
  * @param {Array} routes 
  * @param {Array} payload 
  * @param {Function} fn 
+ * @param {number} level
  */
-export const forEachChildren = (routes, payload, fn) => {
+export const forEachChildren = (routes, payload, fn, level = 0) => {
   const newRoutes = routes;
-  for (let i = routes.length - 1;i > 0;i--) {
+  for (let i = routes.length - 1;i >= 0;i--) {
     const route = routes[i];
     if (route.children) {
-      route.children = forEachChildren(route.children, payload, fn);
+      route.children = forEachChildren(route.children, payload, fn, level + 1);
     }
-    const mappedRoutes = fn(route, payload)
+    const mappedRoutes = fn(route, payload, level)
     newRoutes.splice(i, 1, ...mappedRoutes);
   }
   return newRoutes;
@@ -117,10 +118,11 @@ export const forEachChildren = (routes, payload, fn) => {
  * Replace all blog slug by the one specified on payload
  * @param {Object} route 
  * @param {Array} payload 
+ * @param {number} level
  */
-export const replaceBlogSlug = (route, payload) => {
+export const replaceBlogSlug = (route, payload, level) => {
   const newRoutes = [];
-  if (route.name.indexOf('blog') >= 0) {
+  if (level < 2 && route.name.indexOf('blog') >= 0) {
     payload.forEach(({ blog }) => {
       const newRoute = { ...route }
       newRoute.path = newRoute.path.replace('blog', blog.slug)
