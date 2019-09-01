@@ -41,10 +41,13 @@ export default async () => {
      ** Headers of the page
      */
     head: {
-      titleTemplate: function (titleChunk) {
-        const { title, meta } = this.$options.head
-        const description = meta.find(m => m.hid === 'description').content
-        return title === titleChunk ? `${title} - ${description}` : `${titleChunk} - ${title}`
+      titleTemplate: function(titleChunk) {
+        if (this) {
+          const { title, meta } = this.$options.head
+          const description = meta.find(m => m.hid === 'description').content
+          return title === titleChunk ? `${title} - ${description}` : `${titleChunk} - ${title}`
+        }
+        return titleChunk
       },
       title,
       meta: [
@@ -72,7 +75,7 @@ export default async () => {
      */
     plugins: ['~/plugins/axios'],
 
-    devModules: [
+    buildModules: [
       '@nuxtjs/tailwindcss'
     ],
 
@@ -81,7 +84,7 @@ export default async () => {
      */
     modules: [
       '@nuxtjs/axios',
-      // '@nuxtjs/pwa',
+      '@nuxtjs/pwa',
       '@nuxtjs/markdownit',
       '@nuxtjs/redirect-module',
       '@nuxtjs/moment',
@@ -108,7 +111,7 @@ export default async () => {
       injected: true
     },
 
-    redirect: [{ from: '^/$', to: '/' + siteInformation.defaultLocale }],
+    // redirect: [{ from: '^/$', to: '/' + siteInformation.defaultLocale }],
 
     router: {
       middleware: ['lang-redirect', 'page-name-blog']

@@ -10,7 +10,7 @@
       <nuxt-link
         v-for="vision of content.visions"
         :key="vision._uid"
-        :to="`/${$route.params.lang}/point-of-views/${slug}/${vision.type.slug}`"
+        :to="`/${$route.params.lang}/point-of-view/${slug}/${vision.type.slug}`"
         class="vision"
       >
         <no-ssr>
