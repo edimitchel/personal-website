@@ -1,0 +1,10 @@
+Mon rôle sur ce projet: EDIGHOFFER Michel
+Site: micheledighoffer.fr
+Twitter: @edimitchel
+Location: Strasbourg, France
+
+Last update:
+
+Standards: HTML5, CSS3, javascript
+Components: Vue.js, Nuxt, Tailwind.css
+Software: Visual Studio Code, Elementary.os

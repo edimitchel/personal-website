@@ -12,12 +12,13 @@ build-prod:
   image: node:10
   script:
     - npm install
-    - ./node_modules/.bin/vuepress build
-    - cp humans.txt .vuepress/dist
+    - ./node_modules/.bin/nuxt generate
+    - "[[ ! ${HIDE_ON_WEB} ]] && { rm dist/robots.txt; }"
+    - "[[ ! ${HIDE_ON_WEB} ]] && { rm dist/.htaccess; }"
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
-      - .vuepress/dist/
+      - ./dist/
   only:
     - master
 
@@ -26,25 +27,28 @@ build-dev:
   image: node:10
   script:
     - npm install
-    - ./node_modules/.bin/vuepress build
-    - cp humans.txt .vuepress/dist
+    - echo "DEV=true" > .env
+    - ./node_modules/.bin/nuxt generate
   artifacts:
     name: "$CI_COMMIT_REF_NAME"
     paths:
-      - .vuepress/dist/
+      - dist/
+  environment:
+    name: development
   only:
     - develop
+    - switch-to-nuxt
 
 # upload job, see https://lftp.yar.ru/lftp-man.html
 deploy-prod:
   stage: deploy
   image: mwienk/docker-lftp:latest
   script:
-    - "[[ ${HIDE_ON_WEB} ]] && { cp robots.txt .vuepress/dist; }"
-    - "[[ ${HIDE_ON_WEB} ]] && { cp .htaccess .vuepress/dist; }"
-    - lftp -e "mirror -R .vuepress/dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+    - lftp -e "mirror -R ./dist /www/website -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
     - build-prod
+  environment:
+    name: production
   only:
     - master
   when: manual
@@ -53,9 +57,10 @@ deploy-dev:
   stage: deploy
   image: mwienk/docker-lftp:latest
   script:
-    - cp robots.txt .vuepress/dist
-    - lftp -e "mirror -R .vuepress/dist /www/website-dev -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
+    - lftp -e "mirror -R ./dist /www/website-dev -envp ; exit;" -u $FTP_USERNAME,$FTP_PASSWORD $FTP_HOST
   dependencies:
     - build-dev
   only:
     - develop
+    - switch-to-nuxt
+  when: manual
