@@ -1,4 +1,7 @@
-const defaultImage = require('~/assets/images/self-image.png')
+const defaultImage = {
+  src: require('~/assets/images/self-image.png'),
+  title: 'Michel\'s image'
+}
 
 export const state = () => ({
   message: [],
