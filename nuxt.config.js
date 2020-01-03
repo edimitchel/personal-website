@@ -35,8 +35,10 @@ export default async () => {
     .map(([lang, info]) => ({ [lang]: info.blog.slug }))
     .reduce((acc, obj) => {
       const [lang, slug] = Object.entries(obj)[0];
-      acc[lang] = slug;
-      return acc;
+      return {
+        ...acc,
+        [lang]: slug
+      };
     }, {})
 
   return {
