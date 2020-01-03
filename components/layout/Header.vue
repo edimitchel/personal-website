@@ -7,7 +7,7 @@
     </div>
     <nuxt-link :to="path()" class="logo">
       <transition name="fade">
-        <img v-show="headerImage" :key="headerImage" :src="headerImage.src" :alt="headerImage.title" />
+        <img v-show="headerImage" :key="headerImage.src" :src="headerImage.src" :alt="headerImage.title" />
       </transition>
     </nuxt-link>
     <div class="titles">
