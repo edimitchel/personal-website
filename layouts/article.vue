@@ -38,27 +38,27 @@ export default {
 main {
 }
 h1 {
-  @apply me-pb-5
-      me-text-4xl
-      me-uppercase
-      me-text-center;
+  @apply pb-5
+      text-4xl
+      uppercase
+      text-center;
 }
 
 .article {
-  @apply me-leading-loose
-      me-font-sans;
+  @apply leading-loose
+      font-sans;
 }
 
 .article__image {
-  @apply me-min-w-full;
+  @apply min-w-full;
 }
 
 .article__title {
-  @apply me-leading-normal;
+  @apply leading-normal;
 }
 
 .article__content {
-  @apply me-leading-loose
-      me-font-sans;
+  @apply leading-loose
+      font-sans;
 }
 </style>

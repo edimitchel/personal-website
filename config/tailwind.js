@@ -224,5 +224,5 @@ module.exports = {
     zIndex: ['responsive']
   },
 
-  prefix: 'me-'
+  prefix: ''
 }

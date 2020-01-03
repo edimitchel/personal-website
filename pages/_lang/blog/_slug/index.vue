@@ -14,7 +14,7 @@
         class="vision"
         :replace="hasChosenOne"
       >
-        <no-ssr>
+        <client-only>
           <h3 class="vision-type">
             {{ vision.type.name }}
           </h3>
@@ -22,7 +22,7 @@
             {{ vision.title }}
           </h2>
           <p v-if="vision.excerpt" class="vision-description" v-html="$md.render(vision.excerpt)" />
-        </no-ssr>
+        </client-only>
       </nuxt-link>
     </header>
     <section v-else-if="content.visions.length === 1">
@@ -151,29 +151,29 @@ export default {
 </script>
 <style lang="postcss" scoped>
 h1 {
-  @apply me-font-bold
-    me-text-4xl
-    me-text-center;
+  @apply font-bold
+    text-4xl
+    text-center;
 }
 .description {
-  @apply me-text-center;
+  @apply text-center;
 }
 .visions {
-  @apply me-py-10
-    me-flex
-    me-flex-row
-    me-flex-wrap
-    me-overflow-x-auto;
+  @apply py-10
+    flex
+    flex-row
+    flex-wrap
+    overflow-x-auto;
 }
 .visions.minified {
-  @apply me-p-0
-    me-pt-5
-    me-flex-no-wrap;
+  @apply p-0
+    pt-5
+    flex-no-wrap;
 }
 .visions.minified .vision-title {
-  @apply me-text-sm
-    me-text-gray-600
-    me-font-normal;
+  @apply text-sm
+    text-gray-600
+    font-normal;
 }
 .visions.minified .vision-description {
   display: none;
@@ -181,34 +181,34 @@ h1 {
 .visions .vision {
   margin: 1%;
   flex-basis: 48%;
-  @apply me-border
-    me-rounded-lg
-    me-p-4;
+  @apply border
+    rounded-lg
+    p-4;
 }
 .visions.minified .vision-description {
   flex-basis: 100px;
 }
 .visions .vision.nuxt-link-active {
-  @apply me-bg-gray-600;
+  @apply bg-gray-600;
 }
 .visions .vision.nuxt-link-active .vision-type {
-  @apply me-text-white;
+  @apply text-white;
 }
 .visions.minified .vision.nuxt-link-active .vision-title {
-  @apply me-text-white;
+  @apply text-white;
 }
 .vision-type {
-  @apply me-text-gray-800
-    me-text-lg
-    me-text-center;
+  @apply text-gray-800
+    text-lg
+    text-center;
 }
 .vision-title {
-  @apply me-font-bold
-    me-text-2xl
-    me-text-center;
+  @apply font-bold
+    text-2xl
+    text-center;
 }
 .vision-description {
-  @apply me-text-center
-    me-text-sm;
+  @apply text-center
+    text-sm;
 }
 </style>

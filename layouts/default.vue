@@ -52,17 +52,17 @@ export default {
 
 <style lang="postcss">
 .container {
-  @apply me-px-4
-      me-border-0
-      me-mx-auto
-      me-font-sans;
+  @apply px-4
+      border-0
+      mx-auto
+      font-sans;
 }
 
 @screen md {
   .container {
     max-width: theme('screens.lg');
-    @apply me-p-16
-        me-pt-8;
+    @apply p-16
+        pt-8;
   }
 }
 

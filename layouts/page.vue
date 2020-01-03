@@ -33,8 +33,8 @@ export default {
 </script>
 <style scoped lang="postcss">
 h1 {
-  @apply me-uppercase
-      me-pb-5
-      me-text-center;
+  @apply uppercase
+      pb-5
+      text-center;
 }
 </style>

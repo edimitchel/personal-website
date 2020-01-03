@@ -70,63 +70,63 @@ export default {
 
 <style scoped lang="postcss">
 .post {
-  @apply me-block
-    me-no-underline
-    me-mb-4
-    me-py-4
-    me-text-black
-    me-border-b
-    me-border-gray-200
-    me-overflow-hidden;
+  @apply block
+    no-underline
+    mb-4
+    py-4
+    text-black
+    border-b
+    border-gray-200
+    overflow-hidden;
 }
 
 .post:last-child {
-  @apply me-border-0;
+  @apply border-0;
 }
 
 @screen md {
   .post {
-    @apply me-py-2;
+    @apply py-2;
   }
 }
 .post__image {
   position: relative;
 }
 .post__image img {
-  @apply me-min-w-full;
+  @apply min-w-full;
 }
 .post__tags {
-  @apply me-absolute
-    me-mb-2
-    me-text-center;
+  @apply absolute
+    mb-2
+    text-center;
 }
 .post__tag {
-  @apply me-p-1
-    me-mx-2
-    me-outline-none
-    me-rounded-full
-    me-bg-white
-    me-text-black;
+  @apply p-1
+    mx-2
+    outline-none
+    rounded-full
+    bg-white
+    text-black;
 }
 .post__tag.active {
-  @apply me-bg-blue-500
-    me-text-white;
+  @apply bg-blue-500
+    text-white;
 }
 .post__date {
-  @apply me--mb-2
-    me-block
-    me-text-center
-    me-text-gray-600
-    me-font-bold;
+  @apply -mb-2
+    block
+    text-center
+    text-gray-600
+    font-bold;
 }
 .post__title {
-  @apply me-py-2
-    me-leading-tight
-    me-text-2xl
-    me-font-semibold
-    me-text-center;
+  @apply py-2
+    leading-tight
+    text-2xl
+    font-semibold
+    text-center;
 }
 .post__description {
-  @apply me-text-center;
+  @apply text-center;
 }
 </style>

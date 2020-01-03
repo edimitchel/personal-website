@@ -7,7 +7,7 @@
     </div>
     <nuxt-link :to="path()" class="logo">
       <transition name="fade">
-        <img v-show="headerImage" :key="headerImage" :src="headerImage" alt="Michel's picture" />
+        <img v-show="headerImage" :key="headerImage" :src="headerImage.src" :alt="headerImage.title" />
       </transition>
     </nuxt-link>
     <div class="titles">
@@ -19,13 +19,13 @@
           :text-style="!message.length ? 'letter-spacing: 3px' : ''"
         >{{ computedName }}</curved-text>
       </transition>
-      <no-ssr>
+      <client-only>
         <message-carousel :data-list="message">
           <template slot-scope="{ data }">
             <curved-text :key="data" title-level="2" class="subtitle-header">{{ data }}</curved-text>
           </template>
         </message-carousel>
-      </no-ssr>
+      </client-only>
     </div>
 
     <transition name="up">
@@ -161,20 +161,20 @@ export default {
 }
 
 header {
-  @apply me-overflow-hidden
-    me-flex
-    me-items-center
-    me-flex-col
-    me-text-center
-    me-pt-3;
+  @apply overflow-hidden
+    flex
+    items-center
+    flex-col
+    text-center
+    pt-3;
 }
 .icons {
   max-width: 200px;
   top: 130px;
-  @apply me-flex
-    me-justify-between
-    me-absolute
-    me-w-full;
+  @apply flex
+    justify-between
+    absolute
+    w-full;
 }
 .titles {
   height: 80px;
@@ -186,25 +186,25 @@ header {
   position: relative;
   top: 0;
   margin-top: -15px;
-  @apply me-text-xl
-    me-font-mono
-    me-font-bold;
+  @apply text-xl
+    font-mono
+    font-bold;
 }
 .title-header.alone {
   top: 10px;
 }
 @screen md {
   .title-header {
-    @apply me-text-3xl;
+    @apply text-3xl;
   }
 }
 .subtitle-header {
   margin-top: -60px;
-  @apply me-text-xs;
+  @apply text-xs;
 }
 @screen md {
   .subtitle-header {
-    @apply me-text-base;
+    @apply text-base;
   }
 }
 .background {
@@ -212,58 +212,58 @@ header {
   left: 0;
   right: 0;
   z-index: -1;
-  @apply me-absolute;
+  @apply absolute;
 }
 
 nav {
   height: 40px;
   transition: all 300ms ease;
-  @apply me-uppercase
-    me-mt-4;
+  @apply uppercase
+    mt-4;
 }
 nav.hidden {
   height: 0;
   opacity: 0;
 }
 ul {
-  @apply me-flex
-    me-m-0
-    me-p-0
-    me-list-none;
+  @apply flex
+    m-0
+    p-0
+    list-none;
 }
 ul li {
-  @apply me-p-2
-    me-rounded
-    me-leading-none
-    me-align-middle
-    me-no-underline;
+  @apply p-2
+    rounded
+    leading-none
+    align-middle
+    no-underline;
 }
 ul a {
-  @apply me-m-4
-    me-text-gray-900
-    me-p-2
-    me-rounded
-    me-leading-none
-    me-align-middle
-    me-no-underline;
+  @apply m-4
+    text-gray-900
+    p-2
+    rounded
+    leading-none
+    align-middle
+    no-underline;
 }
 ul a.blog {
   transition: all 0.3s ease;
-  @apply me-text-blue-500
-    me-font-bold;
+  @apply text-blue-500
+    font-bold;
 }
 ul a:hover,
 ul a:focus {
-  @apply me-bg-gray-500
-    me-text-white;
+  @apply bg-gray-500
+    text-white;
 }
 ul a.nuxt-link-active {
-  @apply me-bg-gray-600
-    me-text-white;
+  @apply bg-gray-600
+    text-white;
 }
 ul a.blog.nuxt-link-active {
-  @apply me-bg-blue-500
-    me-font-bold
-    me-text-white;
+  @apply bg-blue-500
+    font-bold
+    text-white;
 }
 </style>

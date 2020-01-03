@@ -25,17 +25,17 @@ export default {
 </script>
 <style scoped lang="postcss">
 article {
-  @apply me-py-8;
+  @apply py-8;
 }
 .vision-title {
-  @apply me-mb-5
-    me-text-3xl
-    me-text-center
-    me-font-bold
-    me-uppercase;
+  @apply mb-5
+    text-3xl
+    text-center
+    font-bold
+    uppercase;
 }
 .vision-excerpt {
-  @apply me-text-center
-    me-my-2;
+  @apply text-center
+    my-2;
 }
 </style>

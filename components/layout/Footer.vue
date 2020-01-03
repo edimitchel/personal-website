@@ -1,6 +1,6 @@
 <template>
-  <footer class="me-sticky">
-    <div class="me-text-med me-text-center">
+  <footer class="sticky">
+    <div class="text-med text-center">
       &copy; {{ year }} Michel Edighoffer
     </div>
   </footer>
@@ -24,18 +24,18 @@ export default {
 </script>
 <style lang="postcss">
 footer {
-  @apply me-font-mono
-    me-flex
-    me-items-center
-    me-flex-col
-    me-text-center
-    me-p-4;
+  @apply font-mono
+    flex
+    items-center
+    flex-col
+    text-center
+    p-4;
 }
 .background {
   bottom: 0;
   left: 0;
   right: 0;
   z-index: -1;
-  @apply me-absolute;
+  @apply absolute;
 }
 </style>

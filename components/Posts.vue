@@ -32,27 +32,27 @@ export default {
 </script>
 <style scoped lang="postcss">
 .posts {
-  @apply me-relative
-      me-font-sans;
+  @apply relative
+      font-sans;
 }
 
 .categories {
-  @apply me-flex
-      me-flex-wrap
-      me-justify-between;
+  @apply flex
+      flex-wrap
+      justify-between;
 }
 .category {
   transition: all 300ms ease;
-  @apply me-sticky
-      me-p-2
-      me-mx-2
-      me-outline-none
-      me-rounded-full
-      me-text-black
-      me-mb-2;
+  @apply sticky
+      p-2
+      mx-2
+      outline-none
+      rounded-full
+      text-black
+      mb-2;
 }
 .category.active {
-  @apply me-bg-blue-500
-      me-text-white;
+  @apply bg-blue-500
+      text-white;
 }
 </style>

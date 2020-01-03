@@ -23,21 +23,21 @@ export default {
 </script>
 <style scoped lang="postcss">
 a {
-  @apply me-flex
-      me-items-center
-      me-justify-center
-      me-no-underline
-      me-w-8
-      me-h-8
-      me-m-0
-      me-mx-2
-      me-bg-twitter
-      me-text-white
-      me-rounded-full;
+  @apply flex
+      items-center
+      justify-center
+      no-underline
+      w-8
+      h-8
+      m-0
+      mx-2
+      bg-twitter
+      text-white
+      rounded-full;
 }
 svg {
-  @apply me-fill-current
-      me-w-5
-      me-h-5;
+  @apply fill-current
+      w-5
+      h-5;
 }
 </style>
