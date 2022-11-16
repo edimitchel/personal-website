@@ -33,7 +33,7 @@
 		"postcss-loader": "^3.0.0",
 		"postcss-url": "^8.0.0",
 		"tailwindcss": "^0.7.2",
-		"vuepress": "^0.14.8"
+		"vuepress": "^1.9.7"
 	},
 	"dependencies": {
 		"debounce": "^1.2.0",
