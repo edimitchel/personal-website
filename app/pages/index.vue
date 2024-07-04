@@ -1,23 +1,13 @@
 <template>
   <section>
-    <div>
-      <h2 class="subtitle">
-        Michel&#39;s website about him and his thoughts
-      </h2>
-      <div class="links" />
-    </div>
+    <h2 class="subtitle">
+      Michel&#39;s website about him and his thoughts
+    </h2>
   </section>
 </template>
 
 <script setup lang="ts">
-const store = layoutStore()
 
-useHead({
-  title: 'Home'
-})
+definePageMeta({ title: 'Home' })
 
-
-onMounted(() => {
-  store.title = 'Michel Edighoffer'
-})
 </script>

@@ -12,19 +12,18 @@
     </NuxtLink>
     <div class="titles">
       <transition mode="out-in" name="up">
-        <CurvedText :key="computedName" class="title-header" :class="{ alone: !messages.length }"
+        <CurvedText :key="computedName" class="title-header" :class="{ alone: messages.length === 0 }"
           :text-style="!messages.length ? 'letter-spacing: 3px' : ''">
           {{ computedName }}
         </CurvedText>
       </transition>
       <client-only>
-        <MessageCarousel :data-list="messages">
-          <template #default="{ data }">
-            <CurvedText :key="data" title-level="2" class="subtitle-header">
-              {{ data }}
-            </CurvedText>
-          </template>
+        <MessageCarousel transition-name="fade" :data-list="messages" #default="{ data }">
+          <CurvedText :key="data" title-level="2" class="subtitle-header">
+            {{ data }}
+          </CurvedText>
         </MessageCarousel>
+
       </client-only>
     </div>
 
@@ -49,7 +48,7 @@ const store = layoutStore();
 
 const {
   description = 'description',
-  headerColor = '',
+  headerColor,
   emojis = {
     birthday: [],
     normal: [],
@@ -67,7 +66,7 @@ const {
   name: string
   description: string
   messages: string[]
-  headerColor: string
+  headerColor?: string[]
   emojis: {
     birthday: string[]
     normal: string[]
@@ -103,7 +102,7 @@ const computedName = computed(() => {
     return name
   }
   const n = name.split(' ')
-  
+
   n.splice(1, 0, random(options.isBirthday ? emojis.birthday : emojis.normal))
 
   return n.join(' ')
@@ -159,8 +158,8 @@ header {
   transition: all 0.3s;
   position: relative;
   top: 0;
-  margin-top: -15px;
-  --uno: text-xl font-mono font-bold;
+  margin-top: -25px;
+  --uno: text-xl font-serif font-bold;
 }
 
 .title-header.alone {
@@ -175,7 +174,7 @@ header {
 
 .subtitle-header {
   margin-top: -60px;
-  --uno: text-xs;
+  --uno: text-xs font-mono font-bold;
 }
 
 @screen md {
@@ -195,7 +194,7 @@ header {
 nav {
   height: 40px;
   transition: all 300ms ease;
-  --uno: uppercase mt-4;
+  --uno: uppercase mt-4 font-serif font-bold;
 }
 
 nav.hidden {

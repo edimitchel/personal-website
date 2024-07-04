@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxt/image',
     '@pinia/nuxt',
+    "@nuxt/fonts"
   ],
 
   hub: {
@@ -27,6 +28,12 @@ export default defineNuxtConfig({
 
   vue: {
     propsDestructure: true,
+  },
+
+  app: {
+    rootAttrs: {
+      id: 'app'
+    }
   },
 
   nitro: {

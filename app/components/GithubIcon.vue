@@ -12,7 +12,7 @@ defineProps<{ url: string }>()
 </script>
 <style scoped>
 a {
-  --uno: flex items-center justify-center no-underline w-8 h-8 m-0 mx-2 bg-github text-white rounded-full;
+  --uno: flex items-center justify-center no-underline w-8 h-8 m-0 mx-2 bg-github text-black rounded-full;
 }
 
 svg {

@@ -1,29 +1,24 @@
 <template>
   <section>
-    <h1>About me</h1>
   </section>
 </template>
 
 <script setup>
 
-useHead({
+definePageMeta({
   title: 'About me'
 })
 
 const store = layoutStore()
 
 onMounted(() => {
-  store.messages.value = [
+  store.messages = [
     'front-end engineer',
     'Vue enthusiast',
     '🕊 christian ✝️',
     'Alsace ❤',
     'aeromodelism ❤',
     'love my wife'
-  ]
-})
-
-onUnmounted(() => {
-  store.messages.value = []
+  ].sort(Math.random)
 })
 </script>

@@ -1,15 +1,14 @@
 <template>
   <LayoutHeader :links="links" :name="title || info.title" :with-emoji="!!title" :description="info.description"
     :messages="messages" :header-color="headerColor" :emojis="info.emojis" :options="info.references" />
-  <main class="container mx-auto">
-    <NuxtPage v-if="!$slots.default" />
+  <main class="container md:p-16 md:pt-8">
     <slot />
   </main>
   <LayoutFooter />
 </template>
 
 <script setup lang="ts">
-const { messages, title } = storeToRefs(layoutStore());
+const { messages, title, color } = storeToRefs(layoutStore());
 
 const links = [{
   path: '/',
@@ -22,38 +21,31 @@ const links = [{
   name: 'Blog'
 }]
 
-const headerColor = ''
+const headerColor = color
 const info = { title: '', description: '', references: { github: 'editmitchel' }, emojis: { normal: ['🔥'], birthday: [] } }
 
 </script>
 
 <style>
 .container {
-  --uno: px-4 border-0 mx-auto font-sans;
-}
-
-@screen md {
-  .container {
-    --uno: p-16 pt-8;
-  }
+  --uno: px-4 mx-auto border-0 font-serif max-w-[900px] box-border flex-grow-1;
 }
 
 .fade-enter-active,
 .fade-leave-active,
 .appear {
-  transition: all 200ms ease;
+  transition: all 300ms ease;
   position: relative;
   top: 0;
 }
 
 .fade-enter-to {
-  transition-delay: 150ms;
+  transition-delay: 300ms;
 }
 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
-  top: -5px;
 }
 
 .up-enter-active,

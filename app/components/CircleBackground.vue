@@ -99,6 +99,7 @@ circle {
   transform-origin: 50% 0;
   transition: all 600ms linear;
 }
+
 #image {
   opacity: 0.8;
 }
@@ -119,4 +120,5 @@ circle {
   animation: pulse 600ms alternate infinite
     cubic-bezier(0.455, 0.03, 0.515, 0.955);
 }
+
 </style>

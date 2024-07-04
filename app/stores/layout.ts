@@ -3,7 +3,7 @@ import defaultImage from '~/assets/images/self-image.png'
 export type State = {
     messages: string[],
     title: string
-    color?: string,
+    color?: string[],
     hideMenu: boolean,
     headerImage: {
         src: string,
@@ -15,7 +15,7 @@ export type State = {
 }
 
 export const layoutStore = defineStore('layout', () => {
-    const messages = ref([])
+    const messages = ref<string[]>([])
     const title = ref('')
     const color = ref()
     const hideMenu = ref(false)
