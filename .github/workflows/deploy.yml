@@ -5,6 +5,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: NuxtHub
     steps:
       - name: Checkout
         uses: actions/checkout@v4
