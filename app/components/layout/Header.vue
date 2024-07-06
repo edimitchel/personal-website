@@ -173,7 +173,7 @@ header {
 }
 
 .subtitle-header {
-  margin-top: -60px;
+  margin-top: -68px;
   --uno: text-xs font-mono font-bold;
 }
 
@@ -224,11 +224,11 @@ ul a:focus {
   --uno: bg-gray-500 text-white;
 }
 
-ul a.nuxt-link-active {
+ul a.router-link-active {
   --uno: bg-gray-600 text-white;
 }
 
-ul a.blog.nuxt-link-active {
+ul a.blog.router-link-active {
   --uno: bg-blue-500 font-bold text-white;
 }
 </style>
