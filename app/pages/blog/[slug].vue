@@ -6,7 +6,7 @@
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 useHead({
   title: 'Blog'
@@ -15,5 +15,7 @@ useHead({
 const route = useRoute();
 
 const posts = ref([])
+
+query
 
 </script>
