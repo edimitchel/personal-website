@@ -37,6 +37,10 @@ export default defineNuxtConfig({
     }
   },
 
+  content: {
+    documentDriven: true
+  },
+
   nitro: {
     experimental: {
       // Enable Server API documentation within NuxtHub

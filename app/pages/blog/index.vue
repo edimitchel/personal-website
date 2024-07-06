@@ -1,8 +1,6 @@
 <template>
   <section>
-    <div>
-      <Posts :posts="posts" />
-    </div>
+    <ContentRenderer :value="blog" />
   </section>
 </template>
 
@@ -12,6 +10,15 @@ definePageMeta({
   title: 'Blog'
 })
 
-const posts = ref([])
+const { data: blog } = await useAsyncData('blog', queryContent('/').where({ _file: 'index.md' }).findOne);
+const { data: posts } = await useAsyncData('articles', queryContent('/articles').find, {
+  transform(postsResult) {
+    return postsResult.map(post => ({
+      title: post.title,
+      description: post.excerpt,
+      slug: post._path
+    }))
+  }
+});
 
 </script>
