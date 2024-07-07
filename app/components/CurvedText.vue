@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div :class="{'top-3!': alone}">
     <svg :width="width" fill="none" viewBox="0 0 500 80">
       <path id="curve" :d="path" />
-      <text :text-anchor="textAlign" :style="textStyle">
+      <text :text-anchor="textAlign" :class="{ 'tracking-wide': alone }">
         <textPath xlink:href="#curve" startOffset="50%" :fill="color">
           <slot />
         </textPath>
@@ -28,8 +28,8 @@ export default {
       type: String,
       default: 'middle'
     },
-    textStyle: {
-      type: [String, Object],
+    alone: {
+      type: Boolean,
       default: undefined
     },
     width: {
@@ -64,9 +64,11 @@ export default {
 .sr-only {
   display: none;
 }
+
 svg {
   height: 80px;
 }
+
 text {
   transition: all 0.2s;
 }

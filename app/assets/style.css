@@ -1,0 +1,57 @@
+
+
+.fade-enter-active,
+.fade-leave-active,
+.appear {
+  transition: all 300ms ease;
+  position: relative;
+  top: 0;
+}
+
+.fade-enter-to {
+  transition-delay: 300ms;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.up-enter-active,
+.up-leave-active,
+.appear {
+  transition: opacity 300ms ease, transform 400ms ease;
+  position: relative;
+  transform: translateY(0);
+}
+
+.up-leave-to {
+  transition-delay: 200ms;
+}
+
+.up-enter-from,
+.up-leave-to {
+  opacity: 0;
+  transform: rotate(0deg) translateY(-5px);
+  z-index: -1;
+}
+
+
+.balance-enter-active,
+.balance-leave-active {
+  transition: opacity 300ms ease, transform 400ms ease;
+  position: relative;
+}
+
+.balance-enter-from,
+.balance-leave-to {
+  opacity: 0;
+}
+
+.balance-enter-from {
+  transform: translateX(30px) rotate(-5deg);
+}
+
+.balance-leave-to {
+  transform: translateX(-30px) rotate(5deg);
+}

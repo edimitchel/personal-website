@@ -8,6 +8,6 @@
 
 <script setup lang="ts">
 
-definePageMeta({ title: 'Home' })
+definePageMeta({ title: 'Michel Edighoffer' })
 
 </script>

@@ -6,19 +6,17 @@
       <github-icon v-if="options.github" :url="options.github" />
     </div>
     <NuxtLink to="/" class="logo">
-      <transition name="fade">
+      <Transition name="fade">
         <img v-if="headerImage" :key="headerImage.src" :src="headerImage.src" :alt="headerImage.title">
-      </transition>
+      </Transition>
     </NuxtLink>
     <div class="titles">
-      <transition mode="out-in" name="up">
-        <CurvedText :key="computedName" class="title-header" :class="{ alone: messages.length === 0 }"
-          :text-style="!messages.length ? 'letter-spacing: 3px' : ''">
-          {{ computedName }}
-        </CurvedText>
-      </transition>
+      <Transition mode="out-in" name="up">
+        <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
+          computedName }}</CurvedText>
+      </Transition>
       <client-only>
-        <MessageCarousel transition-name="fade" :data-list="messages" #default="{ data }">
+        <MessageCarousel transition-name="balance" :data-list="messages" #default="{ data }">
           <CurvedText :key="data" title-level="2" class="subtitle-header">
             {{ data }}
           </CurvedText>
@@ -27,7 +25,7 @@
       </client-only>
     </div>
 
-    <transition name="up">
+    <Transition name="up">
       <nav v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
         <ul>
           <li v-for="item in links" :key="item.path">
@@ -37,7 +35,7 @@
           </li>
         </ul>
       </nav>
-    </transition>
+    </Transition>
   </header>
 </template>
 
@@ -98,12 +96,14 @@ const computedName = computed(() => {
   if (!name) {
     return
   }
-  else if (withEmoji) {
+  else if (!withEmoji) {
     return name
   }
   const n = name.split(' ')
 
-  n.splice(1, 0, random(options.isBirthday ? emojis.birthday : emojis.normal))
+  if (n.length > 1) {
+    n.splice(1, 0, random(options.isBirthday ? emojis.birthday : emojis.normal))
+  }
 
   return n.join(' ')
 })
@@ -160,10 +160,6 @@ header {
   top: 0;
   margin-top: -25px;
   --uno: text-xl font-serif font-bold;
-}
-
-.title-header.alone {
-  top: 10px;
 }
 
 @screen md {

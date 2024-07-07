@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@iconify/json':
+    specifier: ^2.2.225
+    version: 2.2.225
   '@nuxt/content':
     specifier: ^2.13.0
     version: 2.13.0(nuxt@3.12.3)(vue@3.4.31)
@@ -26,6 +29,9 @@ dependencies:
   '@unocss/nuxt':
     specifier: ^0.61.0
     version: 0.61.0(postcss@8.4.39)(vite@5.3.3)(webpack@5.92.1)
+  '@unocss/preset-icons':
+    specifier: ^0.61.3
+    version: 0.61.3
   nuxt:
     specifier: ^3.12.2
     version: 3.12.3(@opentelemetry/api@1.9.0)(eslint@8.57.0)(typescript@5.5.3)(vite@5.3.3)(vue-tsc@2.0.24)
@@ -1451,6 +1457,13 @@ packages:
   /@humanwhocodes/object-schema@2.0.3:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
     deprecated: Use @eslint/object-schema instead
+
+  /@iconify/json@2.2.225:
+    resolution: {integrity: sha512-3MxzXdrxDxItlGxvTmLnbZGlvGcwuBIOofJfyobq097lysZasvsNddFguiWecmKP91nRR4I2ik7enFVQ9Lz3mg==}
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 1.1.2
+    dev: false
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -3272,6 +3285,10 @@ packages:
   /@unocss/core@0.61.0:
     resolution: {integrity: sha512-Y/Ly3LPIAzOBlWCdKBVzVzIaaWDsf+oWPIUZlaW7DL++WWypVBCghmxXIT5dyuMGXE560Hj92st4AkXfuVdxGQ==}
 
+  /@unocss/core@0.61.3:
+    resolution: {integrity: sha512-9vixY1i5E0DQFtHJz/pHyFlFsiXJgL1bKHuocbl+GUi09lY/gE9TRm2qr2JOJx/BF720tMv9VxYI8Zq3EyPOXA==}
+    dev: false
+
   /@unocss/extractor-arbitrary-variants@0.61.0:
     resolution: {integrity: sha512-9ru/UR4kZ1+jGXpMawV9T8kpL54FrJBmWKMuFlDTEDIwtzDyyfLbt/buoXdzKDLmil9hOXH3IH8+dah/OiiDoA==}
     dependencies:
@@ -3338,6 +3355,16 @@ packages:
       ofetch: 1.3.4
     transitivePeerDependencies:
       - supports-color
+
+  /@unocss/preset-icons@0.61.3:
+    resolution: {integrity: sha512-XNti2mgfbRCClzKxy7eMPukgk/mepyGGJNqtONnZmOkzkyhx6KQ2/luhMYnz5xONMG/aseoXMc4Zc1VzOqePRA==}
+    dependencies:
+      '@iconify/utils': 2.1.25
+      '@unocss/core': 0.61.3
+      ofetch: 1.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /@unocss/preset-mini@0.61.0:
     resolution: {integrity: sha512-P+DdMtPtzAQ2aQ1/WWPoO3X/qvky+Fqq4eKXIvbqXOQ9c2oem7/dnsPeT08zzLIqxVJnuykymPwRT85EumS0gg==}

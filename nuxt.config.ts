@@ -27,6 +27,10 @@ export default defineNuxtConfig({
     cache: true,
   },
 
+  unocss: {
+    configFile: 'uno.config.ts'
+  },
+
   vue: {
     propsDestructure: true,
   },
@@ -34,8 +38,14 @@ export default defineNuxtConfig({
   app: {
     rootAttrs: {
       id: 'app'
+    },
+    pageTransition: {
+      name: 'up',
+      mode: 'out-in',
     }
   },
+
+  css: ['~/assets/style.css'],
 
   content: {
     documentDriven: true

@@ -2,6 +2,12 @@
   <section>
     <ContentRenderer :value="blog" />
   </section>
+
+  <ContentRenderer :value="posts">
+    <template #empty>
+      Pas d'article pour le moment
+    </template>
+  </ContentRenderer>
 </template>
 
 <script setup>
