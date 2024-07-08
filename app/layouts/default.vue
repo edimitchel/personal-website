@@ -22,7 +22,7 @@ const links = [{
 }]
 
 const headerColor = color
-const info = { title: '', description: '', references: { github: 'editmitchel', twitter: 'edimitchel' }, emojis: { normal: ['🔥'], birthday: [] } }
+const info = { title: '', description: '', references: { github: 'editmitchel', twitter: 'edimitchel' }, emojis: { normal: ['👋', '🖖'], birthday: [] } }
 
 </script>
 
