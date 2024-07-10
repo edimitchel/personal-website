@@ -1,7 +1,8 @@
 export default defineAppConfig({
   ui: {
     icons: {
-      normal: "👋"
+      normal: ["👋"],
+      birthday: ["🎂"]
     }
   },
 

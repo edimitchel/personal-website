@@ -9,6 +9,7 @@
 
 <script setup lang="ts">
 const { messages, title, color } = storeToRefs(layoutStore());
+const appConfig = useAppConfig()
 
 const links = [{
   path: '/',
@@ -22,7 +23,7 @@ const links = [{
 }]
 
 const headerColor = color
-const info = { title: '', description: '', references: { github: 'editmitchel', twitter: 'edimitchel' }, emojis: { normal: ['👋', '🖖'], birthday: [] } }
+const info = { title: appConfig.information?.title, description: appConfig.information?.description, references: { github: appConfig.information?.github, twitter: appConfig.information?.twitter }, emojis: { normal: appConfig.ui?.icons.normal, birthday: appConfig.ui?.icons.birthday } }
 
 </script>
 
