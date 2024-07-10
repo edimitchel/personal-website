@@ -62,14 +62,14 @@ const {
 } = defineProps<{
   links: { path: string; class?: string, name: string }[]
   name: string
-  description: string
+  description?: string
   messages: string[]
   headerColor?: string[]
   emojis: {
     birthday: string[]
     normal: string[]
   }
-  options: Record<string, string>
+  options: Partial<Record<string, string>>
   withEmoji: boolean
 }>()
 

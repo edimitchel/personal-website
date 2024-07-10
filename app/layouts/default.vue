@@ -23,7 +23,7 @@ const links = [{
 }]
 
 const headerColor = color
-const info = { title: appConfig.information?.title, description: appConfig.information?.description, references: { github: appConfig.information?.github, twitter: appConfig.information?.twitter }, emojis: { normal: appConfig.ui?.icons.normal, birthday: appConfig.ui?.icons.birthday } }
+const info = { title: appConfig.information?.title, description: appConfig.information?.description, references: { github: appConfig.information?.github, twitter: appConfig.information?.twitter }, emojis: { normal: appConfig.ui?.icons?.normal as string[] ?? [], birthday: appConfig.ui?.icons?.birthday as string[] ?? [] } }
 
 </script>
 
