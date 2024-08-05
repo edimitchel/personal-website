@@ -21,7 +21,7 @@
     "@pinia/nuxt": "^0.5.1",
     "@unocss/nuxt": "^0.61.0",
     "@unocss/preset-icons": "^0.61.3",
-    "nuxt": "^3.12.2"
+    "nuxt": "^3.12.4"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.3.13",
