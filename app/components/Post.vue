@@ -52,11 +52,11 @@ export default {
   },
   computed: {
     blogUri() {
-      return `/${this.lang}/${this.blogSlug}/${this.to}`
+      return `/${this.blogSlug}/${this.to}`
     },
     lang() {
       const { lang } = this.$route.params
-      return lang
+      return lang ?? 'fr'
     },
   },
   methods: {

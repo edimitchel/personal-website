@@ -2,7 +2,7 @@
   <div :class="{'top-3!': alone}">
     <svg :width="width" fill="none" viewBox="0 0 500 80">
       <path id="curve" :d="path" />
-      <text :text-anchor="textAlign" :class="{ 'tracking-wide': alone }">
+      <text :text-anchor="textAlign" :class="{ 'tracking-widest': alone }">
         <textPath xlink:href="#curve" startOffset="50%" :fill="color">
           <slot />
         </textPath>

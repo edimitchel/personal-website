@@ -2,8 +2,8 @@
   <header>
     <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
     <div class="icons">
-      <twitter-icon v-if="options.twitter" :url="options.twitter" />
-      <github-icon v-if="options.github" :url="options.github" />
+      <TwitterIcon v-if="options.twitter" :url="options.twitter" />
+      <GithubIcon v-if="options.github" :url="options.github" />
     </div>
     <NuxtLink to="/" class="logo">
       <Transition name="fade">
@@ -15,27 +15,25 @@
         <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
           computedName }}</CurvedText>
       </Transition>
-      <client-only>
+      <ClientOnly>
         <MessageCarousel transition-name="balance" :data-list="messages" #default="{ data }">
           <CurvedText :key="data" title-level="2" class="subtitle-header">
             {{ data }}
           </CurvedText>
         </MessageCarousel>
 
-      </client-only>
+      </ClientOnly>
     </div>
 
-    <Transition name="up">
-      <nav v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
-        <ul>
-          <li v-for="item in links" :key="item.path">
-            <NuxtLink :to="item.path" :class="item.class">
-              {{ item.name }}
-            </NuxtLink>
-          </li>
-        </ul>
-      </nav>
-    </Transition>
+    <nav v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
+      <ul>
+        <li v-for="item in links" :key="item.path">
+          <NuxtLink :to="item.path" :class="item.class">
+            {{ item.name }}
+          </NuxtLink>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
@@ -150,7 +148,7 @@ header {
 
 .titles {
   height: 80px;
-  margin-top: -15px;
+  margin-top: -12px;
   z-index: -1;
 }
 

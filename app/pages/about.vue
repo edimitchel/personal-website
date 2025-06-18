@@ -1,6 +1,6 @@
 <template>
   <section>
-    À PROPOS !
+    <ContentRenderer :value="about" />
   </section>
 </template>
 
@@ -10,15 +10,16 @@ definePageMeta({
   title: 'Michel Edighoffer',
 })
 
+const { data: about } = await useAsyncData('about', () => queryCollection('content').path('/about').first());
+
 const store = layoutStore()
 
 onMounted(() => {
   store.messages = [
-    'front-end engineer',
-    'Vue & Nuxt enthusiast',
-    'christian ✝️',
+    'full-stack engineer',
+    'tech leader',
+    'Vue & Nuxt expert',
     'Alsace ❤',
-    'love wife and 2 kids'
-  ].sort(Math.random)
+  ].sort(() => Math.random() - 0.5)
 })
 </script>

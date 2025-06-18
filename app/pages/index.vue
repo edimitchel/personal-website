@@ -1,8 +1,6 @@
 <template>
   <section>
-    <h2 class="subtitle">
-      Michel&#39;s website about him and his thoughts
-    </h2>
+    <ContentRenderer :value="home" />
   </section>
 </template>
 
@@ -10,4 +8,5 @@
 
 definePageMeta({ title: 'Michel Edighoffer' })
 
+const { data: home } = await useAsyncData('home', () => queryCollection('content').path('/home').first());
 </script>
