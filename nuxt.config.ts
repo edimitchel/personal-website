@@ -44,7 +44,9 @@ export default defineNuxtConfig({
   css: ['~/assets/style.css'],
 
   content: {
-    documentDriven: true
+    preview: {
+      api: 'https://api.nuxt.studio'
+    }
   },
 
   nitro: {
