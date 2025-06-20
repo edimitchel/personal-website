@@ -12,8 +12,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxt/image',
     '@pinia/nuxt',
-    "@nuxt/fonts",
-    "@nuxthq/studio"
+    "@nuxt/fonts"
   ],
 
   hub: {
