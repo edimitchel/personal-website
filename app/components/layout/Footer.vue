@@ -1,5 +1,5 @@
 <template>
-  <footer class="sticky font-mono ">
+  <footer class="sticky font-mono h-10">
     <div class="text-med text-center">
       &copy; {{ year }} Michel Edighoffer
     </div>

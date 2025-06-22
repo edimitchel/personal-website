@@ -24,16 +24,6 @@
 
       </ClientOnly>
     </div>
-
-    <nav v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
-      <ul>
-        <li v-for="item in links" :key="item.path">
-          <NuxtLink :to="item.path" :class="item.class">
-            {{ item.name }}
-          </NuxtLink>
-        </li>
-      </ul>
-    </nav>
   </header>
 </template>
 

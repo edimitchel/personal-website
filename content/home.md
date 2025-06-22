@@ -1,3 +1,4 @@
-# Michel Edighoffer
+# Site en construction
 
-Michel Edighoffer est un développeur web passionné par la création d'interfaces utilisateur modernes et réactives. Il a une expertise solide en développement web avec une expertise en HTML, CSS et JavaScript. Il est également un expert en développement web avec une expertise en HTML, CSS et JavaScript.
+Ce site est en cours de construction, vous trouverez bientôt plus d'informations sur moi et mes projets.  
+Je vous invite à consulter mon profil LinkedIn pour plus d'informations.

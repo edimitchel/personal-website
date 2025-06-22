@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <ContentRenderer :value="home" />
-  </section>
+    <ContentRenderer :value="home" class="text-center" />
 </template>
 
 <script setup lang="ts">

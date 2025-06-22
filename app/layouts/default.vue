@@ -1,5 +1,5 @@
 <template>
-  <LayoutHeader :links="links" :name="title || info.title" :with-emoji="!!title" :description="info.description"
+  <LayoutHeader :name="title || info.title" :with-emoji="!!title" :description="info.description"
     :messages="messages" :header-color="headerColor" :emojis="info.emojis" :options="info.references" />
   <main class="container md:p-16 md:pt-8">
     <slot />
@@ -10,17 +10,6 @@
 <script setup lang="ts">
 const { messages, title, color } = storeToRefs(layoutStore());
 const appConfig = useAppConfig()
-
-const links = [{
-  path: '/',
-  name: 'Home'
-}, {
-  path: '/about',
-  name: 'About'
-}, {
-  path: '/blog',
-  name: 'Blog'
-}]
 
 const headerColor = color
 // TODO: move to app config
