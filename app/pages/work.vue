@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ContentRenderer :value="about" />
+    <ContentRenderer :value="about" class="prose" />
   </section>
 </template>
 
@@ -18,7 +18,7 @@ onMounted(() => {
   store.messages = [
     'full-stack engineer',
     'tech leader',
-    'Vue & Nuxt expert',
+    'Nuxt expert',
     'Alsace ❤',
   ].sort(() => Math.random() - 0.5)
 })

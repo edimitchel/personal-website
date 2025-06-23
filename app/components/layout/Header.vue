@@ -1,9 +1,9 @@
 <template>
   <header>
-    <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
+    <CircleBackground class="background" :color="circleColor" :pulse :image="headerCover" />
     <div class="icons">
-      <TwitterIcon v-if="options.twitter" :url="options.twitter" />
-      <GithubIcon v-if="options.github" :url="options.github" />
+      <LinkedinIcon v-if="options.linkedin" :username="options.linkedin" />
+      <GithubIcon v-if="options.github" :username="options.github" />
     </div>
     <NuxtLink to="/" class="logo">
       <Transition name="fade">
@@ -51,7 +51,7 @@ const {
   },
   options = {
     github: 'edimitchel',
-    twitter: 'edimitchel',
+    linkedin: 'edimitchel',
     isBirthday: false,
   },
   links,
@@ -70,8 +70,6 @@ const {
   options: Partial<Record<string, string>>
   withEmoji: boolean
 }>()
-
-const pulse = ref(false)
 
 const headerImage = computed(() => {
   return store.headerImage
@@ -110,13 +108,15 @@ const circleColor = computed(() => {
   return headerColor || undefined
 })
 
-function stopPulse() {
-  pulse.value = false
-}
+const { isLoading: pulse } = useLoadingIndicator();
 
 </script>
 
 <style scoped>
+header {
+  --uno: overflow-hidden flex items-center flex-col text-center pt-2 flex-shrink-0;
+}
+
 .logo {
   width: 150px;
   min-width: 150px;
@@ -136,19 +136,14 @@ function stopPulse() {
   transform: scale(0.95);
 }
 
-header {
-  --uno: overflow-hidden flex items-center flex-col text-center pt-3;
-}
-
 .icons {
-  max-width: 200px;
+  max-width: 180px;
   top: 130px;
   --uno: flex justify-between absolute w-full;
 }
 
 .titles {
   height: 80px;
-  margin-top: -12px;
   z-index: -1;
 }
 
@@ -167,7 +162,7 @@ header {
 }
 
 .subtitle-header {
-  margin-top: -68px;
+  margin-top: -60px;
   --uno: text-xs font-mono font-bold;
 }
 
@@ -178,17 +173,17 @@ header {
 }
 
 .background {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   z-index: -1;
-  --uno: absolute;
 }
 
 nav {
   height: 40px;
   transition: all 300ms ease;
-  --uno: uppercase mt-4 font-serif font-bold;
+  --uno: mt-4 font-serif;
 }
 
 nav.hidden {
@@ -201,28 +196,19 @@ ul {
 }
 
 ul li {
-  --uno: p-2 rounded leading-none align-middle no-underline;
+  --uno: leading-none align-middle;
 }
 
 ul a {
-  --uno: m-4 text-gray-900 p-2 rounded leading-none align-middle no-underline;
-}
-
-ul a.blog {
-  transition: all 0.3s ease;
-  --uno: text-blue-500 font-bold;
+  --uno: mx-1 border-1 border-solid border-transparent text-gray-900 px-2 rounded-full no-underline transition-all;
 }
 
 ul a:hover,
 ul a:focus {
-  --uno: bg-gray-500 text-white;
+  --uno: bg-gray-100;
 }
 
 ul a.router-link-active {
-  --uno: bg-gray-600 text-white;
-}
-
-ul a.blog.router-link-active {
-  --uno: bg-blue-500 font-bold text-white;
+  --uno: border-1 border-solid border-gray-300;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ContentRenderer :value="home" />
+    <ContentRenderer :value="home" class="prose" />
   </section>
 </template>
 
