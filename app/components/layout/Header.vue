@@ -48,7 +48,7 @@ const {
   name,
   withEmoji,
 } = defineProps<{
-  links: { path: string; class?: string, name: string }[]
+  links?: { path: string; class?: string, name: string }[]
   name: string
   description?: string
   messages: string[]
