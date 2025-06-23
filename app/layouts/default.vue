@@ -12,13 +12,22 @@ const { messages, title, color } = storeToRefs(layoutStore());
 const appConfig = useAppConfig()
 
 const headerColor = color
-// TODO: move to app config
-const info = { title: appConfig.information?.title, description: appConfig.information?.description, references: { github: appConfig.information?.github, twitter: appConfig.information?.twitter }, emojis: { normal: appConfig.ui?.icons?.normal as string[] ?? [], birthday: appConfig.ui?.icons?.birthday as string[] ?? [] } }
+const info = {
+  title: appConfig.information?.title,
+  description: appConfig.information?.description,
+  references: {
+    github: appConfig.information?.github,
+    linkedin: appConfig.information?.linkedin
+  }, emojis: {
+    normal: appConfig.ui?.icons?.normal as string[] ?? [],
+    birthday: appConfig.ui?.icons?.birthday as string[] ?? [],
+  }
+}
 
 </script>
 
 <style>
 .container {
-  --uno: px-4 mx-auto border-0 font-serif max-w-[900px] box-border flex-grow-1;
+  --uno: px-4 mx-auto border-0 font-serif max-w-[900px] box-border flex-grow-1 flex-shrink-0;
 }
 </style>

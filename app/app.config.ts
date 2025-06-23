@@ -8,6 +8,6 @@ export default defineAppConfig({
 
   information: {
     github: "edimitchel",
-    twitter: "edimitchel"
+    linkedin: "michel-edighoffer"
   }
 })

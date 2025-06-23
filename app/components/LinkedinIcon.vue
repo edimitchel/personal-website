@@ -1,5 +1,5 @@
 <template>
-  <a :href="'https://github.com/' + username" target="_blank" class="i-line-md:github"></a>
+  <a :href="'https://linkedin.com/in/' + username" target="_blank" class="i-line-md:linkedin"></a>
 </template>
 <script setup lang="ts">
 defineProps<{ username: string }>()

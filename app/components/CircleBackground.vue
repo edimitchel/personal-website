@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div :class="{pulse}">
     <svg width="100%" :height="height" fill="none">
       <circle
         r="400"
         cx="50%"
-        :cy="!reversed ? '-32%' : '90%'"
+        cy="-32%"
         :style="{ fill: fillColor.bottom, opacity: .8 }"
       />
       <circle
@@ -44,6 +44,10 @@ export default {
     height: {
       type: Number,
       default: 500
+    },
+    pulse: {
+      type: Boolean,
+      default: false
     },
     reversed: Boolean,
     image: {
@@ -94,6 +98,7 @@ export default {
 div {
   overflow: hidden;
   height: 300px;
+  transform-origin: top center;
 }
 circle {
   transform-origin: 50% 0;
@@ -109,7 +114,7 @@ circle {
     transform: translateY(0);
   }
   50% {
-    transform: scaleY(0.9);
+    transform: scaleY(0.99);
   }
   100% {
     transform: translateY(0);

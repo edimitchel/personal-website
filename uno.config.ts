@@ -1,16 +1,25 @@
 
-import { defineConfig, presetIcons, presetUno, transformerDirectives } from 'unocss'
+import { defineConfig, presetIcons, presetTypography, presetWind4, transformerDirectives } from 'unocss'
 
 export default defineConfig({
     presets: [
-        presetUno(),
+        presetWind4(),
         presetIcons(),
+        presetTypography({
+
+        })
     ],
     theme: {
         fontFamily: {
             serif: 'Wittgenstein',
             mono: 'Source Code Pro'
         },
+        colors: {
+            primary: '#000',
+            secondary: '#fff',
+            gray: '#ccc',
+            
+        }
     },
     transformers: [
         transformerDirectives()

@@ -20,7 +20,7 @@
 .up-enter-active,
 .up-leave-active,
 .appear {
-  transition: opacity 300ms ease, transform 400ms ease;
+  transition: opacity 200ms ease, transform 200ms ease;
   position: relative;
   transform: translateY(0);
 }
@@ -39,7 +39,7 @@
 
 .balance-enter-active,
 .balance-leave-active {
-  transition: opacity 300ms ease, transform 400ms ease;
+  transition: opacity 200ms ease, transform 400ms ease;
   position: relative;
 }
 
