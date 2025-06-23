@@ -1,16 +1,22 @@
-
 import { defineConfig, presetIcons, presetTypography, presetWind4, transformerDirectives } from 'unocss'
 
 export default defineConfig({
     presets: [
         presetWind4(),
         presetIcons(),
-        presetTypography({
-
-        })
+        presetTypography(),
+    ],
+    preflights: [
+        {
+            getCSS: () => `
+                .prose {
+                    max-width: none !important;
+                }
+            `
+        }
     ],
     theme: {
-        fontFamily: {
+        font: {
             serif: 'Wittgenstein',
             mono: 'Source Code Pro'
         },
@@ -19,7 +25,7 @@ export default defineConfig({
             secondary: '#fff',
             gray: '#ccc',
             
-        }
+        },
     },
     transformers: [
         transformerDirectives()
