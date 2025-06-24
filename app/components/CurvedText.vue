@@ -1,6 +1,6 @@
 <template>
   <div :class="{'top-3!': alone}">
-    <svg :width="width" fill="none" viewBox="0 0 500 80">
+    <svg :width="width" fill="none" viewBox="0 0 500 90">
       <path id="curve" :d="path" />
       <text :text-anchor="textAlign" :class="{ 'tracking-widest': alone }">
         <textPath xlink:href="#curve" startOffset="50%" :fill="color">
@@ -52,7 +52,7 @@ export default {
       }
     },
     path() {
-      return `M 0 0 Q ${this.width / 2} 150 ${this.width} 0`
+      return `M 0 0 Q ${this.width / 2} 160 ${this.width} 0`
     },
     text() {
       return this.$slots.default()[0].children.replace(/\s/g, '')

@@ -1,13 +1,15 @@
 <template>
   <LayoutHeader :name="title || info.title" :with-emoji="!!title" :description="info.description"
     :messages="messages" :header-color="headerColor" :emojis="info.emojis" :options="info.references" />
-  <main class="container md:p-16 md:pt-8">
+  <main class="container md:p-16 md:pt-4">
     <slot />
   </main>
   <LayoutFooter />
 </template>
 
 <script setup lang="ts">
+import { isBirthday } from '~/utils';
+
 const { messages, title, color } = storeToRefs(layoutStore());
 const appConfig = useAppConfig()
 
@@ -16,8 +18,9 @@ const info = {
   title: appConfig.information?.title,
   description: appConfig.information?.description,
   references: {
-    github: appConfig.information?.github,
-    linkedin: appConfig.information?.linkedin
+    github: appConfig.information?.socials?.github,
+    linkedin: appConfig.information?.socials?.linkedin,
+    isBirthday: appConfig.information?.birthdate ? isBirthday(appConfig.information?.birthdate) : false,
   }, emojis: {
     normal: appConfig.ui?.icons?.normal as string[] ?? [],
     birthday: appConfig.ui?.icons?.birthday as string[] ?? [],

@@ -7,7 +7,12 @@ export default defineAppConfig({
   },
 
   information: {
-    github: "edimitchel",
-    linkedin: "michel-edighoffer"
+    title: "Michel Edighoffer",
+    description: "",
+    socials: {
+      github: "edimitchel",
+      linkedin: "michel-edighoffer",
+      birthdate: '1993-02-28'
+    }
   }
 })

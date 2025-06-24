@@ -21,7 +21,6 @@
             {{ data }}
           </CurvedText>
         </MessageCarousel>
-
       </ClientOnly>
     </div>
   </header>
@@ -33,7 +32,7 @@ import { random } from '~/utils'
 const store = layoutStore();
 
 const {
-  description = 'description',
+  description,
   headerColor,
   emojis = {
     birthday: [],
@@ -85,6 +84,7 @@ const computedName = computed(() => {
   else if (!withEmoji) {
     return name
   }
+  
   const n = name.split(' ')
 
   if (n.length > 1) {
@@ -115,6 +115,7 @@ header {
   cursor: pointer;
   z-index: 100;
   overflow: hidden;
+  margin-top: -15px;
   transition: all 150ms ease;
 
   & img {
@@ -127,13 +128,13 @@ header {
 }
 
 .icons {
-  max-width: 180px;
-  top: 130px;
+  max-width: 140px;
+  top: 120px;
   --uno: flex justify-between absolute w-full;
 }
 
 .titles {
-  height: 80px;
+  height: 70px;
   z-index: -1;
 }
 
@@ -141,13 +142,13 @@ header {
   transition: all 0.3s;
   position: relative;
   top: 0;
-  margin-top: -25px;
+  margin-top: -40px;
   --uno: text-xl font-serif font-bold;
 }
 
 @screen md {
   .title-header {
-    --uno: text-3xl;
+    --uno: text-[27px];
   }
 }
 

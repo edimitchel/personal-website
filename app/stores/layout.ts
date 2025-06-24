@@ -1,4 +1,4 @@
-import defaultImage from '~/assets/images/self-image.png'
+import defaultImage from '~/assets/images/self-image.jpeg'
 
 export type State = {
     messages: string[],

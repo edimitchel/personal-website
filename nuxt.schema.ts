@@ -1,4 +1,18 @@
 import { field, group } from "@nuxt/content/preview";
+import { z } from "zod";
+
+const schema = {
+    title: z.string(),
+    description: z.string(),
+    icon: z.string(),
+    fields: z.object({
+        title: z.string(),
+        description: z.string(),
+        github: z.string(),
+        twitter: z.string(),
+        birthdate: z.string(),
+    })
+}
 
 export default defineNuxtSchema({
     appConfig: {
@@ -21,19 +35,41 @@ export default defineNuxtSchema({
                     icon: 'i-mdi-text',
                     default: ''
                 }),
-                github: field({
-                    type: 'string',
-                    title: 'Github account',
-                    description: '',
-                    icon: 'i-mdi-text',
-                    default: ''
+                socials: group({
+                    title: 'Socials',
+                    description: 'Socials of the website',
+                    icon: 'i-mdi-earth',
+                    fields: {
+                        github: field({
+                            type: 'string',
+                            title: 'Github account',
+                            description: '',
+                            icon: 'i-mdi-github',
+                            default: ''
+                        }),
+                        twitter: field({
+                            type: 'string',
+                            title: 'Twitter / X account',
+                            description: '',
+                            icon: 'i-mdi-x-twitter',
+                            default: '',
+                            hidden: true
+                        }),
+                        linkedin: field({
+                            type: 'string',
+                            title: 'LinkedIn account',
+                            description: '',
+                            icon: 'i-mdi-linkedin',
+                            default: ''
+                        }),
+                    }
                 }),
-                twitter: field({
+                birthdate: field({
                     type: 'string',
-                    title: 'Twitter / X account',
-                    description: '',
-                    icon: 'i-mdi-text',
-                    default: ''
+                    title: 'Birthdate',
+                    description: 'format: YYYY-MM-DD',
+                    icon: 'i-mdi-calendar-blank',
+                    default: '',
                 }),
             }
         }),

@@ -1,4 +1,5 @@
-import { defineConfig, presetIcons, presetTypography, presetWind4, transformerDirectives } from 'unocss'
+import { defineConfig, presetIcons, presetTypography, presetWind4, transformerDirectives, transformerVariantGroup } from 'unocss'
+import colors from 'windicss/colors'
 
 export default defineConfig({
     presets: [
@@ -20,14 +21,9 @@ export default defineConfig({
             serif: 'Wittgenstein',
             mono: 'Source Code Pro'
         },
-        colors: {
-            primary: '#000',
-            secondary: '#fff',
-            gray: '#ccc',
-            
-        },
     },
     transformers: [
-        transformerDirectives()
+        transformerDirectives(),
+        transformerVariantGroup(),
     ]
 })

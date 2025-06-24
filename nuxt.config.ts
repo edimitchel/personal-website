@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxt/image',
     '@pinia/nuxt',
-    "@nuxt/fonts"
+    '@nuxt/fonts',
   ],
 
   hub: {
@@ -44,15 +44,14 @@ export default defineNuxtConfig({
 
   content: {
     preview: {
-      api: 'https://api.nuxt.studio'
+      dev: true,
+      api: 'https://api.nuxt.studio',
+      gitInfo: {
+        name: 'personal-website',
+        owner: 'edimitchel',
+        url: 'https://github.com/edimitchel/personal-website'
+      }
     }
-  },
-
-  nitro: {
-    experimental: {
-      // Enable Server API documentation within NuxtHub
-      openAPI: true,
-    },
   },
 
   eslint: {

@@ -2,7 +2,7 @@
   <div :class="{pulse}">
     <svg width="100%" :height="height" fill="none">
       <circle
-        r="400"
+        :r="height-75"
         cx="50%"
         cy="-32%"
         :style="{ fill: fillColor.bottom, opacity: .8 }"
@@ -10,7 +10,7 @@
       <circle
         v-if="!reversed"
         ref="innerCircle"
-        r="450"
+        :r="height-40"
         cx="50%"
         cy="-55%"
         :style="{ fill: fillColor.top }"
@@ -43,7 +43,7 @@ export default {
     },
     height: {
       type: Number,
-      default: 500
+      default: 420
     },
     pulse: {
       type: Boolean,
