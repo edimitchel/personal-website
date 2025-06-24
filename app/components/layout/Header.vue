@@ -2,8 +2,8 @@
   <header>
     <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
     <div class="icons">
-      <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin as string" />
-      <SocialIcon v-if="options.github" platform="github" :username="options.github as string" />
+      <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin" />
+      <SocialIcon v-if="options.github" platform="github" :username="options.github" />
     </div>
     <NuxtLink to="/" class="logo">
       <Transition name="fade">
@@ -27,10 +27,7 @@
     <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
       <ul>
         <li v-for="item in links" :key="item.path">
-          <NuxtLink 
-            :to="item.path" 
-            :class="item.class"
-          >
+          <NuxtLink :to="item.path" :class="item.class">
             {{ item.name }}
           </NuxtLink>
         </li>
@@ -40,6 +37,7 @@
 </template>
 
 <script setup lang="ts">
+import type { LayoutHeaderProps } from '~/layouts/default.vue';
 import { random } from '~/utils'
 
 const store = layoutStore();
@@ -51,11 +49,7 @@ const {
     birthday: [],
     normal: [],
   },
-  options = {
-    github: 'edimitchel',
-    linkedin: 'edimitchel',
-    isBirthday: false,
-  },
+  options = {},
   links,
   name,
   withEmoji,
@@ -70,7 +64,7 @@ const {
     birthday: string[]
     normal: string[]
   }
-  options: Record<string, string | boolean | undefined>
+  options: LayoutHeaderProps['options'],
   withEmoji: boolean
 }>()
 
@@ -97,7 +91,7 @@ const computedName = computed(() => {
   else if (!withEmoji) {
     return name
   }
-  
+
   const n = name.split(' ')
 
   if (n.length > 1) {
@@ -211,9 +205,6 @@ ul a:hover {
   --uno: bg-gray-100;
 }
 
-ul a.router-link-active {
-}
-
 ul a.router-link-active::before {
   content: '';
   position: absolute;
@@ -221,5 +212,4 @@ ul a.router-link-active::before {
   --uno: border-(1 gray-300 solid) rounded-full pointer-events-none;
   view-transition-name: menu-border-frame;
 }
-
 </style>
