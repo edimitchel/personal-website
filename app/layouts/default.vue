@@ -1,5 +1,5 @@
 <template>
-  <LayoutHeader :name="title || info.title" :with-emoji="!!title" :description="info.description"
+  <LayoutHeader :name="title ?? info.title" :with-emoji="!!title" :description="info.description"
     :messages="messages" :header-color="headerColor" :emojis="info.emojis" :options="info.references" />
   <main class="container md:p-16 md:pt-4">
     <slot />

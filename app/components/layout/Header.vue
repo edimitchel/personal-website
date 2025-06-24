@@ -56,7 +56,7 @@ const {
     birthday: string[]
     normal: string[]
   }
-  options: Partial<Record<string, string>>
+  options: Record<string, string | boolean | undefined>
   withEmoji: boolean
 }>()
 
