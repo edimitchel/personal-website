@@ -40,6 +40,10 @@ export default defineNuxtConfig({
     }
   },
 
+  experimental: {
+    viewTransition: true,
+  },
+
   css: ['~/assets/style.css'],
 
   content: {

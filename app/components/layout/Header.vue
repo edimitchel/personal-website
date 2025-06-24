@@ -1,9 +1,9 @@
 <template>
   <header>
-    <CircleBackground class="background" :color="circleColor" :pulse :image="headerCover" />
+    <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
     <div class="icons">
-      <LinkedinIcon v-if="options.linkedin" :username="options.linkedin" />
-      <GithubIcon v-if="options.github" :username="options.github" />
+      <LinkedinIcon v-if="options.linkedin" :username="options.linkedin as string" />
+      <GithubIcon v-if="options.github" :username="options.github as string" />
     </div>
     <NuxtLink to="/" class="logo">
       <Transition name="fade">
@@ -23,6 +23,19 @@
         </MessageCarousel>
       </ClientOnly>
     </div>
+
+    <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
+      <ul>
+        <li v-for="item in links" :key="item.path">
+          <NuxtLink 
+            :to="item.path" 
+            :class="item.class"
+          >
+            {{ item.name }}
+          </NuxtLink>
+        </li>
+      </ul>
+    </nav>
   </header>
 </template>
 
@@ -46,6 +59,7 @@ const {
   links,
   name,
   withEmoji,
+  messages
 } = defineProps<{
   links?: { path: string; class?: string, name: string }[]
   name: string
@@ -69,12 +83,11 @@ const headerCover = computed(() => {
 })
 
 const hideMenu = computed(() => {
-  // return $store.state.layout.hideMenu
   return false
 })
 
 const noMenu = computed(() => {
-  return links.length > 0
+  return links?.length ?? 0 > 0
 })
 
 const computedName = computed(() => {
@@ -99,7 +112,6 @@ const circleColor = computed(() => {
 })
 
 const { isLoading: pulse } = useLoadingIndicator();
-
 </script>
 
 <style scoped>
@@ -134,7 +146,7 @@ header {
 }
 
 .titles {
-  height: 70px;
+  height: 60px;
   z-index: -1;
 }
 
@@ -142,7 +154,7 @@ header {
   transition: all 0.3s;
   position: relative;
   top: 0;
-  margin-top: -40px;
+  margin-top: -35px;
   --uno: text-xl font-serif font-bold;
 }
 
@@ -171,13 +183,13 @@ header {
   z-index: -1;
 }
 
-nav {
+.navigation {
   height: 40px;
   transition: all 300ms ease;
   --uno: mt-4 font-serif;
 }
 
-nav.hidden {
+.navigation.hidden {
   height: 0;
   opacity: 0;
 }
@@ -191,15 +203,23 @@ ul li {
 }
 
 ul a {
-  --uno: mx-1 border-1 border-solid border-transparent text-gray-900 px-2 rounded-full no-underline transition-all;
+  --uno: block mx-1 text-gray-900 px-2 py-1 rounded-full no-underline transition-all w-16;
+  position: relative;
 }
 
-ul a:hover,
-ul a:focus {
+ul a:hover {
   --uno: bg-gray-100;
 }
 
 ul a.router-link-active {
-  --uno: border-1 border-solid border-gray-300;
 }
+
+ul a.router-link-active::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  --uno: border-(1 gray-300 solid) rounded-full pointer-events-none;
+  view-transition-name: menu-border-frame;
+}
+
 </style>

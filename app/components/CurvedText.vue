@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'top-3!': alone}">
+  <div :class="{'top-2!': alone}">
     <svg :width="width" fill="none" viewBox="0 0 500 90">
       <path id="curve" :d="path" />
       <text :text-anchor="textAlign" :class="{ 'tracking-widest': alone }">

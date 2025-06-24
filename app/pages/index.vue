@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ContentRenderer :value="home" class="text-center prose" />
+    <ContentRenderer :value="about" class="prose" />
   </section>
 </template>
 
@@ -8,5 +8,16 @@
 
 definePageMeta({ title: 'Michel Edighoffer' })
 
-const { data: home } = await useAsyncData('home', () => queryCollection('content').path('/home').first());
+const store = layoutStore()
+
+onMounted(() => {
+  store.messages = [
+    'full-stack engineer',
+    'tech leader',
+    'Vue & Nuxt expert',
+    'Alsace ❤',
+  ].sort(() => Math.random() - 0.5)
+})
+
+const { data: about } = await useAsyncData('about', () => queryCollection('content').path('/about').first());
 </script>

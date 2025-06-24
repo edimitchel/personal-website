@@ -1,6 +1,6 @@
 <template>
-  <LayoutHeader :name="title ?? info.title" :with-emoji="!!title" :description="info.description"
-    :messages="messages" :header-color="headerColor" :emojis="info.emojis" :options="info.references" />
+  <LayoutHeader :links :name="title ?? info.title" :with-emoji="!!title" :description="info.description"
+    :messages :header-color="headerColor" :emojis="info.emojis" :options="info.references" />
   <main class="container md:p-16 md:pt-4">
     <slot />
   </main>
@@ -12,6 +12,18 @@ import { isBirthday } from '~/utils';
 
 const { messages, title, color } = storeToRefs(layoutStore());
 const appConfig = useAppConfig()
+
+
+const links = [{
+  path: '/',
+  name: 'About'
+}, {
+  path: '/work',
+  name: 'Work'
+}, {
+  path: '/blog',
+  name: 'Blog'
+}]
 
 const headerColor = color
 const info = {
