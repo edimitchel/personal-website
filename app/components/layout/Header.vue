@@ -2,8 +2,8 @@
   <header>
     <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
     <div class="icons">
-      <LinkedinIcon v-if="options.linkedin" :username="options.linkedin as string" />
-      <GithubIcon v-if="options.github" :username="options.github as string" />
+      <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin as string" />
+      <SocialIcon v-if="options.github" platform="github" :username="options.github as string" />
     </div>
     <NuxtLink to="/" class="logo">
       <Transition name="fade">
