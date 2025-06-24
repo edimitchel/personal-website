@@ -15,18 +15,16 @@
         <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
           computedName }}</CurvedText>
       </Transition>
-      <ClientOnly>
-        <MessageCarousel transition-name="balance" :data-list="messages" #default="{ data }">
-          <CurvedText :key="data" title-level="2" class="subtitle-header">
-            {{ data }}
-          </CurvedText>
-        </MessageCarousel>
-      </ClientOnly>
+      <MessageCarousel transition-name="balance" :data-list="messages" #default="{ data }">
+        <CurvedText :key="data" title-level="2" class="subtitle-header">
+          {{ data }}
+        </CurvedText>
+      </MessageCarousel>
     </div>
 
     <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
       <ul>
-        <li v-for="item in links" :key="item.path">
+        <li v-for="(item, index) in links" :key="item.path" :style="{ '--index': index, '--count': links?.length }">
           <NuxtLink :to="item.path" :class="item.class">
             {{ item.name }}
           </NuxtLink>
@@ -49,7 +47,7 @@ const {
     birthday: [],
     normal: [],
   },
-  options = {},
+  options,
   links,
   name,
   withEmoji,
@@ -84,7 +82,7 @@ const noMenu = computed(() => {
   return links?.length ?? 0 > 0
 })
 
-const computedName = computed(() => {
+const computedName = useState('computedName', () => {
   if (!name) {
     return
   }
@@ -194,6 +192,17 @@ ul {
 
 ul li {
   --uno: leading-none align-middle;
+
+  --mid: calc(round(down, var(--count) / 2));
+  --delta: calc(var(--index) - var(--mid));
+
+  transform: 
+    rotateZ(calc(-12deg * var(--delta))) 
+    translate(
+      calc(10px * var(--delta)),
+      calc(min((5px * var(--delta)), (5px * var(--delta)) * -1))
+    );
+  transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 
 ul a {

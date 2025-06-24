@@ -15,13 +15,6 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
   ],
 
-  hub: {
-    database: true,
-    kv: true,
-    blob: true,
-    cache: true,
-  },
-
   unocss: {
     configFile: 'uno.config.ts'
   },
@@ -47,6 +40,7 @@ export default defineNuxtConfig({
   css: ['~/assets/style.css'],
 
   content: {
+    experimental: { nativeSqlite: true },
     preview: {
       dev: true,
       api: 'https://api.nuxt.studio',

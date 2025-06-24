@@ -10,8 +10,8 @@
 <script setup lang="ts">
 import { isBirthday } from '~/utils';
 
-const { messages, title, color } = storeToRefs(layoutStore());
 const appConfig = useAppConfig()
+const { messages, title, color } = storeToRefs(layoutStore());
 
 const links = [{
   path: '/',

@@ -1,18 +1,4 @@
 import { field, group } from "@nuxt/content/preview";
-import { z } from "zod";
-
-const schema = {
-    title: z.string(),
-    description: z.string(),
-    icon: z.string(),
-    fields: z.object({
-        title: z.string(),
-        description: z.string(),
-        github: z.string(),
-        twitter: z.string(),
-        birthdate: z.string(),
-    })
-}
 
 export default defineNuxtSchema({
     appConfig: {
@@ -44,14 +30,22 @@ export default defineNuxtSchema({
                             type: 'string',
                             title: 'Github account',
                             description: '',
-                            icon: 'i-mdi-github',
+                            icon: 'i-line-md:github',
                             default: ''
                         }),
                         twitter: field({
                             type: 'string',
                             title: 'Twitter / X account',
                             description: '',
-                            icon: 'i-mdi-x-twitter',
+                            icon: 'i-line-md:twitter-x',
+                            default: '',
+                            hidden: true
+                        }),
+                        youtube: field({
+                            type: 'string',
+                            title: 'Youtube account',
+                            description: '',
+                            icon: 'i-line-md:youtube',
                             default: '',
                             hidden: true
                         }),
@@ -59,7 +53,7 @@ export default defineNuxtSchema({
                             type: 'string',
                             title: 'LinkedIn account',
                             description: '',
-                            icon: 'i-mdi-linkedin',
+                            icon: 'i-line-md:linkedin',
                             default: ''
                         }),
                     }
@@ -95,6 +89,13 @@ export default defineNuxtSchema({
                             default: [],
                         }),
                     }
+                }),
+                messages: field({
+                    type: 'array',
+                    title: 'Messages',
+                    description: 'Messages displayed on the home page',
+                    icon: 'i-mdi-message',
+                    default: [],
                 }),
             }
         })
