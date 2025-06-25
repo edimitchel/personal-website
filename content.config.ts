@@ -24,22 +24,22 @@ export default defineContentConfig({
             }),
         }),
 
-        works: defineCollection({
-            source: 'works/*.yml',
-            type: 'data',
+        projects: defineCollection({
+            source: 'projects/*.md',
+            type: 'page',
             schema: z.object({
                 title: z.string(),
                 description: z.string(),
                 slug: z.string(),
+                creation: z.date(),
+                type: z.enum(['application', 'website', 'consulting']),
+                status: z.enum(['published', 'draft', 'stand by']),
                 categories: z.enum(['web', 'application', 'other']).array(),
-                tags: z.enum(['php', ]).array(),
-                images: z.string().array(),
+                technologies: z.string().array(),
+                image: z.string(),
                 date: z.string(),
-                author: z.string(),
-                content: z.string(),
+                authors: z.string().array(),
             }),
-            
-            // TODO: schema: 
         }),
     }
 })

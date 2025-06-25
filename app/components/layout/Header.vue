@@ -94,7 +94,7 @@ const { isLoading: pulse } = useLoadingIndicator();
 <style scoped>
 .header {
   height: 238px;
-  --uno: overflow-hidden flex items-center flex-col text-center pt-2 relative;
+  --uno: overflow-hidden flex items-center flex-col text-center pt-2 relative flex-shrink-0;
 }
 
 .logo {
