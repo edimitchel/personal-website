@@ -18,10 +18,10 @@ const links = [{
   name: 'About'
 }, {
   path: '/work',
-  name: 'Work'
+  name: 'Projects'
 }, {
   path: '/blog',
-  name: 'Blog'
+  name: 'Articles'
 }]
 
 const headerColor = color

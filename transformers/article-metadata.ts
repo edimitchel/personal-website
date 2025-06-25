@@ -12,8 +12,8 @@ export default defineTransformer({
             const { birthtime, mtime } = fileStat;
             return {
                 ...file,
-                created: birthtime.toISOString(),
-                updated: mtime.toISOString(),
+                created: file.created ?? birthtime.toISOString(),
+                updated: file.updated ?? mtime.toISOString(),
             }
         }
 

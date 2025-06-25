@@ -15,8 +15,6 @@
 <script setup lang="ts">
 const route = useRoute();
 
-const post = await useContent('post', () => queryCollection('articles').where('slug', '=', route.params.slug).first(), (post) => {
-  layoutStore().title = post.title;
-});
+const post = await useContent('post', () => queryCollection('articles').where('slug', '=', route.params.slug).first());
 
 </script>

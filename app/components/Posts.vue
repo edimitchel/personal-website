@@ -1,9 +1,7 @@
 <template>
-  <div class="posts">
     <div v-if="posts.length" class="posts">
       <Post v-for="post in posts" :key="post.slug" :to="post.slug" :post />
     </div>
-  </div>
 </template>
 
 <script>

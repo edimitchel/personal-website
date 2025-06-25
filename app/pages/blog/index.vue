@@ -1,9 +1,9 @@
 <template>
-  <section>
+  <div>
     <ContentRenderer v-if="blog" :value="blog" class="prose" />
 
     <Posts :posts="posts" />
-  </section>
+  </div>
 </template>
 
 <script setup lang="ts">

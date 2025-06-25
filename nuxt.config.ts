@@ -29,11 +29,7 @@ export default defineNuxtConfig({
     pageTransition: {
       name: 'up',
       mode: 'out-in',
-    }
-  },
-
-  experimental: {
-    viewTransition: true,
+    },
   },
 
   css: ['~/assets/style.css'],

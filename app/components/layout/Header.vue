@@ -11,10 +11,8 @@
       </Transition>
     </NuxtLink>
     <div class="titles">
-      <Transition mode="out-in" name="up">
-        <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
-          computedName }}</CurvedText>
-      </Transition>
+      <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
+        computedName }}</CurvedText>
       <MessageCarousel transition-name="balance" :list="messages" #default="{ data }">
         <CurvedText :key="data" title-level="2" class="subtitle-header">
           {{ data }}
@@ -136,6 +134,7 @@ const { isLoading: pulse } = useLoadingIndicator();
   top: 0;
   margin-top: -35px;
   --uno: text-2xl font-serif font-900;
+  view-transition-name: title-header;
 }
 
 @screen md {
@@ -181,34 +180,51 @@ ul {
 }
 
 ul li {
-  --uno: leading-none align-middle w-15;
+  --uno: leading-none align-middle w-18;
 
   --mid: calc(round(down, var(--count) / 2));
   --delta: calc(var(--index) - var(--mid));
 
   transform:
-    rotateZ(calc(-12deg * var(--delta))) translate(calc(10px * var(--delta)),
-      calc(min((6px * var(--delta)), (6px * var(--delta)) * -1)));
+    rotateZ(calc(-13deg * var(--delta))) translate(calc(2px * var(--delta)),
+      calc(min((8px * var(--delta)), (8px * var(--delta)) * -1)));
   transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 
 ul a {
-  --uno: block mx-2 my-1 rounded-full transition-all -indent-[2px];
+  --uno: block mx-2 my-1 rounded-full transition-all;
   position: relative;
 }
 
-ul a:hover {
-  --uno: bg-gray-200;
-}
-
-ul a.router-link-active::before {
+ul a:after {
   content: '';
   position: absolute;
+  inset: 0;
+  height: 10px;
+  top: 10px;
+  border-radius: 100%;
+  pointer-events: none;
+  transition: all 300ms ease;
+  filter: blur(5px);
+  z-index: -1;
+}
+
+ul a:hover:after,
+ul a:focus-visible:after {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+ul a::before {
+  content: '';
+  position: absolute;
+  transition: all 300ms ease;
   inset: 10%;
   bottom: -6px;
   top: auto;
   height: 2px;
+}
+
+ul a.router-link-active::before {
   --uno: bg-gray-600 rounded-full pointer-events-none -z-1;
-  view-transition-name: menu-border-frame;
 }
 </style>
