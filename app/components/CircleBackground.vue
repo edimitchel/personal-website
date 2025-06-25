@@ -1,9 +1,9 @@
 <template>
   <div :class="{ pulse }" class="side-shadow">
     <svg width="100%" :height="height" fill="none">
-      <circle :r="height - 75" cx="50%" cy="-32%" :style="{ fill: fillColor.bottom, opacity: .8 }" />
-      <circle :r="height - 90" cx="50%" cy="-20%" :style="{ fill: fillColor.bottom, opacity: .2 }" />
-      <circle v-if="!reversed" ref="innerCircle" :r="height - 40" cx="50%" cy="-55%" :style="{ fill: fillColor.top }" />
+      <circle :r="height - 75" cx="50%" cy="-35%" :style="{ fill: fillColor.bottom, opacity: .8 }" />
+      <circle :r="height - 90" cx="50%" cy="-24%" :style="{ fill: fillColor.bottom, opacity: .4 }" />
+      <circle v-if="!reversed" ref="innerCircle" :r="height - 40" cx="50%" cy="-58%" :style="{ fill: fillColor.top }" />
       <defs>
         <mask v-if="image" id="imageClip">
           <!-- La forme crée par le détourage est un simple cercle. -->

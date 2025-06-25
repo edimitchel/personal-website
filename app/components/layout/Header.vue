@@ -93,7 +93,7 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 <style scoped>
 .header {
-  height: 255px;
+  height: 238px;
   --uno: overflow-hidden flex items-center flex-col text-center pt-2 relative;
 }
 
@@ -126,15 +126,17 @@ const { isLoading: pulse } = useLoadingIndicator();
 .titles {
   height: 60px;
   z-index: -1;
+  position: relative;
+  width: 600px;
+  top: -35px;
 }
 
 .title-header {
   transition: all 0.3s;
-  position: relative;
-  top: 0;
-  margin-top: -35px;
-  --uno: text-2xl font-serif font-900;
-  view-transition-name: title-header;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  --uno: text-2xl font-serif font-900 flex items-center justify-center;
 }
 
 @screen md {
@@ -144,8 +146,10 @@ const { isLoading: pulse } = useLoadingIndicator();
 }
 
 .subtitle-header {
-  margin-top: -60px;
-  --uno: text-xs font-mono font-500;
+  position: absolute;
+  top: 8px;
+  width: 100%;
+  --uno: text-xs font-mono font-500 flex items-center justify-center;
 }
 
 @screen md {

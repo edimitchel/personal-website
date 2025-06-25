@@ -43,10 +43,17 @@ const iconClass = computed(() => {
 
 <style scoped>
 .social-icon {
-  --uno: w-6 h-6 p-1 flex items-center text-center rounded-full transition(ease duration-200 all) hover:(bg-gray-200 scale-125 z-1000);
+  --uno: w-6 h-6 p-1 flex items-center text-center rounded-full 
+  transition(ease duration-200 all) 
+  bg-white bg-opacity-50
+  hover:(bg-gray-600 scale-125 z-200 text-white)
 }
 
 .social-icon a {
   --uno: w-full h-full;
+}
+.social-icon a:hover,
+.social-icon a:focus-visible {
+  --uno: border(gray-200 1px solid);
 }
 </style>
