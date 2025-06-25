@@ -39,7 +39,8 @@
 
 .balance-enter-active,
 .balance-leave-active {
-  transition: opacity 200ms ease, transform 400ms ease;
+  transform-origin: 50% -300px;
+  transition: opacity 400ms ease, transform 400ms ease;
   position: relative;
 }
 
@@ -49,9 +50,9 @@
 }
 
 .balance-enter-from {
-  transform: translateX(30px) rotate(-5deg);
+  transform: rotate(-8deg);
 }
 
 .balance-leave-to {
-  transform: translateX(-30px) rotate(5deg);
+  transform: rotate(8deg);
 }

@@ -15,7 +15,7 @@
         <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
           computedName }}</CurvedText>
       </Transition>
-      <MessageCarousel transition-name="balance" :data-list="messages" #default="{ data }">
+      <MessageCarousel transition-name="balance" :list="messages" #default="{ data }">
         <CurvedText :key="data" title-level="2" class="subtitle-header">
           {{ data }}
         </CurvedText>
@@ -95,7 +95,7 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 <style scoped>
 .header {
-  height: 250px;
+  height: 255px;
   --uno: overflow-hidden flex items-center flex-col text-center pt-2 relative;
 }
 
@@ -135,23 +135,23 @@ const { isLoading: pulse } = useLoadingIndicator();
   position: relative;
   top: 0;
   margin-top: -35px;
-  --uno: text-xl font-serif font-900;
+  --uno: text-2xl font-serif font-900;
 }
 
 @screen md {
   .title-header {
-    --uno: text-[27px];
+    --uno: text-2xl;
   }
 }
 
 .subtitle-header {
   margin-top: -60px;
-  --uno: text-xs font-mono font-bold;
+  --uno: text-xs font-mono font-500;
 }
 
 @screen md {
   .subtitle-header {
-    --uno: text-base;
+    --uno: text-sm;
   }
 }
 
@@ -165,8 +165,8 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 .navigation {
   position: absolute;
-  bottom: -7px;
-  height: 40px;
+  bottom: 0px;
+  height: 35px;
   transition: all 300ms ease;
   --uno: font-serif text-gray-900;
 }
@@ -187,11 +187,8 @@ ul li {
   --delta: calc(var(--index) - var(--mid));
 
   transform:
-    rotateZ(calc(-12deg * var(--delta)))
-      translate(
-        calc(10px * var(--delta)),
-        calc(min((6px * var(--delta)), (6px * var(--delta)) * -1))
-      );
+    rotateZ(calc(-12deg * var(--delta))) translate(calc(10px * var(--delta)),
+      calc(min((6px * var(--delta)), (6px * var(--delta)) * -1)));
   transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 
@@ -208,7 +205,7 @@ ul a.router-link-active::before {
   content: '';
   position: absolute;
   inset: 10%;
-  bottom: -5px;
+  bottom: -6px;
   top: auto;
   height: 2px;
   --uno: bg-gray-600 rounded-full pointer-events-none -z-1;
