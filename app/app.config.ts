@@ -1,6 +1,18 @@
 import type AppConfig from "../nuxt.schema";
 
 export default defineAppConfig({
+  information: {
+    title: "Michel Edighoffer",
+    description: "",
+    socials: {
+      github: "edimitchel",
+      linkedin: "michel-edighoffer",
+      youtube: "MichelEdighoffer",
+      twitter: "edimitchel",
+    },
+    birthdate: '1993-02-28',
+  },
+
   ui: {
     icons: {
       normal: ["👋", "🖖"],
@@ -14,16 +26,4 @@ export default defineAppConfig({
       'Alsace ❤',
     ]
   },
-
-  information: {
-    title: "Michel Edighoffer",
-    description: "",
-    socials: {
-      github: "edimitchel",
-      linkedin: "michel-edighoffer",
-      youtube: "MichelEdighoffer",
-      twitter: "edimitchel",
-      birthdate: '1993-02-28'
-    },
-  }
 } satisfies typeof AppConfig)

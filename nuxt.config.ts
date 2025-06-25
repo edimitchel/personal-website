@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
 
   future: { compatibilityVersion: 4 },
@@ -49,6 +48,10 @@ export default defineNuxtConfig({
         owner: 'edimitchel',
         url: 'https://github.com/edimitchel/personal-website'
       }
+    },
+    build: {
+      transformers: ['~~/transformers/article-metadata'],
+      markdown: {} 
     }
   },
 

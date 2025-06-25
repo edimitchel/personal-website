@@ -1,9 +1,6 @@
 <template>
   <!-- eslint-disable vue/no-v-html -->
-  <NuxtLink
-    class="post"
-    :to="blogUri"
-  >
+  <NuxtLink class="post prose" :to="blogUri">
     <div class="post__image">
       <div class="post__tags">
         <!-- <small
@@ -16,21 +13,11 @@
       </div>
       <!-- <img :src="$withBase(getImage(post))" :alt="post.title"> -->
     </div>
-    <small
-      v-if="post.date"
-      class="post__date"
-      :title="formatDate(post.date, true)"
-    >
-      {{ formatDate(post.date) }}
+    <small v-if="post.created" class="post__date" :title="formatDate(post.created, true)">
+      {{ formatDate(post.created) }}
     </small>
-    <h2
-      class="post__title"
-      v-html="post.title"
-    />
-    <p
-      class="post__description"
-      v-html="post.description"
-    />
+    <h2 class="post__title" v-html="post.title" />
+    <p class="post__description" v-html="post.description" />
   </NuxtLink>
 </template>
 
@@ -39,7 +26,7 @@ export default {
   props: {
     post: {
       type: Object,
-      default: () => {},
+      default: () => { },
     },
     to: {
       type: String,
@@ -66,8 +53,6 @@ export default {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
       }
       return Intl.DateTimeFormat(
         this.lang,
@@ -80,14 +65,7 @@ export default {
 
 <style scoped>
 .post {
-  --uno: block
-    no-underline
-    mb-4
-    py-4
-    text-black
-    border-b
-    border-gray-200
-    overflow-hidden;
+  --uno: overflow-hidden;
 }
 
 .post:last-child {
@@ -99,44 +77,36 @@ export default {
     --uno: py-2;
   }
 }
+
 .post__image {
   position: relative;
 }
+
 .post__image img {
   --uno: min-w-full;
 }
+
 .post__tags {
-  --uno: absolute
-    mb-2
-    text-center;
+  --uno: absolute mb-2;
 }
+
 .post__tag {
-  --uno: p-1
-    mx-2
-    outline-none
-    rounded-full
-    bg-white
-    text-black;
+  --uno: p-1 mx-2 outline-none rounded-full bg-white text-black;
 }
+
 .post__tag.active {
-  --uno: bg-blue-500
-    text-white;
+  --uno: bg-blue-500 text-white;
 }
+
 .post__date {
-  --uno: -mb-2
-    block
-    text-center
-    text-gray-600
-    font-bold;
+  --uno: -mb-2 block text-gray-600 font-bold;
 }
+
 .post__title {
-  --uno: py-2
-    leading-tight
-    text-2xl
-    font-semibold
-    text-center;
+  --uno: m-0 pt-2 leading-tight text-2xl font-semibold;
 }
+
 .post__description {
-  --uno: text-center;
+  --uno: m-0;
 }
 </style>

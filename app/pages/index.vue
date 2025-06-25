@@ -7,13 +7,15 @@
 <script setup lang="ts">
 const appConfig = useAppConfig();
 
-definePageMeta({ title: 'Michel Edighoffer' })
+const {messages: storeMessages} = storeToRefs(layoutStore())
 
-const store = layoutStore()
+const messages = useState('randomIndex', () => appConfig.ui?.messages?.sort(() => Math.random() - 0.5))
 
-const messages = useState('randomIndex', () => appConfig.ui.messages.sort(() => Math.random() - 0.5))
+if (messages.value) {
+    storeMessages.value = messages.value
+}
 
-store.messages = messages.value
+layoutStore().setWithEmoji(true)
 
-const { data: about } = await useAsyncData('about', () => queryCollection('content').path('/about').first());
+const about = await useContent('about', () => queryCollection('content').path('/about').first());
 </script>

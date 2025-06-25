@@ -18,7 +18,7 @@ export default defineConfig({
     ],
     theme: {
         font: {
-            serif: 'Wittgenstein',
+            serif: 'Gabarito',
             mono: 'Source Code Pro'
         },
     },

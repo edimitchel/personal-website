@@ -5,6 +5,7 @@ export type State = {
     title: string
     color?: string[],
     hideMenu: boolean,
+    withEmoji: boolean,
     headerImage: {
         src: string,
         title: string
@@ -19,18 +20,26 @@ export const layoutStore = defineStore('layout', () => {
     const title = ref('')
     const color = ref()
     const hideMenu = ref(false)
+    const withEmoji = ref(true)
     const headerImage = ref({
         src: defaultImage,
         title: 'Michel\'s avatar'
     })
     const headerCover = ref()
 
+    function setWithEmoji(value: boolean) {
+        withEmoji.value = value
+    }
+
     return {
         messages,
         title,
         color,
         hideMenu,
+        withEmoji,
         headerImage,
-        headerCover
+        headerCover,
+
+        setWithEmoji,
     };
 })

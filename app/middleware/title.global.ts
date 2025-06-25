@@ -1,10 +1,20 @@
 
 export default defineNuxtRouteMiddleware((to, from) => {
     const store = layoutStore()
+
     
-    store.title = to.meta.title as string ?? ''
+    const appConfigTitle = useAppConfig().information.title;
+    store.title = appConfigTitle ?? to.meta.title as string;
+    store.withEmoji = to.meta.withEmoji as boolean ?? false;
+
     useHead({
-        title: store.title
+        title: store.title,
+        meta: [
+            {
+                name: 'description',
+                content: to.meta.description as string
+            }
+        ]
     })
 
     store.messages = []

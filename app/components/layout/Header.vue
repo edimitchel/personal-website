@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="header">
     <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
     <div class="icons">
       <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin" />
@@ -24,7 +24,8 @@
 
     <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
       <ul>
-        <li v-for="(item, index) in links" :key="item.path" :style="{ '--index': index, '--count': links?.length }">
+        <li v-for="(item, index) in props.links" :key="item.path"
+          :style="{ '--index': index, '--count': props.links?.length }">
           <NuxtLink :to="item.path" :class="item.class">
             {{ item.name }}
           </NuxtLink>
@@ -40,25 +41,13 @@ import { random } from '~/utils'
 
 const store = layoutStore();
 
-const {
-  description,
-  headerColor,
-  emojis = {
-    birthday: [],
-    normal: [],
-  },
-  options,
-  links,
-  name,
-  withEmoji,
-  messages
-} = defineProps<{
+const props = defineProps<{
   links?: { path: string; class?: string, name: string }[]
   name: string
   description?: string
   messages: string[]
   headerColor?: string[]
-  emojis: {
+  emojis?: {
     birthday: string[]
     normal: string[]
   }
@@ -74,41 +63,40 @@ const headerCover = computed(() => {
   return store.headerCover
 })
 
-const hideMenu = computed(() => {
-  return false
-})
+const hideMenu = ref(false);
 
 const noMenu = computed(() => {
-  return links?.length ?? 0 > 0
+  return (props.links?.length ?? 0) > 0
 })
 
 const computedName = useState('computedName', () => {
-  if (!name) {
-    return
+  if (!props.name) {
+    return;
   }
-  else if (!withEmoji) {
-    return name
+  else if (!props.withEmoji) {
+    return props.name;
   }
 
-  const n = name.split(' ')
+  const n = props.name.split(' ')
 
   if (n.length > 1) {
-    n.splice(1, 0, random(options.isBirthday ? emojis.birthday : emojis.normal))
+    n.splice(1, 0, random((props.options.isBirthday ? props.emojis?.birthday : props.emojis?.normal) ?? []))
   }
 
   return n.join(' ')
 })
 
 const circleColor = computed(() => {
-  return headerColor || undefined
+  return props.headerColor || undefined
 })
 
 const { isLoading: pulse } = useLoadingIndicator();
 </script>
 
 <style scoped>
-header {
-  --uno: overflow-hidden flex items-center flex-col text-center pt-2 flex-shrink-0;
+.header {
+  height: 250px;
+  --uno: overflow-hidden flex items-center flex-col text-center pt-2 relative;
 }
 
 .logo {
@@ -147,7 +135,7 @@ header {
   position: relative;
   top: 0;
   margin-top: -35px;
-  --uno: text-xl font-serif font-bold;
+  --uno: text-xl font-serif font-900;
 }
 
 @screen md {
@@ -176,9 +164,11 @@ header {
 }
 
 .navigation {
+  position: absolute;
+  bottom: -7px;
   height: 40px;
   transition: all 300ms ease;
-  --uno: mt-4 font-serif;
+  --uno: font-serif text-gray-900;
 }
 
 .navigation.hidden {
@@ -191,34 +181,37 @@ ul {
 }
 
 ul li {
-  --uno: leading-none align-middle;
+  --uno: leading-none align-middle w-15;
 
   --mid: calc(round(down, var(--count) / 2));
   --delta: calc(var(--index) - var(--mid));
 
-  transform: 
-    rotateZ(calc(-12deg * var(--delta))) 
-    translate(
-      calc(10px * var(--delta)),
-      calc(min((5px * var(--delta)), (5px * var(--delta)) * -1))
-    );
+  transform:
+    rotateZ(calc(-12deg * var(--delta)))
+      translate(
+        calc(10px * var(--delta)),
+        calc(min((6px * var(--delta)), (6px * var(--delta)) * -1))
+      );
   transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 
 ul a {
-  --uno: block mx-1 text-gray-900 px-2 py-1 rounded-full no-underline transition-all w-16;
+  --uno: block mx-2 my-1 rounded-full transition-all -indent-[2px];
   position: relative;
 }
 
 ul a:hover {
-  --uno: bg-gray-100;
+  --uno: bg-gray-200;
 }
 
 ul a.router-link-active::before {
   content: '';
   position: absolute;
-  inset: 0;
-  --uno: border-(1 gray-300 solid) rounded-full pointer-events-none;
+  inset: 10%;
+  bottom: -5px;
+  top: auto;
+  height: 2px;
+  --uno: bg-gray-600 rounded-full pointer-events-none -z-1;
   view-transition-name: menu-border-frame;
 }
 </style>

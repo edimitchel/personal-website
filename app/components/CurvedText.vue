@@ -26,7 +26,7 @@ export default {
     },
     align: {
       type: String,
-      default: 'middle'
+      default: 'center'
     },
     alone: {
       type: Boolean,

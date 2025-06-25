@@ -8,6 +8,12 @@
         :style="{ fill: fillColor.bottom, opacity: .8 }"
       />
       <circle
+        :r="height-90"
+        cx="50%"
+        cy="-20%"
+        :style="{ fill: fillColor.bottom, opacity: .2 }"
+      />
+      <circle
         v-if="!reversed"
         ref="innerCircle"
         :r="height-40"

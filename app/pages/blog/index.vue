@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ContentRenderer :value="blog" class="prose" />
+    <ContentRenderer v-if="blog" :value="blog" class="prose" />
 
     <Posts :posts="posts" />
   </section>

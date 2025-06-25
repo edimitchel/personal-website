@@ -1,16 +1,22 @@
 <template>
-  <section>
-      <ContentRenderer :value="post" class="prose" />
-  </section>
+  <article>
+    <header></header>
+    <main>
+      <ContentRenderer v-if="post" :value="post" class="prose" />
+      <div v-else class="prose">
+        <h1>Article Not Found</h1>
+        <p>Oops! The article you're looking for doesn't exist.</p>
+        <NuxtLink to="/blog">Go back home</NuxtLink>
+      </div>
+    </main>
+  </article>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  title: 'Blog'
-})
-
 const route = useRoute();
 
-const { data: post } = await useAsyncData('post', () => queryCollection('articles').where('slug', '==', route.params.slug).first());
+const post = await useContent('post', () => queryCollection('articles').where('slug', '=', route.params.slug).first(), (post) => {
+  layoutStore().title = post.title;
+});
 
 </script>
