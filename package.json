@@ -20,7 +20,7 @@
     "@pinia/nuxt": "^0.11.1",
     "@unocss/nuxt": "^66.2.0",
     "@unocss/preset-icons": "^66.2.0",
-    "better-sqlite3": "^11.10.0",
+    "better-sqlite3": "^12.1.1",
     "nuxt": "^3.17.5"
   },
   "devDependencies": {
