@@ -60,5 +60,12 @@ export default defineNuxtConfig({
   // Development
   devtools: { enabled: true },
 
+  nitro: {
+    prerender: {
+      routes: ['/'],
+      crawlLinks: true
+    }
+  },
+
   compatibilityDate: '2024-07-03',
 })

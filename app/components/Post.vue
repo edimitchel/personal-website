@@ -34,7 +34,7 @@ export default {
     },
     blogSlug: {
       type: String,
-      default: 'blog',
+      default: 'articles',
     },
   },
   computed: {
