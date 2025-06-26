@@ -190,8 +190,8 @@ ul li {
   --delta: calc(var(--index) - var(--mid));
 
   transform:
-    rotateZ(calc(-13deg * var(--delta))) translate(calc(2px * var(--delta)),
-      calc(min((8px * var(--delta)), (8px * var(--delta)) * -1)));
+    rotateZ(calc(-13deg * var(--delta))) translate(calc(2px * var(--delta))
+    calc(min((8px * var(--delta)), (8px * var(--delta)) * -1)));
   transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 
