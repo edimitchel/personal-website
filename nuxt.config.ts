@@ -60,11 +60,5 @@ export default defineNuxtConfig({
   // Development
   devtools: { enabled: true },
 
-  nitro: {
-    prerender: {
-      routes: ['/articles', '/projects', '/'],
-    }
-  },
-
   compatibilityDate: '2024-07-03',
 })

@@ -17,8 +17,8 @@ if (messages.value) {
 
 const store = layoutStore();
 
-store.withEmoji.value = true
-store.title.value = 'Michel Edighoffer'
+store.withEmoji = true
+store.title = 'Michel Edighoffer'
 
 
 const about = await useContent('about', () => queryCollection('content').path('/about').first());
