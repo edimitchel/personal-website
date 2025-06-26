@@ -27,10 +27,6 @@ export const layoutStore = defineStore('layout', () => {
     })
     const headerCover = ref()
 
-    function setWithEmoji(value: boolean) {
-        withEmoji.value = value
-    }
-
     return {
         messages,
         title,
@@ -39,7 +35,5 @@ export const layoutStore = defineStore('layout', () => {
         withEmoji,
         headerImage,
         headerCover,
-
-        setWithEmoji,
     };
 })
