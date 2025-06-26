@@ -10,9 +10,8 @@ categories:
   - Défis personnels
 thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/12/tb_altran-1ere-nuitinfo.png
 originalUrl: https://blog.micheledighoffer.fr/blog/altran-nuit-de-l-info-premiere-experience-a-strasbourg/
+tags: []
 ---
-
-[*Read the english version*](http://notes.zouhairj.com/altran-info-night-2017/)
 
 Vous en avez certainement [entendu parlé](https://book.micheledighoffer.fr/article/nuit-info-2017-un-nouveau-defi) – ou peut-être pas – en tout cas, la dixième édition de la [nuit de l’info](https://www.nuitdelinfo.com/) a eu lieu en cette fin d’année 2017 le 7 et 8 décembre.
 
@@ -20,7 +19,7 @@ Vous en avez certainement [entendu parlé](https://book.micheledighoffer.fr/arti
 
 Quelques chiffres de la nuit
 
-\*\*13 heures \*\*pour répondre à une problématique par une solution informatique orientée web pour la plupart.
+**13 heures** pour répondre à une problématique par une solution informatique orientée web pour la plupart.
 
 **3345 étudiants** ont relevé le défi de passer (presque) toute la nuit éveillé pour assurer un rendu répondant au sujet national imposé.
 
@@ -28,13 +27,13 @@ Quelques chiffres de la nuit
 
 **47 sites d’accueil** à travers la France, en Tunisie et dans les DOM-TOM.
 
-\*\*110 écoles \*\*participatrices pour encourager leurs étudiants !
+**110 écoles** participatrices pour encourager leurs étudiants !
 
-Grâce aux partenaires, près de \**25 000 € de récompenses* cumulées \*\*sur les \*\*54 défis proposés \*\*!
+Grâce aux partenaires, près de ***25 000 € de récompenses*** **cumulées** sur les **54 défis proposés** !
 
-\*\*\*\* \**Les récompenses sont proposées sous la forme (pour la plupart) de chèques cadeaux, de matériel informatique ou connecté (Raspberry Pi, Robots, Drones, etc.) ou de formations/invitations VIP.*
+*Les récompenses sont proposées sous la forme (pour la plupart) de chèques cadeaux, de matériel informatique ou connecté (Raspberry Pi, Robots, Drones, etc.) ou de formations/invitations VIP.*
 
-Les partenaires entreprises ont été \*\*cinquante et unes \*\*à participer et parmi eux, des nouveaux venus : ça été le cas de **ALTRAN** – la boîte que j’ai rejoins cet été !
+Les partenaires entreprises ont été **cinquante et unes** à participer et parmi eux, des nouveaux venus : ça été le cas de **ALTRAN** – la boîte que j’ai rejoins cet été !
 
 ALTRAN était présent sur le site de STRASBOURG (à l’UFR de Maths-Info) pour proposer aux étudiants une animation interactive : il s’agissait d’une application de manipulation d’objet 3D sans contact ([plus d’info ici](https://github.com/AltranResearchMedica/ARAM)). Notre stand proposait des informations sur la culture et les valeurs de l’entreprise accompagnés de goodies et de petites folies culinaires.
 
