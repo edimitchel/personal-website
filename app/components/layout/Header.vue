@@ -189,9 +189,7 @@ ul li {
   --mid: calc(round(down, var(--count) / 2));
   --delta: calc(var(--index) - var(--mid));
 
-  transform:
-    rotateZ(calc(-13deg * var(--delta))) translate(calc(2px * var(--delta))
-    calc(min((8px * var(--delta)), (8px * var(--delta)) * -1)));
+  transform: rotateZ(calc(-13deg * var(--delta))) translate(calc(2px * var(--delta)), calc(min((8px * var(--delta)), (8px * var(--delta)) * -1)));
   transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 
