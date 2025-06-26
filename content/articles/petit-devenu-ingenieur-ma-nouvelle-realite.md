@@ -1,11 +1,15 @@
 ---
 title: "Petit devenu ingénieur, étudiant devenu professeur : ma nouvelle réalité."
-description: "En référence à mon article sur la formation d'ingénieur que j'ai entamé en 2013, voici un retour d'expérience pour encourager les plus courageux, mais aussi les..."
+description: En référence à mon article sur la formation d'ingénieur que j'ai
+  entamé en 2013, voici un retour d'expérience pour encourager les plus
+  courageux, mais aussi les...
 created: 2016-11-20
 slug: petit-devenu-ingenieur-ma-nouvelle-realite
-categories: ["Développement web","Projets personnels"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2016/11/tb_nouvelle-realitee-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/petit-devenu-ingenieur-ma-nouvelle-realite/"
+categories:
+  - Développement web
+  - Projets personnels
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2016/11/tb_nouvelle-realitee-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/petit-devenu-ingenieur-ma-nouvelle-realite/
 ---
 
 *En référence à mon [article sur la formation d'ingénieur que j'ai entamé en 2013](https://book.micheledighoffer.fr/article/futur-ingenieur-informatique-avec-itii-alsace), voici un retour d'expérience pour encourager les plus courageux, mais aussi les plus zélés de s'y lancer : j'en profite pour donner mon parcours jusque là pour t'encourager toi qui te sentirait incapable.*
@@ -13,13 +17,9 @@ originalUrl: "https://blog.micheledighoffer.fr/blog/petit-devenu-ingenieur-ma-no
 Ce billet vous prendra 10 minutes si vous lisez tout. Si une seule partie vous intéresse, veuillez utiliser ce petit sommaire :
 
 - [Mes débuts](#debut)
-
 - [L'école d'ingénieur par l'alternance](#ecole_inge)
-
 - [Ma nouvelle réalité](#nouvelle_realitee)
-
 - [Mes projets](#projets)
-
 - [Conclusion](#conclusion)
 
 # Avant, je voulais me contenter d'un métier simple
@@ -38,7 +38,7 @@ Par les trois années de découverte de l'industrie et de l'automatisme, mon pro
 
 En parallèle du développement, j'avais pris goût au graphisme pour l'intermédiaire d'un groupe de graphiste que j'avais cofondé avec un ami. Je pensais avoir le don de graphisme et je découvris, par la poursuite de mes études dans l'enseignement supérieur que mon niveau de graphisme n'était pas à la hauteur des critères sur le marché.
 
-Le DUT Métier du Multimédia et de l'Internet (ex SRC) m'a aidé à prendre une décision sur ma spécialité lors de l'interannée : non plus « web designer &#8211; développeur », mais seulement **Développeur web**.
+Le DUT Métier du Multimédia et de l'Internet (ex SRC) m'a aidé à prendre une décision sur ma spécialité lors de l'interannée : non plus « web designer – développeur », mais seulement **Développeur web**.
 
 # Limité dans la théorie pour un gros projet
 
@@ -72,7 +72,7 @@ En dernière année, ces deux « threads » se rejoignent pour former le projet 
 
 Plusieurs de mes connaissances savent que je ne suis pas une perle en expression française (peut-être tu t'en rends compte actuellement en lisant ces lignes).. mais le mémoire, je peux vous dire, ce n’est pas une partie de plaisir.. Il faut savoir garder une vision extérieure avec une approche précise et maîtrisée : autant dire que ce n’est pas du tout mon genre.. Tellement pas mon genre que j'ai dû réécrire mon mémoire de zéro alors que j'étais pas loin des 90 pages.. Ce fut un moment fort agréable.. ou pas tient! J'm'en suis mordu les doigts et j'ai remis une dernière fois en doute mes compétences..
 
-![memoire](https://micheledighoffer.fr/blog/wp-content/uploads/2016/11/mémoire-e1479737023688-300x272.jpg)
+![memoire](https://micheledighoffer.fr/blog/wp-content/uploads/2016/11/me%CC%81moire-e1479737023688-300x272.jpg)
 
 Au final, plus de peur que de mal ; grâce à mon Patron et ma fiancée, j'ai réussi à tenir bon pour arriver à fournir un [mémoire](https://micheledighoffer.fr/blog/wp-content/uploads/2016/11/memoire_edighoffer_cnam.pdf) digne de ce nom.
 

@@ -1,11 +1,14 @@
 ---
 title: "La puissance des petits ChromeBook : Interview"
-description: "Interview d'une jeune étudiante en fac fait part de son expérience avec un chromebook...."
+description: Interview d'une jeune étudiante en fac fait part de son expérience
+  avec un chromebook....
 created: 2015-06-01
 slug: la-puissance-des-petits-chromebook-interview
-categories: ["Autre","Outils"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/tb_chromebook-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/la-puissance-des-petits-chromebook-interview/"
+categories:
+  - Autre
+  - Outils
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/tb_chromebook-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/la-puissance-des-petits-chromebook-interview/
 ---
 
 ## Bonjour, qui es-tu et que fais-tu actuellement ?
@@ -25,31 +28,26 @@ Super aussi pour les utilisations simples (facebook, vidéos, film) à limite co
 Windows 8.
 
 ## Tu as été déçue/surprise par l’une ou l’autre fonctionnalité de ChromeBook comparé à Windows ?
+
 ### Surprises
 
 - Rapidité allumage
-
 - Autonomie (**11h+**)
-
 - Le son est bien plus différent
-
 - La simplicité de l’interface
-
 - La sauvegarde des cours (sur Google Drive) et toujours accessible sur n’importe quels supports
 
 ### Déceptions
 
 - La touche de verrouillage des majuscules est manquante
-
 - Bloquage lors d’ouverture de gros documents ou lorsque trop de fenêtres sont ouvertent
-
 - Toutes les applications que l’on peut avoir sur Windows (skype, picassa, ..) manquent mais peuvent pour certaines être remplacées.
 
 ## Quels sont les trucs sympa que tu aimes avec ChromeBook (en images si possible) ?
 
 - Revenir sur la page précédente en un coup de doigts et naviguer sur une page avec une bonne précision
 
-*[![scrolletretour](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)Retour avec deux doigts sur internet et ascenseur avec deux doigts*
+[![scrolletretour](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)*Retour avec deux doigts sur internet et ascenseur avec deux doigts*
 
 - Fermer la session en un coup de bouton prolongé
 
@@ -62,11 +60,8 @@ Windows 8.
 ## Quels sont les recommandations que tu ferais aux créateurs des Chromebooks ?
 
 - Le rétro-éclairage des touches devrait être ajouté
-
 - Trouver un moyen pour utiliser les applications de Windows
-
 - Ajouter la touche de verrouillage des majuscules.
-
 - Ajouter la touche Suppr
 
 ## Recommandes-tu le ChromeBook à tous les étudiants ?

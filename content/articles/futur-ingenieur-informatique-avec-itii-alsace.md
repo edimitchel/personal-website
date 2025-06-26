@@ -1,11 +1,14 @@
 ---
-title: "Futur ingénieur Informatique avec ITII Alsace"
-description: "Actuellement en formation d'ingénieur en Informatique avec l'ITII Alsace en partenariat avec le EI CNAM en alternance à la caisse de retraite CARSAT Alsace-Mose..."
+title: Futur ingénieur Informatique avec ITII Alsace
+description: Actuellement en formation d'ingénieur en Informatique avec l'ITII
+  Alsace en partenariat avec le EI CNAM en alternance à la caisse de retraite
+  CARSAT Alsace-Mose...
 created: 2014-02-01
 slug: futur-ingenieur-informatique-avec-itii-alsace
-categories: ["Autre"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/tb_formationingenieur-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/futur-ingenieur-informatique-avec-itii-alsace/"
+categories:
+  - Autre
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/tb_formationingenieur-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/futur-ingenieur-informatique-avec-itii-alsace/
 ---
 
 Bonjour à vous!
@@ -14,7 +17,7 @@ Cela fait longtemps que je ne me suis plus exprimé sur mon blog (6 mois et 15 j
 
 Depuis le 9 septembre 2013, j'ai rejoins la formation d'ingénieur en Informatique avec l'**ITII Alsace** (en partenariat avec l'**EI CNAM**) en alternance à la caisse de retraite **CARSAT Alsace-Moselle**.
 
-Mon domaine de prédilection était et est toujours l'informatique. Vous le savez peut-être pas, mais je suis diplômé d'un **DUT SRC** (aujourd'hui appelé DUT MMI &#8211; *Métiers du Multimédia et de l'Internet*) qui permet de s'ouvrir à toutes les disciplines du monde du multimédia tel que le développement web; ma passion encore aujourd'hui.
+Mon domaine de prédilection était et est toujours l'informatique. Vous le savez peut-être pas, mais je suis diplômé d'un **DUT SRC** (aujourd'hui appelé DUT MMI – *Métiers du Multimédia et de l'Internet*) qui permet de s'ouvrir à toutes les disciplines du monde du multimédia tel que le développement web; ma passion encore aujourd'hui.
 
 Désormais, l'informatique n'est plus l'informatique avec des jolies balises HTML et du CSS avec un joli code PHP comme j'avais l'habitude de penser..
 
@@ -24,7 +27,7 @@ J'ai choisit d'aller en profondeur dans l'Informatique pour comprendre la logiqu
 
 ## *« ITII, téléphone Apprenti »*
 
-**[![LogoITIIAlsace](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_-300x145.jpg)](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_.jpg)**Cette année et depuis 2003, l'**ITII Alsace** travaille pour donner aux étudiants diplômé d'au-moins bac+2 une formation d'ingénieur par** alternance**.
+[![LogoITIIAlsace](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_-300x145.jpg)](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_.jpg)**Cette année et depuis 2003, l'ITII Alsace travaille pour donner aux étudiants diplômé d'au-moins bac+2 une formation d'ingénieur par alternance**.
 
 Ses entreprises partenaires est l'un de ses plus gros atouts offrant ainsi une facilité aux étudiants pour la recherche d'entreprise.
 
@@ -37,7 +40,6 @@ L'avantage qui fait pencher la balance est bien sûr le salaire.
 Je me suis lancé dans cette formation pour deux raisons :
 
 - Apprendre les méthodes de développement (et de gestion de projet)
-
 - Maîtriser la conception d'architecture de système d'information
 
 Vous avez peut-être vu passer l'article sur un de mes projets toujours en stand-by?
@@ -53,19 +55,14 @@ Après cette formation, je souhaiterai me relancer dans une auto-entreprise voir
 Je ne suis actuellement qu'en première année, cela signifie que je n'ai pas encore pu voir toutes les facettes de la formation. Toutefois, pour ce que j'ai vécu ces 5 derniers mois, j'ai tout de même des choses à vous dire:
 
 - L'accompagnement est excellente (tant à l'Entreprise qu'à l'école).
-
 - La charge de travail est respectable une fois que l'on a une bonne méthode de travail.
-
 - L'ambiance en cours est superbe (les promotions se limitent à 20 places, nous sommes 16 pour la promo 2013). Pas de compétition mais de **l'entraide**.
-
 - Les matières sont variées.
 
 Mais il y a également des points négatifs (c'est tout de même une formation d'ingénieur):
 
 - Les matières traitées balayent un large spectre : Allant de l'algorithme à la gestion de projet, en passant par des matières tertiaires et des matières pratiques.
-
 - Pas de vacances scolaires.
-
 - Le rythme de l'alternance peut être difficile à adopter au début.
 
 Voilà un peu le résumé de ce que je retire de cette formation en ce début de cursus.
@@ -81,7 +78,6 @@ Sachez que si plusieurs domaines vous intéressent, vous avez la possibilité de
 Il y a 3 étapes clés (pour la filière Informatique) pour arriver dans le centre de formation.
 
 - Dépôt de votre candidature et attente de confirmation
-
 - Entretien oral de 20 minutes pour donner vos motivations. Accompagné d'un examen de positionnement de Maths, d'Anglais et de Français
 
 Recherche d'entreprise.
@@ -92,7 +88,7 @@ Si la formation vous intéresse vraiment, n'attendez pas d'avoir cette liste d'e
 
 ## [![Logo CNAM](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)Vous avez 23 ans ou plus, salarié ou en recherche d'emploi et souhaitant devenir ingénieur ?
 
-Alors les cours du soir que propose l'**École d'Ingénieur CNAM **sont faits pour vous! Foncez [vous renseigner](http://ecole-ingenieur.cnam.fr/devenir-ingenieur/hors-temps-de-travail/) !
+Alors les cours du soir que propose l'\*\*École d'Ingénieur CNAM \*\*sont faits pour vous! Foncez [vous renseigner](http://ecole-ingenieur.cnam.fr/devenir-ingenieur/hors-temps-de-travail/) !
 
 Pour terminer, je dirai que cette formation offre quelque de plus qu'une formation initiale d'ingénieur : **l'expérience professionnelle**. Aujourd'hui où la sélection est rude, l'expérience joue beaucoup. Les entreprises cherchent des personnes qui sauront s'adapter le plus rapidement avec des méthodes professionnelles et efficaces.
 

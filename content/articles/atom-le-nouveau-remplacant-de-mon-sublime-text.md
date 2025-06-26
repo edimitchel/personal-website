@@ -1,11 +1,15 @@
 ---
-title: "Atom, le nouveau remplaçant de mon Sublime Text"
-description: "Hello, je reviens à la charge pour déposer quelques mots sur mon blog à propos de l’une de mes nouvelles découvertes. Vous utilisez certainement encore Sublime ..."
+title: Atom, le nouveau remplaçant de mon Sublime Text
+description: Hello, je reviens à la charge pour déposer quelques mots sur mon
+  blog à propos de l’une de mes nouvelles découvertes. Vous utilisez
+  certainement encore Sublime ...
 created: 2015-03-14
 slug: atom-le-nouveau-remplacant-de-mon-sublime-text
-categories: ["Développement web","Outils"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/tb_atom-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/atom-le-nouveau-remplacant-de-mon-sublime-text/"
+categories:
+  - Développement web
+  - Outils
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/tb_atom-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/atom-le-nouveau-remplacant-de-mon-sublime-text/
 ---
 
 Hello,
@@ -28,9 +32,9 @@ Sublime Text dans sa grande puissance donne accès à ses armes gratuitement mai
 
 Pour l’utiliser de manière active afin d’en tirer des bénéfices, il faut débourser environ 60 $.
 
-*Atom est disponible pour toute personne, avec ou sans argent, étudiant ou non, débutant ou expert et pour des projets personnels comme professionnels. *
+\*Atom est disponible pour toute personne, avec ou sans argent, étudiant ou non, débutant ou expert et pour des projets personnels comme professionnels. \*
 
-** Pour faire simple, c’est une bombe au prix de l’air que vous respirez actuellement : gratuit et open-source.**
+\*\* Pour faire simple, c’est une bombe au prix de l’air que vous respirez actuellement : gratuit et open-source.\*\*
 
 Sublime Text est pour moi l’outil le plus réussi et le plus performant que je connaisse. Mais malgré ses belles compétences, quelque chose m’a fait perdre ma petite flamme pour Sublime Text lorsque j’ai essayé Atom : son interface.
 
@@ -42,7 +46,7 @@ L’interface de Sublime Text est très simple : elle intègre peu de boutons e
 
 Ci-dessous, la page de préférences (totalement absente sur Sublime Text).
 
-[![Paramètres](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d’écran-2015-03-13-à-19.16.54-715x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d’écran-2015-03-13-à-19.16.54.png)
+[![Paramètres](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d%E2%80%99%C3%A9cran-2015-03-13-%C3%A0-19.16.54-715x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d%E2%80%99%C3%A9cran-2015-03-13-%C3%A0-19.16.54.png)
 
 Vous pouvez configurer facilement les paramètres généraux, les raccourcis, les modules, les thèmes, les mises à jour et les nouvelles installations.
 

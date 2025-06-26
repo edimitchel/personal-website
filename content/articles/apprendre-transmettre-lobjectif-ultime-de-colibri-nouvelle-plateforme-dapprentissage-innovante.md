@@ -1,11 +1,16 @@
 ---
-title: "Apprendre pour transmettre, l&rsquo;objectif ultime de Colibri, la nouvelle plateforme d&rsquo;apprentissage innovante"
-description: "Colibri, une plateforme axée sur l'apprentissage à forte pédagogie pour permettre l'acquisition de connaissances simples mais toutefois bien maîtrisées...."
+title: Apprendre pour transmettre, l&rsquo;objectif ultime de Colibri, la
+  nouvelle plateforme d&rsquo;apprentissage innovante
+description: Colibri, une plateforme axée sur l'apprentissage à forte pédagogie
+  pour permettre l'acquisition de connaissances simples mais toutefois bien
+  maîtrisées....
 created: 2017-08-08
 slug: apprendre-transmettre-lobjectif-ultime-de-colibri-nouvelle-plateforme-dapprentissage-innovante
-categories: ["Autre","Promotion"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/tb_colibri-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/apprendre-transmettre-lobjectif-ultime-de-colibri-nouvelle-plateforme-dapprentissage-innovante/"
+categories:
+  - Autre
+  - Promotion
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/tb_colibri-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/apprendre-transmettre-lobjectif-ultime-de-colibri-nouvelle-plateforme-dapprentissage-innovante/
 ---
 
 Comme vous avez pu lire dans l'article précédent, j'ai entamé une mission de 10 mois en tant qu'ingénieur à l'IUT de Haguenau mais aussi en tant qu'enseignant vacataire. L'objectif qui m'a été fixé en début d'année scolaire est arrivé à terme début juillet : les développements sont terminés et la fin devenait presque triste..
@@ -16,7 +21,7 @@ Je vais vous décrire les différentes étapes de construction de ce projet apr�
 
 **Colibri** pour **Cours Libres Interactifs** va très certainement révolutionner l'enseignement à destination des étudiants : tant pour les enseignants que pour les étudiants même !
 
-**[Accéder à Colibri !](https://colibri.unistra.fr)**
+[**Accéder à Colibri !**](https://colibri.unistra.fr)
 
 La problématique qu'un étudiant peut rencontrer c'est la monotonie d'un cours en ligne (et c'est d'autant plus vrai pour un cours magistral). L'enseignant lui se retrouve souvent dans une routine pour la constitution d'exercices ou d'examen.
 
@@ -48,7 +53,8 @@ L'enseignant aura une interface de correction lui permettant de consulter les di
 
 Une expérimentation avec une classe de 60 étudiants sur un TP noté sur le langage PHP a montré l'efficacité de son utilisation : la correction a été réalisée **4 fois plus rapidement** étant donné que les exercices était plus nombreux que le TP noté des années précédentes.
 
-[https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/colibri-long.mp4](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/colibri-long.mp4)
+<https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/colibri-long.mp4>
+
 ## Les coulisses de son développement
 
 Ce second projet professionnel mené au début de ma vie active a été certes intéressant et ô combien plein de défis qu'il m'a fallu affronter efficacement grâce à une organisation plus méthodique.
@@ -61,7 +67,7 @@ Il a fallu d'abord comprendre le prototype existant et connaître l'objectif ult
 
 Pour supporter la réponse aux différents besoins technico-fonctionnels, il m'a fallu réfléchir au socle technique. *Prendre un framework éprouvé ? Faire du sur-mesure ? Garder la structure déjà existante ?*
 
-Le prototype de ce projet présentait une organisation généralisable par la création d'un socle flexible et encapsulable. Alors j'ai décidé de créer un framework maison en réutilisant une base existante d'un autre projet (RCA Store). Il sera architecturé en MVC avec un système de template et la librairie *[Query Builder](https://github.com/usmanhalalit/pixie)* pour simplifier la manipulation des données.
+Le prototype de ce projet présentait une organisation généralisable par la création d'un socle flexible et encapsulable. Alors j'ai décidé de créer un framework maison en réutilisant une base existante d'un autre projet (RCA Store). Il sera architecturé en MVC avec un système de template et la librairie [*Query Builder*](https://github.com/usmanhalalit/pixie) pour simplifier la manipulation des données.
 
 ![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/archi-e1503317713221.png)
 
@@ -95,13 +101,4 @@ BON ! Je m'arrête là, je pense que ça suffit. Maintenant, quelques d'images p
 
 ## [**Accéder à Colibri !**](https://colibri.unistra.fr)
 
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-597x400.png)
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/cours-liste-300x167.png)
-
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/exercice-sql-300x226.png)
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/synthese-300x214.png)
-
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-classe-300x184.png)
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/sujet-300x118.png)
-
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/administration-300x170.png)
+![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-597x400.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/cours-liste-300x167.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/exercice-sql-300x226.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/synthese-300x214.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-classe-300x184.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/sujet-300x118.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/administration-300x170.png)

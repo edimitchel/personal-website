@@ -1,11 +1,14 @@
 ---
 title: "Le parking et la flaque d&rsquo;eau : l&rsquo;illusion qui a du succès !"
-description: "Voici un article un peu spécial qui sort de mes habitudes éditoriales.. Juin dernier, après une soirée avec ma boîte (Talents Night, le 12 juin), je suis sorti ..."
+description: Voici un article un peu spécial qui sort de mes habitudes
+  éditoriales.. Juin dernier, après une soirée avec ma boîte (Talents Night, le
+  12 juin), je suis sorti ...
 created: 2019-01-28
 slug: parking-illusion-flaque
-categories: ["Autre"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2019/01/illusion-parking-serre-MICHEL-EDIGHOFFER-e1548688108219-825x510.jpg"
-originalUrl: "https://blog.micheledighoffer.fr/blog/parking-illusion-flaque/"
+categories:
+  - Autre
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2019/01/illusion-parking-serre-MICHEL-EDIGHOFFER-e1548688108219-825x510.jpg
+originalUrl: https://blog.micheledighoffer.fr/blog/parking-illusion-flaque/
 ---
 
 Voici un article un peu spécial qui sort de mes habitudes éditoriales..

@@ -1,11 +1,13 @@
 ---
-title: "Interface Client-Entreprise &#8211; Projet personnel et professionnel"
-description: "Ça y est je me (re)lance sur le projet que j'ai lancé en août 2012 : Celui de créer une interface client/entreprise...."
+title: Interface Client-Entreprise &#8211; Projet personnel et professionnel
+description: "Ça y est je me (re)lance sur le projet que j'ai lancé en août 2012
+  : Celui de créer une interface client/entreprise...."
 created: 2013-04-15
 slug: interface-client-entreprise
-categories: ["Projets personnels"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/tb_intclen-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/interface-client-entreprise/"
+categories:
+  - Projets personnels
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/tb_intclen-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/interface-client-entreprise/
 ---
 
 Aujourd'hui, je me (re)lance sur le projet que j'ai commencé en août 2012 : Celui de créer une interface client/entreprise permettant au client:
@@ -13,11 +15,8 @@ Aujourd'hui, je me (re)lance sur le projet que j'ai commencé en août 2012 : Ce
 d'accéder à sa commande avec
 
 - son état,
-
 - son suivi,
-
 - son évolution,
-
 - et son apparence actuelle
 
 et à l'entreprise

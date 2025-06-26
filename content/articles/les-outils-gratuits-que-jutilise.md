@@ -1,11 +1,14 @@
 ---
-title: "Les outils gratuits que j&rsquo;utilise"
-description: "Tous les outils que vous retrouverez sur mes ordinateurs.. qui manipulent les couleurs jusqu'à mon matériel. Utiles pour les amateurs de développement web...."
+title: Les outils gratuits que j&rsquo;utilise
+description: Tous les outils que vous retrouverez sur mes ordinateurs.. qui
+  manipulent les couleurs jusqu'à mon matériel. Utiles pour les amateurs de
+  développement web....
 created: 2013-04-10
 slug: les-outils-gratuits-que-jutilise
-categories: ["Outils"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/tb_outils-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/les-outils-gratuits-que-jutilise/"
+categories:
+  - Outils
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/tb_outils-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/les-outils-gratuits-que-jutilise/
 ---
 
 Etant un utilisateur de **Windows** (et oui!) j'utilise des petits **outils** qui me sont utiles lors de mes projets.
@@ -14,18 +17,15 @@ Le premier (.. roulements de tambour..)
 
 **La Boîte À Couleurs**
 
-*[pourpre.com/colorbox](https://pourpre.com/colorbox/)*
+[*pourpre.com/colorbox*](https://pourpre.com/colorbox/)
 
 [![La Boîte À Couleur](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC-300x152.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC.png)
 
-Le principe de petit outil est de** capturer la couleur** de n'importe quel pixel que vous trouverez sans devoir faire une capture d'écran et d'utiliser la pipette sur un logiciel de retouche. LBAC permet d'afficher la couleur capturée sous différents formats:
+Le principe de petit outil est de\*\* capturer la couleur\*\* de n'importe quel pixel que vous trouverez sans devoir faire une capture d'écran et d'utiliser la pipette sur un logiciel de retouche. LBAC permet d'afficher la couleur capturée sous différents formats:
 
 - en hexadécimale (#RRVVBB)
-
 - en RVB (RRR,VVV,BBB)
-
 - en CMJ(CCC,MMM,JJJ)
-
 - en TLS (Teinte, Luminosité, Saturation)
 
 Tous propose d'afficher la correspondance de la couleur en pour-cent ou en octet.
@@ -38,7 +38,7 @@ En parlant de logiciel de programmation, voici le deuxième outil,
 
 Emmet
 
-*[emmet.io](https://emmet.io/)*
+[*emmet.io*](https://emmet.io/)
 
 [![Emmet](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/56e63d4d229aafd3a05ea34a46cf2600-300x300.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/56e63d4d229aafd3a05ea34a46cf2600.png)
 
@@ -49,8 +49,7 @@ Bref, cette outil à deux cotés positifs:
 **Générer rapidement** du HTML / CSS
 
 - Toute une structure **HTML** (version au choix)
-
-- Des** propriétés CSS** toutes faites
+- Des\*\* propriétés CSS\*\* toutes faites
 
 **Apprendre** à utiliser les sélecteurs CSS
 
@@ -58,61 +57,51 @@ Bref, cette outil à deux cotés positifs:
 
 Aller, un sélecteur CSS vaut plus qu'un vieux pavé de texte!
 
-[css]html:5>header>nav>ul>li*3>a^^^^+section#contenu>p*5^+footer[/css]
+[css] html:5>header>nav>ul>li*3>a^^^^+section#contenu>p*5^+footer [/css]
 
 [html]
 
-<!doctype html>
+```text
+<meta charset="UTF-8">
 
-<html lang="en">
+<title>Document</title>
+```
 
-<head>
+```text
+<header>
 
-	<meta charset="UTF-8">
+    <nav>
 
-	<title>Document</title>
+        <ul>
 
-</head>
+            <li><a href=""></a></li>
 
-<body>
+            <li><a href=""></a></li>
 
-	<header>
+            <li><a href=""></a></li>
 
-		<nav>
+        </ul>
 
-			<ul>
+    </nav>
 
-				<li><a href=""></a></li>
+</header>
 
-				<li><a href=""></a></li>
+<section id="contenu">
 
-				<li><a href=""></a></li>
+    <p></p>
 
-			</ul>
+    <p></p>
 
-		</nav>
+    <p></p>
 
-	</header>
+    <p></p>
 
-	<section id="contenu">
+    <p></p>
 
-		<p></p>
+</section>
 
-		<p></p>
-
-		<p></p>
-
-		<p></p>
-
-		<p></p>
-
-	</section>
-
-	<footer></footer>
-
-</body>
-
-</html>
+<footer></footer>
+```
 
 [/html]
 
@@ -126,13 +115,13 @@ CSS Refresh
 
 Cet outil que j'utilisais beaucoup à une période permet d'intégrer du CSS et d'avoir un aperçu direct (que ce soit en local ou en ligne, sur un CMS comme une site basique).
 
-Il fonctionne grâce à de **l'ajax,** donc vous devez absolument coder sur un** serveur web** (en local comme en ligne). Toutes les secondes, le CSS se rafraîchit si et seulement si celui-ci a été modifié. Ce système fonctionne grâce à la variable `ver` qui correspond à la date en seconde (***timestamp***). Lorsque le timestamp du fichier CSS est différent par rapport au précédent, CSS Refresh se chargera de récupérer le CSS et l'appliquer à la page.
+Il fonctionne grâce à de **l'ajax,** donc vous devez absolument coder sur un\*\* serveur web\*\* (en local comme en ligne). Toutes les secondes, le CSS se rafraîchit si et seulement si celui-ci a été modifié. Ce système fonctionne grâce à la variable `ver&#x60; qui correspond à la date en seconde (***timestamp***). Lorsque le timestamp du fichier CSS est différent par rapport au précédent, CSS Refresh se chargera de récupérer le CSS et l'appliquer à la page.
 
 Personnellement, lorsque l'on a pas de logiciel sophistiqué et qu'on veut rapidement voir à quoi ressemble son site, c'est un très bon outils!
 
 En plus, ce script fonctionne pour plus d'un fichier CSS.
 
-Avec [@robudev](https://twitter.com/robudev), on a d'ailleurs fait de l'intégration CSS en **simultané** et à distance bien sûr (*ainsi que Skype*)*. *On travaillait sur deux fichiers distincts et CSS Refresh se chargeait de **mettre à jour** le style de la page.
+Avec [@robudev](https://twitter.com/robudev), on a d'ailleurs fait de l'intégration CSS en **simultané** et à distance bien sûr (*ainsi que Skype*)\*. \*On travaillait sur deux fichiers distincts et CSS Refresh se chargeait de **mettre à jour** le style de la page.
 
 Maintenant qu'on a de quoi trouver de la couleur et intégrer très rapidement, il va falloir trouver un moyen de bosser avec un écran pour voir l'aperçu et un pour développer rapidement sans toucher à la souris.
 
@@ -142,7 +131,7 @@ Du coup, j'vais vous montrer un logiciel super sympa lorsque vous avez un ordina
 
 Input Director
 
-*[www.inputdirector.com](http://www.inputdirector.com/downloads.html)*
+[*www.inputdirector.com*](http://www.inputdirector.com/downloads.html)
 
 [![Input Director](https://davejsteele.files.wordpress.com/2012/12/input-director.jpg?w=300)](http://davejsteele.files.wordpress.com/2012/12/input-director.jpg?w=300)
 
@@ -157,7 +146,6 @@ Et comment on fait pour utiliser le clavier sur le fixe ou sur le portable quand
 Deux solutions
 
 - soit par combinaison de toucher qui permet de switcher sur l'autre machine,
-
 - soit en déplaçant votre souris sur l'écran que vous voulez!
 
 Aller, c'est fini pour aujourd'hui!

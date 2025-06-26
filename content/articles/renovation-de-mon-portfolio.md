@@ -1,11 +1,15 @@
 ---
-title: "Rénovation de mon portfolio"
-description: "Nous voici en été, il fait chaud et j’en profite pour rafraîchir un peu le web : la rénovation de ma page personnelle. Je suis parti de zéro pour recréer mon un..."
+title: Rénovation de mon portfolio
+description: "Nous voici en été, il fait chaud et j’en profite pour rafraîchir
+  un peu le web : la rénovation de ma page personnelle. Je suis parti de zéro
+  pour recréer mon un..."
 created: 2015-07-05
 slug: renovation-de-mon-portfolio
-categories: ["Développement web","Projets personnels"]
-thumbnail: "https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/07/tb_book-800x288.png"
-originalUrl: "https://blog.micheledighoffer.fr/blog/renovation-de-mon-portfolio/"
+categories:
+  - Développement web
+  - Projets personnels
+thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/07/tb_book-800x288.png
+originalUrl: https://blog.micheledighoffer.fr/blog/renovation-de-mon-portfolio/
 ---
 
 Nous voici en été, il fait chaud et j’en profite pour rafraîchir un peu le web : la rénovation de ma page personnelle. Je suis parti de zéro pour recréer mon univers sous la forme d’un site ergonomique, simple et rapide. J’ai renouvelé mes pratiques en matière de développement back et front en utilisant des nouvelles technos et l’automatisation des tâches.
@@ -18,9 +22,10 @@ Je voulais de plus un site qui puisse être facilement maintenable tout en offra
 
 Et enfin je voulais un site qui soit optimisé pour tout type de support c’est-à-dire responsive.
 
-J’ai nommé ce projet ***book**** de développeur* – notion souvent utilisée par les graphistes – pour mettre en avant mes réalisations.
+J’ai nommé ce projet ***book***\* de développeur\* – notion souvent utilisée par les graphistes – pour mettre en avant mes réalisations.
 
 # Solutions
+
 ## **Fonctionnelles**
 
 Le contenu du site est accessible rapidement : le chargement du site sera plus long, mais la navigation sera nettement plus rapide, voire instantanée. Le site est à 100% en français et environ à 65% en anglais. Les 35% manquants sont dûs aux articles et projets écris uniquement en français.
@@ -28,17 +33,13 @@ Le contenu du site est accessible rapidement : le chargement du site sera plus l
 Sur certaines parties du site, des raccourcis clavier peuvent être utilisés pour naviguer :
 
 - sur la page projet, vous pouvez utiliser les flèches gauche et droite pour passer d’un projet à un autre. Les flèches haut et bas permettent de faire défiler les images dans la galerie de projet
-
 - sur la page article, vous pouvez utiliser les flèches gauche et droite pour passer d’un article à un autre.
-
 - sur n’importe quelle page, un double appuie sur la touche CTRL mettra le focus sur la barre de recherche transverse
 
 La page À propos contient plusieurs informations sur moi et mes compétences. Les compétences peuvent être présentées de trois manières différentes:
 
 - simplement lister les domaines et les outils maîtrisés
-
 - lister et proposer une appréciation subjective fournie par soi-même
-
 - lister et proposer une appréciation objective fournie par le public
 
 J’ai opté pour la dernière solution plutôt que les autres pour trois simples raisons. Premièrement, j’ai envie que le public (possiblement recruteur) ait une idée de mon niveau. Puis, sur l’ancienne version de mon portfolio, j’étais souvent amené à devoir modifier le degré de maîtrise qui d’ailleurs n’était finalement jamais à jour. Et enfin je souhaite que ce soient des personnes extérieures qui établissent le niveau d’une de mes compétences en la recommandant.
@@ -46,6 +47,7 @@ J’ai opté pour la dernière solution plutôt que les autres pour trois simple
 Lorsqu’une compétence est recommandée, je suis directement notifié par SMS ce qui me permet de suivre l’évolution.
 
 ## **Techniques**
+
 ### **Front**
 
 Pour gérer le *front office*, j’ai utilisé un framework ultra-puissant propulsé par Google : AngularJS. Ce framework organise son cœur en module et met à disposition des méthodes très faciles à comprendre et pourtant très puissantes. Il étend la force du html en permettant l’utilisation d’attributs spéciaux et la création de ses propres balises HTML pour configurer l’application. Cependant gare à la validation W3C (merci aux attributs *data* qu’apporte HTML 5).
@@ -93,11 +95,8 @@ dbdump – tâche qui va générer un dump de ma base de données pour l’histo
 La partie back-office est développée par mes doigts. Elle consiste à offrir une API (Application Programming Interface) orientée service avec plusieurs atouts :
 
 - Gestion de configuration : l’API peut être configurée à partir d’un fichier ou à partir de simples méthodes. Un module va stocker toutes les configurations et va les mettre à disposition par une simple méthode.
-
 - Gestion des accès : le système est équipé d’un système de sécurité qui permet de restreindre l’accès à certaines méthodes. Je l’ai utilisé pour toutes les méthodes d’administration.
-
 - Gestion des données : les données issues de la base de données sont accessibles facilement grâce à une classe abstraites qui offre des méthodes de type CRUD (Create, Read, Update et Delete). Chaque entité hérite de cette classe.
-
 - Gestion du routage : afin de dispatcher un chemin vers un service, un système de routage est implémenter avec un dépendance étroite avec le système de configuration qui enregistre les routes, le nom de la classe du service, la méthode et ses arguments (avec ou non son type).
 
 Le système reste simple et complet malgré tout. De plus, toute modification ou ajout sont facilement réalisables.
