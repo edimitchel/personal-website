@@ -39,7 +39,7 @@ Les différents objectifs sont :
  - Permettre une communication professionnelle avancée et plus riche
  - Permettre le paiement
 
-*Le projet étant actuellement en pause, je m'arrête ici pour sa présentation. Si vous désirez en savoir plus, [contactez-moi](/contact).*
+*Le projet étant actuellement en pause, je m'arrête ici pour sa présentation. Si vous désirez en savoir plus, contactez-moi.*
 
 ## Captures d'écran
 
