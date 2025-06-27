@@ -22,9 +22,9 @@ technologies:
 
 # Pic'take
 
-## Présentation
-
 Le projet Pic'take s'est lancé à l'été 2013 dans le but de créer une mini plate-forme pour mon couple que j'entretiens avec ma petite amie. Les fonctionnalités étaient très simple : *envoyer une photo* ou *un petit texte* et pouvoir *interagir avec à l'aide de commentaires* et *"J'aime"*. Le concept est très similaire à celui de Facebook sauf que pour le coup ce projet, personne n'aura d'excuse pour ne pas s'y inscrire.
+
+<!-- more -->
 
 ## Enjeux
 
@@ -73,7 +73,7 @@ En prime, **Alsace 20** (une chaîne régionale) a retenu l'attention sur mon pr
 
 ### Vidéo de promotion par Alsace 20
 
-:iframe{allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allow-full-screen="true" frame-border="0" height="315" src="https://www.youtube.com/embed/4rub_lA4h2Y" title="Vidéo de promotion par Alsace 20" width="560"}
+:iframe{:width='"auto"' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allow-full-screen="true" frame-border="0" src="https://www.youtube.com/embed/4rub_lA4h2Y" title="Vidéo de promotion par Alsace 20"}
 
 *Promotional video by Alsace 20*
 

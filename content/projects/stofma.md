@@ -19,9 +19,9 @@ technologies:
 
 # Student Office Manager
 
-## En cours de rédaction
-
 Student Office Manager est une application de gestion des ventes et achats de cafétéria étudiante, conçue pour simplifier la gestion quotidienne des transactions.
+
+<!-- more -->
 
 ## Fonctionnalités principales
 

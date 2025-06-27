@@ -25,8 +25,6 @@ technologies:
 
 # RCA Store
 
-## Présentation
-
 Dans le cadre d'un des modules de mes études d'ingénieur, nous avions un projet portant sur le web. Il était demandé de créer une plate-forme proposant la vente d'articles avec différents contraintes :
 
 - Utiliser le language PHP,
@@ -36,6 +34,8 @@ Dans le cadre d'un des modules de mes études d'ingénieur, nous avions un proje
 - Utiliser un ORM (Propel)
 - Adapter le site pour tous supports (responsive design - bootstrap 3).
 - Utiliser un moteur de template (Smarty)
+
+<!-- more -->
 
 ## Notre vision
 

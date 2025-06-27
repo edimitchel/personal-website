@@ -21,8 +21,6 @@ technologies:
 
 # Interface Client-Entreprise
 
-## Présentation
-
 Interface Client-Entreprise ayant pour nom de code "INTCLEN" (les premières initiales de chaque mot) est un projet visant principalement les auto-entrepreneurs qui cherchent à offrir à leurs clients une communication parfaite du projet en cours. Que le client habite loin ou près du prestataire, celui-ci aura accès aux esquisses et aux réalisations du prestataire de façon interactive puisqu'il pourra donner à tout moment son avis ou proposer des suggestions.
 
 <!-- more -->

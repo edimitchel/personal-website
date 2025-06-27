@@ -20,9 +20,9 @@ technologies:
 
 # Save Your Links
 
-## Présentation
-
 Ce projet était initialement un projet personnel que j'avais lancé suite à la trouvaille d'un lien sur Internet. À défaut de le sauvegarder sur gmail, j'ai décidé de me lancer dans le développement de SaveYourLinks qui d'ailleurs n'était pas censé être ouvert au grand public à l'origine. La création de cette application était issue d'un besoin personnel. C'est en développant le site que je me suis rendu compte que je n'étais le seul à avoir ce besoin. J'en ai beaucoup parlé à mon entourage pour avoir le maximum d'avis et d'idées.
+
+<!-- more -->
 
 ## Objectifs
 
