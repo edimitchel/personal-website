@@ -17,7 +17,6 @@ if (messages.value) {
 
 const store = layoutStore();
 
-store.withEmoji = true
 store.title = 'Michel Edighoffer'
 
 

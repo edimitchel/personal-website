@@ -13,8 +13,9 @@ definePageMeta({
   title: 'Michel Edighoffer',
 })
 
+store.messages = [{content: 'Développements ®', level: 1}, {content: 'free lancing since 2023', level: 2}];
+
 const project = await useContent('project', () => queryCollection('content').path('/project').first());
 const projects = await useContent('projects', () => queryCollection('projects').all());
 
-store.messages = [{content: 'Développements ®', level: 1}, {content: 'free lancing since 2023', level: 2}];
 </script>
