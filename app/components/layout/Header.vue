@@ -2,8 +2,8 @@
   <header class="header">
     <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
     <div class="icons">
-      <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin" />
       <SocialIcon v-if="options.github" platform="github" :username="options.github" />
+      <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin" />
     </div>
     <NuxtLink to="/" class="logo">
       <Transition name="fade">
@@ -162,7 +162,7 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 @screen md {
   .subtitle-header.level-1 {
-    --uno: text-lg;
+    --uno: text-xl;
   }
 
   .subtitle-header.level-2 {
