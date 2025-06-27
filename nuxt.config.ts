@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     },
     build: {
       transformers: ['~~/transformers/article-metadata'],
-      markdown: {} 
+      markdown: {}
     }
   },
 
@@ -60,5 +60,23 @@ export default defineNuxtConfig({
   // Development
   devtools: { enabled: true },
 
-  compatibilityDate: '2024-07-03',
+
+  nitro: {
+    prerender: {
+      // Pre-render the homepage
+      routes: ['/'],
+      // Then crawl all the links on the page
+      crawlLinks: true
+    },
+    cloudflare: {
+      pages: {
+        routes: {
+          exclude: [
+            '/articles/*',
+            '/projects/*'
+          ]
+        }
+      }
+    }
+  }
 })
