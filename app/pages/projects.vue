@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ContentRenderer :value="work" class="prose" />
+    <ContentRenderer :value="project" class="prose" />
 
     <ContentRenderer v-for="project in projects" :key="project.slug" :value="project" class="prose" excerpt />
   </section>
@@ -13,8 +13,8 @@ definePageMeta({
   title: 'Michel Edighoffer',
 })
 
-const work = await useContent('work', () => queryCollection('content').path('/work').first());
+const project = await useContent('project', () => queryCollection('content').path('/project').first());
 const projects = await useContent('projects', () => queryCollection('projects').all());
 
-store.messages = ['Développements'];
+store.messages = [{content: 'Développements', level: 1}, {content: 'Développements', level: 2}];
 </script>

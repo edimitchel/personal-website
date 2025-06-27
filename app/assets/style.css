@@ -25,14 +25,10 @@
   transform: translateY(0);
 }
 
-.up-leave-to {
-  transition-delay: 200ms;
-}
-
 .up-enter-from,
 .up-leave-to {
   opacity: 0;
-  transform: rotate(0deg) translateY(-5px);
+  transform: rotate(0deg) translateY(-10px);
   z-index: -1;
 }
 

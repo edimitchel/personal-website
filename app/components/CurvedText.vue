@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'top-4!': alone }">
+  <div :class="{ 'top-4!': alone, [`level-${titleLevel}`]: true }">
     <svg :width="width" fill="none" viewBox="0 0 500 90">
       <path id="curve" :d="path" />
       <text :text-anchor="textAlign" :class="{ 'tracking-wide': alone, 'text-3xl': alone }">

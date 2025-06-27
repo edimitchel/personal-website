@@ -3,7 +3,7 @@
     :name="transitionName"
     mode="out-in"
   >
-    <slot :data="list[index]" />
+    <slot :message="currentMessage" :level="currentLevel" />
   </Transition>
 </template>
 
@@ -12,7 +12,7 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 interface Props {
   alive?: boolean
-  list?: string[]
+  list?: (string | { content: string, level: number })[]
   transitionName?: string
   duration?: number
 }
@@ -26,6 +26,17 @@ const props = withDefaults(defineProps<Props>(), {
 
 const index = ref(0)
 let timerId: NodeJS.Timeout | null = null
+
+const current = computed(() => {
+  return props.list[index.value]
+})
+const currentMessage = computed(() => {
+  return typeof current.value === 'object' ? current.value.content : current.value
+})
+
+const currentLevel = computed(() => {
+  return typeof current.value === 'object' ? current.value.level : undefined
+})
 
 const run = () => {
   if (timerId || props.list.length < 1) {

@@ -13,9 +13,9 @@
     <div class="titles">
       <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
         computedName }}</CurvedText>
-      <MessageCarousel transition-name="balance" :list="messages" #default="{ data }">
-        <CurvedText :key="data" title-level="2" class="subtitle-header">
-          {{ data }}
+      <MessageCarousel transition-name="up" :list="messages" #default="{ message, level = 2 }">
+        <CurvedText :key="message" :title-level="level" class="subtitle-header">
+          {{ message }}
         </CurvedText>
       </MessageCarousel>
     </div>
@@ -149,12 +149,24 @@ const { isLoading: pulse } = useLoadingIndicator();
   position: absolute;
   top: 8px;
   width: 100%;
-  --uno: text-xs font-mono font-500 flex items-center justify-center;
+  --uno: uppercase font-500 flex items-center justify-center;
+}
+
+.subtitle-header.level-1 {
+  --uno: text-xs;
+}
+
+.subtitle-header.level-2 {
+  --uno: text-[12px];
 }
 
 @screen md {
-  .subtitle-header {
-    --uno: text-sm;
+  .subtitle-header.level-1 {
+    --uno: text-lg;
+  }
+
+  .subtitle-header.level-2 {
+    --uno: text-xs;
   }
 }
 
