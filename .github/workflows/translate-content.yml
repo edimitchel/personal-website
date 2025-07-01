@@ -1,0 +1,245 @@
+name: AI Content Translation
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'content/articles/**/*.md'
+      - 'content/projects/**/*.md'
+
+env:
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+
+jobs:
+  translate-content:
+    runs-on: ubuntu-latest
+    
+    # Skip if commit was made by a bot to prevent infinite loops
+    if: github.actor != 'github-actions[bot]'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Check commit message for translation keywords
+        id: check-commit
+        run: |
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          echo "Commit message: $COMMIT_MSG"
+          
+          # Check for translation keywords (case insensitive)
+          if echo "$COMMIT_MSG" | grep -i -E '\[translate\]|\[retranslate\]|\[force-translate\]|translate:force|retranslate'; then
+            echo "force_translate=true" >> $GITHUB_OUTPUT
+            echo "🔄 Translation keywords detected in commit message"
+          else
+            echo "force_translate=false" >> $GITHUB_OUTPUT
+            echo "✅ No translation keywords found"
+          fi
+
+      - name: Get changed content files
+        id: changed-files
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+          else
+            if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+              # First commit on branch
+              BASE_SHA="HEAD~1"
+            else
+              BASE_SHA="${{ github.event.before }}"
+            fi
+            HEAD_SHA="${{ github.event.after }}"
+          fi
+          
+          echo "Comparing $BASE_SHA...$HEAD_SHA"
+          
+          # Get changed markdown files in content directories
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AMR $BASE_SHA...$HEAD_SHA | grep -E '^content/(articles|projects)/.*\.md$' || true)
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No content files changed"
+            echo "files=" >> $GITHUB_OUTPUT
+            echo "count=0" >> $GITHUB_OUTPUT
+          else
+            echo "Changed files:"
+            echo "$CHANGED_FILES"
+            # Convert to space-separated list for the script
+            FILES_LIST=$(echo "$CHANGED_FILES" | tr '\n' ' ' | sed 's/[[:space:]]*$//')
+            echo "files=$FILES_LIST" >> $GITHUB_OUTPUT
+            echo "count=$(echo "$CHANGED_FILES" | wc -l)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Translate content files
+        if: steps.changed-files.outputs.count > 0 || steps.check-commit.outputs.force_translate == 'true'
+        run: |
+          FORCE_FLAG=""
+          if [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
+            FORCE_FLAG="--force"
+            echo "🔄 Force translation enabled by commit message"
+          fi
+          
+          if [ "${{ steps.changed-files.outputs.count }}" -gt 0 ]; then
+            echo "📝 Translating changed files..."
+            pnpm translate changed ${{ steps.changed-files.outputs.files }} $FORCE_FLAG
+          elif [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
+            echo "🔄 Force translating all content due to commit keyword..."
+            pnpm translate all $FORCE_FLAG
+          fi
+
+      - name: Check for translation changes
+        id: translation-changes
+        run: |
+          # Check if any French translation files were created or modified
+          if git diff --quiet HEAD content/fr/; then
+            echo "No translation changes detected"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Translation changes detected"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            
+            # Show what changed
+            echo "📋 Translation changes:"
+            git diff --name-only HEAD content/fr/ || true
+          fi
+
+      - name: Commit translation changes (Push)
+        if: github.event_name == 'push' && steps.translation-changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add content/fr/
+          
+          COMMIT_MSG="🤖 Auto-translate content"
+          if [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
+            COMMIT_MSG="🔄 Force retranslate content (triggered by commit keyword)"
+          fi
+          
+          git commit -m "$COMMIT_MSG
+
+          - Translated ${{ steps.changed-files.outputs.count }} changed file(s)
+          - Force translation: ${{ steps.check-commit.outputs.force_translate }}
+          - Files: ${{ steps.changed-files.outputs.files }}
+          
+          [skip ci]"
+          
+          git push
+
+      - name: Generate translation summary (PR)
+        if: github.event_name == 'pull_request'
+        id: summary
+        run: |
+          echo "## 🌐 AI Translation Summary" > translation_summary.md
+          echo "" >> translation_summary.md
+          
+          if [ "${{ steps.translation-changes.outputs.has_changes }}" = "true" ]; then
+            echo "✅ **Translations Generated Successfully**" >> translation_summary.md
+            echo "" >> translation_summary.md
+            echo "### 📊 Translation Details:" >> translation_summary.md
+            echo "- **Changed files**: ${{ steps.changed-files.outputs.count }}" >> translation_summary.md
+            echo "- **Force translation**: ${{ steps.check-commit.outputs.force_translate }}" >> translation_summary.md
+            echo "- **Translation status**: Draft (requires review)" >> translation_summary.md
+            echo "" >> translation_summary.md
+            
+            if [ "${{ steps.changed-files.outputs.count }}" -gt 0 ]; then
+              echo "### 📝 Processed Files:" >> translation_summary.md
+              echo '```' >> translation_summary.md
+              echo "${{ steps.changed-files.outputs.files }}" | tr ' ' '\n' >> translation_summary.md
+              echo '```' >> translation_summary.md
+              echo "" >> translation_summary.md
+            fi
+            
+            echo "### 🔍 Generated Translations:" >> translation_summary.md
+            echo '```' >> translation_summary.md
+            git diff --name-only HEAD content/fr/ >> translation_summary.md
+            echo '```' >> translation_summary.md
+            echo "" >> translation_summary.md
+            
+            echo "### ✅ Next Steps:" >> translation_summary.md
+            echo "1. **Review translations** in preview/dev mode (drafts are hidden in production)" >> translation_summary.md
+            echo "2. **Correct any issues** if needed" >> translation_summary.md
+            echo "3. **Publish approved translations**: \`pnpm translate publish <collection> <filename>\`" >> translation_summary.md
+            echo "4. **Check translation status**: \`pnpm translate list\`" >> translation_summary.md
+            echo "" >> translation_summary.md
+            echo "💡 **Tip**: Use commit message keywords like \`[translate]\`, \`[retranslate]\`, or \`[force-translate]\` to trigger translation of all content." >> translation_summary.md
+          else
+            echo "ℹ️ **No translations needed**" >> translation_summary.md
+            echo "" >> translation_summary.md
+            echo "All translations are already up to date." >> translation_summary.md
+            if [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
+              echo "" >> translation_summary.md
+              echo "⚠️ Force translation was requested via commit message, but no changes were necessary." >> translation_summary.md
+            fi
+          fi
+          
+          # Rate limiting info
+          echo "" >> translation_summary.md
+          echo "---" >> translation_summary.md
+          echo "*🤖 Powered by Mistral AI Codestral • Rate limited to prevent API abuse*" >> translation_summary.md
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const comment = fs.readFileSync('translation_summary.md', 'utf8');
+            
+            // Check if we already commented
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const existingComment = comments.find(comment => 
+              comment.user.login === 'github-actions[bot]' && 
+              comment.body.includes('🌐 AI Translation Summary')
+            );
+            
+            if (existingComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existingComment.id,
+                body: comment,
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment,
+              });
+            }
+
+      - name: Final status
+        run: |
+          echo "🎉 Translation workflow completed!"
+          echo "📊 Summary:"
+          echo "  - Changed files: ${{ steps.changed-files.outputs.count }}"
+          echo "  - Force translation: ${{ steps.check-commit.outputs.force_translate }}"
+          echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
+          echo "  - Event: ${{ github.event_name }}"

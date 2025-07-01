@@ -19,6 +19,5 @@ const store = layoutStore();
 
 store.title = 'Michel Edighoffer'
 
-
 const about = await useContent('about', () => queryCollection('content').path('/about').first());
 </script>

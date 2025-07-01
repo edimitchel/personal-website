@@ -2,15 +2,15 @@
   <div>
     <ContentRenderer v-if="blog" :value="blog" class="prose" />
 
-    <Posts :posts="posts" />
+    <Posts v-if="posts" :posts="posts" />
   </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  title: 'Blog'
+  title: 'Articles'
 })
 
-const { data: blog } = await useAsyncData('blog', () => queryCollection('content').path('/blog').first());
-const { data: posts } = await useAsyncData('posts', () => queryCollection('articles').all());
+const blog = await useContent('blog', () => queryCollection('content').path('/blog').first());
+const posts = await useContent('posts', () => queryCollection('articles').all());
 </script>

@@ -8,7 +8,9 @@ export default defineTransformer({
     extensions: ['.md'],
     transform(file) {
         if (file.id.includes('articles')) {
-            const fileStat = fs.statSync(resolve(__dirname, '..', 'content', file.id.replace('articles/', '') as string));
+            const path = file.id.replace(/^[a-z0-9_-]+\//, '');
+            console.log(file.id, path)
+            const fileStat = fs.statSync(resolve(__dirname, '..', 'content', path));
             const { birthtime, mtime } = fileStat;
             return {
                 ...file,
