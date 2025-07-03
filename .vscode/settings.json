@@ -1,3 +1,7 @@
 {
-    "markdown.validate.enabled": true
+    "markdown.validate.enabled": true,
+    "i18n-ally.localesPaths": [
+        "locales"
+    ],
+    "i18n-ally.keystyle": "nested"
 }

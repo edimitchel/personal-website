@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@pinia/nuxt',
     '@nuxt/fonts',
+    '@nuxtjs/i18n'
   ],
 
   unocss: {
@@ -27,7 +28,7 @@ export default defineNuxtConfig({
       id: 'app'
     },
     pageTransition: {
-      name: 'up',
+      name: 'fade',
       mode: 'out-in',
     },
   },
@@ -60,6 +61,15 @@ export default defineNuxtConfig({
   // Development
   devtools: { enabled: true },
 
+  i18n: {
+    restructureDir: '.',
+    locales: [
+      { code: 'en', file: 'en.json', name: 'English' },
+      { code: 'fr', file: 'fr.json', name: 'Français' }
+    ],
+    strategy: 'prefix_except_default',
+    defaultLocale: 'en'
+  },
 
   nitro: {
     prerender: {

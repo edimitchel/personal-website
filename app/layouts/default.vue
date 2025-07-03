@@ -13,15 +13,16 @@ import { isBirthday } from '~/utils';
 const appConfig = useAppConfig()
 const { messages, title, color, withEmoji } = storeToRefs(layoutStore());
 
+const { t } = useI18n()
 const links = [{
   path: '/',
-  name: 'About'
+  name: t('header.about')
 }, {
   path: '/projects',
-  name: 'Projects'
+  name: t('header.projects')
 }, {
   path: '/articles',
-  name: 'Articles'
+  name: t('header.articles')
 }]
 
 const headerColor = color

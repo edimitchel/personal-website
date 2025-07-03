@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
-    <div class="icons">
+    <div class="icons-bottom">
       <SocialIcon v-if="options.github" platform="github" :username="options.github" />
       <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin" />
     </div>
@@ -117,10 +117,18 @@ const { isLoading: pulse } = useLoadingIndicator();
   transform: scale(0.95);
 }
 
-.icons {
+.icons-bottom,
+.icons-top {
   max-width: 140px;
-  top: 120px;
   --uno: flex justify-between absolute w-full;
+}
+
+.icons-top {
+  z-index: 200;
+}
+
+.icons-bottom {
+  top: 120px;
 }
 
 .titles {
@@ -196,12 +204,12 @@ ul {
 }
 
 ul li {
-  --uno: leading-none align-middle w-18;
+  --uno: leading-none align-middle w-20;
 
   --mid: calc(round(down, var(--count) / 2));
   --delta: calc(var(--index) - var(--mid));
 
-  transform: rotateZ(calc(-13deg * var(--delta))) translate(calc(2px * var(--delta)), calc(min((8px * var(--delta)), (8px * var(--delta)) * -1)));
+  transform: rotateZ(calc(-13deg * var(--delta))) translate(calc(-6px * var(--delta)), calc(min((10px * var(--delta)), (10px * var(--delta)) * -1)));
   transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 

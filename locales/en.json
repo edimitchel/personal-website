@@ -1,0 +1,13 @@
+{
+  "header": {
+    "about": "About",
+    "projects": "Projects",
+    "articles": "Articles"
+  },
+  "article": {
+    "notFound": "Article Not Found",
+    "notFoundDescription": "Oops! The article you're looking for doesn't exist.",
+    "goToArticles": "Go to articles",
+    "read-in": "Lire en français"
+  }
+}
