@@ -1,0 +1,27 @@
+{
+  "technical_glossary": {
+    "frontend": "frontend",
+    "backend": "backend",
+    "JavaScript": "JavaScript",
+    "TypeScript": "TypeScript",
+    "Vue.js": "Vue.js",
+    "testing": "tests"
+  },
+  "preserve_as_is": [
+    "GitHub",
+    "npm",
+    "API",
+    "JSON"
+  ],
+  "domain_context": {
+    "primary_domain": "Développement web",
+    "secondary_domains": ["Testing", "DevOps"],
+    "target_audience": "Développeurs",
+    "tone": "Professionnel"
+  },
+  "translation_rules": [
+    "Préserver les noms de technologies",
+    "Maintenir la structure markdown",
+    "Conserver les extraits de code"
+  ]
+}
