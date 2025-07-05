@@ -36,7 +36,7 @@ describe('Translation Content Script - Integration Tests', () => {
       // Setup test files
       const contentDir = join(testDir, 'content')
       const articlesDir = join(contentDir, 'articles')
-      const frArticlesDir = join(contentDir, 'fr', 'articles')
+      const frArticlesDir = join(contentDir, 'articles', 'fr')
       
       mkdirSync(articlesDir, { recursive: true })
       mkdirSync(frArticlesDir, { recursive: true })

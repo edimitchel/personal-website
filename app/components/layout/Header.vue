@@ -5,11 +5,11 @@
       <SocialIcon v-if="options.github" platform="github" :username="options.github" />
       <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin" />
     </div>
-    <NuxtLink to="/" class="logo">
+    <NuxtLinkLocale to="/" class="logo">
       <Transition name="fade">
         <img v-if="headerImage" :key="headerImage.src" :src="headerImage.src" :alt="headerImage.title">
       </Transition>
-    </NuxtLink>
+    </NuxtLinkLocale>
     <div class="titles">
       <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
         computedName }}</CurvedText>
@@ -24,20 +24,31 @@
       <ul>
         <li v-for="(item, index) in props.links" :key="item.path"
           :style="{ '--index': index, '--count': props.links?.length }">
-          <NuxtLink :to="item.path" :class="item.class">
+          <NuxtLinkLocale :to="item.path" :class="item.class">
             {{ item.name }}
-          </NuxtLink>
+          </NuxtLinkLocale>
         </li>
+        <SwitchLocalePathLink  :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
+          :title="$t('header.switchLanguage')">
+          <Transition mode="out-in" name="fade">
+            <UnoIcon :key="locale"
+              :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
+          </Transition>
+        </SwitchLocalePathLink>
       </ul>
     </nav>
   </header>
 </template>
 
 <script setup lang="ts">
-import type { LayoutHeaderProps } from '~/layouts/default.vue';
+import type { LayoutHeaderProps } from '~/layouts/default.vue'
 import { random } from '~/utils'
+import { useI18n } from 'vue-i18n'
+import { UnoIcon } from '#components'
 
-const store = layoutStore();
+const { locale } = useI18n()
+
+const store = layoutStore()
 
 const props = defineProps<{
   links?: { path: string; class?: string, name: string }[]
@@ -248,5 +259,15 @@ ul a::before {
 
 ul a.router-link-active::before {
   --uno: bg-gray-600 rounded-full pointer-events-none -z-1;
+}
+
+.header :deep(a.lang-switcher) {
+  --uno: absolute text-xl left-[98%] -top-5 -rotate-28 flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white;
+}
+
+@screen md {
+  .header :deep(a.lang-switcher) {
+    --uno: left-[105%] -top-7 -rotate-28;
+  }
 }
 </style>

@@ -2,7 +2,8 @@
   "header": {
     "about": "À propos",
     "articles": "Articles",
-    "projects": "Projets"
+    "projects": "Projets",
+    "switchLanguage": "Passer à l'anglais"
   },
   "article": {
     "notFound": "Article non trouvé",

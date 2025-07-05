@@ -1,15 +1,12 @@
 <template>
-  <!-- eslint-disable vue/no-v-html -->
-  <NuxtLink class="post prose" :to="blogUri">
+  <NuxtLinkLocale class="post prose" :to="{ name: 'articles-slug', params: { slug: props.to } }">
     <div class="post__image">
       <div class="post__tags">
-        <!-- <small
+        <small
           class="post__tag"
-          v-if="post.category"
-          v-for="category of post.category"
-          @click.prevent="changeCategory(category)"
-          :class="{active: isCurrentCategory && isCurrentCategory(category)}"
-        >{{ category }}</small> -->
+          v-if="post.categories"
+          v-for="category of post.categories"
+        >{{ category }}</small>
       </div>
       <!-- <img :src="$withBase(getImage(post))" :alt="post.title"> -->
     </div>
@@ -18,48 +15,25 @@
     </small>
     <h2 class="post__title" v-html="post.title" />
     <p class="post__description" v-html="post.description" />
-  </NuxtLink>
+  </NuxtLinkLocale>
 </template>
 
-<script>
-export default {
-  props: {
-    post: {
-      type: Object,
-      default: () => { },
-    },
-    to: {
-      type: String,
-      default: '',
-    },
-    blogSlug: {
-      type: String,
-      default: 'articles',
-    },
-  },
-  computed: {
-    blogUri() {
-      return `/${this.blogSlug}/${this.to}`
-    },
-    lang() {
-      const { lang } = this.$route.params
-      return lang ?? 'fr'
-    },
-  },
-  methods: {
-    formatDate(date = new Date(), simple = false) {
-      const options = {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      }
-      return Intl.DateTimeFormat(
-        this.lang,
-        simple ? undefined : options,
-      ).format(new Date(date))
-    },
-  },
+<script setup lang="ts">
+import type { ArticlesCollectionItem } from '@nuxt/content';
+
+const { locale } = useI18n()
+
+const props = defineProps<{ post: ArticlesCollectionItem, to: string }>()
+
+function formatDate(date: string, simple = false) {
+  return Intl.DateTimeFormat(
+    locale.value,
+    simple ? undefined : {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }).format(new Date(date))
 }
 </script>
 
@@ -72,12 +46,6 @@ export default {
   --uno: border-0;
 }
 
-@screen md {
-  .post {
-    --uno: py-2;
-  }
-}
-
 .post__image {
   position: relative;
 }
@@ -87,7 +55,7 @@ export default {
 }
 
 .post__tags {
-  --uno: absolute mb-2;
+  --uno: float-right mb-2;
 }
 
 .post__tag {

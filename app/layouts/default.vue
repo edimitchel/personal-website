@@ -14,7 +14,7 @@ const appConfig = useAppConfig()
 const { messages, title, color, withEmoji } = storeToRefs(layoutStore());
 
 const { t } = useI18n()
-const links = [{
+const links = computed(() => [{
   path: '/',
   name: t('header.about')
 }, {
@@ -23,7 +23,7 @@ const links = [{
 }, {
   path: '/articles',
   name: t('header.articles')
-}]
+}])
 
 const headerColor = color
 const info = computed(() => ({

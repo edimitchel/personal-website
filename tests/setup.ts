@@ -1,9 +1,9 @@
 // Global test setup for translation script testing
 import { vi, beforeEach, afterEach } from 'vitest'
-import { join } from 'path'
 
 // Mock Node.js modules globally
-vi.mock('node:fs', () => ({
+vi.mock('node:fs', async (importOriginal) => ({
+  ...await importOriginal(),
   readFileSync: vi.fn(),
   writeFileSync: vi.fn(),
   existsSync: vi.fn(),

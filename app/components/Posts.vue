@@ -20,7 +20,13 @@ export default {
 </script>
 <style scoped>
 .posts {
-  --uno: relative;
+  --uno: relative flex flex-col gap-4;
+}
+
+@screen md {
+  .posts {
+    --uno: gap-8;
+  }
 }
 
 .categories {

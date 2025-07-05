@@ -3,6 +3,7 @@ import { defineCollection, defineContentConfig, z } from "@nuxt/content";
 // Base content schema for reusability
 const baseContentSchema = z.object({
   title: z.string(),
+  lang: z.enum(['en', 'fr']).optional().default('en'),
   description: z.string(),
   slug: z.string(),
   draft: z.boolean().optional().default(false),
@@ -10,9 +11,9 @@ const baseContentSchema = z.object({
 
 // Translation metadata schema
 const translationMetaSchema = z.object({
-  translated: z.boolean().default(true),
-  translation_state: z.enum(['draft', 'current', 'needs_review', 'outdated', 'approved']).default('current'),
-  original_slug: z.string(),
+  translated: z.boolean().optional(),
+  translation_state: z.enum(['draft', 'current', 'needs_review', 'outdated', 'approved']).optional(),
+  original_slug: z.string().optional(),
   source_content_hash: z.string().optional(),
   translated_at: z.string().optional(),
   translated_by: z.string().optional(),
@@ -31,10 +32,7 @@ const articleSchema = baseContentSchema.extend({
   date: z.string(),
   author: z.string(),
   content: z.string(),
-});
-
-// French article schema with translation metadata
-const articleFrSchema = articleSchema.merge(translationMetaSchema);
+}).merge(translationMetaSchema);
 
 // Project schema
 const projectSchema = baseContentSchema.extend({
@@ -52,40 +50,24 @@ const projectSchema = baseContentSchema.extend({
   authors: z.string().array(),
 });
 
-// French project schema with translation metadata
-const projectFrSchema = projectSchema.merge(translationMetaSchema);
-
 export default defineContentConfig({
   collections: {
     content: defineCollection({
       source: '*.md',
       type: 'page',
     }),
-    
+
     // English collections
     articles: defineCollection({
-      source: 'articles/*.md',
+      source: 'articles/**/*.md',
       type: 'page',
       schema: articleSchema,
     }),
-    
+
     projects: defineCollection({
-      source: 'projects/*.md',
+      source: 'projects/**/*.md',
       type: 'page',
       schema: projectSchema,
-    }),
-    
-    // French collections
-    articles_fr: defineCollection({
-      source: 'fr/articles/*.md',
-      type: 'page',
-      schema: articleFrSchema,
-    }),
-    
-    projects_fr: defineCollection({
-      source: 'fr/projects/*.md',
-      type: 'page',
-      schema: projectFrSchema,
     }),
   }
 })

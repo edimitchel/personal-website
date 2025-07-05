@@ -8,7 +8,7 @@ export default async function useContent<T extends (PageCollectionItemBase | Pag
     if (!result && !hooks?.onFailure) {
         throw createError({
             statusCode: 404,
-            statusMessage: 'Not Found'
+            statusMessage: 'Content Not Found'
         })
     } else if (!result) {
         hooks?.onFailure?.()

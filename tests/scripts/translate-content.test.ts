@@ -167,7 +167,7 @@ title: "Test Article"
       const originalPath = '/path/to/content/articles/test.md'
       const frenchPath = getFrenchPath(originalPath)
 
-      expect(frenchPath).toContain('fr/articles/test.md')
+      expect(frenchPath).toContain('articles/fr/test.md')
     })
   })
 
@@ -300,7 +300,7 @@ source_content_hash: "old123"
       const content = '# Test Article\n\nThis is about JavaScript and GitHub.'
       const prompt = createTranslationPrompt(content, mockContext)
 
-      expect(prompt).toContain('Translate the following technical content from English to French')
+      expect(prompt).toContain('Traduire le contenu technique suivant de l\'anglais au français.')
       expect(prompt).toContain('Web Development')
       expect(prompt).toContain('JavaScript')
       expect(prompt).toContain('GitHub')
@@ -459,7 +459,7 @@ last_updated: "2023-01-01T00:00:00.000Z"
 
       expect(mockMkdirSync).toHaveBeenCalled() // Should create directory
       expect(mockWriteFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('fr/articles/test.md'),
+        expect.stringContaining('articles/fr/test.md'),
         expect.stringContaining('source_content_hash: "abc123"'),
         'utf-8'
       )
@@ -541,7 +541,7 @@ last_updated: "2023-01-01T00:00:00.000Z"
       updateTranslationStatus(mockOriginalFile)
 
       expect(mockWriteFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('fr/articles/test.md'),
+        expect.stringContaining('articles/fr/test.md'),
         expect.stringContaining('translation_state: "outdated"'),
         'utf-8'
       )
@@ -605,7 +605,7 @@ published_at: "2023-01-01T00:00:00.000Z"
       publishTranslation('articles', 'test.md')
 
       expect(mockWriteFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('fr/articles/test.md'),
+        expect.stringContaining('articles/fr/test.md'),
         expect.stringContaining('translation_state: "approved"'),
         'utf-8'
       )

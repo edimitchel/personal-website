@@ -9,11 +9,12 @@ export default defineTransformer({
     transform(file) {
         if (file.id.includes('articles')) {
             const path = file.id.replace(/^[a-z0-9_-]+\//, '');
-            console.log(file.id, path)
             const fileStat = fs.statSync(resolve(__dirname, '..', 'content', path));
             const { birthtime, mtime } = fileStat;
+            const lang = path.includes('/fr/') ? 'fr' : 'en';
             return {
                 ...file,
+                lang,
                 created: file.created ?? birthtime.toISOString(),
                 updated: file.updated ?? mtime.toISOString(),
             }

@@ -131,26 +131,26 @@ export function mockFileSystem() {
   return {
     files,
     directories,
-    
+
     mockReadFileSync: vi.fn((path: string) => {
       if (!files.has(path)) {
         throw new Error(`File not found: ${path}`)
       }
       return files.get(path)!
     }),
-    
+
     mockWriteFileSync: vi.fn((path: string, content: string) => {
       files.set(path, content)
     }),
-    
+
     mockExistsSync: vi.fn((path: string) => {
       return files.has(path) || directories.has(path)
     }),
-    
+
     mockMkdirSync: vi.fn((path: string) => {
       directories.add(path)
     }),
-    
+
     mockReaddirSync: vi.fn((path: string) => {
       const pathFiles = Array.from(files.keys())
         .filter(filePath => filePath.startsWith(path))
@@ -158,20 +158,20 @@ export function mockFileSystem() {
         .filter(fileName => !fileName.includes('/'))
       return pathFiles
     }),
-    
+
     mockStatSync: vi.fn(() => ({
       isFile: () => true,
       isDirectory: () => false
     })),
-    
+
     addFile: (path: string, content: string) => {
       files.set(path, content)
     },
-    
+
     addDirectory: (path: string) => {
       directories.add(path)
     },
-    
+
     clear: () => {
       files.clear()
       directories.clear()
@@ -186,8 +186,8 @@ export function createTestEnvironment(testDir: string) {
   const contentDir = join(testDir, 'content')
   const articlesDir = join(contentDir, 'articles')
   const projectsDir = join(contentDir, 'projects')
-  const frArticlesDir = join(contentDir, 'fr', 'articles')
-  const frProjectsDir = join(contentDir, 'fr', 'projects')
+  const frArticlesDir = join(contentDir, 'articles', 'fr')
+  const frProjectsDir = join(contentDir, 'projects', 'fr')
   const scriptsDir = join(testDir, 'scripts')
 
   // Create directories
@@ -211,19 +211,19 @@ export function createTestEnvironment(testDir: string) {
     frProjectsDir,
     scriptsDir,
     contextPath,
-    
+
     addArticle: (slug: string, content: MockContentFile) => {
       const filePath = join(articlesDir, `${slug}.md`)
       writeFileSync(filePath, content.content, 'utf-8')
       return filePath
     },
-    
+
     addProject: (slug: string, content: MockContentFile) => {
       const filePath = join(projectsDir, `${slug}.md`)
       writeFileSync(filePath, content.content, 'utf-8')
       return filePath
     },
-    
+
     addTranslation: (collection: 'articles' | 'projects', slug: string, content: string) => {
       const dir = collection === 'articles' ? frArticlesDir : frProjectsDir
       const filePath = join(dir, `${slug}.md`)
@@ -243,24 +243,24 @@ export const translationAssertions = {
   preservesCodeBlocks: (original: string, translated: string) => {
     const originalCodeBlocks = original.match(/```[\s\S]*?```/g) || []
     const translatedCodeBlocks = translated.match(/```[\s\S]*?```/g) || []
-    
+
     expect(translatedCodeBlocks).toHaveLength(originalCodeBlocks.length)
-    
+
     originalCodeBlocks.forEach((block, index) => {
       expect(translatedCodeBlocks[index]).toBe(block)
     })
   },
-  
+
   /**
    * Assert that content preserves inline code
    */
   preservesInlineCode: (original: string, translated: string) => {
     const originalInlineCode = original.match(/`[^`]+`/g) || []
     const translatedInlineCode = translated.match(/`[^`]+`/g) || []
-    
+
     expect(translatedInlineCode).toHaveLength(originalInlineCode.length)
   },
-  
+
   /**
    * Assert that content preserves URLs
    */
@@ -268,13 +268,13 @@ export const translationAssertions = {
     const urlRegex = /https?:\/\/[^\s\)]+/g
     const originalUrls = original.match(urlRegex) || []
     const translatedUrls = translated.match(urlRegex) || []
-    
+
     expect(translatedUrls).toHaveLength(originalUrls.length)
     originalUrls.forEach(url => {
       expect(translated).toContain(url)
     })
   },
-  
+
   /**
    * Assert that content preserves markdown structure
    */
@@ -283,13 +283,13 @@ export const translationAssertions = {
     const originalHeaders = original.match(/^#+\s/gm) || []
     const translatedHeaders = translated.match(/^#+\s/gm) || []
     expect(translatedHeaders).toHaveLength(originalHeaders.length)
-    
+
     // Check lists
     const originalLists = original.match(/^[\s]*[-*+]\s/gm) || []
     const translatedLists = translated.match(/^[\s]*[-*+]\s/gm) || []
     expect(translatedLists).toHaveLength(originalLists.length)
   },
-  
+
   /**
    * Assert that frontmatter is properly updated
    */
@@ -297,7 +297,7 @@ export const translationAssertions = {
     expect(content).toContain('translation_state:')
     expect(content).toContain('original_slug:')
     expect(content).toContain('translated_at:')
-    
+
     if (expectedHash) {
       expect(content).toContain(`source_content_hash: "${expectedHash}"`)
     }
@@ -316,11 +316,11 @@ export function mockConsole() {
   const mockLog = vi.fn((...args: any[]) => {
     logs.push(args.join(' '))
   })
-  
+
   const mockError = vi.fn((...args: any[]) => {
     errors.push(args.join(' '))
   })
-  
+
   const mockWarn = vi.fn((...args: any[]) => {
     warns.push(args.join(' '))
   })
