@@ -13,7 +13,7 @@
     <div class="titles">
       <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
         computedName }}</CurvedText>
-      <MessageCarousel transition-name="up" :list="messages" #default="{ message, level = 2 }">
+      <MessageCarousel transition-name="balance" :list="messages" #default="{ message, level = 2 }">
         <CurvedText :key="message" :title-level="level" class="subtitle-header">
           {{ message }}
         </CurvedText>
@@ -252,13 +252,15 @@ ul a::before {
   position: absolute;
   transition: all 300ms ease;
   inset: 10%;
-  bottom: -6px;
+  bottom: -6.5px;
   top: auto;
-  height: 2px;
+  height: 3px;
+  border-radius: 100%;
+  border-top-width: 0;
 }
 
 ul a.router-link-active::before {
-  --uno: bg-gray-600 rounded-full pointer-events-none -z-1;
+  --uno: bg-gray-600 pointer-events-none -z-1;
 }
 
 .header :deep(a.lang-switcher) {
