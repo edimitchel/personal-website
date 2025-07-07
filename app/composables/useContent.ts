@@ -4,13 +4,10 @@ export default async function useContent<T extends (PageCollectionItemBase | Pag
     const data = useState<T | null>(name, () => null);
 
     const result = await query()
-
-    if (!result && !hooks?.onFailure) {
-        throw createError({
-            statusCode: 404,
-            statusMessage: 'Content Not Found'
-        })
-    } else if (!result) {
+    if (result === null && !hooks?.onFailure) {
+        console.warn('Content Not Found', name)
+        return null;
+    } else if (result === null) {
         hooks?.onFailure?.()
         return data
     }
