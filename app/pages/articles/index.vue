@@ -15,4 +15,8 @@ const { locale } = useI18n()
 
 const blog = await useContent('blog', () => queryCollection('content').path('/blog').first());
 const posts = await useContent('posts', () => queryCollection('articles').where('lang', '=', locale.value).all());
+
+useHead(() => ({
+  title: 'Michel Edighoffer / Articles'
+}))
 </script>

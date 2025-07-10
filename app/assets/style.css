@@ -32,7 +32,7 @@
 .balance-enter-active,
 .balance-leave-active {
   transform-origin: 50% -300px;
-  transition: opacity 400ms ease, transform 400ms ease;
+  transition: opacity 200ms ease, transform 300ms ease-out;
   position: relative;
 }
 

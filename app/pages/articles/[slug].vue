@@ -20,4 +20,10 @@ const content = await useContent(
   () => queryCollection('articles').where('lang', '=', locale.value).where('slug', '=', route.params.slug).first(),
   { onFailure: () => { } }
 );
+
+if(content?.value) {
+  useHead({
+    title: 'Michel Edighoffer / ' + content?.value?.title,
+  })
+}
 </script>

@@ -10,5 +10,10 @@
     "notFoundDescription": "Oops! L'article que vous cherchez n'existe pas.",
     "goToArticles": "Aller aux articles",
     "read-in": "Read in english"
+  },
+  "project": {
+    "goToProjects": "Retour aux projets",
+    "notFound": "Projet non trouvé",
+    "notFoundDescription": "Le projet que vous cherchez n'est pas ici.."
   }
 }

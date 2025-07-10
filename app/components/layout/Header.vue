@@ -237,30 +237,29 @@ ul a:after {
   top: 10px;
   border-radius: 100%;
   pointer-events: none;
-  transition: all 300ms ease;
-  filter: blur(5px);
+  transition: all 200ms ease;
+  filter: blur(4px);
   z-index: -1;
 }
 
 ul a:hover:after,
 ul a:focus-visible:after {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 ul a::before {
   content: '';
   position: absolute;
-  transition: all 300ms ease;
+  transition: all 200ms ease;
   inset: 10%;
-  bottom: -6.5px;
+  bottom: -7px;
   top: auto;
-  height: 3px;
-  border-radius: 100%;
-  border-top-width: 0;
+  height: 2px;
+  border-radius: 0 0 80% 80%;
 }
 
 ul a.router-link-active::before {
-  --uno: bg-gray-600 pointer-events-none -z-1;
+  --uno: bg-gray-600 pointer-events-none -z-1 bottom-[-6px];
 }
 
 .header :deep(a.lang-switcher) {
