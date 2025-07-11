@@ -87,7 +87,9 @@ export default defineNuxtConfig({
       pages: {
         routes: {
           exclude: [
+            '/fr/articles/*',
             '/articles/*',
+            '/fr/projects/*',
             '/projects/*'
           ]
         }
