@@ -71,7 +71,6 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     defaultLocale: 'en',
     detectBrowserLanguage: false,
-    skipSettingLocaleOnNavigate: true,
     bundle: {
       optimizeTranslationDirective: false,
     }

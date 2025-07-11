@@ -1,7 +1,6 @@
 <template>
   <article>
     <main class="prose">
-      {{ locale }}
       <template v-if="content">
         <h1>{{ content.title }}</h1>
         <ContentRenderer :value="content" />

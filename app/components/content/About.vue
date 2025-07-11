@@ -3,7 +3,7 @@
     <section>
       <div class="flex flex-col lg:flex-row items-center gap-8">
         <div class="profile-info flex-1 text-center">
-          <h2 class="text-xl lg:text-2xl underline underline-gray-600 mb-4">
+          <h2 class="text-2xl lg:text-3xl underline underline-gray-600 mb-4 mt-0">
             {{ title }}
           </h2>
           <p class="text-lg leading-relaxed">

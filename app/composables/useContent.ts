@@ -1,22 +1,20 @@
 import type { PageCollectionItemBase } from "@nuxt/content";
 
 export default async function useContent<T extends (PageCollectionItemBase | PageCollectionItemBase[])>(name: string, query: () => Promise<T | null>, hooks?: { onSuccess?: (data: T) => void, onFailure?: () => void }) {
-    const data = useState<T | null>(name, () => null);
-
-    onMounted(async () => {
-        const result = await query()
-        if (result === null && !hooks?.onFailure) {
-            if (import.meta.dev) {
-                console.warn('Content Not Found', name)
-            }
-            return null;
-        } else if (result === null) {
-            hooks?.onFailure?.()
-            return data
+    const { data, pending, error, refresh } = await useAsyncData(
+        name,
+        query,
+        {
+            immediate: true
         }
-        data.value = result;
-        hooks?.onSuccess?.(result)
-    });
+    );
+
+    if (data.value === null) {
+        if (import.meta.dev) {
+            console.warn('Content Not Found', name)
+        }
+        return null;
+    }
 
     return data;
 }
