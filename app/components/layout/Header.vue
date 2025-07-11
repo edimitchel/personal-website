@@ -244,7 +244,7 @@ ul a:after {
 
 ul a:hover:after,
 ul a:focus-visible:after {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 ul a::before {
