@@ -53,7 +53,7 @@ const projectSchema = baseContentSchema.extend({
 export default defineContentConfig({
   collections: {
     content: defineCollection({
-      source: '**/*.md',
+      source: 'pages/**/*.md',
       type: 'page',
     }),
 

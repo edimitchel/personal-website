@@ -18,7 +18,7 @@ definePageMeta({
 
 store.messages = [{ content: 'Développements ®', level: 1 }, { content: 'free lancing since 2023', level: 2 }];
 
-const project = await useContent('project-' + locale.value, () => queryCollection('content').path(`${locale.value === 'fr' ? '/fr' : ''}/project`).first());
+const project = await useContent('project-' + locale.value, () => queryCollection('content').path(`/pages${locale.value === 'fr' ? '/fr' : ''}/project`).first());
 const projects = await useContent('projects-' + locale.value, () => queryCollection('projects').where('lang', '=', locale.value).all());
 
 function getProjectName(projectContent) {

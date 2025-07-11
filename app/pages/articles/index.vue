@@ -13,7 +13,7 @@ definePageMeta({
 
 const { locale } = useI18n()
 
-const blog = await useContent('blog', () => queryCollection('content').path('/blog').first());
+const blog = await useContent('blog', () => queryCollection('content').path(`/pages${locale.value === 'fr' ? '/fr' : ''}/blog`).first());
 const posts = await useContent('posts', () => queryCollection('articles').where('lang', '=', locale.value).all());
 
 useHead(() => ({

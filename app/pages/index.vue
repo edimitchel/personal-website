@@ -20,9 +20,7 @@ const store = layoutStore();
 
 store.title = 'Michel Edighoffer'
 
-const about = await useContent('about-' + locale.value, () => queryCollection('content').path(`${locale.value === "fr" ? '/fr' : ''}/about`).first());
-
-
+const about = await useContent('about-' + locale.value, () => queryCollection('content').path(`/pages${locale.value === "fr" ? '/fr' : ''}/about`).first());
 
 // SEO Meta
 useHead({
