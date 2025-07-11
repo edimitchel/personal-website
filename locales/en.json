@@ -14,6 +14,11 @@
   "project": {
     "notFound": "Project not found",
     "notFoundDescription": "The project you're looking for is not there..",
-    "goToProjects": "Return to projects"
-  }
+    "goToProjects": "Return to projects",
+    "noneForThisLanguage": "No project for this language (switch language on top to check other language)"
+  },
+  "skills_n_expertise": "Skills & Expertise",
+  "tech_stack": "Technology Stack",
+  "passions": "Passions & interests",
+  "enterprise_purposes": "Enterprise purposes"
 }

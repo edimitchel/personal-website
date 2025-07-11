@@ -11,6 +11,7 @@ export default defineTransformer({
         const fileStat = fs.statSync(resolve(__dirname, '..', 'content', path));
         const { birthtime, mtime } = fileStat;
         const lang = path.includes('/fr/') ? 'fr' : 'en';
+
         return {
             ...file,
             lang,

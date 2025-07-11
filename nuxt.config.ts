@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
 
   future: { compatibilityVersion: 4 },
+  compatibilityDate: '2025-07-11',
 
   // Nuxt Modules
   // https://nuxt.com/modules
@@ -68,7 +69,12 @@ export default defineNuxtConfig({
       { code: 'fr', file: 'fr.json', name: 'Français' }
     ],
     strategy: 'prefix_except_default',
-    defaultLocale: 'en'
+    defaultLocale: 'en',
+    detectBrowserLanguage: false,
+    skipSettingLocaleOnNavigate: true,
+    bundle: {
+      optimizeTranslationDirective: false,
+    }
   },
 
   nitro: {

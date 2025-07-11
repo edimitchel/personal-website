@@ -7,16 +7,13 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  title: 'Articles'
-})
-
 const { locale } = useI18n()
 
-const blog = await useContent('blog', () => queryCollection('content').path(`/pages${locale.value === 'fr' ? '/fr' : ''}/blog`).first());
-const posts = await useContent('posts', () => queryCollection('articles').where('lang', '=', locale.value).all());
-
 useHead(() => ({
-  title: 'Michel Edighoffer / Articles'
+  title: () => 'Michel Edighoffer / Articles'
 }))
+
+const blog = await useContent('blog-' + locale.value, () => queryCollection('content').path(`/pages${locale.value === 'fr' ? '/fr' : ''}/blog`).first());
+const posts = await useContent('articles-' + locale.value, () => queryCollection('articles').where('lang', '=', locale.value).order('created', 'DESC').all());
+
 </script>

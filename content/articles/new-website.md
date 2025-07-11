@@ -3,7 +3,7 @@ title: "New webpage for a new life"
 description: "New webpage for a new life"
 slug: "new-webpage"
 categories:
-  - web
+  - Web
 tags: ["personal"]
 created: "2025-07-18"
 ---

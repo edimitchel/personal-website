@@ -7,7 +7,7 @@ description: >-
 created: 2019-01-28T00:00:00.000Z
 slug: parking-illusion-puddle
 categories:
-  - Other
+  - Autre
 thumbnail: >-
   https://blog.micheledighoffer.fr/blog/wp-content/uploads/2019/01/illusion-parking-serre-MICHEL-EDIGHOFFER-e1548688108219-825x510.jpg
 originalUrl: 'https://blog.micheledighoffer.fr/blog/parking-illusion-flaque/'

@@ -1,3 +1,110 @@
-# Michel Edighoffer
+---
+name: "Michel Edighoffer"
+title: "Développeur Full Stack Web & Innovateur Digital"
+description: "Web développeur passionné par la création d'interfaces utilisateur modernes et réactives. Expert en développement web avec une expertise en HTML, CSS et JavaScript."
+---
 
-Michel Edighoffer est un développeur web passionné par la création d'interfaces utilisateur modernes et réactives. Il a une expertise solide en développement web avec une expertise en HTML, CSS et JavaScript. Il est également un expert en développement web avec une expertise en HTML, CSS et JavaScript.
+::About{:title="title" :description="description"}
+---
+skills:
+  - category: "Développement Frontend"
+    icon: "🎨"
+    items: 
+      - "Vue.js"
+      - "Nuxt.js"
+      - "React"
+      - "TypeScript"
+      - "HTML5"
+      - "CSS3"
+      - "Responsive Design"
+      - "UI/UX"
+  - category: "Développement Backend"
+    icon: "⚙️"
+    items: 
+      - "Node.js"
+      - "NestJS"
+      - "PHP"
+      - "Python"
+      - "REST APIs"
+      - "GraphQL"
+      - "Database Design"
+  - category: "Tools & DevOps"
+    icon: "🛠️"
+    items: 
+      - "Git"
+      - "Docker"
+      - "CI/CD"
+      - "AWS"
+      - "Vercel"
+      - "Webpack"
+      - "Vite"
+      - "Testing"
+
+techStack:
+  - category: "Développement Frontend"
+    technologies:
+      - name: "Vue.js"
+        iconName: "i-logos-vue"
+        level: "Expert" 
+      - name: "Nuxt.js"
+        iconName: "i-logos-nuxt-icon"
+        level: "Expert" 
+      - name: "TypeScript"
+        iconName: "i-logos-typescript-icon"
+        level: "Avancé" 
+      - name: "React"
+        iconName: "i-logos-react"
+        level: "Avancé" 
+      - name: "TailwindCSS / UnoCSS"
+        iconName: "i-logos-unocss"
+        level: "Expert" 
+      - name: "SCSS"
+        iconName: "i-logos-sass"
+        level: "Avancé" 
+  - category: "Développement Backend & Base de données"
+    technologies:
+      - name: "Node.js"
+        iconName: "i-logos-nodejs"
+        level: "Avancé" 
+      - name: "PHP"
+        iconName: "i-logos-php"
+        level: "Avancé" 
+      - name: "MySQL"
+        iconName: "i-logos-mysql"
+        level: "Avancé" 
+      - name: "PostgreSQL"
+        iconName: "i-logos-postgresql"
+        level: "Intermédiaire" 
+
+passions:
+  - title: "Open Source"
+    icon: "🌟"
+    description: "Contribuer à la communauté développeur en participant à des projets open source et en partageant des connaissances."
+  - title: "Innovation"
+    icon: "💡"
+    description: "Explorer les technologies de pointe et trouver des solutions créatives aux problèmes complexes."
+  - title: "Expérience utilisateur"
+    icon: "👥"
+    description: "Créer des expériences intuitives et agréables que les utilisateurs aiment interagir."
+  - title: "Performance"
+    icon: "⚡"
+    description: "Optimiser les applications pour une vitesse, une efficacité et une scalabilité."
+  - title: "Apprendre"
+    icon: "📚"
+    description: "Continuer à apprendre et à rester à jour avec les dernières technologies et tendances dans l'industrie."
+
+enterprise:
+  mission: "Accompagner les entreprises avec des solutions web innovantes qui stimulent la croissance, renforcent l’engagement des utilisateurs et créent un impact digital durable grâce à des technologies de pointe et un design réfléchi."
+  vision: "Être un partenaire de confiance dans la transformation digitale, aidant les organisations de toutes tailles à tirer profit des technologies modernes web pour atteindre leurs objectifs et dépasser les attentes de leurs utilisateurs."
+  services:
+    - name: "Développement"
+      icon: "💻"
+      description: "Applications web personnalisées construites avec des frameworks modernes et des meilleures pratiques."
+    - name: "Consulting"
+      icon: "🎯"
+      description: "Conseil technique et planification stratégique pour les projets numériques."
+    - name: "Optimisation"
+      icon: "🚀"
+      description: "Optimisation des performances et amélioration de la scalabilité des applications existantes."
+---
+::

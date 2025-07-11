@@ -9,3 +9,5 @@ The content of the website is handled by nuxt content, make sure to create conte
 Create reusable component as much as possible to avoid code repetition.
 
 Prefer Composition API with typescript language.
+
+Use auto imports when doable.
