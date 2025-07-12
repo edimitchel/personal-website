@@ -221,7 +221,7 @@ ul li {
   --mid: calc(round(down, var(--count) / 2));
   --delta: calc(var(--index) - var(--mid));
 
-  transform: rotateZ(calc(-13deg * var(--delta))) translate(calc(-6px * var(--delta)), calc(min((10px * var(--delta)), (10px * var(--delta)) * -1)));
+  transform: rotateZ(calc(-12.7deg * var(--delta))) translate(calc(-6px * var(--delta)), calc(min((9.7px * var(--delta)), (9.7px * var(--delta)) * -1)));
   transform-origin: rotate(calc(150% * var(--delta))) 0%;
 }
 
@@ -264,12 +264,17 @@ ul a.router-link-active::before {
 }
 
 .header :deep(a.lang-switcher) {
-  --uno: absolute text-xl left-[100%] -top-7 -rotate-26 flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white;
+  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white;
+  top: -23.5px;
+  left: 95%;
+  rotate: -22.5deg;
 }
 
 @screen md {
   .header :deep(a.lang-switcher) {
-    --uno: left-[105%] -top-7 -rotate-28;
+    rotate: -27deg;
+    top: -34.5px;
+    left: 105%;
   }
 }
 </style>
