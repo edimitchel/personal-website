@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
     paths:
       - 'content/pages/**/*.md'
       - 'content/articles/**/*.md'
@@ -21,14 +20,13 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     
     steps:
-      - name: Setup Environment
-        uses: ./.github/workflows/setup-environment.yml
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
+        
+      - uses: ./.github/workflows/setup-environment.yml
 
       - name: Check commit message for translation keywords
         id: check-commit
