@@ -23,7 +23,7 @@ export const layoutStore = defineStore('layout', () => {
     const withEmoji = ref(true)
     const headerImage = ref({
         src: defaultImage,
-        title: 'Michel\'s avatar'
+        title: 'Michel\'s picture'
     })
     const headerCover = ref()
 

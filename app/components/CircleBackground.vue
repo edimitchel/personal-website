@@ -1,8 +1,8 @@
 <template>
   <div :class="{ pulse }" class="side-shadow">
     <svg width="100%" :height="height" fill="none">
-      <circle :r="height - 75" cx="50%" cy="-35%" :style="{ fill: fillColor.bottom, opacity: .8 }" />
-      <circle :r="height - 90" cx="50%" cy="-24%" :style="{ fill: fillColor.bottom, opacity: .4 }" />
+      <circle :r="height - 75" cx="50%" cy="-35%" :style="{ fill: fillColor.bottom, opacity: 1 }" />
+      <circle :r="height - 90" cx="50%" cy="-24%" :style="{ fill: fillColor.bottom, opacity: .5 }" />
       <circle v-if="!reversed" ref="innerCircle" :r="height - 40" cx="50%" cy="-58%" :style="{ fill: fillColor.top }" />
       <defs>
         <mask v-if="image" id="imageClip">
@@ -20,7 +20,7 @@ export default {
   props: {
     color: {
       type: [String, Array],
-      default: () => ['white', '#ddd']
+      default: () => ['white', '#eee']
     },
     height: {
       type: Number,
@@ -113,6 +113,9 @@ circle {
   max-width: 700px;
   margin: 0 auto;
   position: relative;
+
+  clip-path: ellipse(319px 100% at 50% -24%);
+  backdrop-filter: blur(4px);
 }
 
 .side-shadow::before {

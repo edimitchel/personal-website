@@ -105,7 +105,8 @@ const { isLoading: pulse } = useLoadingIndicator();
 <style scoped>
 .header {
   height: 238px;
-  --uno: overflow-hidden flex items-center flex-col text-center pt-2 relative flex-shrink-0;
+  --uno: overflow-hidden flex items-center flex-col text-center pt-2 sticky flex-shrink-0 z-50;
+  top: -143px;
 }
 
 .logo {
@@ -147,7 +148,7 @@ const { isLoading: pulse } = useLoadingIndicator();
   z-index: -1;
   position: relative;
   width: 600px;
-  top: -35px;
+  top: -30px;
 }
 
 .title-header {
@@ -263,7 +264,7 @@ ul a.router-link-active::before {
 }
 
 .header :deep(a.lang-switcher) {
-  --uno: absolute text-xl left-[98%] -top-5 -rotate-28 flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white;
+  --uno: absolute text-xl left-[100%] -top-7 -rotate-26 flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white;
 }
 
 @screen md {
