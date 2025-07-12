@@ -6,6 +6,7 @@ on:
       - main
       - master
     paths:
+      - 'content/pages/**/*.md'
       - 'content/articles/**/*.md'
       - 'content/projects/**/*.md'
 
@@ -20,22 +21,14 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     
     steps:
+      - name: Setup Environment
+        uses: ./.github/workflows/setup-environment.yml
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install
 
       - name: Check commit message for translation keywords
         id: check-commit
@@ -107,7 +100,7 @@ jobs:
         id: translation-changes
         run: |
           # Check if any French translation files were created or modified
-          if git diff --quiet HEAD content/fr/; then
+          if git diff --quiet HEAD content/*/fr/; then
             echo "No translation changes detected"
             echo "has_changes=false" >> $GITHUB_OUTPUT
           else
@@ -116,7 +109,7 @@ jobs:
             
             # Show what changed
             echo "📋 Translation changes:"
-            git diff --name-only HEAD content/fr/ || true
+            git diff --name-only HEAD content/*/fr/ || true
           fi
 
       - name: Commit translation changes (Push)
@@ -125,22 +118,46 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          git add content/fr/
+          git add content/*/fr/
           
           COMMIT_MSG="🤖 Auto-translate content"
           if [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
-            COMMIT_MSG="🔄 Force retranslate content (triggered by commit keyword)"
+            COMMIT_MSG="$COMMIT_MSG (forced)"
           fi
           
+          # Get the current date in YYYY-MM-DD format
+          CURRENT_DATE=$(date +%Y-%m-%d)
+          
+          # Get the list of changed files to use in branch name
+          CHANGED_FILES=$(git diff --name-only HEAD content/*/fr/ | head -n 1)
+          FILE_NAME=$(basename "$CHANGED_FILES" | sed 's/\..*//')
+          
+          # Create a branch name with the file name and date
+          BRANCH_NAME="translation/$FILE_NAME-$CURRENT_DATE"
+          
+          # Create a new branch
+          git checkout -b "$BRANCH_NAME"
+          
+          # Commit changes
           git commit -m "$COMMIT_MSG
 
-          - Translated ${{ steps.changed-files.outputs.count }} changed file(s)
-          - Force translation: ${{ steps.check-commit.outputs.force_translate }}
-          - Files: ${{ steps.changed-files.outputs.files }}
+          Details:
+            - Event: ${{ github.event_name }}
+            - Force translation: ${{ steps.check-commit.outputs.force_translate }}
+            - Files: ${{ steps.changed-files.outputs.files }}
+            
+            [skip ci]"
           
-          [skip ci]"
+          # Push the new branch
+          git push origin "$BRANCH_NAME"
           
-          git push
+          # Create a PR from the new branch to main
+          echo "Creating PR from $BRANCH_NAME to main"
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls \
+            -d "{\"title\":\"[Automated] Translation for $FILE_NAME ($CURRENT_DATE)\",\"head\":\"$BRANCH_NAME\",\"base\":\"main\",\"body\":\"Automated translation update for $FILE_NAME.\n\n**Details:**\n- Files: ${{ steps.changed-files.outputs.files }}\n- Force Translation: ${{ steps.check-commit.outputs.force_translate }}\n\nPlease review the translations before merging.\"}"
 
       - name: Generate translation summary (PR)
         if: github.event_name == 'pull_request'
@@ -168,7 +185,7 @@ jobs:
             
             echo "### 🔍 Generated Translations:" >> translation_summary.md
             echo '```' >> translation_summary.md
-            git diff --name-only HEAD content/fr/ >> translation_summary.md
+            git diff --name-only HEAD content/*/fr/ >> translation_summary.md
             echo '```' >> translation_summary.md
             echo "" >> translation_summary.md
             
