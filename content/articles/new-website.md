@@ -15,4 +15,8 @@ Not only a new page but also a new step for my professional life by becoming a f
 
 As an Nuxt Expert, I couldn't use another framework than Nuxt. Especially I wanted something simple to edit content using markdown thus an accessible editor to let me update the content from any terminal.
 
-Also, what I really want is to make my content available in all languages I speak, French (my native one) and English. As for today, AI is present everywhere, I decide to use Mistral API to automatically translate content on creation or retranslate it on demand. Any new content translated is submitted to a review using PRs. Then when merge, translated content arrives into the french version because I choose to write new content in English not in French as I'm used to.
+Also, what I really want is to make my content available in all languages I speak, French (my native one) and English.
+
+Today, AI is everywhere, I decide to use Mistral API to automatically translate content on creation or retranslate it on demand. Any new content translated is submitted to a review using PRs. Then when merge, translated content arrives into the french version.
+
+I choose to write new content in English not in French as I'm used to.
