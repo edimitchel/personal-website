@@ -1,0 +1,144 @@
+name: Build, Translate & Deploy
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'content/**/*.md'
+      - 'app/**'
+      - 'nuxt.config.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+  workflow_dispatch:
+
+env:
+  MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+
+jobs:
+  build-translate-deploy:
+    runs-on: ubuntu-latest
+    environment: NuxtHub
+    
+    # Skip if commit was made by a bot to prevent infinite loops
+    if: github.actor != 'github-actions[bot]'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      # Translation Step
+      - name: Check for content changes
+        id: content-changes
+        run: |
+          # Check if any content files were changed
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep -E '^content/(articles|projects|pages)/.*\.md$' || true)
+          
+          if [ -n "$CHANGED_FILES" ]; then
+            echo "content_changed=true" >> $GITHUB_OUTPUT
+            echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+            echo "Content files changed: $CHANGED_FILES"
+          else
+            echo "content_changed=false" >> $GITHUB_OUTPUT
+            echo "No content files changed"
+          fi
+
+      - name: Check commit message for translation keywords
+        id: check-commit
+        run: |
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          echo "Commit message: $COMMIT_MSG"
+          
+          # Check for translation keywords (case insensitive)
+          if echo "$COMMIT_MSG" | grep -i -E '\[translate\]|\[retranslate\]|\[force-translate\]|translate:force|retranslate'; then
+            echo "force_translate=true" >> $GITHUB_OUTPUT
+            echo "🔄 Translation keywords detected in commit message"
+          else
+            echo "force_translate=false" >> $GITHUB_OUTPUT
+            echo "✅ No translation keywords found"
+          fi
+
+      - name: Run translations
+        if: steps.content-changes.outputs.content_changed == 'true' || steps.check-commit.outputs.force_translate == 'true'
+        run: |
+          echo "🌐 Running translations..."
+          
+          if [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
+            echo "🔄 Force translating all content..."
+            pnpm translate all --force
+          else
+            echo "📝 Translating changed files..."
+            pnpm translate changed ${{ steps.content-changes.outputs.changed_files }}
+          fi
+
+      - name: Check for translation changes
+        id: translation-changes
+        run: |
+          # Check if any French translation files were created or modified
+          if git diff --quiet HEAD content/*/fr/; then
+            echo "No translation changes detected"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "Translation changes detected"
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            
+            # Show what changed
+            echo "📋 Translation changes:"
+            git diff --name-only HEAD content/*/fr/ || true
+          fi
+
+      - name: Commit translation changes
+        if: steps.translation-changes.outputs.has_changes == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          
+          git add content/*/fr/
+          
+          COMMIT_MSG="🤖 Auto-translate content before deployment"
+          if [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
+            COMMIT_MSG="$COMMIT_MSG (forced)"
+          fi
+          
+          git commit -m "$COMMIT_MSG
+
+          Details:
+            - Content changed: ${{ steps.content-changes.outputs.content_changed }}
+            - Force translation: ${{ steps.check-commit.outputs.force_translate }}
+            - Files: ${{ steps.content-changes.outputs.changed_files }}
+            
+            [skip ci]"
+          
+          git push
+
+      # Build & Deploy Step
+      - name: Deploy with nuxt-hub cli
+        run: npx nuxthub deploy
+        env:
+          NUXT_HUB_PROJECT_KEY: ${{ secrets.NUXT_HUB_PROJECT_KEY}}
+          NUXT_HUB_USER_TOKEN: ${{ secrets.NUXT_HUB_USER_TOKEN }}
+
+      - name: Final status
+        run: |
+          echo "🎉 Build, Translation & Deployment completed!"
+          echo "📊 Summary:"
+          echo "  - Content changed: ${{ steps.content-changes.outputs.content_changed }}"
+          echo "  - Force translation: ${{ steps.check-commit.outputs.force_translate }}"
+          echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
+          echo "  - Deployment: ✅ Completed"
