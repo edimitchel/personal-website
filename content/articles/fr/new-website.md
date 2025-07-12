@@ -6,9 +6,8 @@ categories:
   - Web
 tags:
   - personal
-created: 18 juillet 2025
+created: 2025-07-18T00:00:00.000Z
 translation_state: draft
-original_slug: new-website
 source_content_hash: 6a3965803119390d5e6d172836aa95a1
 translated_by: AI Translator
 translated_at: '2025-07-12T22:37:29.867Z'

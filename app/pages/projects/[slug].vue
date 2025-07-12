@@ -5,7 +5,7 @@
       <div v-else class="prose">
         <h1>{{ $t('project.notFound') }}</h1>
         <p>{{ $t('project.notFoundDescription') }}</p>
-        <NuxtLink to="/projects">{{ $t('project.goToProjects') }}</NuxtLink>
+        <NuxtLinkLocale to="/projects">{{ $t('project.goToProjects') }}</NuxtLinkLocale>
       </div>
     </main>
   </article>

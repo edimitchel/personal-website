@@ -8,7 +8,7 @@
       <div v-else>
         <h1>{{ $t('article.notFound') }}</h1>
         <p>{{ $t('article.notFoundDescription') }}</p>
-        <NuxtLink to="/articles">{{ $t('article.goToArticles') }}</NuxtLink>
+        <NuxtLinkLocale to="/articles">{{ $t('article.goToArticles') }}</NuxtLinkLocale>
       </div>
     </main>
   </article>
@@ -20,11 +20,7 @@ const { locale } = useI18n()
 
 const content = await useContent(
   'article-' + locale.value + '-' + route.params.slug,
-  () => {
-    const result = queryCollection('articles').where('lang', '=', locale.value).where('slug', '=', route.params.slug).first()
-    console.log(locale.value)
-    return result
-  },
+  () => queryCollection('articles').where('lang', '=', locale.value).where('slug', '=', route.params.slug).first(),
   { onFailure: () => { } }
 );
 

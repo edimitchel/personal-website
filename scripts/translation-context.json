@@ -163,7 +163,7 @@
       "Performance web"
     ],
     "target_audience": "Développeurs, clients techniques, recruteurs",
-    "tone": "Professionnel mais accessible"
+    "tone": "Professionnel, dynamique et accessible"
   },
   "translation_rules": [
     "Préserver tous les noms de technologies, frameworks et outils en anglais",
@@ -175,7 +175,7 @@
     "Préserver les URLs, liens et références externes",
     "Conserver la mise en forme (gras, italique, listes, etc.)",
     "Traduire les titres et descriptions de manière engageante",
-    "Adapter les dates au format français à l'exception des métadonnées frontmatter",
+    "Adapter les dates au format français MAIS pas pour les dates dans les métadonnées frontmatter",
     "Ne pas traduire les identifiants du type slug, id, etc surtout sur les métadonnées frontmatter"
   ]
 }
