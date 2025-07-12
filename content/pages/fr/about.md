@@ -1,7 +1,7 @@
 ---
 name: "Michel Edighoffer"
 title: "Développeur Full Stack Web & Innovateur Numérique"
-description: "Web développeur passionné par la création d'interfaces utilisateur modernes et réactives. Expert en développement web avec une expertise en HTML, CSS et JavaScript."
+description: "Web développeur passionné par la création d'interfaces utilisateur modernes et réactives. Spécilisé pour trouver les meilleures solutions transformant une idée en expériences utilisateur optimales"
 ---
 
 ::About{:title="title" :description="description"}
