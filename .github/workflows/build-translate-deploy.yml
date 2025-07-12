@@ -9,6 +9,9 @@ on:
       - 'nuxt.config.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
+  pull_request:
+    branches: ['main']
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 env:
@@ -116,19 +119,33 @@ jobs:
             git diff --name-only HEAD content/*/fr/ || true
           fi
 
-      - name: Commit translation changes
-        if: steps.translation-changes.outputs.has_changes == 'true'
+      - name: Create PR for translation changes
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.translation-changes.outputs.has_changes == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
+          # Get the current date in YYYY-MM-DD format
+          CURRENT_DATE=$(date +%Y-%m-%d)
+          
+          # Get the list of changed files to use in branch name
+          CHANGED_FILES=$(git diff --name-only HEAD content/*/fr/ | head -n 1)
+          FILE_NAME=$(basename "$CHANGED_FILES" | sed 's/\..*//')
+          
+          # Create a branch name with the file name and date
+          BRANCH_NAME="translation/$FILE_NAME-$CURRENT_DATE"
+          
+          # Create a new branch
+          git checkout -b "$BRANCH_NAME"
+          
           git add content/*/fr/
           
-          COMMIT_MSG="🤖 Auto-translate content before deployment"
+          COMMIT_MSG="🤖 Auto-translate content"
           if [ "${{ steps.check-commit.outputs.force_translate }}" = "true" ]; then
             COMMIT_MSG="$COMMIT_MSG (forced)"
           fi
           
+          # Commit changes
           git commit -m "$COMMIT_MSG
 
           Details:
@@ -138,10 +155,29 @@ jobs:
             
             [skip ci]"
           
-          git push
+          # Push the new branch
+          git push origin "$BRANCH_NAME"
+          
+          # Create a PR from the new branch to main
+          echo "Creating PR from $BRANCH_NAME to main"
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls \
+            -d "{\"title\":\"[Automated] Translation for $FILE_NAME ($CURRENT_DATE)\",\"head\":\"$BRANCH_NAME\",\"base\":\"main\",\"body\":\"🤖 Automated translation update for $FILE_NAME.\n\n**Details:**\n- Files: ${{ steps.content-changes.outputs.changed_files }}\n- Force Translation: ${{ steps.check-commit.outputs.force_translate }}\n\n⚠️ **Please review the translations before merging to avoid deploying incorrect content to production.**\"}"
 
-      # Build & Deploy Step
+      # Ensure we're back on main branch before deployment
+      - name: Switch back to main branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          echo "Current branch: $(git branch --show-current)"
+          git checkout main
+          echo "Switched to branch: $(git branch --show-current)"
+          echo "Latest commit on main: $(git log -1 --oneline)"
+
+      # Build & Deploy Step - ONLY on main branch pushes (not PRs)
       - name: Deploy with nuxt-hub cli
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npx nuxthub deploy
         env:
           NUXT_HUB_PROJECT_KEY: ${{ secrets.NUXT_HUB_PROJECT_KEY}}
@@ -149,9 +185,27 @@ jobs:
 
       - name: Final status
         run: |
-          echo "🎉 Build, Translation & Deployment completed!"
-          echo "📊 Summary:"
-          echo "  - Content changed: ${{ steps.content-changes.outputs.content_changed }}"
-          echo "  - Force translation: ${{ steps.check-commit.outputs.force_translate }}"
-          echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
-          echo "  - Deployment: ✅ Completed"
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            if [ "${{ steps.translation-changes.outputs.has_changes }}" = "true" ]; then
+              echo "🎉 Translation PR created & Deployment completed!"
+              echo "📊 Summary:"
+              echo "  - Content changed: ${{ steps.content-changes.outputs.content_changed }}"
+              echo "  - Force translation: ${{ steps.check-commit.outputs.force_translate }}"
+              echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
+              echo "  - Translation PR: ✅ Created (requires review)"
+              echo "  - Deployment: ✅ Completed"
+            else
+              echo "🎉 Deployment completed!"
+              echo "📊 Summary:"
+              echo "  - Content changed: ${{ steps.content-changes.outputs.content_changed }}"
+              echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
+              echo "  - Deployment: ✅ Completed"
+            fi
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "🎉 PR validation completed!"
+            echo "📊 Summary:"
+            echo "  - Content changed: ${{ steps.content-changes.outputs.content_changed }}"
+            echo "  - Force translation: ${{ steps.check-commit.outputs.force_translate }}"
+            echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
+            echo "  - Deployment: ⏸️ Skipped (PR mode)"
+          fi
