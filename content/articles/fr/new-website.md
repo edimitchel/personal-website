@@ -15,7 +15,7 @@ translated_at: '2025-07-12T22:37:29.867Z'
 last_updated: '2025-07-12T22:37:29.867Z'
 ---
 
-Voici ma nouvelle page web. J'en avais envie depuis un moment et j'ai enfin trouvé le temps de la réaliser. C'est un design simple, moderne et responsive dont je suis fier. J'espère que vous going to like it.
+Voici ma nouvelle page web. J'en avais envie depuis un moment et j'ai enfin trouvé le temps de la réaliser. C'est un design simple, moderne et responsive dont je suis fier. J'espère que vous l'apprécierez.
 
 Ce n'est pas seulement une nouvelle page, mais aussi un nouveau pas dans ma vie professionnelle en tant que développeur fullstack freelance.
 
