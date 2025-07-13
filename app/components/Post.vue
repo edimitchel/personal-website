@@ -29,7 +29,6 @@ function formatDate(date: string, simple = false) {
   return Intl.DateTimeFormat(
     locale.value,
     simple ? undefined : {
-      weekday: 'long',
       year: 'numeric',
       month: 'long',
       day: 'numeric',

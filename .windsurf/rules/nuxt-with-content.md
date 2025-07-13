@@ -11,3 +11,5 @@ Create reusable component as much as possible to avoid code repetition.
 Prefer Composition API with typescript language.
 
 Use auto imports when doable.
+
+Please do never start a server by your own, I'm already running it for you.

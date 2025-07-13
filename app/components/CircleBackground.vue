@@ -4,10 +4,14 @@
       <circle :r="height - 75" cx="50%" cy="-35%" :style="{ fill: fillColor.bottom, opacity: 1 }" />
       <circle :r="height - 90" cx="50%" cy="-24%" :style="{ fill: fillColor.bottom, opacity: .5 }" />
       <circle v-if="!reversed" ref="innerCircle" :r="height - 40" cx="50%" cy="-58%" :style="{ fill: fillColor.top }" />
+      <!-- Indeterminate progress indicator border -->
+      <circle v-if="pulse" class="progress-border indeterminate" :r="height + 25 + progressWidth / 2" cx="50%" cy="-60%"
+        :stroke="progressColor" :stroke-width="progressWidth" fill="none"
+        :stroke-dasharray="progressCircumference * 0.25 + ',' + progressCircumference * 0.20 + ',' + progressCircumference * 0.35" />
       <defs>
         <mask v-if="image" id="imageClip">
           <!-- La forme crée par le détourage est un simple cercle. -->
-          <circle r="450" cx="50%" cy="-55%" :style="{ fill: fillColor.top }" />
+          <circle :r="height - 40" cx="50%" cy="-58%" />
         </mask>
       </defs>
       <image v-if="image" id="image" :x="imageLeft" y="0" :width="imageWidth" mask="url(#imageClip)" :xlink:href="image"
@@ -34,6 +38,14 @@ export default {
     image: {
       type: String,
       default: undefined
+    },
+    progressColor: {
+      type: String,
+      default: 'grey'
+    },
+    progressWidth: {
+      type: Number,
+      default: 6
     }
   },
   data() {
@@ -52,6 +64,9 @@ export default {
         top,
         bottom
       }
+    },
+    progressCircumference() {
+      return 2 * Math.PI * (this.height - 110)
     }
   },
   mounted() {
@@ -85,6 +100,25 @@ div {
 circle {
   transform-origin: 50% 0;
   transition: all 600ms linear;
+}
+
+.progress-border {
+  transform-origin: 50% -60%;
+  stroke-linecap: round;
+}
+
+.indeterminate {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 #image {
