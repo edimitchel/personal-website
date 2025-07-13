@@ -71,7 +71,7 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__title {
-  --uno: m-0 pt-2 leading-tight text-2xl font-semibold;
+  --uno: m-0 pt-2 leading-tight text-lg font-semibold;
 }
 
 .post__description {
