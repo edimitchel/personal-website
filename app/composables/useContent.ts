@@ -1,7 +1,7 @@
 import type { PageCollectionItemBase } from "@nuxt/content";
 
 export default async function useContent<T extends (PageCollectionItemBase | PageCollectionItemBase[])>(name: string, query: () => Promise<T | null>, hooks?: { onSuccess?: (data: T) => void, onFailure?: () => void }) {
-    const { data, pending, error, refresh } = await useAsyncData(
+    const { data } = await useAsyncData(
         name,
         query,
         {

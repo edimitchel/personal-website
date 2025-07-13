@@ -46,7 +46,7 @@ L’interface de Sublime Text est très simple : elle intègre peu de boutons e
 
 Ci-dessous, la page de préférences (totalement absente sur Sublime Text).
 
-[![Paramètres](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d%E2%80%99%C3%A9cran-2015-03-13-%C3%A0-19.16.54-715x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d%E2%80%99%C3%A9cran-2015-03-13-%C3%A0-19.16.54.png)
+[![Paramètres](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d%E2%80%99%C3%A9cran-2015-03-13-%C3%A0-19.16.54-715x400.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/Capture-d%E2%80%99%C3%A9cran-2015-03-13-%C3%A0-19.16.54.png)
 
 Vous pouvez configurer facilement les paramètres généraux, les raccourcis, les modules, les thèmes, les mises à jour et les nouvelles installations.
 
@@ -60,15 +60,15 @@ Ainsi, Atom va, en plus de gérer votre espace de travail, gérer le versionning
 
 # Un aperçu d’Atom
 
-[![Raccourcis](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/raccourcis-574x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/raccourcis.png)
+[![Raccourcis](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/raccourcis-574x400.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/raccourcis.png)
 
 *Configuration des raccourcis*
 
- [![Theme](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/theme-600x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/theme.png)
+ [![Theme](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/theme-600x400.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/theme.png)
 
 *Configuration du thème*
 
-[![Installation](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/install-579x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/install.png)
+[![Installation](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/install-579x400.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/install.png)
 
 *Configuration des modules (packages).*
 
@@ -76,11 +76,11 @@ Ainsi, Atom va, en plus de gérer votre espace de travail, gérer le versionning
 
 Vous assurez en CSS et vous n’aimez pas certains aspects qu’offre l’interface d’Atom ? Alors, je vous annonce que vous pouvez modifier à l’infini l’interface qui n’est autre qu’une structure html décorée par du CSS.
 
- [![html](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/html-714x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/html.png)
+ [![html](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/html-714x400.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/html.png)
 
- [![js](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/js-711x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/js.png)
+ [![js](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/js-711x400.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/js.png)
 
- [![css](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/css-712x400.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/03/css.png)
+ [![css](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/css-712x400.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/03/css.png)
 
 # Et vous, Atom vous intéresse ?
 

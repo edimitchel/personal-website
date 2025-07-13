@@ -16,17 +16,17 @@
 
 <script setup lang="ts">
 const route = useRoute()
-const { locale } = useI18n()
-
-const content = await useContent(
-  'article-' + locale.value + '-' + route.params.slug,
-  () => queryCollection('articles').where('lang', '=', locale.value).where('slug', '=', route.params.slug).first(),
-  { onFailure: () => { } }
+const { content, isTranslated } = await useTranslatedContent(
+  'article-' + route.params.slug,
+  queryCollection('articles').where('slug', '=', route.params.slug),
 );
 
-if(content?.value) {
+if (content) {
   useHead({
-    title: 'Michel Edighoffer / ' + content?.value?.title,
+    title: 'Michel Edighoffer / ' + content.title,
   })
 }
+
+const store = layoutStore()
+store.notTranslated = !isTranslated
 </script>

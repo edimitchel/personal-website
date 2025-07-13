@@ -15,7 +15,7 @@ tags: []
 
 Vous en avez certainement [entendu parlé](https://book.micheledighoffer.fr/article/nuit-info-2017-un-nouveau-defi) – ou peut-être pas – en tout cas, la dixième édition de la [nuit de l’info](https://www.nuitdelinfo.com/) a eu lieu en cette fin d’année 2017 le 7 et 8 décembre.
 
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/12/lanuitdelinfo_altran_hd.png)
+![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/12/lanuitdelinfo_altran_hd.png)
 
 Quelques chiffres de la nuit
 
@@ -37,7 +37,7 @@ Les partenaires entreprises ont été **cinquante et unes** à participer et par
 
 ALTRAN était présent sur le site de STRASBOURG (à l’UFR de Maths-Info) pour proposer aux étudiants une animation interactive : il s’agissait d’une application de manipulation d’objet 3D sans contact ([plus d’info ici](https://github.com/AltranResearchMedica/ARAM)). Notre stand proposait des informations sur la culture et les valeurs de l’entreprise accompagnés de goodies et de petites folies culinaires.
 
-![Participation d'ALTRAN](https://micheledighoffer.fr/blog/wp-content/uploads/2017/12/images-ndi-altran.png)
+![Participation d'ALTRAN](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/12/images-ndi-altran.png)
 
 En plus du [Stage Book](http://zouhairj.com/altran/Altran-book-stages-ingenieur-sept-2017-2018.pdf) d’Altran (un référentiel pour les stages 2017/2018), le bouquin de [Commit Strip](https://www.commitstrip.com/fr/) (une bande-dessinée qui met en lumière la vie des développeurs : assez connue et appréciée des étudiants sur place !) a été mis à disposition.
 

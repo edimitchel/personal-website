@@ -47,15 +47,15 @@ Windows 8.
 
 - Revenir sur la page précédente en un coup de doigts et naviguer sur une page avec une bonne précision
 
-[![scrolletretour](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)*Retour avec deux doigts sur internet et ascenseur avec deux doigts*
+[![scrolletretour](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/scrolletretour.gif)*Retour avec deux doigts sur internet et ascenseur avec deux doigts*
 
 - Fermer la session en un coup de bouton prolongé
 
-[![lock](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/lock.gif)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/lock.gif) *Le verrouillage simple et rapide*
+[![lock](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/lock.gif)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/lock.gif) *Le verrouillage simple et rapide*
 
 - Passer rapidement à un mode « travail »
 
-[![fullscreen](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/fullscreen.gif)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/06/fullscreen.gif) *Le bouton Plein d’écran pratique pour les cours (quand je commence à travailler)*
+[![fullscreen](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/fullscreen.gif)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/06/fullscreen.gif) *Le bouton Plein d’écran pratique pour les cours (quand je commence à travailler)*
 
 ## Quels sont les recommandations que tu ferais aux créateurs des Chromebooks ?
 

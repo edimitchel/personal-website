@@ -52,7 +52,7 @@ Lorsqu’une compétence est recommandée, je suis directement notifié par SMS 
 
 Pour gérer le *front office*, j’ai utilisé un framework ultra-puissant propulsé par Google : AngularJS. Ce framework organise son cœur en module et met à disposition des méthodes très faciles à comprendre et pourtant très puissantes. Il étend la force du html en permettant l’utilisation d’attributs spéciaux et la création de ses propres balises HTML pour configurer l’application. Cependant gare à la validation W3C (merci aux attributs *data* qu’apporte HTML 5).
 
-[![angularjs](https://micheledighoffer.fr/blog/wp-content/uploads/2015/07/angularjs.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2015/07/angularjs.png)
+[![angularjs](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/07/angularjs.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2015/07/angularjs.png)
 
 La gestion des formulaires est pour moi l’une des fonctionnalités les plus perçantes. Mais bien d’autres suivent pour offrir au développeur un développement rapide, organisé et efficace. Pourquoi organisé et efficace ? Parce qu’AngularJS force l’utilisation du patron de conception MVC (Modèle-Vue-Contrôleur) et que par cette contrainte le code écrit sera robuste. Un concept encore plus fou est implémenté dans son coeur : le data-binding. Ce concept est très implanté dans les développements .Net et c’est certainement de là que vient ce concept. Le data-binding créé un lien très étroit entre la vue et le modèle : ainsi AngularJS utilise la notion de *scope* pour représenter les données dans un contexte.
 

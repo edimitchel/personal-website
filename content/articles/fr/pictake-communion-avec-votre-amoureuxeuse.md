@@ -11,7 +11,7 @@ thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/tb_p
 originalUrl: https://blog.micheledighoffer.fr/blog/pictake-communion-avec-votre-amoureuxeuse/
 ---
 
-![Pic'take](https://micheledighoffer.fr/blog/wp-content/uploads/2013/08/logo.png)
+![Pic'take](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/logo.png)
 
 Voilà, mon dernier projet approche vers son aboutissement!
 
@@ -19,4 +19,4 @@ Ce projet vise tout premièrement et uniquement les couples: ce site web interac
 
 Ce projet a été lancé avant tout pour moi (et ma moitié). Il nous sert à tous les deux puisque nous pouvons à tout moment partager nos ressentis après un séjour, nos peines mais également nos joies. Lorsqu'une publication se voit d'être marquante et qu'elle peut faire référence à une date précise, Pic'take récupérera la date que vous aurez entrée. Par la suite, sur la page « Timeline » dédiée à l'affichage des photos en mode « rétrospective », vous pourrez retrouver vos photos par date de publication ou par date marquante.
 
-[![pictake-general](https://micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-general-300x164.jpg)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-general.jpg)[![pictake-notifications](https://micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-notifications-300x179.jpg)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-notifications.jpg)[![pictake-ajout](https://micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-ajout-300x149.jpg)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-ajout.jpg)
+[![pictake-general](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-general-300x164.jpg)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-general.jpg)[![pictake-notifications](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-notifications-300x179.jpg)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-notifications.jpg)[![pictake-ajout](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-ajout-300x149.jpg)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/08/pictake-ajout.jpg)

@@ -19,7 +19,7 @@ Le premier (.. roulements de tambour..)
 
 [*pourpre.com/colorbox*](https://pourpre.com/colorbox/)
 
-[![La Boîte À Couleur](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC-300x152.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC.png)
+[![La Boîte À Couleur](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC-300x152.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC.png)
 
 Le principe de petit outil est de\*\* capturer la couleur\*\* de n'importe quel pixel que vous trouverez sans devoir faire une capture d'écran et d'utiliser la pipette sur un logiciel de retouche. LBAC permet d'afficher la couleur capturée sous différents formats:
 
@@ -40,7 +40,7 @@ Emmet
 
 [*emmet.io*](https://emmet.io/)
 
-[![Emmet](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/56e63d4d229aafd3a05ea34a46cf2600-300x300.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/56e63d4d229aafd3a05ea34a46cf2600.png)
+[![Emmet](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/56e63d4d229aafd3a05ea34a46cf2600-300x300.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/56e63d4d229aafd3a05ea34a46cf2600.png)
 
 Ce plugin que l'on peut implanter dans son éditeur de code favori (Notepad ++, Sublime Text, ..) permet de **générer du HTML ou du CSS** (tout dépend sur quel fichier on développe : .html ou .css).
 
@@ -111,7 +111,7 @@ CSS Refresh
 
 [cssrefresh.frebsite.nl](http://cssrefresh.frebsite.nl/)
 
-[![CSS Refresh](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/cssrefresh-logo-300x281.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2013/04/cssrefresh-logo.png)
+[![CSS Refresh](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/cssrefresh-logo-300x281.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/cssrefresh-logo.png)
 
 Cet outil que j'utilisais beaucoup à une période permet d'intégrer du CSS et d'avoir un aperçu direct (que ce soit en local ou en ligne, sur un CMS comme une site basique).
 

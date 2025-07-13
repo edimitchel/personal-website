@@ -11,7 +11,7 @@ thumbnail: "null"
 originalUrl: https://blog.micheledighoffer.fr/blog/la-nuit-de-linfo-2014-resume/
 ---
 
-[![n2i\_banner](https://micheledighoffer.fr/blog/wp-content/uploads/2014/12/n2i_banner.png)](https://micheledighoffer.fr/blog/wp-content/uploads/2014/12/n2i_banner.png)
+[![n2i\_banner](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/12/n2i_banner.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/12/n2i_banner.png)
 
 Le couché du soleil du 4 décembre 2014 (c'est-à-dire 16h36) signifiait bien plus qu’un simple couché de soleil pour une bonne partie des étudiant(e)s français(es). La **Nuit de l’Info 2014**, a encore une fois frappé un gros coup sur la France avec près de 3000 participants : tous avec l’objectif de travailler en équipe sur un projet informatique jusqu’au petit matin 8h04.
 
@@ -41,7 +41,7 @@ L’agilité était à Strasbourg cette nuit là et c’est l’équipe « GROKL
 
 L’équipe « 418 I’m a teapot » (référence au sympathique code d’erreur HTTP) peut être considérée sans aucun doute comme l’équipe gagnante de la nuit de l’info 2014 avec ses \*\*3 défis \*\*remportés! Elle arrive en première position sur le défi *« L’espace bleu »* proposé par le crédit mutuel, en deuxième position sur le défi *« User Centric Application, au cœur de l’innovation »* et en deuxième position sur le défi *« Défi Rhénatic : Soyez surprenant ! »*.
 
-Et pour finir bien comme il faut, je termine avec les deux équipes issues de la [formation CNAM par alternance](https://micheledighoffer.fr/blog/futur-ingenieur-informatique-avec-itii-alsace/) qui ont réussi à percer.
+Et pour finir bien comme il faut, je termine avec les deux équipes issues de la [formation CNAM par alternance](https://blog.micheledighoffer.fr/blog/futur-ingenieur-informatique-avec-itii-alsace/) qui ont réussi à percer.
 
 L’équipe « Les Leek Warriors du CNAM » remporte en deuxième position le défi proposé par Alsacréations *« API feet »*.
 
@@ -59,7 +59,7 @@ Nous avions organisé nos tables de manière à bien séparer l’équipe Commun
 
 Le pôle Graphisme fournit les maquettes, le pôle Développement fournit la conception et l’architecture et le pôle Intégration s’occupait de mettre les deux ensemble.
 
-[![equipe\_cakeinblack](https://micheledighoffer.fr/blog/wp-content/uploads/2014/12/10380149_877342142310451_338104414594085961_o-600x400.jpg)](https://micheledighoffer.fr/blog/wp-content/uploads/2014/12/10380149_877342142310451_338104414594085961_o.jpg)Disposition des tables de l'équipe Cake In Black – PHOTO © DALGO [www.photodalgo.fr](http://www.photodalgo.fr)
+[![equipe\_cakeinblack](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/12/10380149_877342142310451_338104414594085961_o-600x400.jpg)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/12/10380149_877342142310451_338104414594085961_o.jpg)Disposition des tables de l'équipe Cake In Black – PHOTO © DALGO [www.photodalgo.fr](http://www.photodalgo.fr)
 
 ---
 

@@ -24,7 +24,7 @@ Ce billet vous prendra 10 minutes si vous lisez tout. Si une seule partie vous i
 
 # Avant, je voulais me contenter d'un métier simple
 
-![metier-facile](https://micheledighoffer.fr/blog/wp-content/uploads/2016/11/photo-annee-03-2-e1479723258889-300x216.jpeg)
+![metier-facile](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2016/11/photo-annee-03-2-e1479723258889-300x216.jpeg)
 
 Comme la plupart des ados, je préférais jouer et quand il s'agissait de travailler de faire le plus simple. À ce moment-là, mes objectifs étaient clairement différents qu'actuellement : je souhaitais travailler en me souciant que de mon travail et pas celui d'autrui (et surtout pas de subordonnés). J'avais moi-même beaucoup de mal à me gérer seul.
 
@@ -42,7 +42,7 @@ Le DUT Métier du Multimédia et de l'Internet (ex SRC) m'a aidé à prendre une
 
 # Limité dans la théorie pour un gros projet
 
-Les projets personnels sont des vecteurs incontournables pour accéder rapidement à un niveau professionnel, mais les ressources disponibles – y a quelques années auparavant – étaient limitées. Le [très gros projet](https://micheledighoffer.fr/blog/interface-client-entreprise) que j'avais entrepris après mon premier stage m'a mis devant un constat : il me manque des compétences de conception et d'architecture.
+Les projets personnels sont des vecteurs incontournables pour accéder rapidement à un niveau professionnel, mais les ressources disponibles – y a quelques années auparavant – étaient limitées. Le [très gros projet](https://blog.micheledighoffer.fr/blog/interface-client-entreprise) que j'avais entrepris après mon premier stage m'a mis devant un constat : il me manque des compétences de conception et d'architecture.
 
 # Ingénieur ? Nooon, j'suis pas fait pour ça. Vraiment ?
 
@@ -72,13 +72,13 @@ En dernière année, ces deux « threads » se rejoignent pour former le projet 
 
 Plusieurs de mes connaissances savent que je ne suis pas une perle en expression française (peut-être tu t'en rends compte actuellement en lisant ces lignes).. mais le mémoire, je peux vous dire, ce n’est pas une partie de plaisir.. Il faut savoir garder une vision extérieure avec une approche précise et maîtrisée : autant dire que ce n’est pas du tout mon genre.. Tellement pas mon genre que j'ai dû réécrire mon mémoire de zéro alors que j'étais pas loin des 90 pages.. Ce fut un moment fort agréable.. ou pas tient! J'm'en suis mordu les doigts et j'ai remis une dernière fois en doute mes compétences..
 
-![memoire](https://micheledighoffer.fr/blog/wp-content/uploads/2016/11/me%CC%81moire-e1479737023688-300x272.jpg)
+![memoire](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2016/11/me%CC%81moire-e1479737023688-300x272.jpg)
 
-Au final, plus de peur que de mal ; grâce à mon Patron et ma fiancée, j'ai réussi à tenir bon pour arriver à fournir un [mémoire](https://micheledighoffer.fr/blog/wp-content/uploads/2016/11/memoire_edighoffer_cnam.pdf) digne de ce nom.
+Au final, plus de peur que de mal ; grâce à mon Patron et ma fiancée, j'ai réussi à tenir bon pour arriver à fournir un [mémoire](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2016/11/memoire_edighoffer_cnam.pdf) digne de ce nom.
 
 130 pages et 25000 mots plus tard, c'est à la présentation de ce dernier dont je dois me charger – c'est aussi une lourde tâche voire autant !
 
-[Viens voir ça !](https://micheledighoffer.fr/blog/wp-content/uploads/2016/11/soutenance_memoire.pdf)
+[Viens voir ça !](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2016/11/soutenance_memoire.pdf)
 
 Finalement, je sors de la présentation avec le sourire aux lèvres : j'ai obtenu la note de 16 sur 20 – c'était au-delà de mes espérances !
 

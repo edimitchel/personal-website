@@ -28,8 +28,8 @@
             {{ item.name }}
           </NuxtLinkLocale>
         </li>
-        <SwitchLocalePathLink  :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
-          :title="$t('header.switchLanguage')">
+        <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher" :class="{ 'disabled': store.notTranslated }"
+          :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')">
           <Transition mode="out-in" name="fade">
             <UnoIcon :key="locale"
               :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
@@ -105,8 +105,14 @@ const { isLoading: pulse } = useLoadingIndicator();
 <style scoped>
 .header {
   height: 238px;
-  --uno: overflow-hidden flex items-center flex-col text-center pt-2 sticky flex-shrink-0 z-50;
-  top: -143px;
+  --uno: overflow-hidden flex items-center flex-col text-center relative pt-2 flex-shrink-0 z-50;
+}
+
+@media screen and (min-height: 400px) {
+  .header {
+    --uno: sticky;
+    top: -143px;
+  }
 }
 
 .logo {
@@ -268,6 +274,11 @@ ul a.router-link-active::before {
   top: -23.5px;
   left: 95%;
   rotate: -22.5deg;
+  transition: all 400ms ease;
+}
+
+.header :deep(a.lang-switcher.disabled) {
+  --uno: absolute filter-saturate-0 opacity-50;
 }
 
 @screen md {

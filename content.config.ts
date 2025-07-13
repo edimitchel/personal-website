@@ -55,6 +55,7 @@ export default defineContentConfig({
     content: defineCollection({
       source: 'pages/**/*.md',
       type: 'page',
+      schema: baseContentSchema,
     }),
 
     // English collections

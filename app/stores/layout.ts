@@ -12,7 +12,8 @@ export type State = {
     },
     headerCover?: {
         src: string
-    }
+    },
+    notTranslated?: boolean
 }
 
 export const layoutStore = defineStore('layout', () => {
@@ -20,12 +21,13 @@ export const layoutStore = defineStore('layout', () => {
     const title = ref('')
     const color = ref()
     const hideMenu = ref(false)
-    const withEmoji = ref(true)
+    const withEmoji = ref(false)
     const headerImage = ref({
         src: defaultImage,
         title: 'Michel\'s picture'
     })
     const headerCover = ref()
+    const notTranslated = ref<boolean | undefined>(undefined)
 
     return {
         messages,
@@ -35,5 +37,6 @@ export const layoutStore = defineStore('layout', () => {
         withEmoji,
         headerImage,
         headerCover,
+        notTranslated,
     };
 })

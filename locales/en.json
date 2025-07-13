@@ -3,7 +3,8 @@
     "about": "About",
     "projects": "Projects",
     "articles": "Articles",
-    "switchLanguage": "Switch to french"
+    "switchLanguage": "Switch to french",
+    "switchLanguageNotTranslated": "Traduction française de la page non disponible"
   },
   "article": {
     "notFound": "Article Not Found",

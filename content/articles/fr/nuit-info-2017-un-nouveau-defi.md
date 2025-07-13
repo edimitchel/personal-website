@@ -14,7 +14,7 @@ originalUrl: https://blog.micheledighoffer.fr/blog/nuit-info-2017-un-nouveau-def
 
 Fin juillet 2017, j'ai signé mon premier CDI dans la SSII **ALTRAN**, j'ai été accueilli chaudement avec une mission chez **ARTE G.E.I.E.** Très content des nombreux avantages d'ALTRAN, un peu moins de la mission, mais heureusement je change de mission en fin d'année !
 
-Je vais aujourd'hui vous reparler de la **nuit de l'informatique**. Vous savez sûrement que j'ai eu l'occasion d'y participer à plusieurs reprises, je vous avais même [apporter un retour d'expérience](https://micheledighoffer.fr/blog/la-nuit-de-linfo-2014-resume/) sur la dernière de 2015.
+Je vais aujourd'hui vous reparler de la **nuit de l'informatique**. Vous savez sûrement que j'ai eu l'occasion d'y participer à plusieurs reprises, je vous avais même [apporter un retour d'expérience](https://blog.micheledighoffer.fr/blog/la-nuit-de-linfo-2014-resume/) sur la dernière de 2015.
 
 Cette année, j'y participe à nouveau, mais cette fois de l'autre côté en tant que **partenaire** et **représentant** d'ALTRAN : ça se passe dans la nuit du **7 décembre au 8 décembre de 16h40 à 8h02**.
 

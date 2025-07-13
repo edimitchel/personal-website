@@ -4,7 +4,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
 
     const appConfigTitle = useAppConfig().information.title;
     store.title = appConfigTitle ?? to.meta.title as string;
-    store.withEmoji = to.meta.withEmoji as boolean ?? false;
+    store.withEmoji = store.withEmoji ?? false;
 
     useHead({
         title: store.title,
@@ -17,5 +17,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
     })
 
     store.messages = []
+
+    store.notTranslated = false
     store.color = undefined
 })

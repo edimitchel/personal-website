@@ -3,7 +3,8 @@
     "about": "À propos",
     "articles": "Articles",
     "projects": "Projets",
-    "switchLanguage": "Passer à l'anglais"
+    "switchLanguage": "Passer à l'anglais",
+    "switchLanguageNotTranslated": "English translation not available for this page"
   },
   "article": {
     "notFound": "Article non trouvé",

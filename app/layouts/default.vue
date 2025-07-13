@@ -34,7 +34,8 @@ const info = computed(() => ({
     github: appConfig.information?.socials?.github,
     linkedin: appConfig.information?.socials?.linkedin,
     isBirthday: appConfig.information?.birthdate ? isBirthday(appConfig.information?.birthdate) : false,
-  }, emojis: {
+  },
+  emojis: {
     normal: appConfig.ui?.icons?.normal as string[] ?? [],
     birthday: appConfig.ui?.icons?.birthday as string[] ?? [],
   }
@@ -45,6 +46,7 @@ export type LayoutHeaderProps = typeof info.value
 
 <style>
 .container {
-  --uno: px-4 mx-auto border-0 font-serif max-w-[600px] box-border flex-grow-1 flex-shrink-0;
+  --uno: px-4 mx-auto border-0 font-serif max-w-[600px] box-border;
+  flex: 1;
 }
 </style>

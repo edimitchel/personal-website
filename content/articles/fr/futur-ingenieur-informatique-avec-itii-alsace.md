@@ -27,7 +27,7 @@ J'ai choisit d'aller en profondeur dans l'Informatique pour comprendre la logiqu
 
 ## *« ITII, téléphone Apprenti »*
 
-[![LogoITIIAlsace](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_-300x145.jpg)](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_.jpg)**Cette année et depuis 2003, l'ITII Alsace travaille pour donner aux étudiants diplômé d'au-moins bac+2 une formation d'ingénieur par alternance**.
+[![LogoITIIAlsace](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_-300x145.jpg)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/itiiAlsace_Mention__RVB_.jpg)**Cette année et depuis 2003, l'ITII Alsace travaille pour donner aux étudiants diplômé d'au-moins bac+2 une formation d'ingénieur par alternance**.
 
 Ses entreprises partenaires est l'un de ses plus gros atouts offrant ainsi une facilité aux étudiants pour la recherche d'entreprise.
 
@@ -86,7 +86,7 @@ Recherche d'entreprise.
 
 Si la formation vous intéresse vraiment, n'attendez pas d'avoir cette liste d'entreprise. Regardez qui sont les partenaires de l'ITII et envoyez-leur votre CV et lettre de motivation. En plus de peut-être trouver une entreprise, vous manifesterez de l'intérêt pour la formation ce qui peut jouer en votre faveur.
 
-## [![Logo CNAM](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)](https://micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)Vous avez 23 ans ou plus, salarié ou en recherche d'emploi et souhaitant devenir ingénieur ?
+## [![Logo CNAM](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)Vous avez 23 ans ou plus, salarié ou en recherche d'emploi et souhaitant devenir ingénieur ?
 
 Alors les cours du soir que propose l'\*\*École d'Ingénieur CNAM \*\*sont faits pour vous! Foncez [vous renseigner](http://ecole-ingenieur.cnam.fr/devenir-ingenieur/hors-temps-de-travail/) !
 

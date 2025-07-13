@@ -53,7 +53,7 @@ L'enseignant aura une interface de correction lui permettant de consulter les di
 
 Une expérimentation avec une classe de 60 étudiants sur un TP noté sur le langage PHP a montré l'efficacité de son utilisation : la correction a été réalisée **4 fois plus rapidement** étant donné que les exercices était plus nombreux que le TP noté des années précédentes.
 
-<https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/colibri-long.mp4>
+<https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/colibri-long.mp4>
 
 ## Les coulisses de son développement
 
@@ -69,7 +69,7 @@ Pour supporter la réponse aux différents besoins technico-fonctionnels, il m'a
 
 Le prototype de ce projet présentait une organisation généralisable par la création d'un socle flexible et encapsulable. Alors j'ai décidé de créer un framework maison en réutilisant une base existante d'un autre projet (RCA Store). Il sera architecturé en MVC avec un système de template et la librairie [*Query Builder*](https://github.com/usmanhalalit/pixie) pour simplifier la manipulation des données.
 
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/archi-e1503317713221.png)
+![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/archi-e1503317713221.png)
 
 Une fois la base posée, j'ai entamé le développement d'une base fonctionnelle (que j'ai nommé *Milestone Utilisateur*). À coté, j'ai réfléchi à greffer des tests unitaires pour garantir une intégration continue sans pépin.
 
@@ -81,7 +81,7 @@ Durant cette étape, il m'a fallut penser à l'exécution de script. Pour le SQL
 
 Avec ma propre culture et quelques aides en ligne, j'ai choisi de créer un noeud extérieur à l'application mais facilement manipulable : j'ai utilisé Docker et j'ai interfacé le serveur par une toute petite API qui consiste à simplement demander l'exécution d'un script avec le langage demandé.
 
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/manager-e1503317698617-875x400.png)
+![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/manager-e1503317698617-875x400.png)
 
 J'ai alors distingué deux types d'éléments : les **entités** et les **ressources**.
 
@@ -101,4 +101,4 @@ BON ! Je m'arrête là, je pense que ça suffit. Maintenant, quelques d'images p
 
 ## [**Accéder à Colibri !**](https://colibri.unistra.fr)
 
-![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-597x400.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/cours-liste-300x167.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/exercice-sql-300x226.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/synthese-300x214.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-classe-300x184.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/sujet-300x118.png)![](https://micheledighoffer.fr/blog/wp-content/uploads/2017/08/administration-300x170.png)
+![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-597x400.png)![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/cours-liste-300x167.png)![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/exercice-sql-300x226.png)![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/synthese-300x214.png)![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/accueil-classe-300x184.png)![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/sujet-300x118.png)![](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/administration-300x170.png)
