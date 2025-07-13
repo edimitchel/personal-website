@@ -41,11 +41,11 @@ export default {
     },
     progressColor: {
       type: String,
-      default: 'grey'
+      default: '#aaa'
     },
     progressWidth: {
       type: Number,
-      default: 6
+      default: 3
     }
   },
   data() {
