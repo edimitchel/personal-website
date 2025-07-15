@@ -68,7 +68,9 @@ jobs:
           
           if [ -n "$CHANGED_FILES" ]; then
             echo "content_changed=true" >> $GITHUB_OUTPUT
-            echo "changed_files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+            # Format changed files as a space-separated string for easier processing
+            CHANGED_FILES_FORMATTED=$(echo "$CHANGED_FILES" | tr '\n' ' ')
+            echo "changed_files=$CHANGED_FILES_FORMATTED" >> $GITHUB_OUTPUT
             echo "Content files changed: $CHANGED_FILES"
           else
             echo "content_changed=false" >> $GITHUB_OUTPUT
@@ -100,7 +102,11 @@ jobs:
             pnpm translate all --force
           else
             echo "📝 Translating changed files..."
-            pnpm translate changed ${{ steps.content-changes.outputs.changed_files }}
+            # Split the space-separated list of files and pass them to the translate command
+            for file in ${{ steps.content-changes.outputs.changed_files }}; do
+              echo "Translating file: $file"
+              pnpm translate single "$file"
+            done
           fi
 
       - name: Check for translation changes
