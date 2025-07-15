@@ -4,7 +4,7 @@ title: "Full Stack Web Developer & Digital Innovator"
 description: "Passionate web developer with expertise in creating modern, responsive, and user-friendly applications. I specialize in building scalable solutions that bridge the gap between design and functionality."
 ---
 
-::About{:title="title" :description="description"}
+::About{:title="title" :description="description" :experiences="experiences"}
 ---
 skills:
   - category: "Frontend Development"
@@ -115,4 +115,9 @@ enterprise:
       icon: "🚀"
       description: "Performance optimization and scalability improvements for existing applications."
 ---
+
+
+## Un projet en tête ? Prenons contact
+
+
 ::

@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" :class="className" :style="style" class="w-full h-full"></div>
+  <div ref="containerRef" :class="[className, 'silk-container', { 'silk-visible': mounted }]" :style="style"></div>
 </template>
 
 <script setup lang="ts">
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<SilkProps>(), {
   rotation: 0,
   className: '',
   style: () => ({}),
-  parallaxStrength: 0.05
+  parallaxStrength: 0.10
 });
 
 const containerRef = ref<HTMLDivElement>();
@@ -97,7 +97,7 @@ void main() {
   float tOffset = uSpeed * uTime;
 
   // Apply parallax effect based on scroll position
-  float parallaxOffset = uScrollY * uParallaxStrength;
+  float parallaxOffset = uScrollY * -uParallaxStrength;
   tex.y += parallaxOffset;
   
   // Create wave effect with slightly more organic movement
@@ -117,8 +117,8 @@ void main() {
   pattern = clamp(pattern, 0.0, 1.0); // Ensure pattern stays in valid range
 
   // Apply color with noise
-  vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 15.0 * uNoiseIntensity;
-  col.a = 1.0;
+  vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 150.0 * uNoiseIntensity;
+  col.a = 0.15;
   gl_FragColor = col;
 }
 `;
@@ -129,20 +129,28 @@ let program: Program | null = null;
 let camera: Camera | null = null;
 let animateId = 0;
 
-// For smooth transitions
-const currentSpeed = ref(props.speed);
-const targetSpeed = ref(props.speed);
-const initialSpeed = ref(props.speed); // Store initial value for transitions
-const transitionDuration = 800; // milliseconds
-let transitionStartTime = 0;
-let isTransitioning = false;
-
 // For parallax effect
 const scrollY = ref(0);
 const targetScrollY = ref(0);
 const scrollTransitionDuration = 1000; // milliseconds
 let scrollTransitionStartTime = 0;
 let isScrollTransitioning = false;
+
+const mounted = ref(false);
+
+// For reduced motion preference
+const prefersReducedMotion = ref(false);
+
+// Define the event handler type
+type MotionPreferenceChangeHandler = (event: MediaQueryListEvent) => void;
+let handleMotionPreferenceChange: MotionPreferenceChangeHandler;
+
+// Check for reduced motion preference
+const checkReducedMotion = () => {
+  if (import.meta.client) {
+    prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+};
 
 const initSilk = () => {
   const container = containerRef.value;
@@ -237,33 +245,15 @@ const initSilk = () => {
     animateId = requestAnimationFrame(update);
     const deltaTime = (t - lastTime) / 1000;
     lastTime = t;
-    
-    // Handle speed transition
-    if (isTransitioning) {
-      const elapsed = t - transitionStartTime;
-      const progress = Math.min(elapsed / transitionDuration, 1);
-      
-      // Ease function (cubic ease-out)
-      const easeProgress = 1 - Math.pow(1 - progress, 3);
-      
-      if (progress < 1) {
-        // Interpolate between initial and target speeds
-        currentSpeed.value = initialSpeed.value + (targetSpeed.value - initialSpeed.value) * easeProgress;
-      } else {
-        // Transition complete
-        currentSpeed.value = targetSpeed.value;
-        isTransitioning = false;
-      }
-    }
-    
+
     // Handle scroll transition
     if (isScrollTransitioning) {
       const elapsed = t - scrollTransitionStartTime;
       const progress = Math.min(elapsed / scrollTransitionDuration, 1);
-      
+
       // Ease function (cubic ease-out)
       const easeProgress = 1 - Math.pow(1 - progress, 3);
-      
+
       if (progress < 1) {
         // Interpolate between current and target scroll positions
         scrollY.value = scrollY.value + (targetScrollY.value - scrollY.value) * easeProgress;
@@ -276,7 +266,7 @@ const initSilk = () => {
 
     if (program && mesh && camera) {
       program.uniforms.uTime.value += 0.1 * deltaTime;
-      program.uniforms.uSpeed.value = currentSpeed.value;
+      program.uniforms.uSpeed.value = props.speed;
       program.uniforms.uScale.value = props.scale;
       program.uniforms.uNoiseIntensity.value = props.noiseIntensity;
       program.uniforms.uColor.value = hexToNormalizedRGB(props.color);
@@ -289,6 +279,8 @@ const initSilk = () => {
   animateId = requestAnimationFrame(update);
 
   resize();
+
+  mounted.value = true;
 
   return () => {
     cancelAnimationFrame(animateId);
@@ -322,7 +314,7 @@ const cleanup = () => {
 const updateScrollPosition = () => {
   if (import.meta.client) {
     const newScrollY = window.scrollY / window.innerHeight; // Normalize by viewport height
-    
+
     // Only transition if there's a significant change
     if (Math.abs(newScrollY - targetScrollY.value) > 0.01) {
       targetScrollY.value = newScrollY;
@@ -333,67 +325,79 @@ const updateScrollPosition = () => {
 };
 
 onMounted(() => {
-  initSilk();
-  
-  if (import.meta.client) {
-    // Initialize with current scroll position
-    scrollY.value = window.scrollY / window.innerHeight;
-    targetScrollY.value = scrollY.value;
-    
-    // Add scroll event listener
-    window.addEventListener('scroll', updateScrollPosition, { passive: true });
+  // Only initialize if animations are not reduced
+  if (!prefersReducedMotion.value) {
+    initSilk();
+
+    if (import.meta.client) {
+      // Initialize with current scroll position
+      scrollY.value = window.scrollY / window.innerHeight;
+      targetScrollY.value = scrollY.value;
+
+      // Add scroll event listener
+      window.addEventListener('scroll', updateScrollPosition, { passive: true });
+      
+      // Listen for changes to reduced motion preference
+      const mediaQueryList = window.matchMedia('(prefers-reduced-motion: reduce)');
+      handleMotionPreferenceChange = (event: MediaQueryListEvent) => {
+        prefersReducedMotion.value = event.matches;
+        
+        if (event.matches && renderer) {
+          // Clean up if user switches to reduced motion
+          cleanup();
+        } else if (!event.matches && !renderer) {
+          // Reinitialize if user switches back
+          initSilk();
+        }
+      };
+      
+      mediaQueryList.addEventListener('change', handleMotionPreferenceChange);
+    }
   }
+  
+  // Always set mounted to true for CSS transitions
+  mounted.value = true;
 });
 
 onUnmounted(() => {
   cleanup();
-  
+
   if (import.meta.client) {
     // Remove scroll event listener
     window.removeEventListener('scroll', updateScrollPosition);
+    
+    // Remove media query listener
+    const mediaQueryList = window.matchMedia('(prefers-reduced-motion: reduce)');
+    mediaQueryList.removeEventListener('change', handleMotionPreferenceChange);
   }
 });
-
-// Function to start a smooth transition to a new speed value
-const transitionToSpeed = (newSpeed: number) => {
-  // Only transition if there's an actual change
-  if (newSpeed !== targetSpeed.value) {
-    initialSpeed.value = currentSpeed.value; // Store current speed as starting point
-    targetSpeed.value = newSpeed;
-    transitionStartTime = performance.now();
-    isTransitioning = true;
-  }
-};
-
-// Watch for prop changes
-watch(
-  () => props.speed,
-  (newSpeed) => {
-    transitionToSpeed(newSpeed);
-  }
-);
-
-watch(
-  () => [props.scale, props.color, props.noiseIntensity, props.rotation],
-  () => {
-    // Other props can update immediately
-  }
-);
 </script>
 
 <style scoped>
-div {
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  display: block !important;
+.silk-container {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 800ms ease-out;
+}
+
+.silk-visible {
+  opacity: 1;
 }
 
 :deep(canvas) {
-  width: 100% !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  display: block !important;
-  object-fit: cover !important;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .silk-container {
+    transition: opacity 100ms ease-out;
+  }
 }
 </style>

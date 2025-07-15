@@ -116,6 +116,21 @@
         </div>
       </div>
     </section>
+
+    <section client-only v-if="experiences">
+      <!-- Experiences -->
+      
+      <h3 class="text-3xl font-bold m-0 mb-4 text-center text-gray-900 dark:text-white">
+        {{ $t('experiences') }}
+      </h3>
+      
+      <!-- Carousel with experiences -->
+      <Carousel :items="experiences" />
+    </section>
+
+    <section>
+      <slot />
+    </section>
   </div>
 </template>
 
@@ -129,6 +144,7 @@ const iconClasses = [
 interface SkillCategory {
   category: string
   iconName: string
+  icon: string
   items: string[]
 }
 
@@ -162,13 +178,21 @@ interface Enterprise {
   services: Service[]
 }
 
+export interface Experience {
+  id: string,
+  title: string
+  description: string
+  icons?: string[]
+}
+
 interface ProfileData {
   title: string
   description: string
   skills: SkillCategory[]
   techStack: TechStackCategory[]
   passions: Passion[]
-  enterprise: Enterprise
+  enterprise?: Enterprise
+  experiences?: Experience[]
 }
 
 const props = defineProps<ProfileData>()

@@ -8,7 +8,7 @@ This project includes a comprehensive AI-powered translation system that automat
 
 ### Hybrid Folder Structure
 - **English content** (source): `content/articles/`, `content/projects/`
-- **French translations**: `content/fr/articles/`, `content/fr/projects/`
+- **French translations**: `content/articles/fr/`, `content/projects/fr/`
 - **Separate collections**: `articles`, `projects`, `articles-fr`, `projects-fr`
 
 ### Key Components

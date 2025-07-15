@@ -1,10 +1,12 @@
 <template>
   <section>
-    <ContentRenderer v-if="about" :value="about" class="prose" />
+    <ContentRenderer v-if="about" :value="about" :data="{ experiences }" class="prose" />
   </section>
 </template>
 
 <script setup lang="ts">
+import type { Experience } from '~/components/content/About.vue';
+
 const appConfig = useAppConfig();
 const { locale } = useI18n()
 
@@ -21,6 +23,17 @@ const store = layoutStore();
 store.title = 'Michel Edighoffer'
 
 const about = await useContent('about-' + locale.value, () => queryCollection('content').path(`/pages${locale.value === "fr" ? '/fr' : ''}/about`).first());
+
+const experiences = await useTranslatedContent(
+  'experiences', 
+  queryCollection('projects').where('type', 'IN', ['consulting', 'experience']), 
+  (projects): Experience[] => projects.content.map((p) => ({
+    id: p.id,
+    title: p.title,
+    description: p.description,
+    icons: []
+  }))
+);
 
 useHead({
   title: store.title + ' – ' + about?.value?.title,

@@ -20,11 +20,12 @@ technologies:
 
 # Ulm Nord Alsace
 
-Ce projet date de plusieurs années et aucune modification n'a été réalisée depuis.
+À la demande du client, j'ai proposé un design simple et correspondant à la couleur de l'avion (vert). J'ai utilisé une structure typique (header, menu, contenu principale, footer).
 
 <!-- more -->
 
-À la demande du client, j'ai proposé un design simple et correspondant à la couleur de l'avion (vert). J'ai utilisé une structure typique (header, menu, contenu principale, footer).
+Ce projet date de plusieurs années et aucune modification n'a été réalisée depuis.
+
 
 Au niveau du contenu, le commanditaire en a été la source et m'a proposé plusieurs fois des corrections que j'ai rapidement mis en place. Les photos ont également été récupérées chez le commanditaire afin de parfaire l'image de l'aviateur. J'utilise d'ailleurs une photo pour l'en-tête du site qui a été modifiée avec un logiciel de retouche.
 
