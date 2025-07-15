@@ -88,7 +88,7 @@ Si la formation vous intéresse vraiment, n'attendez pas d'avoir cette liste d'e
 
 ## [![Logo CNAM](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2014/01/b938e9bc6b93b7a20b5628b857a83d40.jpeg)Vous avez 23 ans ou plus, salarié ou en recherche d'emploi et souhaitant devenir ingénieur ?
 
-Alors les cours du soir que propose l'\*\*École d'Ingénieur CNAM \*\*sont faits pour vous! Foncez [vous renseigner](http://ecole-ingenieur.cnam.fr/devenir-ingenieur/hors-temps-de-travail/) !
+Alors les cours du soir que propose l'**École d'Ingénieur CNAM** sont faits pour vous! Foncez [vous renseigner](http://ecole-ingenieur.cnam.fr/devenir-ingenieur/hors-temps-de-travail/) !
 
 Pour terminer, je dirai que cette formation offre quelque de plus qu'une formation initiale d'ingénieur : **l'expérience professionnelle**. Aujourd'hui où la sélection est rude, l'expérience joue beaucoup. Les entreprises cherchent des personnes qui sauront s'adapter le plus rapidement avec des méthodes professionnelles et efficaces.
 

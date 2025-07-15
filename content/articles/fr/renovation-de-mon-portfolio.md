@@ -26,7 +26,7 @@ J’ai nommé ce projet ***book***\* de développeur\* – notion souvent utilis
 
 # Solutions
 
-## **Fonctionnelles**
+## Fonctionnelles
 
 Le contenu du site est accessible rapidement : le chargement du site sera plus long, mais la navigation sera nettement plus rapide, voire instantanée. Le site est à 100% en français et environ à 65% en anglais. Les 35% manquants sont dûs aux articles et projets écris uniquement en français.
 
@@ -46,9 +46,9 @@ J’ai opté pour la dernière solution plutôt que les autres pour trois simple
 
 Lorsqu’une compétence est recommandée, je suis directement notifié par SMS ce qui me permet de suivre l’évolution.
 
-## **Techniques**
+## Techniques
 
-### **Front**
+### Front
 
 Pour gérer le *front office*, j’ai utilisé un framework ultra-puissant propulsé par Google : AngularJS. Ce framework organise son cœur en module et met à disposition des méthodes très faciles à comprendre et pourtant très puissantes. Il étend la force du html en permettant l’utilisation d’attributs spéciaux et la création de ses propres balises HTML pour configurer l’application. Cependant gare à la validation W3C (merci aux attributs *data* qu’apporte HTML 5).
 
@@ -90,7 +90,7 @@ deploy – tâche qui va créer des snapshots de mon application et déployer su
 
 dbdump – tâche qui va générer un dump de ma base de données pour l’historisation.
 
-### **Back**
+### Back
 
 La partie back-office est développée par mes doigts. Elle consiste à offrir une API (Application Programming Interface) orientée service avec plusieurs atouts :
 

@@ -12,17 +12,17 @@ originalUrl: https://blog.micheledighoffer.fr/blog/saveyourlink-sauvegarde-de-li
 
 ## C'est quoi?
 
-[Save Your Links](http://www.saveyourlink.fr) est une application web qui a pour but de permettre la sauvegarde des liens – \*\*pages web, images et vidéos \*\*– de la toile et sur la toile. Le principe est de retrouver ses liens quoiqu'il arrive :
+[Save Your Links](http://www.saveyourlink.fr) est une application web qui a pour but de permettre la sauvegarde des liens – **pages web, images et vidéos **– de la toile et sur la toile. Le principe est de retrouver ses liens quoiqu'il arrive :
 
 - Perte de ses liens favoris du navigateur
 - Ne pas être sur son ordinateur personnel
 - Retrouver un lien par son identifiant (sur la page de partage).
 
-[![](http://micheledighoffer.fr/blog/wp-content/uploads/2013/04/partage-300x97.jpg)](http://micheledighoffer.fr/blog/wp-content/uploads/2013/04/partage.jpg)Une \*\*page de partage \*\*est développée pour afficher les informations relatives au lien: son titre, l'url, son propriétaire et sa catégorie. Cette page pourra être partager sur tous les réseaux sociaux via les boutons disponibles sous les informations du lien.
+[![](http://micheledighoffer.fr/blog/wp-content/uploads/2013/04/partage-300x97.jpg)](http://micheledighoffer.fr/blog/wp-content/uploads/2013/04/partage.jpg)Une **page de partage **est développée pour afficher les informations relatives au lien: son titre, l'url, son propriétaire et sa catégorie. Cette page pourra être partager sur tous les réseaux sociaux via les boutons disponibles sous les informations du lien.
 
 Le propriétaire aura accès au nombre de vues et au boutons permettant la gestion du lien affiché.
 
-\*\*\*\*L'interface que j'ai créé est très simple puisqu'il a une en-tête avec les différentes actions et boutons pour **ajouter/trier/paramétrer** ses liens. La couleur de celle-ci est **personnalisable** avec toutes les couleurs du web et l'affichage sera donc propre à l'utilisateur.
+****L'interface que j'ai créé est très simple puisqu'il a une en-tête avec les différentes actions et boutons pour **ajouter/trier/paramétrer** ses liens. La couleur de celle-ci est **personnalisable** avec toutes les couleurs du web et l'affichage sera donc propre à l'utilisateur.
 
 ## Pourquoi SaveYourLink, et pourquoi l'avoir développé?
 
@@ -42,7 +42,7 @@ Le projet ne se limite pas à une page web dynamique, mais également à une ext
 
 J'ai commencé le développement d'une **application android**, mais j'attends de voir si SaveYourLinks trouvera des utilisateurs intéressés par une application mobile.
 
-## **Les techniques utilisées**
+## Les techniques utilisées
 
 J'ai utilisé des outils gratuits et des outils que j'ai développé moi-même:
 

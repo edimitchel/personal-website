@@ -34,7 +34,7 @@ Pour l’utiliser de manière active afin d’en tirer des bénéfices, il faut 
 
 \*Atom est disponible pour toute personne, avec ou sans argent, étudiant ou non, débutant ou expert et pour des projets personnels comme professionnels. \*
 
-\*\* Pour faire simple, c’est une bombe au prix de l’air que vous respirez actuellement : gratuit et open-source.\*\*
+** Pour faire simple, c’est une bombe au prix de l’air que vous respirez actuellement : gratuit et open-source.**
 
 Sublime Text est pour moi l’outil le plus réussi et le plus performant que je connaisse. Mais malgré ses belles compétences, quelque chose m’a fait perdre ma petite flamme pour Sublime Text lorsque j’ai essayé Atom : son interface.
 

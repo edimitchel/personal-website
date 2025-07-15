@@ -39,7 +39,7 @@ L’équipe « Secretly We Are Groot » prend gentillement la première et uniqu
 
 L’agilité était à Strasbourg cette nuit là et c’est l’équipe « GROKLC » qui a été la plus agile en remportant le défi *« Soyons Agile Agilement »*.
 
-L’équipe « 418 I’m a teapot » (référence au sympathique code d’erreur HTTP) peut être considérée sans aucun doute comme l’équipe gagnante de la nuit de l’info 2014 avec ses \*\*3 défis \*\*remportés! Elle arrive en première position sur le défi *« L’espace bleu »* proposé par le crédit mutuel, en deuxième position sur le défi *« User Centric Application, au cœur de l’innovation »* et en deuxième position sur le défi *« Défi Rhénatic : Soyez surprenant ! »*.
+L’équipe « 418 I’m a teapot » (référence au sympathique code d’erreur HTTP) peut être considérée sans aucun doute comme l’équipe gagnante de la nuit de l’info 2014 avec ses **3 défis **remportés! Elle arrive en première position sur le défi *« L’espace bleu »* proposé par le crédit mutuel, en deuxième position sur le défi *« User Centric Application, au cœur de l’innovation »* et en deuxième position sur le défi *« Défi Rhénatic : Soyez surprenant ! »*.
 
 Et pour finir bien comme il faut, je termine avec les deux équipes issues de la [formation CNAM par alternance](https://blog.micheledighoffer.fr/blog/futur-ingenieur-informatique-avec-itii-alsace/) qui ont réussi à percer.
 

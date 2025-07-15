@@ -45,7 +45,7 @@ En plus du [Stage Book](http://zouhairj.com/altran/Altran-book-stages-ingenieur-
 
 # Les grands gagnants de la nuit !
 
-Parmi les 25 équipes des 53 inscrites, les\*\* White Walkers\*\* (*référence à la série télévisée Game Of Thrones*) remportent le gros lot : 1000 € de chèques cadeaux et 10 € de bon d'achat par personne. Ils ont su dompter un framework javascript (parmi les trois proposés : Angular, React et Vue) et éprouver leur rigueur dans leur travail collaboratif par l’usage de l’outil de versioning git.
+Parmi les 25 équipes des 53 inscrites, les** White Walkers** (*référence à la série télévisée Game Of Thrones*) remportent le gros lot : 1000 € de chèques cadeaux et 10 € de bon d'achat par personne. Ils ont su dompter un framework javascript (parmi les trois proposés : Angular, React et Vue) et éprouver leur rigueur dans leur travail collaboratif par l’usage de l’outil de versioning git.
 
 ## *Témoignage*
 
@@ -59,7 +59,7 @@ C'est une très bonne expérience, autant encouragée par notre Université que 
 
 *– Chef d’équipe des White Walkers*
 
-Parmi les 10 équipes des 20 inscrites, les\*\* Anonymousse\*\* (*référence aux anonymous*) réussissent le défi sur le “Teletyping” par une proposition originale et efficace ! Ils remportent le lot de 200 € de chèques cadeaux et de 10 € de bons d'achat personne.
+Parmi les 10 équipes des 20 inscrites, les** Anonymousse** (*référence aux anonymous*) réussissent le défi sur le “Teletyping” par une proposition originale et efficace ! Ils remportent le lot de 200 € de chèques cadeaux et de 10 € de bons d'achat personne.
 
 ## *Témoignage*
 
