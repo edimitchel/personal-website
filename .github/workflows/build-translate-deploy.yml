@@ -177,7 +177,6 @@ jobs:
 
       # Build & Deploy Step - ONLY on main branch pushes (not PRs)
       - name: Deploy with nuxt-hub cli
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npx nuxthub deploy
         env:
           NUXT_HUB_PROJECT_KEY: ${{ secrets.NUXT_HUB_PROJECT_KEY}}
