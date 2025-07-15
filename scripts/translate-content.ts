@@ -3,15 +3,11 @@
 import {
   loadTranslationContext,
   getContentFiles,
-  getTranslationStatus,
   translateFile,
-  updateTranslationStatus,
   publishTranslation,
   listTranslationStatuses,
   calculateContentHash,
-  type TranslationContext,
   type ContentFile,
-  type TranslationStatus
 } from './translate-content-lib.js';
 import { loadConfig } from 'c12';
 import { readFileSync, existsSync } from 'node:fs';
@@ -107,14 +103,41 @@ async function main() {
           break;
         }
         
-        console.log(`🌐 Translating ${changedFiles.length} changed files...`);
-        for (const filePath of changedFiles) {
+        // Filter out French files and files that aren't in content/articles or content/projects
+        const sourceFiles = changedFiles.filter(filePath => {
+          // Skip French files
+          if (filePath.includes('/fr/')) {
+            return false;
+          }
+          
+          // Only include markdown files from articles or projects
+          return filePath.endsWith('.md') && 
+                (filePath.includes('/articles/') || 
+                 filePath.includes('/projects/') ||
+                 filePath.includes('/pages/'));
+        });
+        
+        if (sourceFiles.length === 0) {
+          console.log('ℹ️  No valid source files to translate');
+          break;
+        }
+        
+        console.log(`🌐 Translating ${sourceFiles.length} changed files...`);
+        for (const filePath of sourceFiles) {
           const fullPath = join(process.cwd(), filePath);
-          if (existsSync(fullPath) && filePath.endsWith('.md')) {
+          if (existsSync(fullPath)) {
             const content = readFileSync(fullPath, 'utf-8');
             const parsed = matter(content);
             const hash = calculateContentHash(content);
-            const fileCollection = filePath.includes('/articles/') ? 'articles' : 'projects';
+            
+            // Determine collection based on path
+            let fileCollection = 'articles';
+            if (filePath.includes('/projects/')) {
+              fileCollection = 'projects';
+            } else if (filePath.includes('/pages/')) {
+              fileCollection = 'pages';
+            }
+            
             const slug = basename(filePath, '.md');
             
             const file: ContentFile = {

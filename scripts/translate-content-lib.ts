@@ -111,9 +111,21 @@ export function getFrenchPath(originalPath: string, contentDir?: string): string
     relativePath = originalPath.replace(CONTENT_DIR + '/', '');
   }
 
-  const [collection, slug] = relativePath.split('/');
-
-  return join(CONTENT_DIR, collection!, 'fr', slug!);
+  // Split the path into segments
+  const segments = relativePath.split('/');
+  const collection = segments[0] || ''; // First segment is always the collection
+  
+  // For articles and projects, the second segment is the slug
+  // For pages or other content types, we need to preserve the directory structure
+  if (collection === 'articles' || collection === 'projects') {
+    const slug = segments[1] || '';
+    return join(CONTENT_DIR, collection, 'fr', slug);
+  } else {
+    // For other content types like pages, preserve the path structure
+    // but insert 'fr' after the collection
+    const restOfPath = segments.slice(1).join('/');
+    return join(CONTENT_DIR, collection, 'fr', restOfPath);
+  }
 }
 
 // Check if translation exists and its status
