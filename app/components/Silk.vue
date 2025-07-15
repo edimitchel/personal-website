@@ -14,6 +14,7 @@ interface SilkProps {
   rotation?: number;
   className?: string;
   style?: CSSProperties;
+  parallaxStrength?: number;
 }
 
 const props = withDefaults(defineProps<SilkProps>(), {
@@ -23,7 +24,8 @@ const props = withDefaults(defineProps<SilkProps>(), {
   noiseIntensity: 1.5,
   rotation: 0,
   className: '',
-  style: () => ({})
+  style: () => ({}),
+  parallaxStrength: 0.05
 });
 
 const containerRef = ref<HTMLDivElement>();
@@ -65,13 +67,17 @@ uniform float uSpeed;
 uniform float uScale;
 uniform float uRotation;
 uniform float uNoiseIntensity;
+uniform float uScrollY;
+uniform float uParallaxStrength;
 
 const float e = 2.71828182845904523536;
+const float PI = 3.14159265359;
 
+// Improved noise function with better distribution
 float noise(vec2 texCoord) {
   float G = e;
-  vec2 r = (G * sin(G * texCoord));
-  return fract(r.x * r.y * (1.0 + texCoord.x));
+  vec2 r = (G * sin(G * texCoord.xy + texCoord.yx * 0.7));
+  return fract(r.x * r.y * (1.0 + texCoord.x + texCoord.y * 0.5));
 }
 
 vec2 rotateUvs(vec2 uv, float angle) {
@@ -82,19 +88,35 @@ vec2 rotateUvs(vec2 uv, float angle) {
 }
 
 void main() {
-  float rnd = noise(gl_FragCoord.xy);
-  vec2 uv = rotateUvs(vUv * uScale, uRotation);
+  // Apply noise with slight offset for better randomness
+  float rnd = noise(gl_FragCoord.xy * 0.01);
+  
+  // Apply rotation to UVs
+  vec2 uv = rotateUvs(vUv, uRotation);
   vec2 tex = uv * uScale;
   float tOffset = uSpeed * uTime;
 
-  tex.y += 0.03 * sin(8.0 * tex.x - tOffset);
+  // Apply parallax effect based on scroll position
+  float parallaxOffset = uScrollY * uParallaxStrength;
+  tex.y += parallaxOffset;
+  
+  // Create wave effect with slightly more organic movement
+  float wave = sin(8.0 * tex.x - tOffset) * 0.03 + 
+               sin(6.0 * tex.y - tOffset * 0.7) * 0.01;
+  tex.y += wave;
 
+  // Create more complex pattern with layered sine waves
   float pattern = 0.6 +
                   0.4 * sin(5.0 * (tex.x + tex.y +
                                    cos(3.0 * tex.x + 5.0 * tex.y) +
                                    0.02 * tOffset) +
                            sin(20.0 * (tex.x + tex.y - 0.1 * tOffset)));
 
+  // Add subtle secondary pattern for more depth
+  pattern += 0.05 * sin(30.0 * tex.x + 20.0 * tex.y + tOffset * 0.05);
+  pattern = clamp(pattern, 0.0, 1.0); // Ensure pattern stays in valid range
+
+  // Apply color with noise
   vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 15.0 * uNoiseIntensity;
   col.a = 1.0;
   gl_FragColor = col;
@@ -106,6 +128,21 @@ let mesh: Mesh | null = null;
 let program: Program | null = null;
 let camera: Camera | null = null;
 let animateId = 0;
+
+// For smooth transitions
+const currentSpeed = ref(props.speed);
+const targetSpeed = ref(props.speed);
+const initialSpeed = ref(props.speed); // Store initial value for transitions
+const transitionDuration = 800; // milliseconds
+let transitionStartTime = 0;
+let isTransitioning = false;
+
+// For parallax effect
+const scrollY = ref(0);
+const targetScrollY = ref(0);
+const scrollTransitionDuration = 1000; // milliseconds
+let scrollTransitionStartTime = 0;
+let isScrollTransitioning = false;
 
 const initSilk = () => {
   const container = containerRef.value;
@@ -178,7 +215,9 @@ const initSilk = () => {
       uNoiseIntensity: { value: props.noiseIntensity },
       uColor: { value: colorRGB },
       uRotation: { value: props.rotation },
-      uTime: { value: 0 }
+      uTime: { value: 0 },
+      uScrollY: { value: 0 },
+      uParallaxStrength: { value: props.parallaxStrength }
     }
   });
 
@@ -198,14 +237,52 @@ const initSilk = () => {
     animateId = requestAnimationFrame(update);
     const deltaTime = (t - lastTime) / 1000;
     lastTime = t;
+    
+    // Handle speed transition
+    if (isTransitioning) {
+      const elapsed = t - transitionStartTime;
+      const progress = Math.min(elapsed / transitionDuration, 1);
+      
+      // Ease function (cubic ease-out)
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      
+      if (progress < 1) {
+        // Interpolate between initial and target speeds
+        currentSpeed.value = initialSpeed.value + (targetSpeed.value - initialSpeed.value) * easeProgress;
+      } else {
+        // Transition complete
+        currentSpeed.value = targetSpeed.value;
+        isTransitioning = false;
+      }
+    }
+    
+    // Handle scroll transition
+    if (isScrollTransitioning) {
+      const elapsed = t - scrollTransitionStartTime;
+      const progress = Math.min(elapsed / scrollTransitionDuration, 1);
+      
+      // Ease function (cubic ease-out)
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      
+      if (progress < 1) {
+        // Interpolate between current and target scroll positions
+        scrollY.value = scrollY.value + (targetScrollY.value - scrollY.value) * easeProgress;
+      } else {
+        // Transition complete
+        scrollY.value = targetScrollY.value;
+        isScrollTransitioning = false;
+      }
+    }
 
     if (program && mesh && camera) {
       program.uniforms.uTime.value += 0.1 * deltaTime;
-      program.uniforms.uSpeed.value = props.speed;
+      program.uniforms.uSpeed.value = currentSpeed.value;
       program.uniforms.uScale.value = props.scale;
       program.uniforms.uNoiseIntensity.value = props.noiseIntensity;
       program.uniforms.uColor.value = hexToNormalizedRGB(props.color);
       program.uniforms.uRotation.value = props.rotation;
+      program.uniforms.uScrollY.value = scrollY.value;
+      program.uniforms.uParallaxStrength.value = props.parallaxStrength;
       renderer!.render({ scene: mesh, camera });
     }
   };
@@ -241,17 +318,66 @@ const cleanup = () => {
   program = null;
 };
 
+// Function to update scroll position
+const updateScrollPosition = () => {
+  if (import.meta.client) {
+    const newScrollY = window.scrollY / window.innerHeight; // Normalize by viewport height
+    
+    // Only transition if there's a significant change
+    if (Math.abs(newScrollY - targetScrollY.value) > 0.01) {
+      targetScrollY.value = newScrollY;
+      scrollTransitionStartTime = performance.now();
+      isScrollTransitioning = true;
+    }
+  }
+};
+
 onMounted(() => {
   initSilk();
+  
+  if (import.meta.client) {
+    // Initialize with current scroll position
+    scrollY.value = window.scrollY / window.innerHeight;
+    targetScrollY.value = scrollY.value;
+    
+    // Add scroll event listener
+    window.addEventListener('scroll', updateScrollPosition, { passive: true });
+  }
 });
 
 onUnmounted(() => {
   cleanup();
+  
+  if (import.meta.client) {
+    // Remove scroll event listener
+    window.removeEventListener('scroll', updateScrollPosition);
+  }
 });
 
+// Function to start a smooth transition to a new speed value
+const transitionToSpeed = (newSpeed: number) => {
+  // Only transition if there's an actual change
+  if (newSpeed !== targetSpeed.value) {
+    initialSpeed.value = currentSpeed.value; // Store current speed as starting point
+    targetSpeed.value = newSpeed;
+    transitionStartTime = performance.now();
+    isTransitioning = true;
+  }
+};
+
+// Watch for prop changes
 watch(
-  () => [props.speed, props.scale, props.color, props.noiseIntensity, props.rotation],
-  () => {}
+  () => props.speed,
+  (newSpeed) => {
+    transitionToSpeed(newSpeed);
+  }
+);
+
+watch(
+  () => [props.scale, props.color, props.noiseIntensity, props.rotation],
+  () => {
+    // Other props can update immediately
+  }
 );
 </script>
 
