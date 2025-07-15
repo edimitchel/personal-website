@@ -1,5 +1,5 @@
 ---
-title: Pic&rsquo;take, communion avec votre amoureux(euse)
+title: Pic'take, communion avec votre amoureux(euse)
 description: "Ce projet vise tout premièrement et uniquement les couples: ce
   site web interactif permettra aux concubins/amoureux de s'échanger des photos
   dans le but de crée..."

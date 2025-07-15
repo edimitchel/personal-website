@@ -1,4 +1,5 @@
 <template>
+  <Silk class="fixed top-0 left-0 w-full h-full -z-1 opacity-5" :rotation="45" color="#eeeeee" :speed="loadingIndicator ? 100 : 5" />
   <LayoutHeader :links :name="title ?? info.title" :with-emoji="info.withEmoji" :description="info.description"
     :messages :header-color="headerColor" :emojis="info.emojis" :options="info.options" />
   <main class="container md:p-16 md:pt-4">
@@ -12,6 +13,8 @@ import { isBirthday } from '~/utils';
 
 const appConfig = useAppConfig()
 const { messages, title, color, withEmoji } = storeToRefs(layoutStore());
+
+const { isLoading: loadingIndicator } = useLoadingIndicator();
 
 const { t } = useI18n()
 const links = computed(() => [{

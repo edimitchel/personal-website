@@ -160,6 +160,6 @@ circle {
   z-index: 200;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, white, transparent, white);
+  background: linear-gradient(to right, #f9f9f9, transparent, #f9f9f9);
 }
 </style>

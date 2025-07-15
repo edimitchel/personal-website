@@ -18,11 +18,11 @@
         {{ $t('skills_n_expertise') }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        <div v-for="(skillCategory, index) in skills" :key="skillCategory.category"
+        <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
           class="skill-category bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
-          <h4 class="text-xl font-semibold m-0 mb-4 text-gray-900 dark:text-white flex items-center text-center">
-            <span class="text-2xl"><i :class="skillCategory.iconName" /></span>
+          <h4 class="text-xl font-semibold m-0 mb-4 text-gray-900 dark:text-white flex items-center">
+            <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template v-else>{{ skillCategory.icon }}</template></span>
             {{ skillCategory.category }}
           </h4>
           <div class="flex flex-wrap gap-2">
@@ -31,7 +31,7 @@
               {{ skill }}
             </span>
           </div>
-        </div>
+        </SpotlightCard>
       </div>
     </section>
 
@@ -77,12 +77,12 @@
       </div>
     </section>
 
-    <section class="enterprise-section">
-      <h3 class="text-3xl font-bold mb-4 text-center text-gray-900 dark:text-white">
+    <section class="enterprise-section border-t-(2 gray-600) border-b-(2 gray-600) py-4">
+      <h3 class="text-3xl font-bold m-0 mb-4 text-center text-gray-900 dark:text-white">
         {{ $t('enterprise_purposes') }}
       </h3>
-      <div class="bg-gradient-to-br from-gray-900 to-gray-600 rounded-lg p-4 text-white">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div class="bg-gradient-to-br from-gray-900 to-gray-600 rounded-lg p-2 text-white">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
             <h4 class="text-2xl font-semibold mb-4 text-black">Mission</h4>
             <p class="text-gray-600 leading-relaxed m-0">
@@ -96,7 +96,7 @@
             </p>
           </div>
         </div>
-        <div class="mt-8">
+        <div class="mt-4">
           <h4 class="text-2xl font-semibold mb-4 text-black">Services</h4>
           <div class="grid grid-rows-3 gap-2">
             <div v-for="service in enterprise?.services" :key="service.name"

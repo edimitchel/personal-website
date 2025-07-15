@@ -34,11 +34,19 @@ skills:
       - "Git"
       - "Docker"
       - "CI/CD"
-      - "AWS"
       - "Vercel"
       - "Webpack"
       - "Vite"
-      - "Testing"
+      - "TDD when doable"
+  - category: "Leadership"
+    icon: "🪢"
+    items: 
+      - "Agile"
+      - "Scrum"
+      - "Tech watch"
+      - "Between dev and PO"
+      - "Pair programming"
+      - "Code review"
 
 techStack:
   - category: "Frontend"
@@ -60,7 +68,7 @@ techStack:
         level: "Expert" 
       - name: "SCSS"
         iconName: "i-logos-sass"
-        level: "Advanced" 
+        level: "Expert" 
   - category: "Backend & Database"
     technologies:
       - name: "Node.js"

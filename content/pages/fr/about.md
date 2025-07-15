@@ -39,6 +39,15 @@ skills:
       - "Webpack"
       - "Vite"
       - "Testing"
+  - category: "Leadership"
+    icon: "🪢"
+    items: 
+      - "Agile"
+      - "Scrum"
+      - "Veille technologique"
+      - "Entre les devs et le PO"
+      - "Pair programming"
+      - "Revue de code"
 
 techStack:
   - category: "Développement Frontend"
@@ -60,7 +69,7 @@ techStack:
         level: "Expert" 
       - name: "SCSS"
         iconName: "i-logos-sass"
-        level: "Avancé" 
+        level: "Expert" 
   - category: "Développement Backend & Base de données"
     technologies:
       - name: "Node.js"

@@ -1,16 +1,16 @@
 ---
-title: Apprendre pour transmettre, l&rsquo;objectif ultime de Colibri, la
-  nouvelle plateforme d&rsquo;apprentissage innovante
+title: Apprendre pour transmettre, l'objectif ultime de Colibri, la
+  nouvelle plateforme d'apprentissage innovante
 description: Colibri, une plateforme axée sur l'apprentissage à forte pédagogie
   pour permettre l'acquisition de connaissances simples mais toutefois bien
   maîtrisées....
 created: 2017-08-08
-slug: apprendre-transmettre-lobjectif-ultime-de-colibri-nouvelle-plateforme-dapprentissage-innovante
+slug: apprendre-transmettre-objectif-ultime-de-colibri-la-plateforme-innovante
 categories:
   - Autre
   - Promotion
 thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/08/tb_colibri-800x288.png
-originalUrl: https://blog.micheledighoffer.fr/blog/apprendre-transmettre-lobjectif-ultime-de-colibri-nouvelle-plateforme-dapprentissage-innovante/
+originalUrl: https://blog.micheledighoffer.fr/blog/apprendre-transmettre-objectif-ultime-de-colibri-la-plateforme-innovante/
 ---
 
 Comme vous avez pu lire dans l'article précédent, j'ai entamé une mission de 10 mois en tant qu'ingénieur à l'IUT de Haguenau mais aussi en tant qu'enseignant vacataire. L'objectif qui m'a été fixé en début d'année scolaire est arrivé à terme début juillet : les développements sont terminés et la fin devenait presque triste..

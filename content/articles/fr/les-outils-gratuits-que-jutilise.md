@@ -1,5 +1,5 @@
 ---
-title: Les outils gratuits que j&rsquo;utilise
+title: Les outils gratuits que j'utilise
 description: Tous les outils que vous retrouverez sur mes ordinateurs.. qui
   manipulent les couleurs jusqu'à mon matériel. Utiles pour les amateurs de
   développement web....

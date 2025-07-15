@@ -1,5 +1,5 @@
 ---
-title: La nuit de l&rsquo;info, un nouveau partenaire !
+title: La nuit de l'info, un nouveau partenaire !
 description: Je vais aujourd'hui vous reparler de la nuit de l'informatique.
   Vous savez sûrement que j'ai eu l'occasion d'y participer à plusieurs
   reprises, je vous avais mê...

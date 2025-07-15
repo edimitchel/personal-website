@@ -270,7 +270,7 @@ ul a.router-link-active::before {
 }
 
 .header :deep(a.lang-switcher) {
-  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white;
+  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white bg-opacity-50;
   top: -23.5px;
   left: 95%;
   rotate: -22.5deg;
