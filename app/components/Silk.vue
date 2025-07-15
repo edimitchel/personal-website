@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" :class="[className, 'silk-container', { 'silk-visible': mounted }]" :style="style"></div>
+  <div v-if="!prefersReducedMotion" ref="containerRef" :class="[className, 'silk-container', { 'silk-visible': mounted }]" :style="style"></div>
 </template>
 
 <script setup lang="ts">
@@ -118,7 +118,7 @@ void main() {
 
   // Apply color with noise
   vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 150.0 * uNoiseIntensity;
-  col.a = 0.15;
+  col.a = 0.10;
   gl_FragColor = col;
 }
 `;
@@ -151,6 +151,11 @@ const checkReducedMotion = () => {
     prefersReducedMotion.value = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 };
+
+// Initialize reduced motion preference check
+if (import.meta.client) {
+  checkReducedMotion();
+}
 
 const initSilk = () => {
   const container = containerRef.value;
