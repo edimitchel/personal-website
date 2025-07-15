@@ -6,7 +6,7 @@
     @blur="handleBlur"
     @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave"
-    :class="['relative rounded-3xl border overflow-hidden p-8', className]"
+    :class="['relative rounded-3xl overflow-hidden p-8', className]"
   >
     <div
       class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 ease-in-out"

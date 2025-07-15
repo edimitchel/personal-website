@@ -45,16 +45,16 @@ export default async function useTranslatedContent<
             () => query.all());
 
         if (!contents?.value) {
-            return { content: [], isTranslated: false }
+            return { content: null, isTranslated: false }
         }
 
         const currentLanguageContent = contents.value.filter((c) => c.lang === locale.value);
+        
+        const isTranslated = contents.value.length > 1 || currentLanguageContent.length !== contents.value.length;
 
         if (currentLanguageContent.length === 0) {
-            return { content: [], isTranslated: false }
+            return { content: null, isTranslated }
         }
-
-        const isTranslated = contents.value.length > 1 && currentLanguageContent.length !== contents.value.length;
 
         const result = { content: currentLanguageContent, isTranslated }
 

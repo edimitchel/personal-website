@@ -13,16 +13,22 @@
       </div>
     </section>
 
+    <button
+      class="block w-50 my-4 mx-auto border-2 border-gray-600 rounded-lg px-4 py-2 uppercase cursor-pointer transition-colors duration-150 hover:bg-gray-600 hover:text-white">
+      {{ $t('about.contact-me') }}
+    </button>
+
     <section class="skills-section mb-12">
-      <h3 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
         {{ $t('skills_n_expertise') }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
-          class="skill-category bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md transition-shadow"
+          class="skill-category bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
           <h4 class="text-xl font-semibold m-0 mb-4 text-gray-900 dark:text-white flex items-center">
-            <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template v-else>{{ skillCategory.icon }}</template></span>
+            <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template
+                v-else>{{ skillCategory.icon }}</template></span>
             {{ skillCategory.category }}
           </h4>
           <div class="flex flex-wrap gap-2">
@@ -36,7 +42,7 @@
     </section>
 
     <section class="tech-stack-section mb-12">
-      <h3 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
         {{ $t('tech_stack') }}
       </h3>
       <div class="grid grid-cols-1 gap-8">
@@ -58,7 +64,7 @@
     </section>
 
     <section class="passions-section mb-12">
-      <h3 class="text-3xl font-bold mb-4 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
         {{ $t('passions') }}
       </h3>
       <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -77,8 +83,24 @@
       </div>
     </section>
 
+    <section client-only v-if="experiences">
+      <!-- Experiences -->
+
+      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
+        {{ $t('experiences') }}
+      </h3>
+
+      <!-- Carousel with experiences -->
+      <Carousel :items="experiences">
+        <template #default="{ item }">
+          <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{{ item.title }}</h4>
+          <p class="text-gray-600 dark:text-gray-300 m-0">{{ item.description }}</p>
+        </template>
+      </Carousel>
+    </section>
+
     <section class="enterprise-section border-t-(2 gray-600) border-b-(2 gray-600) py-4">
-      <h3 class="text-3xl font-bold m-0 mb-4 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-2 text-center text-gray-900 dark:text-white">
         {{ $t('enterprise_purposes') }}
       </h3>
       <div class="bg-gradient-to-br from-gray-900 to-gray-600 rounded-lg p-2 text-white">
@@ -117,17 +139,6 @@
       </div>
     </section>
 
-    <section client-only v-if="experiences">
-      <!-- Experiences -->
-      
-      <h3 class="text-3xl font-bold m-0 mb-4 text-center text-gray-900 dark:text-white">
-        {{ $t('experiences') }}
-      </h3>
-      
-      <!-- Carousel with experiences -->
-      <Carousel :items="experiences" />
-    </section>
-
     <section>
       <slot />
     </section>
@@ -135,7 +146,6 @@
 </template>
 
 <script setup lang="ts">
-//@unocss-include
 // Explicitly include icon classes for UnoCSS to detect
 const iconClasses = [
   'i-logos-vue', 'i-logos-nuxt-icon', 'i-logos-typescript-icon', 'i-logos-react', 'i-logos-unocss', 'i-logos-sass', 'i-logos-nodejs', 'i-logos-php', 'i-logos-mysql', 'i-logos-postgresql',

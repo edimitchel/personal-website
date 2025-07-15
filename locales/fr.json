@@ -10,17 +10,20 @@
     "notFound": "Article non trouvé",
     "notFoundDescription": "Oops! L'article que vous cherchez n'existe pas.",
     "goToArticles": "Aller aux articles",
-    "read-in": "Read in english"
+    "switchLanguageForContent": "This article is available in english"
   },
   "project": {
     "goToProjects": "Retour aux projets",
     "notFound": "Projet non trouvé",
     "notFoundDescription": "Le projet que vous cherchez n'est pas ici..",
-    "noneForThisLanguage": "Aucun projet pour cette langue (changez la langue en haut pour vérifier l'autre langue)"
+    "noneForThisLanguage": "Aucun projet disponible en français"
   },
   "skills_n_expertise": "Compétences & expertises",
   "tech_stack": "Stack technologique",
   "passions": "Passions & intérets",
   "enterprise_purposes": "Les missions de l'entreprise",
-  "experiences": "Expériences"
+  "experiences": "Expériences",
+  "about": {
+    "contact-me": "Contactez moi"
+  }
 }

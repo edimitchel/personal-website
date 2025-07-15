@@ -15,4 +15,10 @@ technologies:
   - HTML
   - CSS
   - Styled Components
+icons:
+  - i-logos-react
+  - i-logos-javascript
+  - i-logos-angular-icon
 ---
+
+# Arte

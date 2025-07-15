@@ -7,13 +7,13 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n()
-
 useHead(() => ({
   title: () => 'Michel Edighoffer / Articles'
 }))
 
-const blog = await useContent('blog-' + locale.value, () => queryCollection('content').path(`/pages${locale.value === 'fr' ? '/fr' : ''}/blog`).first());
-const posts = await useContent('articles-' + locale.value, () => queryCollection('articles').where('lang', '=', locale.value).order('created', 'DESC').all());
+const { content: blog, isTranslated } = await useTranslatedContent('blog', queryCollection('content').where('stem', 'LIKE', `%blog`));
+const posts = await useTranslatedContent('articles', queryCollection('articles').order('created', 'DESC'), (articles) => articles.content);
 
+const store = layoutStore()
+store.notTranslated = !isTranslated
 </script>

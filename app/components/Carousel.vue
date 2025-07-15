@@ -1,9 +1,6 @@
 <template>
-  <div ref="containerRef" :class="[
-    'relative overflow-hidden p-4',
-    'rounded-[24px] border border-[#333]'
-  ]" :style="{
-    width: `${baseWidth}px`,
+  <div ref="containerRef" class="relative overflow-hidden p-4 mb-4 w-full" :style="{
+    maxWidth: maxWidth ? `${maxWidth}px` : '100%'
   }">
     <Motion tag="div" class="flex" drag="x" :dragConstraints="dragConstraints" :style="{
       width: itemWidth + 'px',
@@ -15,14 +12,15 @@
       @animationComplete="handleAnimationComplete">
       <Motion v-for="(item, index) in carouselItems" :key="index" tag="div" :class="[
         'relative shrink-0 flex flex-col overflow-hidden cursor-grab active:cursor-grabbing',
-        'items-start justify-between bg-gray-100 border border-[#333] rounded-[12px]'
+        'items-start justify-between bg-white shadow-lg rounded-lg p-2'
       ]" :style="{
         width: itemWidth + 'px',
         height: '100%',
         rotateY: getRotateY(index),
       }" :transition="effectiveTransition">
-        <div class="p-5 text-gray-900">
+        <div v-if="!$slots.default" class="p-1 text-gray-900">
           <div class="mb-1 font-black text-lg">{{ item.title }}</div>
+          <div v-if="item.subtitle" class="mb-1 font-black text-sm">{{ item.subtitle }}</div>
           <p class="text-sm">{{ item.description }}</p>
           <div class="my-4" v-if="item.icons">
             <span class="flex gap-2 items-center">
@@ -31,19 +29,20 @@
             </span>
           </div>
         </div>
+        <slot v-else :item="item" />
       </Motion>
     </Motion>
 
-    <div :class="['flex w-full justify-center', 'absolute z-20 bottom-12 left-1/2 -translate-x-1/2']">
-      <div class="mt-4 flex w-[150px] justify-between px-8">
+    <div class="flex w-full justify-center pt-4">
+      <div class="flex w-full justify-start px-2 gap-4">
         <Motion v-for="(_, index) in items" :key="index" tag="div" :class="[
-          'h-2 w-2 rounded-full cursor-pointer transition-colors duration-150',
+          'h-3 w-3 rounded-full transition-colors duration-150 border border-gray-600 cursor-pointer',
           currentIndex % items.length === index
             ? 'bg-gray-600'
             : 'bg-gray-100'
         ]" :animate="{
-          scale: currentIndex % items.length === index ? 1.2 : 1
-        }" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />
+      scale: currentIndex % items.length === index ? 1.2 : 1
+    }" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />
       </div>
     </div>
   </div>
@@ -53,13 +52,14 @@
 export interface CarouselItem {
   id: string;
   title: string;
+  subtitle?: string;
   description: string;
   icons?: string | string[];
 }
 
 export interface CarouselProps {
   items?: CarouselItem[];
-  baseWidth?: number;
+  maxWidth?: number;
   autoplay?: boolean;
   autoplayDelay?: number;
   pauseOnHover?: boolean;
@@ -79,13 +79,14 @@ const props = withDefaults(defineProps<CarouselProps>(), {
   items: () => [],
   autoplay: true,
   autoplayDelay: 5000,
-  pauseOnHover: false,
+  pauseOnHover: true,
   loop: true,
-  baseWidth: 400,
+  maxWidth: undefined,
 });
 
 const containerPadding = 16;
-const itemWidth = computed(() => props.baseWidth - containerPadding * 2);
+const containerWidth = ref(0);
+const itemWidth = computed(() => containerWidth.value - containerPadding * 2);
 const trackItemOffset = computed(() => itemWidth.value + GAP);
 
 const carouselItems = computed(() => (props.loop ? [...props.items, ...(props.items[0] ? [props.items[0]] : [])] : props.items));
@@ -160,6 +161,7 @@ const handleDragEnd = (event: Event, info: DragInfo) => {
       currentIndex.value = Math.max(currentIndex.value - 1, 0);
     }
   }
+  restartAutoplay();
 };
 
 const startAutoplay = () => {
@@ -184,6 +186,11 @@ const stopAutoplay = () => {
     clearInterval(autoplayTimer);
     autoplayTimer = null;
   }
+};
+
+const restartAutoplay = () => {
+  stopAutoplay();
+  startAutoplay();
 };
 
 const handleMouseEnter = () => {
@@ -211,15 +218,24 @@ watch(
     () => props.pauseOnHover
   ],
   () => {
-    stopAutoplay();
-    startAutoplay();
+    restartAutoplay();
   }
 );
 
+const updateContainerWidth = () => {
+  if (containerRef.value) {
+    containerWidth.value = containerRef.value.clientWidth;
+  }
+};
+
 onMounted(() => {
-  if (props.pauseOnHover && containerRef.value) {
-    containerRef.value.addEventListener('mouseenter', handleMouseEnter);
-    containerRef.value.addEventListener('mouseleave', handleMouseLeave);
+  if (containerRef.value) {
+    if (props.pauseOnHover) {
+      containerRef.value.addEventListener('mouseenter', handleMouseEnter);
+      containerRef.value.addEventListener('mouseleave', handleMouseLeave);
+    }
+    updateContainerWidth();
+    window.addEventListener('resize', updateContainerWidth);
   }
   startAutoplay();
 });
@@ -229,6 +245,7 @@ onUnmounted(() => {
     containerRef.value.removeEventListener('mouseenter', handleMouseEnter);
     containerRef.value.removeEventListener('mouseleave', handleMouseLeave);
   }
+  window.removeEventListener('resize', updateContainerWidth);
   stopAutoplay();
 });
 </script>

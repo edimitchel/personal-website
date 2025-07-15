@@ -188,7 +188,7 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 @screen md {
   .subtitle-header.level-1 {
-    --uno: text-xl;
+    --uno: text-lg;
   }
 
   .subtitle-header.level-2 {

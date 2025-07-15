@@ -5,7 +5,12 @@
       <div v-else class="prose">
         <h1>{{ $t('project.notFound') }}</h1>
         <p>{{ $t('project.notFoundDescription') }}</p>
-        <NuxtLinkLocale to="/projects">{{ $t('project.goToProjects') }}</NuxtLinkLocale>
+
+        <SwitchLocalePathLink v-if="isTranslated" :locale="locale === 'fr' ? 'en' : 'fr'">
+          {{ $t('article.switchLanguageForContent') }}
+        </SwitchLocalePathLink>
+        
+        <NuxtLinkLocale v-else to="/projects">{{ $t('project.goToProjects') }}</NuxtLinkLocale>
       </div>
     </main>
   </article>
@@ -13,6 +18,7 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const { locale } = useI18n()
 
 const { content, isTranslated } = await useTranslatedContent(
   'project-' + route.params.slug,

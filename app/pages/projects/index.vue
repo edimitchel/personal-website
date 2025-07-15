@@ -17,12 +17,14 @@ const { locale, t } = useI18n()
 
 store.messages = [{ content: 'Développements (EI)', level: 1 }, { content: 'free lancing since 2023', level: 2 }];
 
-const project = await useContent('project-' + locale.value, () => queryCollection('content').path(`/pages${locale.value === 'fr' ? '/fr' : ''}/project`).first());
-const projects = await useContent('projects-' + locale.value, () => queryCollection('projects').where('lang', '=', locale.value).all());
+const { content: project, isTranslated } = await useTranslatedContent('project', queryCollection('content').where('stem', 'LIKE', `%/project`));
+const projects = await useTranslatedContent('projects', queryCollection('projects'), (projects) => projects.content);
 
 function getProjectName(projectContent) {
   return projectContent.stem.split('/').at(-1);
 }
+
+store.notTranslated = !isTranslated
 
 useHead(() => ({
   title: 'Michel Edighoffer / ' + t('header.projects'),

@@ -17,7 +17,10 @@ export default defineNuxtConfig({
   ],
 
   unocss: {
-    configFile: 'uno.config.ts'
+    configFile: 'unocss/uno.config.ts',
+    content: {
+      filesystem: ['app/../content/*.vue'],
+    }
   },
 
   vue: {
@@ -49,7 +52,6 @@ export default defineNuxtConfig({
     },
     build: {
       transformers: ['~~/transformers/article-metadata'],
-      markdown: {}
     }
   },
 
@@ -69,11 +71,19 @@ export default defineNuxtConfig({
       { code: 'fr', file: 'fr.json', name: 'Français' }
     ],
     strategy: 'prefix_except_default',
-    defaultLocale: 'en',
-    detectBrowserLanguage: false,
+    defaultLocale: 'fr',
+    detectBrowserLanguage: {
+      redirectOn: 'root',
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+    },
     bundle: {
       optimizeTranslationDirective: false,
     }
+  },
+
+  hub: {
+    database: true,
   },
 
   nitro: {

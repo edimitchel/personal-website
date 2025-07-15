@@ -8,7 +8,11 @@
       <div v-else>
         <h1>{{ $t('article.notFound') }}</h1>
         <p>{{ $t('article.notFoundDescription') }}</p>
-        <NuxtLinkLocale to="/articles">{{ $t('article.goToArticles') }}</NuxtLinkLocale>
+        <SwitchLocalePathLink v-if="isTranslated" :locale="locale === 'fr' ? 'en' : 'fr'">
+          {{ $t('article.switchLanguageForContent') }}
+        </SwitchLocalePathLink>
+          
+        <NuxtLinkLocale v-else to="/articles">{{ $t('article.goToArticles') }}</NuxtLinkLocale>
       </div>
     </main>
   </article>
@@ -16,6 +20,8 @@
 
 <script setup lang="ts">
 const route = useRoute()
+const { locale } = useI18n()
+
 const { content, isTranslated } = await useTranslatedContent(
   'article-' + route.params.slug,
   queryCollection('articles').where('slug', '=', route.params.slug),
