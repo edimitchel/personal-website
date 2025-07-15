@@ -63,8 +63,8 @@ jobs:
       - name: Check for content changes
         id: content-changes
         run: |
-          # Check if any content files were changed
-          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep -E '^content/(articles|projects|pages)/.*\.md$' || true)
+          # Check if any content files were changed - exclude French files
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep -E '^content/(articles|projects|pages)/[^/]*\.md$' | grep -v '/fr/' || true)
           
           if [ -n "$CHANGED_FILES" ]; then
             echo "content_changed=true" >> $GITHUB_OUTPUT
