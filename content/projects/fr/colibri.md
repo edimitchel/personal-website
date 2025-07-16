@@ -16,12 +16,7 @@ technologies:
   - JavaScript
   - HTML
   - CSS
-translation_state: draft
-original_slug: colibri
-source_content_hash: 7a330903b87ccaac8690f007fb50afbd
-translated_by: AI Translator
-translated_at: '2025-07-16T21:05:30.708Z'
-last_updated: '2025-07-16T21:05:30.708Z'
+translation_state: approved
 ---
 
 # Colibri

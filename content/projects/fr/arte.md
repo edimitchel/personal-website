@@ -18,7 +18,7 @@ technologies:
 icons:
   - i-logos-react
   - i-logos-javascript
-  - i-logos-angular-icon
+translation_state: approved
 ---
 
 # Guide de style d'Arte
