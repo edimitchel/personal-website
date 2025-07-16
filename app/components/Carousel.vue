@@ -11,8 +11,8 @@
     }" @dragEnd="handleDragEnd" :animate="{ x: -(currentIndex * trackItemOffset) }" :transition="effectiveTransition"
       @animationComplete="handleAnimationComplete">
       <Motion v-for="(item, index) in carouselItems" :key="index" tag="div" :class="[
-        'relative shrink-0 flex flex-col overflow-hidden cursor-grab active:cursor-grabbing',
-        'items-start justify-between bg-white shadow-lg rounded-lg p-2'
+        'relative shrink-0 flex flex-col overflow-hidden cursor-grab active:cursor-grabbing min-h-[150px]',
+        'items-start justify-between bg-white shadow-sm rounded-lg p-2'
       ]" :style="{
         width: itemWidth + 'px',
         height: '100%',
@@ -20,7 +20,6 @@
       }" :transition="effectiveTransition">
         <div v-if="!$slots.default" class="p-1 text-gray-900">
           <div class="mb-1 font-black text-lg">{{ item.title }}</div>
-          <div v-if="item.subtitle" class="mb-1 font-black text-sm">{{ item.subtitle }}</div>
           <p class="text-sm">{{ item.description }}</p>
           <div class="my-4" v-if="item.icons">
             <span class="flex gap-2 items-center">
@@ -33,8 +32,7 @@
       </Motion>
     </Motion>
 
-    <div class="flex w-full justify-center pt-4">
-      <div class="flex w-full justify-start px-2 gap-4">
+    <div class="flex w-full justify-center pt-4 gap-2">
         <Motion v-for="(_, index) in items" :key="index" tag="div" :class="[
           'h-3 w-3 rounded-full transition-colors duration-150 border border-gray-600 cursor-pointer',
           currentIndex % items.length === index
@@ -43,7 +41,6 @@
         ]" :animate="{
       scale: currentIndex % items.length === index ? 1.2 : 1
     }" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />
-      </div>
     </div>
   </div>
 </template>
@@ -52,9 +49,9 @@
 export interface CarouselItem {
   id: string;
   title: string;
-  subtitle?: string;
   description: string;
   icons?: string | string[];
+  [key: string]: any;
 }
 
 export interface CarouselProps {
@@ -73,7 +70,7 @@ import { Motion, useMotionValue, useTransform } from 'motion-v';
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
-const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 300, damping: 30 };
+const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 300, damping: 30, bounce: 0 };
 
 const props = withDefaults(defineProps<CarouselProps>(), {
   items: () => [],

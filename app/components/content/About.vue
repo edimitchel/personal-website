@@ -93,44 +93,46 @@
       <!-- Carousel with experiences -->
       <Carousel :items="experiences">
         <template #default="{ item }">
-          <h4 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{{ item.title }}</h4>
-          <p class="text-gray-600 dark:text-gray-300 m-0">{{ item.description }}</p>
+          <h4 class="text-lg font-semibold m-0 mb-0 text-gray-900 dark:text-white">{{ item.title }}</h4>
+          <h2 class="text-sm font-normal m-0 text-gray-900 dark:text-white">{{ item.organization }}</h2>
+          <p class="text-gray-600 dark:text-gray-300 flex-grow-1 m-0 my-1 leading-tight text-balance">{{ item.description }}</p>
+          <div v-if="item.icons" class="flex gap-2 mt-2">
+            <UnoIcon v-for="icon in item.icons" :key="icon" :class="icon" />
+          </div>
         </template>
       </Carousel>
     </section>
 
-    <section class="enterprise-section border-t-(2 gray-600) border-b-(2 gray-600) py-4">
+    <section
+      class="enterprise-section border-y-(5 gray-600) py-4 rounded-[5px] bg-linear-to-tb from-white to-gray-100 p-2">
       <h3 class="text-3xl font-bold my-2 text-center text-gray-900 dark:text-white">
         {{ $t('enterprise_purposes') }}
       </h3>
-      <div class="bg-gradient-to-br from-gray-900 to-gray-600 rounded-lg p-2 text-white">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <div>
-            <h4 class="text-2xl font-semibold mb-4 text-black">Mission</h4>
-            <p class="text-gray-600 leading-relaxed m-0">
-              {{ enterprise?.mission }}
-            </p>
-          </div>
-          <div>
-            <h4 class="text-2xl font-semibold mb-4 text-black">Vision</h4>
-            <p class="text-gray-600 leading-relaxed m-0">
-              {{ enterprise?.vision }}
-            </p>
-          </div>
+      <div class="flex flex-col p-2 gap-6 text-balance">
+        <div>
+          <h4 class="text-2xl font-semibold m-0 mb-2">Mission</h4>
+          <p class="text-gray-600 leading-relaxed m-0">
+            {{ enterprise?.mission }}
+          </p>
         </div>
-        <div class="mt-4">
-          <h4 class="text-2xl font-semibold mb-4 text-black">Services</h4>
+        <div>
+          <h4 class="text-2xl font-semibold m-0 mb-2">Vision</h4>
+          <p class="text-gray-600 leading-relaxed m-0">
+            {{ enterprise?.vision }}
+          </p>
+        </div>
+        <div>
+          <h4 class="text-2xl font-semibold m-0 mb-2">Services</h4>
           <div class="grid grid-rows-3 gap-2">
-            <div v-for="service in enterprise?.services" :key="service.name"
-              class="bg-white bg-opacity-20 rounded-lg flex">
+            <div v-for="service in enterprise?.services" :key="service.name" class="bg-opacity-20 rounded-lg flex">
               <div class="text-2xl w-10 grow-0 shrink-0">
-                <UnoIcon v-if="service.iconName" class="inline-block" :class="service.iconName" />
+                <UnoIcon v-if="service.iconName" :class="service.iconName" />
                 <template v-else>
                   {{ service.icon }}
                 </template>
               </div>
               <div>
-                <h5 class="font-semibold text-black">{{ service.name }}</h5>
+                <h5 class="font-semibold">{{ service.name }}</h5>
                 <p class="text-sm text-gray-600 m-0">{{ service.description }}</p>
               </div>
             </div>
@@ -191,6 +193,7 @@ interface Enterprise {
 export interface Experience {
   id: string,
   title: string
+  organization?: string
   description: string
   icons?: string[]
 }

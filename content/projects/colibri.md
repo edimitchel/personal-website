@@ -1,8 +1,7 @@
 ---
 title: Colibri
-entity: "IUT de Haguenau"
-description: Apprendre pour transmettre, l'objectif ultime de Colibri, la
-  nouvelle plateforme d'apprentissage innovante
+organization: IUT de Haguenau
+description: Learning to share knowledge — the ultimate goal of Colibri, the new innovative learning platform
 image: /images/projects/colibri/caption.png
 url: "https://colibri.unistra.fr"
 type: experience

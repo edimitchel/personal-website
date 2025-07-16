@@ -31,7 +31,8 @@ const experiences = await useTranslatedContent(
     id: p.id,
     title: p.title,
     description: p.description,
-    icons: []
+    icons: p.icons,
+    organization: p.organization
   }))
 );
 

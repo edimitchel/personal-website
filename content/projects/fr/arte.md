@@ -1,9 +1,9 @@
 ---
-title: Styleguide of Arte TV website
+title: Styleguide du site web Arte TV
 organization: Arte GEIE
-description: Maintenance and development of Arte GEIE's website
+description: Maintenance et développement du site web d'arte.tv
 image: /images/projects/arte/caption.png
-url: "https://arte.tv"
+url: 'https://arte.tv'
 type: consulting
 categories:
   - Consulting
@@ -21,6 +21,6 @@ icons:
   - i-logos-angular-icon
 ---
 
-# Arte Styleguide
+# Guide de style d'Arte
 
 {{ $doc.description }}

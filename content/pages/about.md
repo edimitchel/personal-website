@@ -117,7 +117,7 @@ enterprise:
 ---
 
 
-## Un projet en tête ? Prenons contact
+## A project in mind ? Contact me
 
 
 ::
