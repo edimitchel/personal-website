@@ -160,7 +160,7 @@ async function main() {
         const publishFilename = args[2];
         
         if (!publishCollection || !publishFilename) {
-          console.error('❌ Usage: npm run translate publish <collection> <filename>');
+          console.error('❌ Usage: pnpm translate publish <collection> <filename>');
           process.exit(1);
         }
         
@@ -178,7 +178,7 @@ async function main() {
 🌐 AI Content Translation Tool
 
 Usage:
-  npm run translate <command> [options]
+  pnpm translate <command> [options]
 
 Commands:
   articles              Translate all articles
@@ -194,11 +194,11 @@ Options:
   --force              Force retranslation even if current
 
 Examples:
-  npm run translate articles
-  npm run translate single content/articles/my-post.md
-  npm run translate changed content/articles/post1.md content/projects/project1.md --force
-  npm run translate publish articles my-post.md
-  npm run translate list articles
+  pnpm translate articles
+  pnpm translate single content/articles/my-post.md
+  pnpm translate changed content/articles/post1.md content/projects/project1.md --force
+  pnpm translate publish articles my-post.md
+  pnpm translate list articles
 
 Environment Variables:
   MISTRAL_API_KEY      Required for translation (Mistral AI API key)

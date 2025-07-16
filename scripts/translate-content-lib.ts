@@ -365,7 +365,7 @@ export function publishTranslation(collection: string, filename: string, content
     translation_state: 'approved',
     reviewed_by: reviewerName,
     reviewed_at: timestamp,
-    published_at: timestamp
+    published_at: timestamp,
   };
 
   const updatedContent = matter.stringify(parsed.content, updatedFrontmatter);
