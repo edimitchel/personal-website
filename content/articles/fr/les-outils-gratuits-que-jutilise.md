@@ -21,7 +21,7 @@ Le premier (.. roulements de tambour..)
 
 [![La Boîte À Couleur](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC-300x152.png)](https://blog.micheledighoffer.fr/blog/wp-content/uploads/2013/04/LBAC.png)
 
-Le principe de petit outil est de** capturer la couleur** de n'importe quel pixel que vous trouverez sans devoir faire une capture d'écran et d'utiliser la pipette sur un logiciel de retouche. LBAC permet d'afficher la couleur capturée sous différents formats:
+Le principe de petit outil est de **capturer la couleur** de n'importe quel pixel que vous trouverez sans devoir faire une capture d'écran et d'utiliser la pipette sur un logiciel de retouche. LBAC permet d'afficher la couleur capturée sous différents formats:
 
 - en hexadécimale (#RRVVBB)
 - en RVB (RRR,VVV,BBB)
@@ -49,7 +49,7 @@ Bref, cette outil à deux cotés positifs:
 **Générer rapidement** du HTML / CSS
 
 - Toute une structure **HTML** (version au choix)
-- Des** propriétés CSS** toutes faites
+- Des **propriétés CSS** toutes faites
 
 **Apprendre** à utiliser les sélecteurs CSS
 
@@ -115,7 +115,7 @@ CSS Refresh
 
 Cet outil que j'utilisais beaucoup à une période permet d'intégrer du CSS et d'avoir un aperçu direct (que ce soit en local ou en ligne, sur un CMS comme une site basique).
 
-Il fonctionne grâce à de **l'ajax,** donc vous devez absolument coder sur un** serveur web** (en local comme en ligne). Toutes les secondes, le CSS se rafraîchit si et seulement si celui-ci a été modifié. Ce système fonctionne grâce à la variable `ver&#x60; qui correspond à la date en seconde (***timestamp***). Lorsque le timestamp du fichier CSS est différent par rapport au précédent, CSS Refresh se chargera de récupérer le CSS et l'appliquer à la page.
+Il fonctionne grâce à de **l'ajax,** donc vous devez absolument coder sur un\*\* serveur web\*\* (en local comme en ligne). Toutes les secondes, le CSS se rafraîchit si et seulement si celui-ci a été modifié. Ce système fonctionne grâce à la variable \`ver\` qui correspond à la date en seconde (***timestamp***). Lorsque le timestamp du fichier CSS est différent par rapport au précédent, CSS Refresh se chargera de récupérer le CSS et l'appliquer à la page.
 
 Personnellement, lorsque l'on a pas de logiciel sophistiqué et qu'on veut rapidement voir à quoi ressemble son site, c'est un très bon outils!
 
