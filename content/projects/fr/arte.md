@@ -21,6 +21,6 @@ icons:
 translation_state: approved
 ---
 
-# Guide de style d'Arte
+# Styleguide Arte
 
 {{ $doc.description }}
