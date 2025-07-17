@@ -57,53 +57,38 @@ Bref, cette outil à deux cotés positifs:
 
 Aller, un sélecteur CSS vaut plus qu'un vieux pavé de texte!
 
-[css] html:5>header>nav>ul>li*3>a^^^^+section#contenu>p*5^+footer [/css]
-
-[html]
-
-```text
-<meta charset="UTF-8">
-
-<title>Document</title>
+```css
+html:5>header>nav>ul>li*3>a^^^^+section#contenu>p*5^+footer [/css]
 ```
 
-```text
-<header>
-
-    <nav>
-
-        <ul>
-
-            <li><a href=""></a></li>
-
-            <li><a href=""></a></li>
-
-            <li><a href=""></a></li>
-
-        </ul>
-
-    </nav>
-
-</header>
-
-<section id="contenu">
-
-    <p></p>
-
-    <p></p>
-
-    <p></p>
-
-    <p></p>
-
-    <p></p>
-
-</section>
-
-<footer></footer>
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+      <nav>
+          <ul>
+              <li><a href=""></a></li>
+              <li><a href=""></a></li>
+              <li><a href=""></a></li>
+          </ul>
+      </nav>
+  </header>
+  <section id="contenu">
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+  </section>
+  <footer></footer>
+</html>
 ```
-
-[/html]
 
 Je viens de vous parler de CSS, c'est au tour du 3 ème outil.
 
