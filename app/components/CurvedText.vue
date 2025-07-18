@@ -3,11 +3,10 @@
     <svg :width="width" fill="none" viewBox="0 0 500 100">
       <path id="curve" :d="path" />
       <defs>
-        <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-          <stop class="stop-black" offset="0%" />
-          <stop class="stop-white" offset="30%" />
-          <stop class="stop-white" offset="100%" />
-        </linearGradient>
+        <radialGradient id="gradient" cx="50%" cy="50%" r="100%" fy="100%" fx="50%">
+          <stop stop-color="white" offset="0%" />
+          <stop stop-color="black" offset="65%" />
+        </radialGradient>
         <mask id="mask">
           <rect x="0" y="10" width="100%" height="90%" fill="url(#gradient)" />
         </mask>
@@ -41,7 +40,7 @@ const {
 }>()
 
 const MIN_TEXT_LENGTH_FOR_MARQUEE = 25
-const PIXELS_PER_SECOND = 30 // Consistent speed in pixels per second
+const PIXELS_PER_SECOND = 20 // Consistent speed in pixels per second
 
 const textPathRef = ref<SVGTextPathElement>()
 const actualTextWidth = ref(0)

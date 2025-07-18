@@ -23,7 +23,7 @@ Le but ultime pour les équipes est de gagner les défis proposés par les entre
 
 En Alsace, c’était près de 220 participants, d’une part à Strasbourg (à l’EPITECH et à l’UFR de Maths-Info), et de l’autre à l’IUT de Haguenau. De nombreuses équipes alsaciennes ont réussi à accéder les premières positions de nombreux défis.
 
-Pour commencer, l’équipe « [Pandata](https://www.facebook.com/TeamPandata» de l’IUT de Haguenau remporte la deuxième place du défi *« Égalité Homme/Femme face au numérique »* proposé par CGI.
+Pour commencer, l’équipe « [Pandata](https://www.facebook.com/TeamPandata) » de l’IUT de Haguenau remporte la deuxième place du défi *« Égalité Homme/Femme face au numérique »* proposé par CGI.
 
 Le défi *« Mettez du relief avec WebGL »* a attiré deux équipes strasbourgeoises avec en deuxième position « Les niictalopes » et en troisième position « DogeNet ».
 
