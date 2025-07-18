@@ -5,7 +5,7 @@ image: /images/projects/stofma/caption.png
 url: https://github.com/ciaa-cnam/STOFMA
 type: application
 status: private
-creation: 2015-07-12
+completedAt: 2015-07-12
 categories:
   - Application
   - Management

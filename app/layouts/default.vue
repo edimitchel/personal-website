@@ -13,8 +13,8 @@ import { isBirthday } from '~/utils';
 
 const appConfig = useAppConfig()
 const { messages, title, color, withEmoji } = storeToRefs(layoutStore());
-
 const { t } = useI18n()
+
 const links = computed(() => [{
   path: '/',
   name: t('header.about')

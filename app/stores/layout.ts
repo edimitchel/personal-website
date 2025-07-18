@@ -16,18 +16,24 @@ export type State = {
     notTranslated?: boolean
 }
 
+export type MessageObject = { content: string, level: number };
+
 export const layoutStore = defineStore('layout', () => {
-    const messages = ref<string[]>([])
+    const messages = ref<(string | MessageObject)[]>([])
     const title = ref('')
     const color = ref()
     const hideMenu = ref(false)
     const withEmoji = ref(false)
-    const headerImage = ref({
+    const headerImage = ref<{ src: string, title: string } | undefined>({
         src: defaultImage,
         title: 'Michel\'s picture'
     })
     const headerCover = ref()
     const notTranslated = ref<boolean | undefined>(undefined)
+
+    function resetTitle() {
+        title.value = '';
+    }
 
     return {
         messages,
@@ -38,5 +44,6 @@ export const layoutStore = defineStore('layout', () => {
         headerImage,
         headerCover,
         notTranslated,
+        resetTitle,
     };
 })

@@ -7,7 +7,7 @@ image: /images/projects/rcastore/caption.png
 url: http://www.rcastore.pictake.fr
 type: application
 status: published
-creation: 2014-11-17
+completedAt: 2014-11-17
 categories:
   - E-commerce
   - PHP

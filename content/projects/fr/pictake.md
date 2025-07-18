@@ -7,7 +7,7 @@ image: /images/projects/pictake/caption.png
 url: http://www.pictake.fr
 type: application
 status: published
-creation: 2013-09-13
+completedAt: 2013-09-13
 categories:
   - Social Network
   - Mobile

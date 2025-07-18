@@ -1,7 +1,6 @@
 <template>
   <Transition
     :name="transitionName"
-    mode="out-in"
   >
     <slot :message="currentMessage" :level="currentLevel" />
   </Transition>
@@ -12,7 +11,7 @@ import { ref, watch, onMounted, onUnmounted } from 'vue'
 
 interface Props {
   alive?: boolean
-  list?: (string | { content: string, level: number })[]
+  list?: (string | MessageObject)[]
   transitionName?: string
   duration?: number
 }

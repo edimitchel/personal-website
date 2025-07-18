@@ -6,7 +6,7 @@
           <h2 class="text-2xl lg:text-3xl underline underline-gray-600 mb-4 mt-0">
             {{ title }}
           </h2>
-          <p class="text-lg leading-relaxed">
+          <p class="text-lg leading-relaxed text-balance">
             {{ description }}
           </p>
         </div>

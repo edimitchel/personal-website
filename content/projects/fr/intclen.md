@@ -7,7 +7,7 @@ image: /images/projects/intclen/caption.png
 url: ""
 type: application
 status: stand by
-creation: 2012-08-09
+completedAt: 2012-08-09
 categories:
   - Client Management
   - Project Management

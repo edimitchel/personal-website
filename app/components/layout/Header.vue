@@ -1,18 +1,20 @@
 <template>
   <header class="header">
     <CircleBackground class="background" :color="circleColor" :pulse="pulse" :image="headerCover" />
-    <div class="icons-bottom">
+    <div v-if="headerImage && !headerCover" class="icons-bottom">
       <SocialIcon v-if="options.github" platform="github" :username="options.github" />
       <SocialIcon v-if="options.linkedin" platform="linkedin" :username="options.linkedin" />
     </div>
     <NuxtLinkLocale to="/" class="logo">
       <Transition name="fade">
-        <img v-if="headerImage" :key="headerImage.src" :src="headerImage.src" :alt="headerImage.title">
+        <img v-if="headerImage && !headerCover" :key="headerImage.src" :src="headerImage.src" :alt="headerImage.title">
       </Transition>
     </NuxtLinkLocale>
     <div class="titles">
-      <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
-        computedName }}</CurvedText>
+      <Transition name="fade" mode="out-in">
+        <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
+          computedName }}</CurvedText>
+      </Transition>
       <MessageCarousel transition-name="balance" :list="messages" #default="{ message, level = 2 }">
         <CurvedText :key="message" :title-level="level" class="subtitle-header">
           {{ message }}
@@ -28,7 +30,8 @@
             {{ item.name }}
           </NuxtLinkLocale>
         </li>
-        <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher" :class="{ 'disabled': store.notTranslated }"
+        <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
+          :class="{ 'disabled': store.notTranslated }"
           :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')">
           <Transition mode="out-in" name="fade">
             <UnoIcon :key="locale"
@@ -42,6 +45,7 @@
 
 <script setup lang="ts">
 import type { LayoutHeaderProps } from '~/layouts/default.vue'
+import type { MessageObject } from '~/stores/layout'
 import { random } from '~/utils'
 import { useI18n } from 'vue-i18n'
 import { UnoIcon } from '#components'
@@ -52,9 +56,8 @@ const store = layoutStore()
 
 const props = defineProps<{
   links?: { path: string; class?: string, name: string }[]
-  name: string
   description?: string
-  messages: string[]
+  messages: (string | MessageObject)[]
   headerColor?: string[]
   emojis?: {
     birthday: string[]
@@ -78,21 +81,22 @@ const noMenu = computed(() => {
   return (props.links?.length ?? 0) > 0
 })
 
-const computedName = useState('computedName', () => {
-  if (!props.name) {
+const computedName = computed(() => {
+  const title = store.title;
+  if (!title) {
     return;
   }
   else if (!props.withEmoji) {
-    return props.name;
+    return title;
   }
 
-  const n = props.name.split(' ')
+  const splitTitle = title.split(' ')
 
-  if (n.length > 1) {
-    n.splice(1, 0, random((props.options.isBirthday ? props.emojis?.birthday : props.emojis?.normal) ?? []))
+  if (splitTitle.length > 1) {
+    splitTitle.splice(1, 0, random((props.options.isBirthday ? props.emojis?.birthday : props.emojis?.normal) ?? []))
   }
 
-  return n.join(' ')
+  return splitTitle.join(' ')
 })
 
 const circleColor = computed(() => {

@@ -9,84 +9,62 @@
         :stroke="progressColor" :stroke-width="progressWidth" fill="none"
         :stroke-dasharray="progressCircumference * 0.25 + ',' + progressCircumference * 0.20 + ',' + progressCircumference * 0.35" />
       <defs>
-        <mask v-if="image" id="imageClip">
-          <!-- La forme crée par le détourage est un simple cercle. -->
-          <circle :r="height - 40" cx="50%" cy="-58%" />
+        <mask v-if="image" id="imageClip" width="500">
+          <circle :r="height - 75" cx="50%" cy="-35%" fill="white" />
         </mask>
       </defs>
-      <image v-if="image" id="image" :x="imageLeft" y="0" :width="imageWidth" mask="url(#imageClip)" :xlink:href="image"
-        preserveAspectRatio />
+      <image v-if="image" id="image" x="0%" :width="imageWidth" mask="url(#imageClip)" :xlink:href="image"
+        preserveAspectRatio="xMidYMid" />
     </svg>
   </div>
 </template>
-<script>
-export default {
-  props: {
-    color: {
-      type: [String, Array],
-      default: () => ['white', '#eee']
-    },
-    height: {
-      type: Number,
-      default: 420
-    },
-    pulse: {
-      type: Boolean,
-      default: false
-    },
-    reversed: Boolean,
-    image: {
-      type: String,
-      default: undefined
-    },
-    progressColor: {
-      type: String,
-      default: '#aaa'
-    },
-    progressWidth: {
-      type: Number,
-      default: 3
-    }
-  },
-  data() {
-    return {
-      imageLeft: 0,
-      imageWidth: '100%'
-    }
-  },
-  computed: {
-    fillColor() {
-      const color = Array.isArray(this.color)
-        ? this.color
-        : this.color.split(/,\|/)
-      const [top, bottom = top] = color
-      return {
-        top,
-        bottom
-      }
-    },
-    progressCircumference() {
-      return 2 * Math.PI * (this.height - 110)
-    }
-  },
-  mounted() {
-    this.resizeImage()
-    window.addEventListener('resize', this.resizeImage.bind(this))
-  },
-  methods: {
-    resizeImage() {
-      if (this.image) {
-        const { innerCircle } = this.$refs
-        if (innerCircle) {
-          const { left, width } = innerCircle.getBoundingClientRect()
-          this.imageLeft = left
-          this.imageWidth = width
-        }
-      }
-    }
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.resizeImage.bind(this))
+<script setup lang="ts">
+const { color = ['white', '#eee'], height = 420, pulse = false, reversed, image, progressColor, progressWidth = 3 } = defineProps<{
+  color?: string | string[],
+  height?: number,
+  pulse?: boolean,
+  reversed?: boolean,
+  image?: string,
+  progressColor?: string,
+  progressWidth?: number,
+}>();
+
+const imageLeft = ref<number>(0)
+const imageWidth = ref<string>('100%')
+const imageTop = ref<number>(0)
+const innerCircle = ref<HTMLElement | null>(null)
+
+const fillColor = computed(() => {
+  const [top, bottom = top] = Array.isArray(color)
+    ? color
+    : color.split(/,\|/)
+  return {
+    top,
+    bottom
+  }
+})
+
+const progressCircumference = computed(() => 2 * Math.PI * (height - 110))
+
+onMounted(() => {
+  window.addEventListener('resize', resizeImage)
+  resizeImage()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', resizeImage)
+})
+
+watch(() => image, () => {
+  resizeImage()
+})
+
+function resizeImage() {
+  if (image && innerCircle.value) {
+    const { left, width } = innerCircle.value.getBoundingClientRect()
+    imageLeft.value = left
+    imageWidth.value = width + 'px'
+    imageTop.value = innerCircle.value.getBoundingClientRect().top
   }
 }
 </script>
@@ -105,6 +83,7 @@ circle {
 .progress-border {
   transform-origin: 50% -60%;
   stroke-linecap: round;
+  opacity: 0.5;
 }
 
 .indeterminate {
@@ -127,20 +106,20 @@ circle {
 
 @keyframes pulse {
   0% {
-    transform: translateY(0);
+    opacity: 1;
   }
 
   50% {
-    transform: scaleY(0.99);
+    opacity: 0.8;
   }
 
   100% {
-    transform: translateY(0);
+    opacity: 1;
   }
 }
 
 .pulse {
-  animation: pulse 600ms alternate infinite cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  animation: pulse 600ms alternate infinite ease-in-out;
 }
 
 .side-shadow {

@@ -1,6 +1,9 @@
 <template>
   <NuxtLinkLocale class="post prose" :to="{ name: 'articles-slug', params: { slug: props.to } }">
-    <div class="post__image">
+    <header class="post__header">
+      <small v-if="post.created" class="post__date" :title="formatDate(post.created, true)">
+        {{ formatDate(post.created) }}
+      </small>
       <div class="post__tags">
         <small
           class="post__tag"
@@ -8,11 +11,7 @@
           v-for="category of post.categories"
         >{{ category }}</small>
       </div>
-      <!-- <img :src="$withBase(getImage(post))" :alt="post.title"> -->
-    </div>
-    <small v-if="post.created" class="post__date" :title="formatDate(post.created, true)">
-      {{ formatDate(post.created) }}
-    </small>
+    </header>
     <h2 class="post__title" v-html="post.title" />
     <p class="post__description" v-html="post.description" />
   </NuxtLinkLocale>
@@ -45,20 +44,21 @@ function formatDate(date: string, simple = false) {
   --uno: border-0;
 }
 
-.post__image {
-  position: relative;
-}
-
-.post__image img {
-  --uno: min-w-full;
+.post__header {
+  --uno: flex items-baseline justify-start gap-2;
 }
 
 .post__tags {
-  --uno: float-right mb-2;
+  --uno: text-sm flex;
 }
 
 .post__tag {
-  --uno: p-1 mx-2 outline-none rounded-full bg-white text-black;
+  --uno: outline-none rounded-full;
+}
+
+.post__tag:not(:last-child)::after {
+  content: ', ';
+  --uno: mr-1;
 }
 
 .post__tag.active {
@@ -70,10 +70,10 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__title {
-  --uno: m-0 pt-2 leading-tight text-lg font-semibold;
+  --uno: m-0 pt-0 leading-tight text-lg font-semibold;
 }
 
 .post__description {
-  --uno: m-0;
+  --uno: m-0 leading-relaxed;
 }
 </style>

@@ -7,12 +7,16 @@
     "switchLanguageNotTranslated": "English translation not available for this page"
   },
   "article": {
+    "previous": "Article précédent",
+    "next": "Article suivant",
     "notFound": "Article non trouvé",
     "notFoundDescription": "Oops! L'article que vous cherchez n'existe pas.",
     "goToArticles": "Aller aux articles",
     "switchLanguageForContent": "This article is available in english"
   },
   "project": {
+    "previous": "Projet précédent",
+    "next": "Projet suivant",
     "goToProjects": "Retour aux projets",
     "notFound": "Projet non trouvé",
     "notFoundDescription": "Le projet que vous cherchez n'est pas ici..",

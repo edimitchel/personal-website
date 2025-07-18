@@ -20,9 +20,7 @@ if (messages.value) {
 
 const store = layoutStore();
 
-store.title = 'Michel Edighoffer'
-
-const about = await useContent('about-' + locale.value, () => queryCollection('content').path(`/pages${locale.value === "fr" ? '/fr' : ''}/about`).first());
+const about = await useContent('about-' + locale.value, () => queryCollection('pages').path(`/pages${locale.value === "fr" ? '/fr' : ''}/about`).first());
 
 const experiences = await useTranslatedContent(
   'experiences', 
@@ -35,6 +33,8 @@ const experiences = await useTranslatedContent(
     organization: p.organization
   }))
 );
+
+store.title = 'Michel Edighoffer';
 
 useHead({
   title: store.title + ' – ' + about?.value?.title,

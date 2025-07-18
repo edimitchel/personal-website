@@ -32,6 +32,7 @@ const articleSchema = baseContentSchema.extend({
   date: z.string(),
   author: z.string(),
   content: z.string(),
+  thumbnail: z.string().optional(),
 }).merge(translationMetaSchema);
 
 // Project schema
@@ -41,7 +42,7 @@ const projectSchema = baseContentSchema.extend({
     children: z.any(),
   }),
   icons: z.string().array(),
-  creation: z.date(),
+  completedAt: z.date().optional(),
   organization: z.string().optional(),
   duration: z.number().optional(),
   type: z.enum(['application', 'website', 'consulting', 'experience']),
@@ -55,7 +56,7 @@ const projectSchema = baseContentSchema.extend({
 
 export default defineContentConfig({
   collections: {
-    content: defineCollection({
+    pages: defineCollection({
       source: 'pages/**/*.md',
       type: 'page',
       schema: baseContentSchema,

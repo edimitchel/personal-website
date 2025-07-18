@@ -21,8 +21,8 @@ async function onBeforeEnter() {
 }
 #app::after {
   content: '';
-  background: linear-gradient(to right, transparent, white, transparent);
-  position: absolute;
+  background: linear-gradient(to right, transparent 0%, white, transparent);
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;

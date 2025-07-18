@@ -6,7 +6,7 @@ image: /images/projects/syl/caption.png
 url: ""
 type: application
 status: closed
-creation: 2012-12-26
+completedAt: 2012-12-26
 categories:
   - Bookmarking
   - Social Sharing

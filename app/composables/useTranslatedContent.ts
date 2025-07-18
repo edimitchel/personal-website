@@ -1,20 +1,20 @@
-import type { CollectionQueryBuilder, ContentCollectionItem } from "@nuxt/content";
+import type { CollectionQueryBuilder, PagesCollectionItem } from "@nuxt/content";
 
-type TranslatedContentData<T extends ContentCollectionItem = ContentCollectionItem> = {
+type TranslatedContentData<T extends PagesCollectionItem = PagesCollectionItem> = {
     content: T[],
     isTranslated: boolean
 }
 
-type SingleContentData<T extends ContentCollectionItem = ContentCollectionItem> = {
+type SingleContentData<T extends PagesCollectionItem = PagesCollectionItem> = {
     content: T,
     isTranslated: boolean
 }
 
 // Overload for when transform function is provided
 export default async function useTranslatedContent<
-    T extends CollectionQueryBuilder<ContentCollectionItem>,
+    T extends CollectionQueryBuilder<PagesCollectionItem>,
     ResT,
-    ContentT extends ContentCollectionItem = T extends CollectionQueryBuilder<infer U> ? U : ContentCollectionItem
+    ContentT extends PagesCollectionItem = T extends CollectionQueryBuilder<infer U> ? U : PagesCollectionItem
 >(
     name: string,
     query: T,
@@ -23,8 +23,8 @@ export default async function useTranslatedContent<
 
 // Overload for when no transform function is provided - returns first content by default
 export default async function useTranslatedContent<
-    T extends CollectionQueryBuilder<ContentCollectionItem>,
-    ContentT extends ContentCollectionItem = T extends CollectionQueryBuilder<infer U> ? U : ContentCollectionItem
+    T extends CollectionQueryBuilder<PagesCollectionItem>,
+    ContentT extends PagesCollectionItem = T extends CollectionQueryBuilder<infer U> ? U : PagesCollectionItem
 >(
     name: string,
     query: T
@@ -32,9 +32,9 @@ export default async function useTranslatedContent<
 
 // Implementation
 export default async function useTranslatedContent<
-    T extends CollectionQueryBuilder<ContentCollectionItem>,
+    T extends CollectionQueryBuilder<PagesCollectionItem>,
     ResT = SingleContentData,
-    ContentT extends ContentCollectionItem = T extends CollectionQueryBuilder<infer U> ? U : ContentCollectionItem
+    ContentT extends PagesCollectionItem = T extends CollectionQueryBuilder<infer U> ? U : PagesCollectionItem
 >(
     name: string,
     query: T,

@@ -6,7 +6,7 @@ image: /images/projects/ulmalsace/caption.png
 url: ""
 type: static
 status: closed
-creation: 2009-09-01
+completedAt: 2009-09-01
 categories:
   - Static Website
   - Aviation
