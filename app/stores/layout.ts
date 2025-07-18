@@ -8,10 +8,11 @@ export type State = {
     withEmoji: boolean,
     headerImage: {
         src: string,
-        title: string
+        title: string,
     },
     headerCover?: {
-        src: string
+        src: string,
+        nudge?: {y?: number, x?: number}
     },
     notTranslated?: boolean
 }
@@ -24,16 +25,22 @@ export const layoutStore = defineStore('layout', () => {
     const color = ref()
     const hideMenu = ref(false)
     const withEmoji = ref(false)
-    const headerImage = ref<{ src: string, title: string } | undefined>({
-        src: defaultImage,
-        title: 'Michel\'s picture'
-    })
-    const headerCover = ref()
+    const headerImage = ref<{ src: string, title: string } | undefined>()
+    const headerCover = ref<{ src: string, nudge?: {y?: number, x?: number} } | undefined>(undefined)
     const notTranslated = ref<boolean | undefined>(undefined)
 
     function resetTitle() {
         title.value = '';
     }
+
+    function setDefaultHeaderImage() {
+        headerImage.value = {
+            src: defaultImage,
+            title: 'Michel\'s picture'
+        }
+    }
+
+    setDefaultHeaderImage();
 
     return {
         messages,
@@ -44,6 +51,6 @@ export const layoutStore = defineStore('layout', () => {
         headerImage,
         headerCover,
         notTranslated,
-        resetTitle,
+        setDefaultHeaderImage,
     };
 })

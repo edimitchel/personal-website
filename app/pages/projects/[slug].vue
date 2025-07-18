@@ -39,6 +39,9 @@ const store = layoutStore()
 if (content) {
   store.title = content.title
   
+  if (content.image) {
+    store.headerImage = { src: content.image, title: content.title };
+  }
   useHead({
     title: 'Michel Edighoffer / ' + content?.title,
   })

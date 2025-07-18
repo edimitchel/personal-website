@@ -11,14 +11,11 @@
       </Transition>
     </NuxtLinkLocale>
     <div class="titles">
-      <Transition name="fade" mode="out-in">
-        <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0"> {{
-          computedName }}</CurvedText>
+      <Transition name="fade" mode="out-in" v-if="computedName">
+        <CurvedText :key="computedName" class="title-header" :alone="messages.length === 0" :text="computedName" />
       </Transition>
       <MessageCarousel transition-name="balance" :list="messages" #default="{ message, level = 2 }">
-        <CurvedText :key="message" :title-level="level" class="subtitle-header">
-          {{ message }}
-        </CurvedText>
+        <CurvedText v-if="message" :key="message" :title-level="level" class="subtitle-header" :text="message" />
       </MessageCarousel>
     </div>
 
@@ -137,6 +134,11 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 .logo:hover {
   transform: scale(0.95);
+}
+
+.logo img {
+  height: 100%;
+  object-fit: contain;
 }
 
 .icons-bottom,

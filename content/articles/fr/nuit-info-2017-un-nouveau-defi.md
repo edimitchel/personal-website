@@ -9,6 +9,8 @@ categories:
   - Autre
   - Défis personnels
 thumbnail: https://blog.micheledighoffer.fr/blog/wp-content/uploads/2017/11/tb_nuitinfo2017.png
+thumbnail_nudge:
+  y: 20
 originalUrl: https://blog.micheledighoffer.fr/blog/nuit-info-2017-un-nouveau-defi/
 ---
 

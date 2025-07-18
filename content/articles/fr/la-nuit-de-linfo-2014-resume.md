@@ -23,7 +23,7 @@ Le but ultime pour les équipes est de gagner les défis proposés par les entre
 
 En Alsace, c’était près de 220 participants, d’une part à Strasbourg (à l’EPITECH et à l’UFR de Maths-Info), et de l’autre à l’IUT de Haguenau. De nombreuses équipes alsaciennes ont réussi à accéder les premières positions de nombreux défis.
 
-Pour commencer, l’équipe « [Pandata ](https://www.facebook.com/TeamPandata&#x29;» de l’IUT de Haguenau remporte la deuxième place du défi *« Égalité Homme/Femme face au numérique »* proposé par CGI.
+Pour commencer, l’équipe « [Pandata](https://www.facebook.com/TeamPandata» de l’IUT de Haguenau remporte la deuxième place du défi *« Égalité Homme/Femme face au numérique »* proposé par CGI.
 
 Le défi *« Mettez du relief avec WebGL »* a attiré deux équipes strasbourgeoises avec en deuxième position « Les niictalopes » et en troisième position « DogeNet ».
 
@@ -45,7 +45,7 @@ Et pour finir bien comme il faut, je termine avec les deux équipes issues de la
 
 L’équipe « Les Leek Warriors du CNAM » remporte en deuxième position le défi proposé par Alsacréations *« API feet »*.
 
-L’équipe « [Cake In Black](https://www.facebook.com/cakeinblack&#x29; » (avec laquelle j’ai travaillée) a remporté haut la main le défi *« Soyez Konami Code !!! »* en pôle position.
+L’équipe « [Cake In Black](https://www.facebook.com/cakeinblack) » (avec laquelle j’ai travaillée) a remporté haut la main le défi *« Soyez Konami Code !!! »* en pôle position.
 
 **Retour d’expérience − Cake In Black**
 

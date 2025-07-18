@@ -4,7 +4,8 @@
       <template v-if="content">
         <span class="block text-center text-sm">{{ formatDate(content.created) }}</span>
         <h1 class="mt-0">{{ content.title }}</h1>
-        <NuxtImg v-if="content.thumbnail" class="my-2 w-full max-h-40 md:max-h-50 object-cover" :src="content.thumbnail" :alt="content.title" />
+        <NuxtImg v-if="content.thumbnail" class="my-2 w-full max-h-40 md:max-h-50 object-cover" :src="content.thumbnail"
+          :alt="content.title" />
         <ContentRenderer :value="content" />
 
         <SiblingNavigation v-if="siblings" :siblings="siblings" collection="articles" />
@@ -42,9 +43,6 @@ if (content) {
   useHead({
     title: 'Michel Edighoffer / ' + content.title,
   })
-  if(content.thumbnail) {
-    store.headerCover = content.thumbnail;
-  }
 }
 
 store.notTranslated = !isTranslated

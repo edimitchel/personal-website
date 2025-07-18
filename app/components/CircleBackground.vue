@@ -10,10 +10,10 @@
         :stroke-dasharray="progressCircumference * 0.25 + ',' + progressCircumference * 0.20 + ',' + progressCircumference * 0.35" />
       <defs>
         <mask v-if="image" id="imageClip" width="500">
-          <circle :r="height - 75" cx="50%" cy="-35%" fill="white" />
+          <circle :r="height - 40" cx="50%" cy="-58%" fill="white" />
         </mask>
       </defs>
-      <image v-if="image" id="image" x="0%" :width="imageWidth" mask="url(#imageClip)" :xlink:href="image"
+      <image v-if="image" id="image" :x="(image?.nudge?.x || 0) + '%'" :y="(image?.nudge?.y || 0) + '%'" width="100%" mask="url(#imageClip)" :xlink:href="image.src"
         preserveAspectRatio="xMidYMid" />
     </svg>
   </div>
@@ -24,15 +24,10 @@ const { color = ['white', '#eee'], height = 420, pulse = false, reversed, image,
   height?: number,
   pulse?: boolean,
   reversed?: boolean,
-  image?: string,
+  image?: { src: string, nudge?: { y?: number, x?: number } },
   progressColor?: string,
   progressWidth?: number,
 }>();
-
-const imageLeft = ref<number>(0)
-const imageWidth = ref<string>('100%')
-const imageTop = ref<number>(0)
-const innerCircle = ref<HTMLElement | null>(null)
 
 const fillColor = computed(() => {
   const [top, bottom = top] = Array.isArray(color)
@@ -44,29 +39,9 @@ const fillColor = computed(() => {
   }
 })
 
+
 const progressCircumference = computed(() => 2 * Math.PI * (height - 110))
 
-onMounted(() => {
-  window.addEventListener('resize', resizeImage)
-  resizeImage()
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', resizeImage)
-})
-
-watch(() => image, () => {
-  resizeImage()
-})
-
-function resizeImage() {
-  if (image && innerCircle.value) {
-    const { left, width } = innerCircle.value.getBoundingClientRect()
-    imageLeft.value = left
-    imageWidth.value = width + 'px'
-    imageTop.value = innerCircle.value.getBoundingClientRect().top
-  }
-}
 </script>
 <style scoped>
 div {

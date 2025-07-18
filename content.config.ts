@@ -33,6 +33,10 @@ const articleSchema = baseContentSchema.extend({
   author: z.string(),
   content: z.string(),
   thumbnail: z.string().optional(),
+  thumbnail_nudge: z.object({
+    x: z.number().optional(),
+    y: z.number().optional()
+  }).optional(),
 }).merge(translationMetaSchema);
 
 // Project schema
