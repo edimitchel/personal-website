@@ -13,7 +13,7 @@
         </mask>
       </defs>
       <text :text-anchor="marqueeAnimation ? 'start' : 'middle'" :class="{ 'tracking-wide': alone, 'text-3xl': alone }" mask="url(#mask)">
-        <textPath xlink:href="#curve" startOffset="50%" :fill="color">
+        <textPath ref="textPathRef" xlink:href="#curve" startOffset="50%" :fill="color">
           <slot />
           <animate v-if="marqueeAnimation" attributeName="startOffset" from="100%" :to="percentageTo" :dur="duration"
             repeatCount="indefinite"></animate>
@@ -39,28 +39,93 @@ const {
 } > ()
 
 const MIN_TEXT_LENGTH_FOR_MARQUEE = 20
-const SPEED = 10; // Pixels per second
+const PIXELS_PER_SECOND = 80 // Consistent speed in pixels per second
 
 const slots = defineSlots()
+const textPathRef = ref<SVGTextPathElement>()
+const actualTextWidth = ref(0)
+
+// Get text content from slot
+const text = computed(() => {
+  return slots.default?.()[0].children?.toString().replace(/\s/g, '')
+})
+
+// Calculate the approximate length of the quadratic bezier curve
+const pathLength = computed(() => {
+  // For quadratic bezier curve M x1 y1 Q cx cy x2 y2
+  // Approximate length using the control polygon method
+  const x1 = 0, y1 = 0
+  const cx = width / 2, cy = 170
+  const x2 = width, y2 = 0
+  
+  const d1 = Math.sqrt((cx - x1) ** 2 + (cy - y1) ** 2)
+  const d2 = Math.sqrt((x2 - cx) ** 2 + (y2 - cy) ** 2)
+  const d3 = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+  
+  return (d1 + d2 + d3) / 2
+})
 
 const marqueeAnimation = computed(() => {
   return text.value.length > MIN_TEXT_LENGTH_FOR_MARQUEE
 })
 
-const duration = computed(() => {  
-  return text.value.length / SPEED
+// Measure actual text width when component is mounted
+onMounted(() => {
+  nextTick(() => {
+    if (textPathRef.value) {
+      try {
+        const bbox = textPathRef.value.getBBox()
+        actualTextWidth.value = bbox.width
+      } catch (e) {
+        // Fallback to estimation if getBBox fails
+        actualTextWidth.value = text.value.length * 0.6 * 16
+      }
+    }
+  })
 })
 
+// Watch for text changes to remeasure
+watch(text, () => {
+  nextTick(() => {
+    if (textPathRef.value) {
+      try {
+        const bbox = textPathRef.value.getBBox()
+        actualTextWidth.value = bbox.width
+      } catch (e) {
+        // Fallback to estimation if getBBox fails
+        actualTextWidth.value = text.value.length * 0.6 * 16
+      }
+    }
+  })
+})
+
+// Get text width (measured or estimated)
+const textWidth = computed(() => {
+  return actualTextWidth.value > 0 ? actualTextWidth.value : text.value.length * 0.6 * 16
+})
+
+// Calculate duration based on the distance the text needs to travel
+const duration = computed(() => {
+  // Total distance to travel: path length + text width (to completely exit)
+  const totalDistance = pathLength.value + textWidth.value
+  
+  // Duration = distance / speed (convert to seconds string)
+  return Math.ceil(totalDistance / PIXELS_PER_SECOND)
+})
+
+// Calculate the end position based on text length
 const percentageTo = computed(() => {
-  return `-${100 + (text.value.length - MIN_TEXT_LENGTH_FOR_MARQUEE) * 3}%`
+  // Calculate how far the text needs to move to completely exit the visible area
+  const pathLengthValue = pathLength.value
+  
+  // Convert to percentage of path length
+  const exitPercentage = (pathLengthValue + textWidth.value) / pathLength.value * 100
+  
+  return `-${exitPercentage}%`
 })
 
 const path = computed(() => {
   return `M 0 0 Q ${width / 2} 170 ${width} 0`
-})
-
-const text = computed(() => {
-  return slots.default?.()[0].children?.toString().replace(/\s/g, '')
 })
 </script>
 <style scoped>

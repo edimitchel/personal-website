@@ -27,8 +27,6 @@ const { t } = useI18n()
 
 store.messages = [{ content: 'Développements (EI)', level: 1 }, { content: 'free lancing since 2023', level: 2 }];
 
-store.color = ['#13D38E', '#13D38E']
-
 const { content: project, isTranslated } = await useTranslatedContent('project', queryCollection('pages').where('stem', 'LIKE', `%/project`));
 const projects = await useTranslatedContent('projects', queryCollection('projects').order('completedAt', 'DESC'), projects => projects.content.map(transformProject));
 
