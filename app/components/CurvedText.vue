@@ -1,6 +1,6 @@
 <template>
   <div :class="{ alone, [`level-${titleLevel}`]: true }">
-    <svg :width="width" fill="none" viewBox="0 0 500 100">
+    <svg :width="width" fill="none" :viewBox="`0 0 ${width} 100`">
       <path id="curve" :d="path" />
       <defs>
         <radialGradient id="gradient" cx="50%" cy="50%" r="100%" fy="100%" fx="50%">
@@ -8,7 +8,7 @@
           <stop stop-color="black" offset="65%" />
         </radialGradient>
         <mask id="mask">
-          <rect x="0" y="10" width="100%" height="90%" fill="url(#gradient)" />
+          <rect x="0" y="10" width="100%" height="100%" fill="url(#gradient)" />
         </mask>
       </defs>
       <text text-anchor="middle" :class="{ 'tracking-wide': alone, 'text-3xl': alone }" mask="url(#mask)">
@@ -40,7 +40,7 @@ const {
 }>()
 
 const MIN_TEXT_LENGTH_FOR_MARQUEE = 25
-const PIXELS_PER_SECOND = 20 // Consistent speed in pixels per second
+const PIXELS_PER_SECOND = 10 // Consistent speed in pixels per second
 
 const textPathRef = ref<SVGTextPathElement>()
 const actualTextWidth = ref(0)
@@ -63,7 +63,7 @@ const marqueeAnimation = computed(() => {
   return text.length > MIN_TEXT_LENGTH_FOR_MARQUEE
 })
 
-onMounted(() => {
+const recalculateActualTextWidth = () => {
   nextTick(() => {
     if (textPathRef.value) {
       try {
@@ -75,21 +75,11 @@ onMounted(() => {
       }
     }
   })
-})
+};
 
 watch(() => text, () => {
-  nextTick(() => {
-    if (textPathRef.value) {
-      try {
-        const bbox = textPathRef.value.getBBox()
-        actualTextWidth.value = bbox.width
-      } catch (e) {
-        // Fallback to estimation if getBBox fails
-        actualTextWidth.value = text.length * 0.6 * 16
-      }
-    }
-  })
-})
+  recalculateActualTextWidth()
+}, { immediate: true })
 
 const textWidth = computed(() => {
   return actualTextWidth.value > 0 ? actualTextWidth.value : text.length * 0.6 * 16
@@ -99,7 +89,7 @@ const duration = computed(() => {
   const baseDistance = Math.max(textWidth.value - pathLength.value, 100)
   const baseDuration = baseDistance / PIXELS_PER_SECOND
 
-  return Math.max(baseDuration * 2, 4)
+  return Math.max(baseDuration * 2, 2).toFixed(2)
 })
 
 const startOffsetValues = computed(() => {
@@ -107,17 +97,17 @@ const startOffsetValues = computed(() => {
 
   const textToPathRatio = textWidth.value / pathLength.value
   const baseRange = Math.max(textToPathRatio * 60, 50) // Minimum 50% range
-  const moveRange = Math.min(baseRange, 50) // Max 50% range for dramatic effect
+  const moveRange = Math.min(baseRange, 150) // Max 50% range for dramatic effect
 
   const center = 50
-  const right = Math.min(center + moveRange, 100) // Allow going beyond visible area
-  const left = Math.max(center - moveRange, -30)   // Allow going beyond visible area on left
+  const right = center + moveRange // Allow going beyond visible area
+  const left = center - moveRange   // Allow going beyond visible area on left
 
   return `${right}%; ${center}%; ${left}%; ${center}%; ${right}%`
 })
 
 const path = computed(() => {
-  return `M 0 0 Q ${width / 2} 170 ${width} 0`
+  return `M 0 0 Q ${width / 2} 150 ${width} 0`
 })
 </script>
 <style scoped>

@@ -39,7 +39,6 @@ const { data: siblings } = content ? await useAsyncData(`siblings-articles-${rou
 const store = layoutStore()
 if (content) {
   store.title = content.title
-
   useHead({
     title: 'Michel Edighoffer / ' + content.title,
   })

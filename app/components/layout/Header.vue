@@ -160,7 +160,7 @@ const { isLoading: pulse } = useLoadingIndicator();
   z-index: -1;
   position: relative;
   width: 600px;
-  top: -30px;
+  top: -20px;
 }
 
 .title-header {
@@ -179,7 +179,7 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 .subtitle-header {
   position: absolute;
-  top: 8px;
+  top: 5px;
   width: 100%;
   --uno: uppercase font-500 flex items-center justify-center;
 }
