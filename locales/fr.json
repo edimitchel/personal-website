@@ -20,7 +20,23 @@
     "goToProjects": "Retour aux projets",
     "notFound": "Projet non trouvé",
     "notFoundDescription": "Le projet que vous cherchez n'est pas ici..",
-    "noneForThisLanguage": "Aucun projet disponible en français"
+    "noneForThisLanguage": "Aucun projet disponible en français",
+    "info": {
+      "typeAndCategories": "Type & Catégories",
+      "technologies": "Technologies",
+      "details": "Détails du Projet",
+      "visitProject": "Visiter le Projet"
+    },
+    "types": {
+      "consulting": "Conseil",
+      "experience": "Expérience Professionnelle",
+      "application": "Application",
+      "static": "Site Statique"
+    }
+  },
+  "projects": {
+    "experienceConsulting": "Expérience & Conseil",
+    "personal": "Projets Personnels"
   },
   "skills_n_expertise": "Compétences & expertises",
   "tech_stack": "Stack technologique",

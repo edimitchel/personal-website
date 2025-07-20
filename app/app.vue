@@ -1,17 +1,8 @@
 <template>
   <NuxtLayout>
-    <NuxtPage :transition="{
-      onBeforeEnter,
-    }" />
+    <NuxtPage />
   </NuxtLayout>
 </template>
-<script setup lang="ts">
-const { finalizePendingLocaleChange } = useI18n()
-
-async function onBeforeEnter() {
-  await finalizePendingLocaleChange()
-}
-</script>
 <style>
 #app {
   min-height: 100vh;

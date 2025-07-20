@@ -1,14 +1,16 @@
 <template>
-	<nav class="flex justify-stretch items-start p-4 md:px-0 md:max-w-[100%] -mx-[calc(50vw-50%)] md:mx-0">
+	<nav class="flex sticky bottom-0 backdrop-blur-md justify-stretch items-start p-2 -mx-[calc(50vw-50%)] md:-mx-12 md:px-12">
 		<NuxtLinkLocale
-			class="text-left  decoration-none hover:underline flex flex-col-reverse items-start gap-0 max-w-[40%]"
-			v-if="prev" :to="`/${collection}/${prev.slug}`" :aria-label="t(`${collection.replace(/s$/, '')}.previous`)">{{ prev.title }}
+			class="text-left decoration-none hover:underline flex flex-col-reverse items-start gap-1 max-w-[40%]"
+			v-if="prev" :to="`/${collection}/${prev.slug}`" :aria-label="t(`${collection.replace(/s$/, '')}.previous`)">
+			<span class="text-sm font-medium">{{ prev.title }}</span>
 			<UnoIcon class="i-mdi-arrow-left" aria-hidden="true" />
 		</NuxtLinkLocale>
 		<div class="flex-grow-1"></div>
 		<NuxtLinkLocale
-			class="text-right  decoration-none hover:underline flex flex-col-reverse items-end gap-0 max-w-[40%]"
-			v-if="next" :to="`/${collection}/${next.slug}`" :aria-label="t(`${collection.replace(/s$/, '')}.next`)">{{ next.title }}
+			class="text-right decoration-none hover:underline flex flex-col-reverse items-end gap-1 max-w-[40%]"
+			v-if="next" :to="`/${collection}/${next.slug}`" :aria-label="t(`${collection.replace(/s$/, '')}.next`)">
+			<span class="text-sm font-medium">{{ next.title }}</span>
 			<UnoIcon class="i-mdi-arrow-right" aria-hidden="true" />
 		</NuxtLinkLocale>
 	</nav>
@@ -20,7 +22,7 @@ import type { ContentNavigationItem } from '@nuxt/content';
 const { t } = useI18n()
 
 const props = defineProps<{
-	siblings: ContentNavigationItem[]
+	siblings: (ContentNavigationItem | null)[]
 	collection: string
 }>()
 

@@ -2,7 +2,7 @@
 title: Styleguide of Arte TV website
 organization: Arte GEIE
 description: Maintenance and development of Arte GEIE's website
-image: /images/projects/arte/caption.png
+image: https://photos-corporate.arte.tv/documents/ftp/ressources/180/images/logo.png
 url: "https://arte.tv"
 type: consulting
 categories:

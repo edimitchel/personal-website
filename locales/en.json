@@ -20,7 +20,23 @@
     "notFound": "Project not found",
     "notFoundDescription": "The project you're looking for is not there..",
     "goToProjects": "Return to projects",
-    "noneForThisLanguage": "No project in english available "
+    "noneForThisLanguage": "No project in english available ",
+    "info": {
+      "typeAndCategories": "Type & Categories",
+      "technologies": "Technologies",
+      "details": "Project Details",
+      "visitProject": "Visit Project"
+    },
+    "types": {
+      "consulting": "Consulting",
+      "experience": "Professional Experience",
+      "application": "Application",
+      "static": "Static Website"
+    }
+  },
+  "projects": {
+    "experienceConsulting": "Experience & Consulting",
+    "personal": "Personal Projects"
   },
   "skills_n_expertise": "Skills & Expertise",
   "tech_stack": "Technology Stack",

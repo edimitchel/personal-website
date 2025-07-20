@@ -2,6 +2,7 @@
   <article>
     <main>
       <template v-if="content">
+        <ProjectHeader :project="content" />
         <ContentRenderer :value="content" class="prose" />
         <SiblingNavigation v-if="siblings" :siblings="siblings" collection="projects" />
 
@@ -31,14 +32,20 @@ const { content, isTranslated } = await useTranslatedContent(
   queryCollection('projects').where('stem', 'LIKE', '%/' + route.params.slug + '%'),
 )
 
-const { data: siblings } = content ? await useAsyncData(`project-siblings-${route.params.slug}`, () => queryCollectionItemSurroundings('projects', content.path, {
+const { data: siblings } = content ? (await useAsyncData(`project-siblings-${route.params.slug}`, () => queryCollectionItemSurroundings('projects', content.path, {
   fields: ['slug', 'title', 'stem']
-}).order('completedAt', 'DESC'), { transform: siblings => siblings.map(transformProject) }) : { data: null }
+})
+  .where('lang', '=', locale.value)
+  .order('completedAt', 'DESC'),
+  {
+    transform: siblings => siblings.map(sibling => sibling ? transformProject(sibling) : null)
+  })
+) : { data: null }
 
 const store = layoutStore()
 if (content) {
   store.title = content.title
-  
+
   if (content.image) {
     store.headerImage = { src: content.image, title: content.title };
   }
