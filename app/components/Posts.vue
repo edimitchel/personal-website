@@ -1,26 +1,62 @@
 <template>
-    <div v-if="posts.length" class="posts">
-      <Post v-for="post in posts" :key="post.slug" :to="post.slug" :post />
-    </div>
+  <div v-if="posts.length" class="posts">
+    <section v-for="[time, posts] of timeSections" :key="time">
+      <h2 v-if="timeSection(time)" class="text-xl uppercase font-bold text-primary-800 dark:text-primary-200 py-2">{{ timeSection(time) }}</h2>
+      <Post v-for="post in posts" :key="post.slug" :to="post.slug" :post="post" class="pb-4" />
+    </section>
+  </div>
 </template>
 
-<script>
-import Post from '@/components/Post'
-export default {
-  components: {
-    Post
-  },
-  props: {
-    posts: {
-      type: Array,
-      default: () => []
-    },
+<script setup lang="ts">
+import type { ArticlesCollectionItem } from '@nuxt/content';
+
+interface Props {
+  posts: ArticlesCollectionItem[]
+}
+
+const props = defineProps < Props > ()
+
+const timeSections = computed(() => {
+  const sections: Map<number, ArticlesCollectionItem[]> = new Map()
+
+  props.posts.forEach(post => {
+    if (post.meta.timeSection) {
+      const key = post.meta.timeSection as number
+      if (!sections.has(key)) {
+        sections.set(key, [])
+      }
+      sections.get(key)?.push(post)
+      return
+    }
+
+    const date = new Date(post.created)
+    const year = date.getFullYear()
+
+    if (!sections.has(year)) {
+      sections.set(year, [])
+    }
+    sections.get(year)?.push(post)
+  })
+
+  return sections
+})
+
+function timeSection(time: number) {
+  const { t } = useI18n()
+  if(time === new Date().getFullYear()) {
+    return null
   }
+
+  if(time === new Date().getFullYear() - 1) {
+    return t('articles.timeSectionLastYear')
+  }
+
+  return time.toString()
 }
 </script>
 <style scoped>
 .posts {
-  --uno: relative flex flex-col gap-3;
+  --uno: relative flex flex-col gap-2;
 }
 
 @screen md {

@@ -1,12 +1,16 @@
 <template>
-  <div class="flex flex-wrap gap-2">
+  <div class="flex flex-wrap gap-1 group">
     <span 
-      v-for="tech in technologies" 
+      v-for="(tech, index) in technologies" 
       :key="tech"
-      class="inline-flex items-center px-2 py-1 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded font-medium"
+      class="inline-flex items-center px-2 py-1 text-xs bg-primary-100 dark:bg-primary-700 text-primary-700 dark:text-primary-300 rounded font-medium"
+      :class="{ 'md:hidden md:group-hover:block': hiddenMoreThan && index >= hiddenMoreThan }"
     >
       <i v-if="getTechIcon(tech)" :class="getTechIcon(tech)" class="w-3 h-3 mr-1" />
       {{ tech }}
+    </span>
+    <span v-if="hiddenMoreThan && technologies.length > hiddenMoreThan" class="px-2 py-1 text-xs text-primary-500 hidden md:block">
+      +{{ technologies.length - hiddenMoreThan }}
     </span>
   </div>
 </template>
@@ -14,6 +18,7 @@
 <script setup lang="ts">
 interface Props {
   technologies: string[]
+  hiddenMoreThan?: number
 }
 
 defineProps<Props>()
@@ -42,6 +47,8 @@ function getTechIcon(tech: string): string | null {
     'Firebase': 'i-logos-firebase',
     'Vercel': 'i-logos-vercel-icon',
     'Netlify': 'i-logos-netlify',
+    'jQuery': 'i-logos-jquery',
+    'Bootstrap': 'i-logos-bootstrap',
   }
   
   return techIcons[tech] || null

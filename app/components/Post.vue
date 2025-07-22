@@ -1,5 +1,5 @@
 <template>
-  <NuxtLinkLocale class="post prose" :to="{ name: 'articles-slug', params: { slug: props.to } }">
+  <NuxtLinkLocale class="post prose" :class :to="{ name: 'articles-slug', params: { slug: props.to } }">
     <header class="post__header">
       <small v-if="post.created" class="post__date" :title="formatDate(post.created, true)">
         {{ formatDate(post.created) }}
@@ -22,7 +22,7 @@ import type { ArticlesCollectionItem } from '@nuxt/content';
 
 const { locale } = useI18n()
 
-const props = defineProps<{ post: ArticlesCollectionItem, to: string }>()
+const props = defineProps<{ post: ArticlesCollectionItem, to: string, class?: string }>()
 
 function formatDate(date: string, simple = false) {
   return Intl.DateTimeFormat(
@@ -66,7 +66,7 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__date {
-  --uno: -mb-2 block text-gray-600 font-bold;
+  --uno: -mb-2 block text-primary-600 font-bold;
 }
 
 .post__title {

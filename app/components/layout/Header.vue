@@ -215,7 +215,7 @@ const { isLoading: pulse } = useLoadingIndicator();
   bottom: 0px;
   height: 35px;
   transition: all 300ms ease;
-  --uno: font-serif text-gray-900;
+  --uno: font-serif text-primary-900;
 }
 
 .navigation.hidden {
@@ -272,7 +272,7 @@ ul a::before {
 }
 
 ul a.router-link-active::before {
-  --uno: bg-gray-600 pointer-events-none -z-1 bottom-[-6px];
+  --uno: bg-primary-600 pointer-events-none -z-1 bottom-[-6px];
 }
 
 .header :deep(a.lang-switcher) {

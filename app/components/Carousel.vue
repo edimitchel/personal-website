@@ -18,7 +18,7 @@
         height: '100%',
         rotateY: getRotateY(index),
       }" :transition="effectiveTransition">
-        <div v-if="!$slots.default" class="p-1 text-gray-900">
+        <div v-if="!$slots.default" class="p-1 text-primary-900">
           <div class="mb-1 font-black text-lg">{{ item.title }}</div>
           <p class="text-sm">{{ item.description }}</p>
           <div class="my-4" v-if="item.icons">
@@ -34,10 +34,10 @@
 
     <div class="flex w-full justify-center pt-4 gap-2">
         <Motion v-for="(_, index) in items" :key="index" tag="div" :class="[
-          'h-3 w-3 rounded-full transition-colors duration-150 border border-gray-600 cursor-pointer',
+          'h-3 w-3 rounded-full transition-colors duration-150 border border-primary-600 cursor-pointer',
           currentIndex % items.length === index
-            ? 'bg-gray-600'
-            : 'bg-gray-100'
+            ? 'bg-primary-600'
+            : 'bg-primary-100'
         ]" :animate="{
       scale: currentIndex % items.length === index ? 1.2 : 1
     }" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />

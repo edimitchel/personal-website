@@ -3,7 +3,7 @@
     <section>
       <div class="flex flex-col lg:flex-row items-center gap-8">
         <div class="profile-info flex-1 text-center">
-          <h2 class="text-2xl lg:text-3xl underline underline-gray-600 mb-4 mt-0">
+          <h2 class="text-2xl lg:text-3xl underline underline-primary-600 mb-4 mt-0">
             {{ title }}
           </h2>
           <p class="text-lg leading-relaxed text-balance">
@@ -14,26 +14,26 @@
     </section>
 
     <button
-      class="block w-50 my-4 mx-auto border-2 border-gray-600 rounded-lg px-4 py-2 uppercase cursor-pointer transition-colors duration-150 hover:bg-gray-600 hover:text-white">
+      class="block w-50 my-4 mx-auto border-2 border-primary-600 rounded-lg px-4 py-2 uppercase cursor-pointer transition-colors duration-150 hover:bg-primary-600 hover:text-white">
       {{ $t('about.contact-me') }}
     </button>
 
     <section class="skills-section mb-12">
-      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-8 text-center text-primary-900 dark:text-white">
         {{ $t('skills_n_expertise') }}
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
-          class="skill-category bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm transition-shadow"
+          class="skill-category bg-white dark:bg-primary-800 rounded-lg p-6 shadow-sm transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
-          <h4 class="text-xl font-semibold m-0 mb-4 text-gray-900 dark:text-white flex items-center">
+          <h4 class="text-xl font-semibold m-0 mb-4 text-primary-900 dark:text-white flex items-center">
             <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template
                 v-else>{{ skillCategory.icon }}</template></span>
             {{ skillCategory.category }}
           </h4>
           <div class="flex flex-wrap gap-2">
             <span v-for="skill in skillCategory.items" :key="skill"
-              class="px-3 py-1 bg-gray-100 dark:bg-gray-600 text-gray-900 dark:text-gray-100 rounded-full text-sm font-medium">
+              class="px-3 py-1 bg-primary-100 dark:bg-primary-600 text-primary-900 dark:text-primary-100 rounded-full text-sm font-medium">
               {{ skill }}
             </span>
           </div>
@@ -42,21 +42,21 @@
     </section>
 
     <section class="tech-stack-section mb-12">
-      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-8 text-center text-primary-900 dark:text-white">
         {{ $t('tech_stack') }}
       </h3>
       <div class="grid grid-cols-1 gap-8">
         <div v-for="stackCategory in techStack" :key="stackCategory.category" class="stack-category">
-          <h4 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">
+          <h4 class="text-xl font-semibold mb-4 text-primary-900 dark:text-white">
             {{ stackCategory.category }}
           </h4>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
-              class="tech-item bg-white dark:bg-gray-800 rounded-lg p-4 text-center shadow-sm transition-shadow">
+              class="tech-item bg-white dark:bg-primary-800 rounded-lg p-4 text-center shadow-sm transition-shadow">
 
               <div class="text-3xl mb-2"><i class="inline-block" :class="tech.iconName" /></div>
-              <div class="text-sm font-medium text-gray-900 dark:text-white">{{ tech.name }}</div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">{{ tech.level }}</div>
+              <div class="text-sm font-medium text-primary-900 dark:text-white">{{ tech.name }}</div>
+              <div class="text-xs text-primary-500 dark:text-primary-400">{{ tech.level }}</div>
             </div>
           </div>
         </div>
@@ -64,19 +64,19 @@
     </section>
 
     <section class="passions-section mb-12">
-      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-8 text-center text-primary-900 dark:text-white">
         {{ $t('passions') }}
       </h3>
       <div class="grid grid-cols-1 lg:grid-cols-2">
         <div v-for="(passion, index) in passions" :key="passion.title"
-          class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-700 rounded-lg p-2 transition-all duration-300"
+          class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-primary-800 dark:to-primary-700 rounded-lg p-2 transition-all duration-300"
           :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }">
 
           <div class="text-4xl mb-4 text-center"><i class="block" :class="passion.icon" /></div>
-          <h4 class="text-lg font-semibold mb-2 text-center text-gray-900 dark:text-white">
+          <h4 class="text-lg font-semibold mb-2 text-center text-primary-900 dark:text-white">
             {{ passion.title }}
           </h4>
-          <p class="text-gray-600 dark:text-gray-300 text-center m-0">
+          <p class="text-primary-600 dark:text-primary-300 text-center m-0">
             {{ passion.description }}
           </p>
         </div>
@@ -86,16 +86,16 @@
     <section client-only v-if="experiences">
       <!-- Experiences -->
 
-      <h3 class="text-3xl font-bold my-8 text-center text-gray-900 dark:text-white">
+      <h3 class="text-3xl font-bold my-8 text-center text-primary-900 dark:text-white">
         {{ $t('experiences') }}
       </h3>
 
       <!-- Carousel with experiences -->
       <Carousel :items="experiences">
         <template #default="{ item }">
-          <h4 class="text-lg font-semibold m-0 mb-0 text-gray-900 dark:text-white">{{ item.title }}</h4>
-          <h2 class="text-sm font-normal m-0 text-gray-900 dark:text-white">{{ item.organization }}</h2>
-          <p class="text-gray-600 dark:text-gray-300 flex-grow-1 m-0 my-1 leading-tight text-balance">{{ item.description }}</p>
+          <h4 class="text-lg font-semibold m-0 mb-0 text-primary-900 dark:text-white">{{ item.title }}</h4>
+          <h2 class="text-sm font-normal m-0 text-primary-900 dark:text-white">{{ item.organization }}</h2>
+          <p class="text-primary-600 dark:text-primary-300 flex-grow-1 m-0 my-1 leading-tight text-balance">{{ item.description }}</p>
           <div v-if="item.icons" class="flex gap-2 mt-2">
             <UnoIcon v-for="icon in item.icons" :key="icon" :class="icon" />
           </div>
@@ -104,20 +104,20 @@
     </section>
 
     <section
-      class="enterprise-section border-y-(5 gray-600) py-4 rounded-[5px] bg-linear-to-tb from-white to-gray-100 p-2">
-      <h3 class="text-3xl font-bold my-2 text-center text-gray-900 dark:text-white">
+      class="enterprise-section border-y-(5 primary-600) py-4 rounded-[5px] bg-linear-to-tb from-white to-primary-100 p-2">
+      <h3 class="text-3xl font-bold my-2 text-center text-primary-900 dark:text-white">
         {{ $t('enterprise_purposes') }}
       </h3>
       <div class="flex flex-col p-2 gap-6 text-balance">
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Mission</h4>
-          <p class="text-gray-600 leading-relaxed m-0">
+          <p class="text-primary-600 leading-relaxed m-0">
             {{ enterprise?.mission }}
           </p>
         </div>
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Vision</h4>
-          <p class="text-gray-600 leading-relaxed m-0">
+          <p class="text-primary-600 leading-relaxed m-0">
             {{ enterprise?.vision }}
           </p>
         </div>
@@ -133,7 +133,7 @@
               </div>
               <div>
                 <h5 class="font-semibold">{{ service.name }}</h5>
-                <p class="text-sm text-gray-600 m-0">{{ service.description }}</p>
+                <p class="text-sm text-primary-600 m-0">{{ service.description }}</p>
               </div>
             </div>
           </div>

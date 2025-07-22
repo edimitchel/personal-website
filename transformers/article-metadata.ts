@@ -12,11 +12,19 @@ export default defineTransformer({
         const { birthtime, mtime } = fileStat;
         const lang = path.includes('/fr/') ? 'fr' : 'en';
 
+        
+        const created = file.created ?? birthtime.toISOString()
+        const updated = file.updated ?? mtime.toISOString()
+
+
+        const timeSection = created ? new Date(created as string).getFullYear() : ''
+
         return {
             ...file,
             lang,
-            created: file.created ?? birthtime.toISOString(),
-            updated: file.updated ?? mtime.toISOString(),
+            created,
+            updated,
+            timeSection
         }
     },
 })

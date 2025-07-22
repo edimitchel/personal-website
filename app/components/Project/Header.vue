@@ -1,11 +1,11 @@
 <template>
-  <header class="mb-8 pb-6 border-b border-gray-200 dark:border-gray-700">
+  <header class="mb-8 pb-6 border-b border-primary-200 dark:border-primary-700">
     <div class="flex items-start gap-6 mb-6">
       <div class="flex-1 min-w-0">
-        <p v-if="project.organization" class="text-lg text-center text-gray-600 dark:text-gray-200 mb-3">
+        <p v-if="project.organization" class="text-lg text-center text-primary-600 dark:text-primary-200 mb-3">
           {{ project.organization }}
         </p>
-        <p v-if="project.description" class="text-center text-balance ext-gray-600 dark:text-gray-200 text-base leading-relaxed">
+        <p v-if="project.description" class="text-center text-balance ext-primary-600 dark:text-primary-200 text-base leading-relaxed">
           {{ project.description }}
         </p>
       </div>
@@ -39,19 +39,19 @@
       >
         <div class="space-y-2">
           <div v-if="project.url" class="flex items-center gap-2">
-            <i class="i-heroicons-link text-gray-400 w-4 h-4" />
+            <i class="i-heroicons-link text-primary-400 w-4 h-4" />
             <a 
               :href="project.url" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="text-gray-600 dark:text-gray-200 hover:underline text-sm"
+              class="text-primary-600 dark:text-primary-200 hover:underline text-sm"
             >
               {{ $t('project.info.visitProject') }}
             </a>
           </div>
           <div v-if="project.completedAt" class="flex items-center gap-2">
-            <i class="i-mdi-calendar text-gray-400 w-4 h-4" />
-            <span class="text-gray-600 dark:text-gray-300 text-sm">
+            <i class="i-mdi-calendar text-primary-400 w-4 h-4" />
+            <span class="text-primary-600 dark:text-primary-300 text-sm">
               {{ formatDate(project.completedAt) }}
             </span>
           </div>

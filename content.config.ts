@@ -5,6 +5,8 @@ const baseContentSchema = z.object({
   title: z.string(),
   lang: z.enum(['en', 'fr']).optional().default('en'),
   description: z.string(),
+  created: z.date(),
+  updated: z.date(),
   slug: z.string(),
   draft: z.boolean().optional().default(false),
 });
@@ -26,12 +28,7 @@ const translationMetaSchema = z.object({
 const articleSchema = baseContentSchema.extend({
   categories: z.string().array(),
   tags: z.string().array(),
-  image: z.string().editor({ input: 'media' }),
-  created: z.date(),
-  updated: z.date(),
-  date: z.string(),
   author: z.string(),
-  content: z.string(),
   thumbnail: z.string().optional(),
   thumbnail_nudge: z.object({
     x: z.number().optional(),

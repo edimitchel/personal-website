@@ -14,8 +14,8 @@ categories:
   - Web Development
 technologies:
   - PHP
-  - HTML5
-  - CSS3
+  - HTML
+  - CSS
   - JavaScript
   - jQuery
   - Bootstrap

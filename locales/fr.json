@@ -47,5 +47,10 @@
   "experiences": "Expériences",
   "about": {
     "contact-me": "Contactez moi"
+  },
+  "articles": {
+    "timeSectionLastYear": "L'an passée",
+    "timeSection": "Cette année",
+    "timeSectionOlder": "Y a des années"
   }
 }

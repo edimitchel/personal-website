@@ -39,13 +39,13 @@ const typeConfig = computed(() => {
     case 'static':
       return {
         label: t('project.types.static'),
-        classes: 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300',
+        classes: 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
         icon: 'i-heroicons-document'
       }
     default:
       return {
         label: props.type,
-        classes: 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300',
+        classes: 'bg-primary-100 text-primary-800 dark:bg-primary-900/30 dark:text-primary-300',
         icon: 'i-heroicons-tag'
       }
   }

@@ -3,7 +3,7 @@
     <span 
       v-for="category in categories" 
       :key="category"
-      class="px-2 py-1 text-xs bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded"
+      class="px-2 py-1 text-xs bg-primary-200 dark:bg-primary-700 text-primary-700 dark:text-primary-300 rounded"
     >
       {{ category }}
     </span>
