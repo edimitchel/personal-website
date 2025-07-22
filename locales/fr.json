@@ -35,8 +35,10 @@
     }
   },
   "projects": {
-    "experienceConsulting": "Expérience & Conseil",
-    "personal": "Projets Personnels"
+    "experienceConsulting": "Expériences & Conseil",
+    "personal": "Projets Personnels",
+    "showMore": "Voir plus ({count})",
+    "showLess": "Voir moins"
   },
   "skills_n_expertise": "Compétences & expertises",
   "tech_stack": "Stack technologique",

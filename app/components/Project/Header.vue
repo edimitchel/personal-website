@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 pb-2">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pb-2">
       <!-- Project Type & Categories -->
       <ProjectInfo 
         v-if="project.type || project.categories?.length"

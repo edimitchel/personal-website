@@ -35,8 +35,10 @@
     }
   },
   "projects": {
-    "experienceConsulting": "Experience & Consulting",
-    "personal": "Personal Projects"
+    "experienceConsulting": "Experiences & Consulting",
+    "personal": "Personal Projects",
+    "showMore": "Show more ({count})",
+    "showLess": "Show less"
   },
   "skills_n_expertise": "Skills & Expertise",
   "tech_stack": "Technology Stack",

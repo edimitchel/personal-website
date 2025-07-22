@@ -4,32 +4,16 @@
     
     <div v-if="projects?.length">
       <!-- Experience + Consulting -->
-      <div v-if="experienceConsultingProjects.length" class="mb-12">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">
-          {{ $t('projects.experienceConsulting') }}
-        </h2>
-        <div class="grid gap-6">
-          <ProjectCard 
-            v-for="p in experienceConsultingProjects" 
-            :key="p.slug" 
-            :project="p"
-          />
-        </div>
-      </div>
+      <ProjectSection
+        :projects="experienceConsultingProjects"
+        :title="$t('projects.experienceConsulting')"
+      />
 
       <!-- Personal Projects -->
-      <div v-if="personalProjects.length" class="mb-12">
-        <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">
-          {{ $t('projects.personal') }}
-        </h2>
-        <div class="grid gap-6">
-          <ProjectCard 
-            v-for="p in personalProjects" 
-            :key="p.slug" 
-            :project="p"
-          />
-        </div>
-      </div>
+      <ProjectSection
+        :projects="personalProjects"
+        :title="$t('projects.personal')"
+      />
     </div>
     
     <div class="prose" v-else>
