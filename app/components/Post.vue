@@ -33,7 +33,7 @@ function formatDate(date: string, simple = false) {
 
 <style scoped>
 .post {
-  --uno: block overflow-hidden pb-2;
+  --uno: block overflow-hidden pb-3;
 }
 
 .post:last-child {
@@ -67,7 +67,7 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__title {
-  --uno: m-0 pt-0 leading-tight text-lg font-semibold text-background line-clamp-1;
+  --uno: m-0 py-1 leading-tight text-lg font-semibold text-background line-clamp-1;
   ;
 }
 

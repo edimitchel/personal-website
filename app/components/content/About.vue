@@ -14,7 +14,7 @@
     </section>
 
     <button
-      class="block w-50 my-4 mx-auto border-2 border-primary-600 rounded-lg px-4 py-2 uppercase cursor-pointer transition-colors duration-150 hover:bg-primary-600 hover:text-forground">
+      class="block w-50 my-4 mx-auto border-2 border-primary-600 rounded-lg px-4 py-2 uppercase cursor-pointer transition-colors duration-150 hover:bg-primary-600 hover:text-foreground">
       {{ $t('about.contact-me') }}
     </button>
 
@@ -24,7 +24,7 @@
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
-          class="skill-category bg-forground rounded-lg p-6 shadow-sm shadow-primary/40 transition-shadow"
+          class="skill-category bg-foreground rounded-lg p-6 shadow-sm shadow-primary/40 transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
           <h4 class="text-xl font-semibold m-0 mb-4 text-background flex items-center">
             <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template
@@ -33,7 +33,7 @@
           </h4>
           <div class="flex flex-wrap gap-2">
             <span v-for="skill in skillCategory.items" :key="skill"
-              class="px-3 py-1 bg-background text-forground rounded-full text-sm font-medium">
+              class="px-3 py-1 bg-background text-foreground rounded-full text-sm font-medium">
               {{ skill }}
             </span>
           </div>
@@ -52,7 +52,7 @@
           </h4>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
-              class="tech-item bg-forground rounded-lg p-4 text-center shadow-sm shadow-primary/40 transition-shadow">
+              class="tech-item bg-foreground rounded-lg p-4 text-center shadow-sm shadow-primary/40 transition-shadow">
 
               <div class="text-3xl mb-2"><i class="inline-block" :class="tech.iconName" /></div>
               <div class="text-sm font-medium text-background">{{ tech.name }}</div>
@@ -104,7 +104,7 @@
     </section>
 
     <section
-      class="enterprise-section border-y-(5 primary) py-4 rounded-[5px] bg-linear-to-tb from-forground to-primary-400 p-2">
+      class="enterprise-section border-y-(5 primary) py-4 rounded-[5px] bg-linear-to-tb from-foreground to-primary-400 p-2">
       <h3 class="text-3xl font-bold my-2 text-center text-background">
         {{ $t('enterprise_purposes') }}
       </h3>

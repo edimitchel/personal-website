@@ -70,6 +70,6 @@ function timeSection(time: number) {
 }
 
 .category.active {
-  --uno: bg-primary-500 text-forground;
+  --uno: bg-primary-500 text-foreground;
 }
 </style>

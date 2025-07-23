@@ -6,6 +6,26 @@ export default defineConfig({
         presetWind4({
             preflights: {
                 reset: true,
+            },
+            theme: {
+                colors: {
+                    primary: {
+                        50: '#f9fafb',
+                        100: '#f3f4f6',
+                        200: '#e5e7eb',
+                        300: '#d1d5db',
+                        400: '#9ca3af',
+                        500: '#6b7280',
+                        600: '#4b5563',
+                        700: '#374151',
+                        800: '#1f2937',
+                        900: '#111827',
+                        950: '#030712',
+                        DEFAULT: '#6b7280',
+                    },
+                    foreground: '#ffffff',
+                    background: '#000000',
+                },
             }
         }),
         presetIcons(),
@@ -29,7 +49,7 @@ export default defineConfig({
                             950: '#f9fafb',
                             DEFAULT: '#6b7280',
                         },
-                        forground: '#333333',
+                        foreground: '#333333',
                         background: '#ffffff',
                     },
                 },
@@ -37,26 +57,6 @@ export default defineConfig({
         }),
     ],
     theme: {
-        colors: {
-            primary: {
-                50: '#f9fafb',
-                100: '#f3f4f6',
-                200: '#e5e7eb',
-                300: '#d1d5db',
-                400: '#9ca3af',
-                500: '#6b7280',
-                600: '#4b5563',
-                700: '#374151',
-                800: '#1f2937',
-                900: '#111827',
-                950: '#030712',
-                DEFAULT: '#6b7280',
-            },
-            forground: '#ffffff',
-            background: '#000000',
-            transparent: 'transparent',
-            current: 'currentColor',
-        },
         font: {
             serif: 'Gabarito',
             mono: 'Source Code Pro'

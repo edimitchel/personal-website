@@ -12,7 +12,7 @@
       @animationComplete="handleAnimationComplete">
       <Motion v-for="(item, index) in carouselItems" :key="index" tag="div" :class="[
         'relative shrink-0 flex flex-col overflow-hidden cursor-grab active:cursor-grabbing min-h-[150px]',
-        'items-start justify-between bg-forground shadow-sm shadow-primary/40 rounded-lg p-2'
+        'items-start justify-between bg-foreground shadow-sm shadow-primary/40 rounded-lg p-2'
       ]" :style="{
         width: itemWidth + 'px',
         height: '100%',
@@ -24,7 +24,7 @@
           <div class="my-4" v-if="item.icons">
             <span class="flex gap-2 items-center">
               <i v-for="icon in Array.isArray(item.icons) ? item.icons : [item.icons]" :key="icon" :class="icon"
-                class="text-forground text-xl"></i>
+                class="text-foreground text-xl"></i>
             </span>
           </div>
         </div>

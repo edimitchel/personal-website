@@ -1,6 +1,6 @@
 <template>
   <NuxtLinkLocale :to="'/projects/' + project.slug"
-    class="block p-3 py-4 bg-forground text-forground rounded-lg shadow-sm shadow-primary/40 hover:shadow-md transition-shadow duration-200 group">
+    class="block p-3 py-4 bg-foreground text-foreground rounded-lg shadow-sm shadow-primary/40 hover:shadow-md transition-shadow duration-200 group">
     <div class="flex items-start gap-3">
       <div class="flex flex-col items-center gap-1 text-background">
         <NuxtImg v-if="project.image" :src="project.image" :alt="project.title"
