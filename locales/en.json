@@ -47,10 +47,5 @@
   "experiences": "Experiences",
   "about": {
     "contact-me": "Contact me"
-  },
-  "articles": {
-    "timeSectionLastYear": "Last year",
-    "timeSection": "This year",
-    "timeSectionOlder": "Years ago"
   }
 }

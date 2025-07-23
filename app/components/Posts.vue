@@ -1,7 +1,7 @@
 <template>
   <div v-if="posts.length" class="posts">
     <section v-for="[time, posts] of timeSections" :key="time">
-      <h2 v-if="timeSection(time)" class="text-xl uppercase font-bold text-primary-800 dark:text-primary-200 py-2">{{ timeSection(time) }}</h2>
+      <h2 v-if="timeSection(time)" class="text-xl uppercase font-bold text-primary-800 py-2">{{ timeSection(time) }}</h2>
       <Post v-for="post in posts" :key="post.slug" :to="post.slug" :post="post" />
     </section>
   </div>
@@ -42,13 +42,8 @@ const timeSections = computed(() => {
 })
 
 function timeSection(time: number) {
-  const { t } = useI18n()
   if(time === new Date().getFullYear()) {
     return null
-  }
-
-  if(time === new Date().getFullYear() - 1) {
-    return t('articles.timeSectionLastYear')
   }
 
   return time.toString()

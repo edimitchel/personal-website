@@ -24,7 +24,7 @@
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
-          class="skill-category bg-forground rounded-lg p-6 shadow-sm transition-shadow"
+          class="skill-category bg-forground rounded-lg p-6 shadow-sm shadow-primary/40 transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
           <h4 class="text-xl font-semibold m-0 mb-4 text-background flex items-center">
             <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template
@@ -52,7 +52,7 @@
           </h4>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
-              class="tech-item bg-forground rounded-lg p-4 text-center shadow-sm transition-shadow">
+              class="tech-item bg-forground rounded-lg p-4 text-center shadow-sm shadow-primary/40 transition-shadow">
 
               <div class="text-3xl mb-2"><i class="inline-block" :class="tech.iconName" /></div>
               <div class="text-sm font-medium text-background">{{ tech.name }}</div>
@@ -83,10 +83,10 @@
       </div>
     </section>
 
-    <section client-only v-if="experiences">
+    <section client-only v-if="experiences" class="py-4">
       <!-- Experiences -->
 
-      <h3 class="text-3xl font-bold my-8 text-center text-background">
+      <h3 class="text-3xl font-bold m-0 text-center text-background">
         {{ $t('experiences') }}
       </h3>
 
@@ -95,7 +95,7 @@
         <template #default="{ item }">
           <h4 class="text-lg font-semibold m-0 mb-0 text-background">{{ item.title }}</h4>
           <h2 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h2>
-          <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance">{{ item.description }}</p>
+          <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3">{{ item.description }}</p>
           <div v-if="item.icons" class="flex gap-2 mt-2">
             <UnoIcon v-for="icon in item.icons" :key="icon" :class="icon" />
           </div>
@@ -111,13 +111,13 @@
       <div class="flex flex-col p-2 gap-6 text-balance">
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Mission</h4>
-          <p class="text-primary-600 leading-relaxed m-0">
+          <p class="text-primary-600 text-balance leading-relaxed m-0">
             {{ enterprise?.mission }}
           </p>
         </div>
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Vision</h4>
-          <p class="text-primary-600 leading-relaxed m-0">
+          <p class="text-primary-600 text-balance leading-relaxed m-0">
             {{ enterprise?.vision }}
           </p>
         </div>
@@ -133,7 +133,7 @@
               </div>
               <div>
                 <h5 class="font-semibold">{{ service.name }}</h5>
-                <p class="text-sm text-primary-600 m-0">{{ service.description }}</p>
+                <p class="text-sm text-primary-600 m-0 text-balance sm:pr-20">{{ service.description }}</p>
               </div>
             </div>
           </div>

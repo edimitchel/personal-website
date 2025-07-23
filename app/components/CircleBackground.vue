@@ -44,7 +44,7 @@ const colors = computed(() => {
   if (color) {
     return color
   }
-  return mode.preference === 'dark' ? ['transparent', '#666'] : ['transparent', '#eee']
+  return mode.value === 'dark' ? ['transparent', '#666'] : ['transparent', '#eee']
 })
 
 const fillColor = computed(() => {

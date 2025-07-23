@@ -3,9 +3,9 @@
     <svg :width="width" fill="none" :viewBox="`0 0 ${width} 100`">
       <path id="curve" :d="path" />
       <defs>
-        <radialGradient id="gradient" cx="50%" cy="50%" r="100%" fy="100%" fx="50%">
+        <radialGradient id="gradient" cx="50%" cy="90%" r="100%">
           <stop stop-color="white" offset="0%" />
-          <stop stop-color="black" offset="65%" />
+          <stop stop-color="black" offset="95%" />
         </radialGradient>
         <mask id="mask">
           <rect x="0" y="10" width="100%" height="100%" fill="url(#gradient)" />

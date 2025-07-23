@@ -33,7 +33,7 @@ function formatDate(date: string, simple = false) {
 
 <style scoped>
 .post {
-  --uno: overflow-hidden pb-4;
+  --uno: block overflow-hidden pb-2;
 }
 
 .post:last-child {
@@ -41,7 +41,7 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__header {
-  --uno: flex items-baseline justify-start gap-2;
+  --uno: flex items-baseline justify-start gap-2 -mb-1;
 }
 
 .post__tags {
@@ -63,16 +63,16 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__date {
-  --uno: -mb-2 block text-primary-600 font-bold;
+  --uno: block uppercase text-xs text-primary-600 font-bold;
 }
 
 .post__title {
-  --uno: m-0 pt-0 leading-tight text-lg font-semibold text-background;
+  --uno: m-0 pt-0 leading-tight text-lg font-semibold text-background line-clamp-1;
   ;
 }
 
 .post__description {
-  --uno: m-0 leading-relaxed text-background;
+  --uno: text-sm m-0 leading-snug text-balance line-clamp-2 text-background;
   ;
 }
 </style>

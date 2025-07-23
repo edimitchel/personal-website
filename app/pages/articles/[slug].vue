@@ -34,7 +34,7 @@ const { content, isTranslated } = await useTranslatedContent(
 
 const { data: siblings } = content ? await useAsyncData(`siblings-articles-${route.params.slug}`, () => queryCollectionItemSurroundings('articles', content?.path, {
   fields: ['slug', 'title']
-}).order('created', 'DESC')) : { data: null }
+}).where('lang', '=', locale.value).order('created', 'DESC')) : { data: null }
 
 const store = layoutStore()
 if (content) {

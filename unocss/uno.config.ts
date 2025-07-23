@@ -1,4 +1,4 @@
-import { defineConfig, presetIcons, presetTypography, presetWind4, PresetWindTheme, ThemeExtender, transformerDirectives, transformerVariantGroup } from 'unocss'
+import { defineConfig, presetIcons, presetTypography, presetWind4, PresetWind4Theme, PresetWindTheme, ThemeExtender, transformerCompileClass, transformerDirectives, transformerVariantGroup } from 'unocss'
 import { presetTheme } from 'unocss-preset-theme'
 
 export default defineConfig({
@@ -6,12 +6,11 @@ export default defineConfig({
         presetWind4({
             preflights: {
                 reset: true,
-                theme: true, 
             }
         }),
         presetIcons(),
         presetTypography(),
-        presetTheme<PresetWindTheme>({
+        presetTheme<PresetWind4Theme>({
             selectors: { light: ':root', dark: '.dark-mode' },
             theme: {
                 dark: {
@@ -66,5 +65,8 @@ export default defineConfig({
     transformers: [
         transformerDirectives(),
         transformerVariantGroup(),
+        transformerCompileClass({
+            alwaysHash: true,
+        }),
     ]
 })

@@ -22,10 +22,11 @@
     <ClientOnly>
       <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
         <ul>
-          <button class="mode-switcher" @click="emit('toggleDarkMode')">
+          <button class="mode-switcher" @click="mode.preference = mode.value === 'dark' ? 'light' : 'dark'">
             <Transition name="fade" mode="out-in">
-              <UnoIcon :key="darkMode ? 'dark' : 'light'"
-                :class="darkMode ? 'i-material-symbols-dark-mode-outline' : 'i-material-symbols-light-mode-outline'" />
+              <UnoIcon v-if="mode.preference === 'dark'" key="dark" class="i-ic-outline-dark-mode" />
+              <UnoIcon v-else-if="mode.preference === 'light'" key="light" class="i-ic-outline-light-mode" />
+              <UnoIcon v-else key="system" class="i-ic-outline-auto-mode" />
             </Transition>
           </button>
           <li v-for="(item, index) in props.links" :key="item.path"
@@ -57,9 +58,7 @@ import { UnoIcon } from '#components'
 
 const { locale } = useI18n()
 
-const emit = defineEmits<{
-  toggleDarkMode: []
-}>()
+const mode = useColorMode();
 
 const store = layoutStore()
 
@@ -68,7 +67,6 @@ const props = defineProps<{
   description?: string
   messages: (string | MessageObject)[]
   headerColor?: string[]
-  darkMode?: boolean
   emojis?: {
     birthday: string[]
     normal: string[]
@@ -192,7 +190,7 @@ const { isLoading: pulse } = useLoadingIndicator();
 
 .subtitle-header {
   position: absolute;
-  top: 5px;
+  top: 7px;
   width: 100%;
   --uno: uppercase font-500 flex items-center justify-center;
 }

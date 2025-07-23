@@ -38,6 +38,11 @@ export default defineNuxtConfig({
     },
   },
 
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+  },
+
   css: ['~/assets/style.css'],
 
   content: {

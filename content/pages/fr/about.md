@@ -4,7 +4,7 @@ title: "Développeur Full Stack Web & Innovateur Numérique"
 description: "Web développeur passionné par la création d'interfaces utilisateur modernes et réactives. Spécilisé pour trouver les meilleures solutions transformant une idée en expériences utilisateur optimales"
 ---
 
-::About{:title="title" :description="description"}
+::About{:title="title" :description="description" :experiences="experiences"}
 ---
 skills:
   - category: "Développement Frontend"
