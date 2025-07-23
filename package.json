@@ -24,6 +24,7 @@
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/image": "^1.10.0",
     "@nuxthub/core": "^0.9.0",
+    "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/i18n": "9.5.6",
     "@pinia/nuxt": "^0.11.1",
     "@unocss/extractor-mdc": "^66.3.3",
@@ -47,6 +48,7 @@
     "tsdown": "^0.12.9",
     "tsx": "^4.20.3",
     "unocss": "^66.3.3",
+    "unocss-preset-theme": "^0.14.1",
     "vitest": "^3.2.4",
     "vue-tsc": "^2.2.12",
     "wrangler": "^4.24.3"

@@ -3,11 +3,11 @@
     <main>
       <template v-if="content">
         <ProjectHeader :project="content" />
-        <ContentRenderer :value="content" class="prose" />
+        <ContentRenderer :value="content" class="prose text-background" />
         <SiblingNavigation v-if="siblings" :siblings="siblings" collection="projects" />
 
       </template>
-      <div v-else class="prose">
+      <div v-else class="prose text-background">
         <h1>{{ $t('project.notFound') }}</h1>
         <p>{{ $t('project.notFoundDescription') }}</p>
 

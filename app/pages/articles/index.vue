@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ContentRenderer v-if="blog" :value="blog" class="prose" />
+    <ContentRenderer v-if="blog" :value="blog" class="prose text-background" />
 
     <Posts v-if="posts" :posts="posts" />
   </div>

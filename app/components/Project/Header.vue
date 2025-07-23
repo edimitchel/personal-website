@@ -1,11 +1,11 @@
 <template>
-  <header class="mb-8 pb-6 border-b border-primary-200 dark:border-primary-700">
+  <header class="mb-8 pb-6 border-b border-primary-200">
     <div class="flex items-start gap-6 mb-6">
       <div class="flex-1 min-w-0">
-        <p v-if="project.organization" class="text-lg text-center text-primary-600 dark:text-primary-200 mb-3">
+        <p v-if="project.organization" class="text-lg text-center text-primary-600 mb-3">
           {{ project.organization }}
         </p>
-        <p v-if="project.description" class="text-center text-balance ext-primary-600 dark:text-primary-200 text-base leading-relaxed">
+        <p v-if="project.description" class="text-center text-balance text-background text-base leading-relaxed">
           {{ project.description }}
         </p>
       </div>

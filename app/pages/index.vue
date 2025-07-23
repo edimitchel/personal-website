@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ContentRenderer v-if="about" :value="about" :data="{ experiences }" class="prose" />
+    <ContentRenderer v-if="about" :value="about" :data="{ experiences }" class="prose text-background" />
   </section>
 </template>
 

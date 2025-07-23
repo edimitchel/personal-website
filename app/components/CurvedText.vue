@@ -123,6 +123,10 @@ text {
   transition: all 0.3s;
 }
 
+text textPath {
+  --uno: fill-background;
+}
+
 .alone {
   --uno: pt-4;
 }

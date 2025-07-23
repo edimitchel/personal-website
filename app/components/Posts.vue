@@ -2,7 +2,7 @@
   <div v-if="posts.length" class="posts">
     <section v-for="[time, posts] of timeSections" :key="time">
       <h2 v-if="timeSection(time)" class="text-xl uppercase font-bold text-primary-800 dark:text-primary-200 py-2">{{ timeSection(time) }}</h2>
-      <Post v-for="post in posts" :key="post.slug" :to="post.slug" :post="post" class="pb-4" />
+      <Post v-for="post in posts" :key="post.slug" :to="post.slug" :post="post" />
     </section>
   </div>
 </template>
@@ -71,10 +71,10 @@ function timeSection(time: number) {
 
 .category {
   transition: all 300ms ease;
-  --uno: sticky p-2 mx-2 outline-none rounded-full text-black mb-2;
+  --uno: sticky p-2 mx-2 outline-none rounded-full text-background mb-2;
 }
 
 .category.active {
-  --uno: bg-blue-500 text-white;
+  --uno: bg-primary-500 text-forground;
 }
 </style>

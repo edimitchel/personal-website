@@ -45,8 +45,8 @@ const iconClass = computed(() => {
 .social-icon {
   --uno: w-6 h-6 flex items-center text-center rounded-full 
   transition(ease duration-200 all) 
-  bg-white bg-opacity-50
-  hover:(bg-primary-600 scale-125 z-200 text-white bg-opacity-100)
+  bg-forground bg-opacity-50
+  hover:(bg-primary-600 scale-125 z-200 text-forground bg-opacity-100)
 }
 
 .social-icon a {

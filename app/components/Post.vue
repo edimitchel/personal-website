@@ -5,11 +5,7 @@
         {{ formatDate(post.created) }}
       </small>
       <div class="post__tags">
-        <small
-          class="post__tag"
-          v-if="post.categories"
-          v-for="category of post.categories"
-        >{{ category }}</small>
+        <small class="post__tag" v-if="post.categories" v-for="category of post.categories">{{ category }}</small>
       </div>
     </header>
     <h2 class="post__title" v-html="post.title" />
@@ -37,7 +33,7 @@ function formatDate(date: string, simple = false) {
 
 <style scoped>
 .post {
-  --uno: overflow-hidden;
+  --uno: overflow-hidden pb-4;
 }
 
 .post:last-child {
@@ -53,7 +49,8 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__tag {
-  --uno: outline-none rounded-full;
+  --uno: outline-none rounded-full text-background;
+  ;
 }
 
 .post__tag:not(:last-child)::after {
@@ -62,7 +59,7 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__tag.active {
-  --uno: bg-blue-500 text-white;
+  --uno: bg-primary-500 text-background;
 }
 
 .post__date {
@@ -70,10 +67,12 @@ function formatDate(date: string, simple = false) {
 }
 
 .post__title {
-  --uno: m-0 pt-0 leading-tight text-lg font-semibold;
+  --uno: m-0 pt-0 leading-tight text-lg font-semibold text-background;
+  ;
 }
 
 .post__description {
-  --uno: m-0 leading-relaxed;
+  --uno: m-0 leading-relaxed text-background;
+  ;
 }
 </style>

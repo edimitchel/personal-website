@@ -11,7 +11,7 @@
         <ClientOnly>
             <div v-if="projects.length > initialCount" class="mt-4 text-center">
                 <button @click="toggleShowAll"
-                    class="px-6 py-2 bg-primary-100 hover:bg-primary-200 text-primary-800 cursor-pointer rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-primary-800">
+                    class="px-6 py-2 bg-background/20 hover:bg-background text-primary-200 cursor-pointer rounded-lg transition-colors duration-200">
                     {{ showAll ? $t('projects.showLess') : $t('projects.showMore', {
                         count: projects.length -
                     initialCount }) }}

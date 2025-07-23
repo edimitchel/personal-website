@@ -1,9 +1,9 @@
 <template>
   <NuxtLinkLocale 
     :to="'/projects/' + project.slug"
-    class="block p-2 py-4 bg-white dark:bg-primary-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 group"
+    class="block p-3 py-4 bg-forground text-forground rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 group"
   >
-    <div class="flex items-center gap-4">
+    <div class="flex items-start gap-3">
       <NuxtImg 
         v-if="project.image" 
         :src="project.image" 

@@ -19,24 +19,32 @@
       </MessageCarousel>
     </div>
 
-    <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
-      <ul>
-        <li v-for="(item, index) in props.links" :key="item.path"
-          :style="{ '--index': index, '--count': props.links?.length }">
-          <NuxtLinkLocale :to="item.path" :class="item.class">
-            {{ item.name }}
-          </NuxtLinkLocale>
-        </li>
-        <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
-          :class="{ 'disabled': store.notTranslated }"
-          :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')">
-          <Transition mode="out-in" name="fade">
-            <UnoIcon :key="locale"
-              :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
-          </Transition>
-        </SwitchLocalePathLink>
-      </ul>
-    </nav>
+    <ClientOnly>
+      <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
+        <ul>
+          <button class="mode-switcher" @click="emit('toggleDarkMode')">
+            <Transition name="fade" mode="out-in">
+              <UnoIcon :key="darkMode ? 'dark' : 'light'"
+                :class="darkMode ? 'i-material-symbols-dark-mode-outline' : 'i-material-symbols-light-mode-outline'" />
+            </Transition>
+          </button>
+          <li v-for="(item, index) in props.links" :key="item.path"
+            :style="{ '--index': index, '--count': props.links?.length }">
+            <NuxtLinkLocale :to="item.path" :class="item.class">
+              {{ item.name }}
+            </NuxtLinkLocale>
+          </li>
+          <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
+            :class="{ 'disabled': store.notTranslated }"
+            :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')">
+            <Transition mode="out-in" name="fade">
+              <UnoIcon :key="locale"
+                :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
+            </Transition>
+          </SwitchLocalePathLink>
+        </ul>
+      </nav>
+    </ClientOnly>
   </header>
 </template>
 
@@ -49,6 +57,10 @@ import { UnoIcon } from '#components'
 
 const { locale } = useI18n()
 
+const emit = defineEmits<{
+  toggleDarkMode: []
+}>()
+
 const store = layoutStore()
 
 const props = defineProps<{
@@ -56,6 +68,7 @@ const props = defineProps<{
   description?: string
   messages: (string | MessageObject)[]
   headerColor?: string[]
+  darkMode?: boolean
   emojis?: {
     birthday: string[]
     normal: string[]
@@ -106,10 +119,10 @@ const { isLoading: pulse } = useLoadingIndicator();
 <style scoped>
 .header {
   height: 238px;
-  --uno: overflow-hidden flex items-center flex-col text-center relative pt-2 flex-shrink-0 z-50;
+  --uno: overflow-hidden flex items-center flex-col text-center relative pt-2 flex-shrink-0 z-50 text-background transition-colors duration-200;
 }
 
-@media screen and (min-height: 400px) {
+@media screen and (min-height: 400px) and (min-width: 1024px) {
   .header {
     --uno: sticky;
     top: -143px;
@@ -214,8 +227,7 @@ const { isLoading: pulse } = useLoadingIndicator();
   position: absolute;
   bottom: 0px;
   height: 35px;
-  transition: all 300ms ease;
-  --uno: font-serif text-primary-900;
+  --uno: font-serif text-background transition-colors duration-200;
 }
 
 .navigation.hidden {
@@ -275,8 +287,25 @@ ul a.router-link-active::before {
   --uno: bg-primary-600 pointer-events-none -z-1 bottom-[-6px];
 }
 
+.header :deep(.mode-switcher) {
+  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-primary-200 bg-opacity-50 cursor-pointer;
+  top: -23.5px;
+  right: 95%;
+  rotate: 22.5deg;
+  transition: all 400ms ease;
+}
+
+@screen md {
+  .header :deep(.mode-switcher) {
+    rotate: 27deg;
+    top: -34.5px;
+    right: 105%;
+  }
+}
+
+
 .header :deep(a.lang-switcher) {
-  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-white bg-opacity-50;
+  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-primary-200 bg-opacity-50;
   top: -23.5px;
   left: 95%;
   rotate: -22.5deg;

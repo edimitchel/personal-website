@@ -1,6 +1,6 @@
 <template>
   <article>
-    <main class="prose">
+    <main class="prose text-background">
       <template v-if="content">
         <span class="block text-center text-sm">{{ formatDate(content.created) }}</span>
         <h1 class="mt-0">{{ content.title }}</h1>

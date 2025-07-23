@@ -1,5 +1,5 @@
 <template>
-	<nav class="flex sticky bottom-0 backdrop-blur-md justify-stretch items-start p-3 py-2 -mx-12 px-12">
+	<nav class="text-background flex md:sticky bottom-0 backdrop-blur-md justify-stretch items-start p-3 py-2 -mx-12 px-12">
 		<NuxtLinkLocale
 			class="text-left decoration-none hover:underline flex flex-col-reverse items-start gap-1 max-w-[40%]"
 			v-if="prev" :to="`/${collection}/${prev.slug}`" :aria-label="t(`${collection.replace(/s$/, '')}.previous`)">

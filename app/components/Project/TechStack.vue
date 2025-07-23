@@ -3,13 +3,13 @@
     <span 
       v-for="(tech, index) in technologies" 
       :key="tech"
-      class="inline-flex items-center px-2 py-1 text-xs bg-primary-100 dark:bg-primary-700 text-primary-700 dark:text-primary-300 rounded font-medium"
+      class="inline-flex items-center px-2 py-1 text-xs bg-primary-300 text-primary-800 rounded font-medium"
       :class="{ 'md:hidden md:group-hover:block': hiddenMoreThan && index >= hiddenMoreThan }"
     >
       <i v-if="getTechIcon(tech)" :class="getTechIcon(tech)" class="w-3 h-3 mr-1" />
       {{ tech }}
     </span>
-    <span v-if="hiddenMoreThan && technologies.length > hiddenMoreThan" class="px-2 py-1 text-xs text-primary-500 hidden md:block">
+    <span v-if="hiddenMoreThan && technologies.length > hiddenMoreThan" class="px-2 py-1 text-xs text-primary-800 hidden md:block md:group-hover:hidden">
       +{{ technologies.length - hiddenMoreThan }}
     </span>
   </div>
