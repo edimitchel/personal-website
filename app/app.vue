@@ -20,15 +20,12 @@ html.dark-mode {
 #app::after {
   content: '';
   --uno: transition-all duration-300;
-  background: linear-gradient(to right, transparent 0%, white, transparent);
+  background: linear-gradient(to right, transparent -10%, var(--colors-foreground), transparent 110%);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
-}
-.dark-mode #app::after {
-  background: linear-gradient(to right, transparent 0%, #333, transparent);
 }
 </style>
