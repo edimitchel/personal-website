@@ -64,6 +64,7 @@ div {
   overflow: hidden;
   height: 300px;
   transform-origin: top center;
+  mask: linear-gradient(to right, transparent 5%, white, transparent 95%);
 }
 
 circle {
@@ -102,16 +103,5 @@ circle {
 
   clip-path: ellipse(319px 100% at 50% -24%);
   backdrop-filter: blur(4px);
-}
-
-.side-shadow::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 200;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to right, var(--primary-500), transparent, var(--primary-500));
 }
 </style>
