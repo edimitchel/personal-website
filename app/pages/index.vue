@@ -20,7 +20,7 @@ if (messages.value) {
 
 const store = layoutStore();
 
-const { content: about, isTranslated } = await useTranslatedContent('about', queryCollection('pages').path(`/pages${locale.value === "fr" ? '/fr' : ''}/about`));
+const { content: about, isTranslated } = await useTranslatedContent('about', queryCollection('pages').where('stem', 'LIKE', `%about`));
 
 const experiences = await useTranslatedContent(
   'experiences',

@@ -43,18 +43,15 @@ export default async function useTranslatedContent<
     const { locale } = useI18n()
 
     const { data } = await useAsyncData(`${name}-${locale.value}`, async () => {
-        const contents = await useContent(
-            name,
-            () => query.all()
-        );
+        const contents = await query.all()
 
-        if (!contents?.value) {
+        if (!contents) {
             return { content: null, isTranslated: false }
         }
 
-        const currentLanguageContent = contents.value.filter((c) => c.lang === locale.value);
+        const currentLanguageContent = contents.filter((c) => c.lang === locale.value);
 
-        const isTranslated = contents.value.length > 1 || currentLanguageContent.length !== contents.value.length;
+        const isTranslated = contents.length > 1 || currentLanguageContent.length !== contents.length;
 
         if (currentLanguageContent.length === 0) {
             return { content: null, isTranslated }
