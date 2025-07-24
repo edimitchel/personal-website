@@ -22,7 +22,7 @@
     <ClientOnly>
       <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
         <ul>
-          <button class="mode-switcher" @click="mode.preference = mode.value === 'dark' ? 'light' : 'dark'">
+          <button class="mode-switcher" @click="cycleModes">
             <Transition name="fade" mode="out-in">
               <UnoIcon v-if="mode.preference === 'dark'" key="dark" class="i-ic-outline-dark-mode" />
               <UnoIcon v-else-if="mode.preference === 'light'" key="light" class="i-ic-outline-light-mode" />
@@ -74,6 +74,22 @@ const props = defineProps<{
   options: LayoutHeaderProps['options'],
   withEmoji: boolean
 }>()
+
+const cycleCount = ref(0)
+
+const cycleModes = () => {
+  const modes = ['dark', 'light']
+  const index = modes.indexOf(mode.value)
+  if(mode.preference !== 'system') {
+    cycleCount.value++
+  }
+  if (mode.preference !== 'system' && cycleCount.value >= 2) {
+    mode.preference = 'system'
+    cycleCount.value = 0
+  } else {
+    mode.preference = modes[(index + 1) % modes.length]!
+  }
+}
 
 const headerImage = computed(() => {
   return store.headerImage
