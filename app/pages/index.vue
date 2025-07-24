@@ -20,11 +20,11 @@ if (messages.value) {
 
 const store = layoutStore();
 
-const about = await useContent('about-' + locale.value, () => queryCollection('pages').path(`/pages${locale.value === "fr" ? '/fr' : ''}/about`).first());
+const { content: about, isTranslated } = await useTranslatedContent('about', queryCollection('pages').path(`/pages${locale.value === "fr" ? '/fr' : ''}/about`));
 
 const experiences = await useTranslatedContent(
-  'experiences', 
-  queryCollection('projects').where('type', 'IN', ['consulting', 'experience']), 
+  'experiences',
+  queryCollection('projects').where('type', 'IN', ['consulting', 'experience']),
   (projects): Experience[] => projects.content.map((p) => ({
     id: p.id,
     title: p.title,
@@ -36,21 +36,26 @@ const experiences = await useTranslatedContent(
 
 store.title = 'Michel Edighoffer';
 
-useHead({
-  title: store.title + ' – ' + about?.value?.title,
-  meta: [
-    {
-      name: 'description',
-      content: about?.value?.description
-    },
-    {
-      property: 'og:title',
-      content: `${about?.value?.title}`
-    },
-    {
-      property: 'og:description',
-      content: about?.value?.description
-    }
-  ]
-})
+store.notTranslated = !isTranslated
+
+if (about) {
+
+  useHead({
+    title: store.title + ' – ' + about?.title,
+    meta: [
+      {
+        name: 'description',
+        content: about?.description
+      },
+      {
+        property: 'og:title',
+        content: `${about?.title}`
+      },
+      {
+        property: 'og:description',
+        content: about?.description
+      }
+    ]
+  })
+}
 </script>

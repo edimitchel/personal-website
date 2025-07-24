@@ -17,10 +17,9 @@
           mask="url(#insideClip)" />
         <circle v-if="!reversed" ref="innerCircle" :r="height - 40" cx="50%" cy="-58%"
           :style="{ fill: fillColor.top }" />
-        <!-- Indeterminate progress indicator border -->
-        <circle v-if="pulse" class="progress-border indeterminate" :r="height + 25 + progressWidth / 2" cx="50%"
-          cy="-60%" :stroke="progressColor" :stroke-width="progressWidth" fill="none"
-          :stroke-dasharray="progressCircumference * 0.25 + ',' + progressCircumference * 0.20 + ',' + progressCircumference * 0.35" />
+        <circle v-if="pulse" class="progress-border indeterminate" :r="height - 75 + progressWidth / 2" cx="50%"
+          cy="-35%" :stroke="progressColor" :stroke-width="progressWidth" fill="none"
+          :stroke-dasharray="progressCircumference * 0.25 + ',' + progressCircumference * 0.35" />
         <image v-if="image" id="image" :x="(image?.nudge?.x || 0) + '%'" :y="(image?.nudge?.y || 0) + '%'" width="100%"
           mask="url(#imageClip)" :xlink:href="image.src" preserveAspectRatio="xMidYMid" />
       </svg>
@@ -28,7 +27,7 @@
   </div>
 </template>
 <script setup lang="ts">
-const { color, height = 420, pulse = false, reversed, image, progressColor, progressWidth = 3 } = defineProps<{
+const { color, height = 420, pulse = false, reversed, image, progressColor = 'grey', progressWidth = 3 } = defineProps<{
   color?: string | string[],
   height?: number,
   pulse?: boolean,
@@ -57,7 +56,6 @@ const fillColor = computed(() => {
   }
 })
 
-
 const progressCircumference = computed(() => 2 * Math.PI * (height - 110))
 
 </script>
@@ -74,13 +72,13 @@ circle {
 }
 
 .progress-border {
-  transform-origin: 50% -60%;
+  transform-origin: center -35%;
   stroke-linecap: round;
-  opacity: 0.5;
+  --uno: stroke-background/20
 }
 
 .indeterminate {
-  animation: spin 2s linear infinite;
+  animation: spin 2s ease-in-out infinite;
 }
 
 @keyframes spin {
@@ -89,30 +87,12 @@ circle {
   }
 
   100% {
-    transform: rotate(360deg);
+    transform: rotate(720deg);
   }
 }
 
 #image {
   opacity: 0.8;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.8;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-.pulse {
-  animation: pulse 300ms alternate infinite ease-in-out;
 }
 
 .side-shadow {
