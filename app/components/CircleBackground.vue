@@ -70,7 +70,7 @@ div {
 
 circle {
   transform-origin: 50% 0;
-  transition: all 600ms linear;
+  transition: all 300ms ease;
 }
 
 .progress-border {
@@ -112,7 +112,7 @@ circle {
 }
 
 .pulse {
-  animation: pulse 600ms alternate infinite ease-in-out;
+  animation: pulse 300ms alternate infinite ease-in-out;
 }
 
 .side-shadow {

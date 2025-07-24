@@ -5,7 +5,7 @@
 </template>
 <style>
 html {
-  --uno: transition-colors duration-200;
+  --uno: transition-colors duration-300;
 }
 html.dark-mode {
   background-color: #000;
@@ -19,13 +19,19 @@ html.dark-mode {
 }
 #app::after {
   content: '';
-  --uno: transition-all duration-300;
-  background: linear-gradient(to right, transparent -10%, var(--colors-foreground), transparent 110%);
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, transparent -10%, var(--colors-foreground), transparent 110%);
+  transition: background-color 300ms ease;
   z-index: -1;
+}
+
+@media screen and (max-width: 1024px) {
+  #app::after {
+    background: linear-gradient(to right, transparent 10%, var(--colors-foreground), transparent 90%);
+  }
 }
 </style>
