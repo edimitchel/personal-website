@@ -1,7 +1,14 @@
 export default defineNuxtConfig({
 
-  future: { compatibilityVersion: 4 },
-  compatibilityDate: '2025-07-11',
+  experimental: {
+    defaults: {
+      nuxtLink: {
+        prefetchOn: {
+          interaction: true,
+        }
+      }
+    }
+  },
 
   // Nuxt Modules
   // https://nuxt.com/modules
