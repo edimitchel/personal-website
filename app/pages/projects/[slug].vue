@@ -24,6 +24,7 @@
 <script setup lang="ts">
 import { transformProject } from './index.vue'
 
+const { t } = useI18n()
 const route = useRoute()
 const { locale } = useI18n()
 
@@ -51,6 +52,20 @@ if (content) {
   }
   useHead({
     title: 'Michel Edighoffer / ' + content?.title,
+    meta: [
+      {
+        name: 'description',
+        content: t('project.description', { organization: content?.organization, description: content?.description })
+      },
+      {
+        property: 'og:title',
+        content: `${content?.title}`
+      },
+      {
+        property: 'og:description',
+        content: t('project.description', { organization: content?.organization, description: content?.description })
+      }
+    ]
   })
 }
 

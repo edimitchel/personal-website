@@ -47,6 +47,7 @@ const projectSchema = baseContentSchema.extend({
   organization: z.string().optional(),
   duration: z.number().optional(),
   type: z.enum(['application', 'website', 'consulting', 'experience']),
+  url: z.string().optional(),
   status: z.enum(['published', 'draft', 'stand by']),
   categories: z.enum(['web', 'application', 'other']).array(),
   technologies: z.string().array(),

@@ -113,12 +113,12 @@ jobs:
         id: translation-changes
         run: |
           # Check if any French translation files were created or modified
-          if git diff --quiet HEAD content/*/fr/; then
-            echo "No translation changes detected"
-            echo "has_changes=false" >> $GITHUB_OUTPUT
-          else
+          if git diff --name-only HEAD content/*/fr/; then
             echo "Translation changes detected"
             echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "No translation changes detected"
+            echo "has_changes=false" >> $GITHUB_OUTPUT
             
             # Show what changed
             echo "📋 Translation changes:"
@@ -190,11 +190,11 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true
 
       # Ensure we're back on main branch before deployment
-      - name: Switch back to main branch
+      - name: Reset any content changes
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           echo "Current branch: $(git branch --show-current)"
-          git checkout main
+          git checkout main && git reset --hard origin/main
           echo "Switched to branch: $(git branch --show-current)"
           echo "Latest commit on main: $(git log -1 --oneline)"
 

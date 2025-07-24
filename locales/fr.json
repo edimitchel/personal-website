@@ -21,6 +21,7 @@
     "notFound": "Projet non trouvé",
     "notFoundDescription": "Le projet que vous cherchez n'est pas ici..",
     "noneForThisLanguage": "Aucun projet disponible en français",
+    "description": "{description} auprès de {organization}",
     "info": {
       "typeAndCategories": "Type & Catégories",
       "technologies": "Technologies",

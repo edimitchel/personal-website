@@ -21,6 +21,7 @@
     "notFoundDescription": "The project you're looking for is not there..",
     "goToProjects": "Return to projects",
     "noneForThisLanguage": "No project in english available ",
+    "description": "{description} at {organization}",
     "info": {
       "typeAndCategories": "Type & Categories",
       "technologies": "Technologies",

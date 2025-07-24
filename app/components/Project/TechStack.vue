@@ -27,6 +27,8 @@ function getTechIcon(tech: string): string | null {
   const techIcons: Record<string, string> = {
     'React': 'i-logos-react',
     'Vue': 'i-logos-vue',
+    'Angular': 'i-logos-angular-icon',
+    'Redux': 'i-logos-redux',
     'JavaScript': 'i-logos-javascript',
     'TypeScript': 'i-logos-typescript-icon',
     'PHP': 'i-logos-php',

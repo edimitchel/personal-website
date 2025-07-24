@@ -40,14 +40,14 @@
         <div class="space-y-2">
           <div v-if="project.url" class="flex items-center gap-2">
             <i class="i-heroicons-link text-primary-400 w-4 h-4" />
-            <a 
-              :href="project.url" 
+            <NuxtLink
+              :to="project.url" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="text-primary-600 dark:text-primary-200 hover:underline text-sm"
+              class="text-primary-600 hover:underline text-sm"
             >
               {{ $t('project.info.visitProject') }}
-            </a>
+            </NuxtLink>
           </div>
           <div v-if="project.completedAt" class="flex items-center gap-2">
             <i class="i-mdi-calendar text-primary-400 w-4 h-4" />
@@ -84,7 +84,6 @@ function formatDate(dateString: string) {
   return new Intl.DateTimeFormat(locale.value, {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
   }).format(date)
 }
 </script>
