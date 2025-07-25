@@ -113,11 +113,12 @@ jobs:
         id: translation-changes
         run: |
           # Check if any French translation files have unstaged changes
-          if git status --porcelain content/*/fr/; then
+          CHANGES=$(git status --porcelain content/*/fr/)
+          if [ -n "$CHANGES" ]; then
             echo "Translation changes detected"
             echo "has_changes=true" >> $GITHUB_OUTPUT
             echo "📋 Translation changes:"
-            git status --porcelain content/*/fr/
+            echo "$CHANGES"
           else
             echo "No translation changes detected"
             echo "has_changes=false" >> $GITHUB_OUTPUT
