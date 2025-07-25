@@ -41,16 +41,8 @@ En tant que consultant senior, j'ai fourni une direction technique pour des proj
 - **Modernisation des Systèmes**: Mettre à niveau et remplacer les systèmes hérités
 - **Développement de Nouvelles Applications**: Construire des applications modernes avec des patrons de conception propres
 
-## Technologies Utilisées
-
-- **Frontend**: Angular
-- **Base de Données**: PostgreSQL
-- **DevOps**: Docker
-- **Architecture**: Patron de conception Architecture Hexagonale
-
 ## Principales Réalisations
 
 - A mené avec succès les aspects techniques des projets de fabrication
 - A mis en œuvre une architecture hexagonale moderne pour améliorer la maintenabilité
 - A géré des transitions complexes de systèmes hérités
-- A livré des solutions de haute qualité pour la fabrication pharmaceutique
