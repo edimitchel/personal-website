@@ -3,8 +3,11 @@ translation_state: draft
 original_slug: ge-healthcare-scrum-master
 source_content_hash: 8434baa5e95347b92bfe4f8f2e28bc72
 translated_by: AI Translator
-translated_at: '2025-07-25T00:37:22.509Z'
-last_updated: '2025-07-25T00:37:22.509Z'
+translated_at: '2025-07-25T23:05:18.122Z'
+last_updated: '2025-07-25T23:05:18.122Z'
+---
+```markdown
+---
 title: "Scrum Master & Frontend Technical Leader"
 description: "Diriger une équipe de 5 personnes pour le système de conception Edison - une bibliothèque de composants globale"
 completedAt: "2022-11-01"
@@ -22,7 +25,7 @@ url: "https://edisondesignsystem.com"
 
 ## Aperçu
 
-Dirigé une équipe de 5 développeurs frontend contribuant au système de conception Edison, une bibliothèque de composants globale utilisée par les équipes de GE Healthcare dans le monde entier, tout en fournissant également un support technique pour l'Europe.
+Dirigé une équipe de développement frontend de 5 personnes contribuant au système de conception Edison, une bibliothèque de composants globale utilisée par les équipes de GE Healthcare dans le monde entier, tout en fournissant également un support européen.
 
 ## Rôle et Responsabilités
 
@@ -32,7 +35,7 @@ Dirigé une équipe de 5 développeurs frontend contribuant au système de conce
 - **Impact global**: Contribuer à une bibliothèque utilisée par les équipes de GE Healthcare dans le monde entier
 - **Support européen**: Fournir un support technique aux équipes européennes
 
-## Projet: Système de conception Edison
+## Projet: Système de Conception Edison
 
 - **Portée mondiale**: Bibliothèque de composants utilisée par les équipes de GE Healthcare dans le monde entier
 - **Collaboration en équipe**: Travailler avec des équipes de développement internationales

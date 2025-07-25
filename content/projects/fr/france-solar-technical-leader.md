@@ -24,8 +24,8 @@ translation_state: draft
 original_slug: france-solar-technical-leader
 source_content_hash: 624177757208c8f59bf4332b02f8feef
 translated_by: AI Translator
-translated_at: '2025-07-25T00:37:11.408Z'
-last_updated: '2025-07-25T00:37:11.408Z'
+translated_at: '2025-07-25T23:05:08.394Z'
+last_updated: '2025-07-25T23:05:08.394Z'
 ---
 
 # Technical Fullstack Leader
@@ -45,4 +45,4 @@ Diriger l'équipe de développement pour des outils internes, en mettant l'accen
 
 - A mené avec succès l'équipe de développement dans la création d'outils internes
 - A mis en place des processus de développement efficaces
-- A contribué à la croissance technique de l'entreprise dans le secteur de l'énergie renouvelable
+- A contribué à la croissance technique de l'entreprise dans le secteur des énergies renouvelables

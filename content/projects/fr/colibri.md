@@ -1,9 +1,9 @@
 ---
 title: Colibri
 organization: IUT de Haguenau
+completedAt: '2017-07-01'
 description: >-
-  Colibri est une nouvelle plateforme d'apprentissage innovante développée par l'IUT de Haguenau. Son objectif ultime est d'apprendre à partager la connaissance,
-   en mettant l'accent sur la collaboration et l'échange entre les étudiants et les enseignants.
+  Apprendre à partager la connaissance — l'objectif ultime de Colibri, la nouvelle plateforme d'apprentissage innovante
 image: /images/projects/colibri/caption.png
 url: 'https://colibri.unistra.fr'
 type: experience
@@ -16,27 +16,39 @@ technologies:
   - JavaScript
   - HTML
   - CSS
-translation_state: approved
+translation_state: draft
+original_slug: colibri
+source_content_hash: f3108bacf76c574015df7d51be637736
+translated_by: AI Translator
+translated_at: '2025-07-25T23:05:00.547Z'
+last_updated: '2025-07-25T23:05:00.547Z'
 ---
 
 # Colibri
 
 {{ $doc.description }}
 
-## Fonctionnalités principales
+## Objectifs
 
-- **Partage de connaissances** : Colibri permet aux utilisateurs de partager des ressources, des notes et des tutoriels de manière collaborative.
-- **Interface utilisateur intuitive** : La plateforme est conçue pour être facile à utiliser, avec une interface intuitive qui facilite l'accès aux ressources.
-- **Support multiplateforme** : Colibri est accessible depuis différents appareils, que ce soit via un ordinateur, une tablette ou un smartphone.
+L'objectif principal de Colibri est de faciliter l'échange de connaissances entre les étudiants, les enseignants et les professionnels du secteur. La plateforme permet de créer, partager et commenter des ressources éducatives, favorisant ainsi une collaboration dynamique et enrichissante.
 
-## Technologies utilisées
+## Fonctionnalités Clés
 
-Colibri est construit en utilisant une stack technologique moderne :
+- **Partage de Ressources** : Les utilisateurs peuvent télécharger et partager divers types de documents, y compris des articles, des présentations, des vidéos et des exercices pratiques.
+- **Commentaires et Discussions** : Une fonctionnalité de commentaires permet aux utilisateurs d'interagir directement avec les ressources partagées, encourageant les discussions et les échanges d'idées.
+- **Recherche Avancée** : Un moteur de recherche puissant permet de trouver rapidement les ressources pertinentes en fonction de mots-clés, de catégories ou d'auteurs.
+- **Notifications** : Les utilisateurs reçoivent des notifications pour les nouvelles ressources, commentaires et mises à jour, assurant qu'ils ne manquent jamais une information importante.
 
-- **Frontend** : HTML, CSS et JavaScript pour créer une interface utilisateur réactive et interactive.
-- **Backend** : PHP pour gérer la logique serveur et les interactions avec la base de données.
-- **Base de données** : Une base de données relationnelle pour stocker les informations des utilisateurs et les ressources partagées.
+## Technologie Utilisée
 
-## Déploiement et maintenance
+Colibri est construit en utilisant un ensemble de technologies web modernes pour garantir une performance optimale et une expérience utilisateur fluide. Voici quelques-unes des technologies clés :
 
-Colibri est déployé sur un serveur dédié, garantissant une disponibilité et une performance optimales. Des pratiques de DevOps sont mises en place pour assurer une maintenance continue et des mises à jour régulières.
+- **PHP** : Utilisé pour le développement du backend, assurant une gestion efficace des données et des fonctionnalités serveur.
+- **JavaScript** : Utilisé pour le développement du frontend, permettant des interactions dynamiques et une interface utilisateur réactive.
+- **HTML et CSS** : Les bases de la structure et du style de la plateforme, garantissant une présentation propre et accessible.
+
+## Impact et Réception
+
+Depuis son lancement, Colibri a été bien accueilli par la communauté éducative. Les utilisateurs apprécient particulièrement la facilité d'accès aux ressources et la possibilité de collaborer avec d'autres professionnels du secteur. La plateforme continue d'évoluer, avec des mises à jour régulières pour ajouter de nouvelles fonctionnalités et améliorer l'expérience utilisateur.
+
+Pour plus d'informations, visitez [Colibri](https://colibri.unistra.fr).
