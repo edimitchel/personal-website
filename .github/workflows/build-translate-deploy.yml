@@ -112,17 +112,15 @@ jobs:
       - name: Check for translation changes
         id: translation-changes
         run: |
-          # Check if any French translation files were created or modified
-          if git diff --name-only HEAD content/*/fr/; then
+          # Check if any French translation files have unstaged changes
+          if git status --porcelain content/*/fr/; then
             echo "Translation changes detected"
             echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "📋 Translation changes:"
+            git status --porcelain content/*/fr/
           else
             echo "No translation changes detected"
             echo "has_changes=false" >> $GITHUB_OUTPUT
-            
-            # Show what changed
-            echo "📋 Translation changes:"
-            git diff --name-only HEAD content/*/fr/ || true
           fi
 
       - name: Create PR for translation changes
