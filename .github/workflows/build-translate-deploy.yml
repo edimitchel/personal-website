@@ -105,7 +105,7 @@ jobs:
             # Split the space-separated list of files and pass them to the translate command
             for file in ${{ steps.content-changes.outputs.changed_files }}; do
               echo "Translating file: $file"
-              pnpm translate single "$file"
+              pnpm translate single "$file" --force
             done
           fi
 
