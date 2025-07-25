@@ -93,12 +93,11 @@
       <!-- Carousel with experiences -->
       <Carousel :items="experiences">
         <template #default="{ item }">
+          <NuxtLinkLocale :to="`/projects/${item.slug}`" class="absolute p-2 top-2 right-2"><UnoIcon class="i-ic-round-arrow-outward" /></NuxtLinkLocale>
           <h4 class="text-lg font-semibold m-0 mb-0 text-background">{{ item.title }}</h4>
           <h2 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h2>
           <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3">{{ item.description }}</p>
-          <div v-if="item.icons" class="flex gap-2 mt-2">
-            <UnoIcon v-for="icon in item.icons" :key="icon" :class="icon" />
-          </div>
+          <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" />
         </template>
       </Carousel>
     </section>

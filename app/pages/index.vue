@@ -6,10 +6,9 @@
 
 <script setup lang="ts">
 import type { Experience } from '~/components/content/About.vue';
+import { transformProject } from './projects/index.vue';
 
 const appConfig = useAppConfig();
-const { locale } = useI18n()
-
 const { messages: storeMessages } = storeToRefs(layoutStore())
 
 const messages = useState('randomIndex', () => appConfig.ui?.messages?.sort(() => Math.random() - 0.5))
@@ -25,13 +24,7 @@ const { content: about, isTranslated } = await useTranslatedContent('about', que
 const experiences = await useTranslatedContent(
   'experiences',
   queryCollection('projects').where('type', 'IN', ['consulting', 'experience']),
-  (projects): Experience[] => projects.content.map((p) => ({
-    id: p.id,
-    title: p.title,
-    description: p.description,
-    icons: p.icons,
-    organization: p.organization
-  }))
+  (projects): Experience[] => projects.content.map(transformProject) as Experience[]
 );
 
 store.title = 'Michel Edighoffer';
