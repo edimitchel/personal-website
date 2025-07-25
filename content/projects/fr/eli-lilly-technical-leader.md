@@ -30,7 +30,6 @@ En tant que consultant senior, j'ai assuré la direction technique de projets de
 
 ## Rôle et Responsabilités
 
-- **Direction Technique**: Diriger les projets de fabrication sous un angle technique
 - **Migration des Systèmes Hérités**: Gérer la transition des systèmes existants
 - **Conception d'Architecture**: Mettre en œuvre une architecture hexagonale pour les nouvelles applications
 - **Spécialisation Frontend**: Diriger les initiatives de développement frontend
@@ -40,13 +39,6 @@ En tant que consultant senior, j'ai assuré la direction technique de projets de
 - **Systèmes de Fabrication**: Travailler sur des applications de fabrication pharmaceutique
 - **Modernisation des Systèmes**: Mettre à niveau et remplacer les systèmes hérités
 - **Développement de Nouvelles Applications**: Construire des applications modernes avec des patrons de conception propres
-
-## Technologies Utilisées
-
-- **Frontend**: Angular
-- **Base de Données**: PostgreSQL
-- **DevOps**: Docker
-- **Architecture**: Patron de conception Architecture Hexagonale
 
 ## Principales Réalisations
 

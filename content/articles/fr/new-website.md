@@ -15,7 +15,7 @@ translated_at: '2025-07-25T23:04:51.641Z'
 last_updated: '2025-07-25T23:04:51.641Z'
 ---
 
-Voici ma nouvelle page web. J'en avais envie depuis un moment et j'ai enfin trouvé le temps de la réaliser. C'est un design simple, moderne et responsive dont je suis fier. J'espère que vous going to like it.
+Voici ma nouvelle page web. J'en avais envie depuis un moment et j'ai enfin trouvé le temps de la réaliser. C'est un design simple, moderne et responsive dont je suis fier. J'espère que vous l'apprécierez.
 
 Ce n'est pas seulement une nouvelle page, mais aussi un nouveau pas dans ma vie professionnelle en tant que développeur fullstack freelance.
 
@@ -27,6 +27,3 @@ Aujourd'hui, l'IA est partout, je décide d'utiliser l'API Mistral pour traduire
 
 J'ai choisi d'écrire de nouveaux contenus en anglais et non en français, car c'est ma langue maternelle.
 
----
-
-**Note:** Les termes techniques et les noms de technologies, frameworks et outils ont été conservés en anglais conformément aux instructions.

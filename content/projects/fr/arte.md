@@ -1,5 +1,5 @@
 ---
-title: Guide de style du site Arte TV
+title: Styleguide du site Arte TV
 organization: Arte GEIE
 completedAt: 2019-08-30T00:00:00.000Z
 description: Maintenance et développement de la bibliothèque de composants Arte TV
@@ -19,7 +19,6 @@ technologies:
 icons:
   - i-logos-react
   - i-logos-javascript
-  - i-logos-angular-icon
 authors: []
 translation_state: draft
 original_slug: arte

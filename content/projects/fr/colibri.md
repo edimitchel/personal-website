@@ -3,8 +3,7 @@ title: Colibri
 organization: IUT de Haguenau
 completedAt: '2017-07-01'
 description: >-
-  Apprendre à partager la connaissance — l'objectif ultime de Colibri, la
-  nouvelle plateforme d'apprentissage innovante
+  Apprendre à partager la connaissance — l'objectif ultime de Colibri, la nouvelle plateforme d'apprentissage innovante
 image: /images/projects/colibri/caption.png
 url: 'https://colibri.unistra.fr'
 type: experience
@@ -27,7 +26,7 @@ last_updated: '2025-07-25T23:05:00.547Z'
 
 # Colibri
 
-Colibri est une plateforme d'apprentissage innovante développée par l'IUT de Haguenau. Lancée en juillet 2017, cette plateforme vise à promouvoir le partage des connaissances au sein de la communauté éducative. En utilisant des technologies modernes telles que PHP, JavaScript, HTML et CSS, Colibri offre une expérience utilisateur fluide et interactive.
+{{ $doc.description }}
 
 ## Objectifs
 
