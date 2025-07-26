@@ -1,9 +1,15 @@
 import { z } from 'zod'
 
 const contactMeSchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    message: z.string()
+    name: z.string({
+        message: 'contact.error.name'
+    }),
+    email: z.string().email({
+        message: 'contact.error.email'
+    }),
+    message: z.string({
+        message: 'contact.error.message'
+    })
 })
 
 export default defineEventHandler(async (event) => {
@@ -12,7 +18,7 @@ export default defineEventHandler(async (event) => {
     if (error) {
         throw createError({
             statusCode: 400,
-            statusMessage: 'Invalid request body'
+            data: error.errors.map((e) => e.message)
         })
     }
 

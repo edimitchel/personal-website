@@ -60,12 +60,19 @@
     "verified": "Verifié",
     "holding": "Patientez...",
     "hold_to_verify": "Maintenez appuyé...",
+    "hold_to_send": "Maintenez pour envoyer",
     "captcha_instruction": "Vérification anti-robot",
     "captcha_help": "Maintenez le bouton appuyé pendant 3 secondes pour vérifier que vous êtes humain",
+    "captcha_help_short": "Maintenez le bouton Envoyer ou Cmd/Ctrl+Entrée 2 secondes pour vérifier",
     "cancel": "Annuler",
-    "send": "Envoyer",
+    "send": "Envoyé",
     "sending": "Envoi...",
     "success_message": "Votre message a été envoyé avec succès ! Je vous répondrai bientôt.",
-    "error_message": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer."
+    "error_message": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer.",
+    "error": {
+      "name": "Le nom est requis",
+      "email": "L'e-mail est requis",
+      "message": "Le message est requis"
+    }
   }
 }

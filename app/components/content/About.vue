@@ -13,14 +13,14 @@
       </div>
     </section>
 
-    <button
-      @click="showContactForm = true"
-      class="block w-50 my-4 mx-auto border-2 border-primary-600 rounded-lg px-4 py-2 uppercase cursor-pointer transition-colors duration-150 hover:bg-primary-600 hover:text-foreground">
-      {{ $t('about.contact-me') }}
-    </button>
 
     <!-- Contact Form Modal -->
-    <ContactForm :is-visible="showContactForm" @close="showContactForm = false" />
+    <ContactForm #default="{ isVisible, onToggle }">
+      <button @click="onToggle"
+        class="block p-4 w-full uppercase cursor-pointer">
+        {{ $t('about.contact-me') }}
+      </button>
+    </ContactForm>
 
     <section class="skills-section mb-12">
       <h3 class="text-3xl font-bold my-8 text-center text-background">
@@ -97,10 +97,13 @@
       <!-- Carousel with experiences -->
       <Carousel :items="experiences">
         <template #default="{ item }">
-          <NuxtLinkLocale :to="`/projects/${item.slug}`" class="absolute p-2 top-2 right-2"><UnoIcon class="i-ic-round-arrow-outward" /></NuxtLinkLocale>
+          <NuxtLinkLocale :to="`/projects/${item.slug}`" class="absolute p-2 top-2 right-2">
+            <UnoIcon class="i-ic-round-arrow-outward" />
+          </NuxtLinkLocale>
           <h4 class="text-lg font-semibold m-0 mb-0 text-background">{{ item.title }}</h4>
           <h2 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h2>
-          <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3">{{ item.description }}</p>
+          <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3">{{ item.description
+            }}</p>
           <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" />
         </template>
       </Carousel>
@@ -212,9 +215,6 @@ interface ProfileData {
 }
 
 const props = defineProps<ProfileData>()
-
-// Contact form state
-const showContactForm = ref(false)
 </script>
 
 <style scoped>

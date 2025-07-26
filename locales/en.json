@@ -60,12 +60,19 @@
     "verified": "Verified",
     "holding": "Holding...",
     "hold_to_verify": "Hold to verify",
+    "hold_to_send": "Hold to send",
     "captcha_instruction": "Anti-robot verification",
     "captcha_help": "Hold the button for 3 seconds to verify you're human",
+    "captcha_help_short": "Hold the send button or Cmd/Ctrl+Enter for 2 seconds to verify",
     "cancel": "Cancel",
-    "send": "Send",
+    "send": "Sent",
     "sending": "Sending...",
     "success_message": "Your message has been sent successfully! I'll get back to you soon.",
-    "error_message": "An error occurred while sending. Please try again."
+    "error_message": "An error occurred while sending. Please try again.",
+    "error": {
+      "name": "Name is required",
+      "email": "Email is required",
+      "message": "Message is required"
+    }
   }
 }

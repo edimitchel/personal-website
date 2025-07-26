@@ -1,4 +1,6 @@
-import { defineConfig, presetIcons, presetTypography, presetWind4, PresetWind4Theme, PresetWindTheme, ThemeExtender, transformerCompileClass, transformerDirectives, transformerVariantGroup } from 'unocss'
+import { defineConfig, presetIcons, presetTypography, presetWind4, PresetWind4Theme, transformerCompileClass, transformerDirectives, transformerVariantGroup } from 'unocss'
+import { colors} from '@unocss/preset-wind4/colors'
+
 import { presetTheme } from 'unocss-preset-theme'
 
 export default defineConfig({
@@ -31,6 +33,7 @@ export default defineConfig({
                         },
                         foreground: '#333333',
                         background: '#ffffff',
+                        ...colors,
                     },
                 },
             },
@@ -54,6 +57,7 @@ export default defineConfig({
             },
             foreground: '#ffffff',
             background: '#000000',
+            ...colors,
         },
         font: {
             serif: 'Gabarito',

@@ -1,127 +1,68 @@
 <template>
-  <div v-if="isVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-    <div class="bg-foreground rounded-lg p-6 w-full max-w-md shadow-xl">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-xl font-bold text-background">{{ $t('contact.title') }}</h3>
-        <button
-          @click="closeForm"
-          class="text-primary-600 hover:text-primary-800 text-2xl leading-none"
-          aria-label="Close"
-        >
-          ×
+  <div
+    class="contact-form-inline border-2 border-primary-600 rounded-lg my-4 bg-foreground shadow-lg transition-all duration-300">
+    <slot :isVisible="isVisible" @toggle="isVisible = !isVisible" />
+
+    <form v-if="isVisible" ref="formRef" @submit.prevent @keydown="handleGlobalKeyDown" @keyup="handleGlobalKeyUp"
+      class="px-4 space-y-3 pb-4">
+      <!-- Form Fields in a compact grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div>
+          <input v-model="form.name" type="text" required
+            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
+            :placeholder="$t('contact.name_placeholder')" />
+        </div>
+        <div>
+          <input v-model="form.email" type="email" required
+            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
+            :placeholder="$t('contact.email_placeholder')" />
+        </div>
+      </div>
+
+      <div>
+        <textarea v-model="form.message" required rows="3"
+          class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-vertical text-sm"
+          :placeholder="$t('contact.message_placeholder')"></textarea>
+      </div>
+
+      <!-- Submit Button with Integrated Captcha -->
+      <div class="flex gap-2">
+        <button type="button" @click="closeForm"
+          class="px-4 py-2 border border-primary-300 text-primary-700 rounded-md hover:bg-primary-400 transition-colors text-sm"
+          :disabled="isSubmitting">
+          {{ $t('contact.cancel') }}
+        </button>
+
+        <button type="submit" @mousedown="startHold" @mouseup="endHold" @mouseleave="endHold" @touchstart="startHold"
+          @touchend="endHold" @touchcancel="endHold" @blur="endHold" @contextmenu.prevent
+          class="flex-1 py-2 px-4 rounded-md font-medium transition-all duration-150 relative overflow-hidden captcha-submit-button text-sm"
+          :class="submitButtonClass" :disabled="isSubmitting">
+          <div class="absolute left-0 top-0 h-full transition-all duration-75 ease-linear"
+            :class="!isCaptchaValid ? 'bg-primary-700' : 'bg-transparent'" :style="{ width: `${holdProgress}%` }">
+          </div>
+          <span class="relative z-10 flex items-center justify-center">
+            <UnoIcon v-if="isSubmitting" name="i-svg-spinners-180-ring-with-bg" />
+            {{ submitButtonText }}
+          </span>
         </button>
       </div>
 
-      <form @submit.prevent="handleSubmit" class="space-y-4">
-        <div>
-          <label for="name" class="block text-sm font-medium text-background mb-1">
-            {{ $t('contact.name') }}
-          </label>
-          <input
-            id="name"
-            v-model="form.name"
-            type="text"
-            required
-            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            :placeholder="$t('contact.name_placeholder')"
-          />
-        </div>
-
-        <div>
-          <label for="email" class="block text-sm font-medium text-background mb-1">
-            {{ $t('contact.email') }}
-          </label>
-          <input
-            id="email"
-            v-model="form.email"
-            type="email"
-            required
-            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            :placeholder="$t('contact.email_placeholder')"
-          />
-        </div>
-
-        <div>
-          <label for="message" class="block text-sm font-medium text-background mb-1">
-            {{ $t('contact.message') }}
-          </label>
-          <textarea
-            id="message"
-            v-model="form.message"
-            required
-            rows="4"
-            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-vertical"
-            :placeholder="$t('contact.message_placeholder')"
-          ></textarea>
-        </div>
-
-        <!-- Press and Hold Captcha -->
-        <div class="space-y-2">
-          <label class="block text-sm font-medium text-background">
-            {{ $t('contact.captcha_instruction') }}
-          </label>
-          <div class="relative">
-            <button
-              type="button"
-              @mousedown="startHold"
-              @mouseup="endHold"
-              @mouseleave="endHold"
-              @touchstart="startHold"
-              @touchend="endHold"
-              @touchcancel="endHold"
-              @contextmenu.prevent
-              class="w-full py-3 px-4 rounded-md font-medium transition-all duration-150 relative overflow-hidden captcha-button"
-              :class="captchaButtonClass"
-              :disabled="isSubmitting"
-            >
-              <div
-                class="absolute left-0 top-0 h-full bg-primary-600 transition-all duration-75 ease-linear"
-                :style="{ width: `${holdProgress}%` }"
-              ></div>
-              <span class="relative z-10">
-                {{ captchaButtonText }}
-              </span>
-            </button>
-          </div>
-          <div class="text-xs text-primary-600">
-            {{ $t('contact.captcha_help') }}
-          </div>
-        </div>
-
-        <div class="flex gap-3 pt-2">
-          <button
-            type="button"
-            @click="closeForm"
-            class="flex-1 px-4 py-2 border border-primary-300 text-primary-700 rounded-md hover:bg-primary-50 transition-colors"
-            :disabled="isSubmitting"
-          >
-            {{ $t('contact.cancel') }}
-          </button>
-          <button
-            type="submit"
-            class="flex-1 px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            :disabled="!isCaptchaValid || isSubmitting"
-          >
-            <span v-if="!isSubmitting">{{ $t('contact.send') }}</span>
-            <span v-else class="flex items-center justify-center">
-              <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              {{ $t('contact.sending') }}
-            </span>
-          </button>
-        </div>
-      </form>
+      <!-- Compact help text -->
+      <div v-if="!isCaptchaValid && !isSubmitting" class="text-xs text-primary-600 text-center">
+        {{ $t('contact.captcha_help_short') }}
+      </div>
 
       <!-- Success/Error Messages -->
-      <div v-if="submitStatus === 'success'" class="mt-4 p-3 bg-green-100 border border-green-300 text-green-700 rounded-md">
+      <div v-if="submitStatus === 'success'"
+        class="mt-3 p-2 bg-green-100 border border-green-300 text-green-700 rounded-md text-sm">
         {{ $t('contact.success_message') }}
       </div>
-      <div v-if="submitStatus === 'error'" class="mt-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded-md">
+      <div v-if="submitStatus === 'error'"
+        class="mt-3 p-2 bg-red-100 border border-red-300 text-red-700 rounded-md text-sm">
         {{ $t('contact.error_message') }}
       </div>
-    </div>
+    </form>
+
   </div>
 </template>
 
@@ -132,16 +73,11 @@ interface ContactForm {
   message: string
 }
 
-interface Props {
-  isVisible: boolean
-}
+const isVisible = ref(false)
 
-const props = defineProps<Props>()
-const emit = defineEmits<{
-  close: []
-}>()
+const { t } = useI18n()
 
-const { t} = useI18n()
+const formRef = useTemplateRef<HTMLFormElement | null>('formRef')
 
 // Form data
 const form = ref<ContactForm>({
@@ -155,43 +91,59 @@ const holdProgress = ref(0)
 const isCaptchaValid = ref(false)
 const isHolding = ref(false)
 const holdTimer = ref<NodeJS.Timeout | null>(null)
-const HOLD_DURATION = 3000 // 3 seconds
+const HOLD_DURATION = 2_000 // 2 seconds
 
 // Submit state
 const isSubmitting = ref(false)
 const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
 
 // Computed properties
-const captchaButtonClass = computed(() => {
-  if (isCaptchaValid.value) {
-    return 'bg-green-500 text-white border-green-500'
+const submitButtonClass = computed(() => {
+  if (isSubmitting.value) {
+    return 'bg-primary-600 text-white cursor-not-allowed'
   }
-  return 'bg-primary-100 text-primary-700 border-primary-300 hover:bg-primary-200'
+  if (isCaptchaValid.value) {
+    return 'bg-green-700 text-white hover:bg-green-700'
+  }
+  if (isHolding.value) {
+    return 'bg-primary-600 text-white'
+  }
+  return 'bg-primary-600 text-white hover:bg-primary-700'
 })
 
-const captchaButtonText = computed(() => {
+const submitButtonText = computed(() => {
+  if (isSubmitting.value) {
+    return t('contact.sending')
+  }
   if (isCaptchaValid.value) {
-    return '✓ ' + t('contact.verified')
+    return '✓ ' + t('contact.send')
   }
   if (isHolding.value) {
     return t('contact.holding')
   }
-  return t('contact.hold_to_verify')
+  return t('contact.hold_to_send')
 })
 
 // Methods
-const startHold = () => {
+const startHold = async () => {
+
+  if (!formRef.value?.checkValidity()) {
+
+    formRef.value?.reportValidity()
+    return
+  }
+
   if (isCaptchaValid.value || isSubmitting.value) return
-  
+
   isHolding.value = true
   holdProgress.value = 0
-  
+
   const startTime = Date.now()
-  
+
   holdTimer.value = setInterval(() => {
     const elapsed = Date.now() - startTime
     holdProgress.value = Math.min((elapsed / HOLD_DURATION) * 100, 100)
-    
+
     if (elapsed >= HOLD_DURATION) {
       isCaptchaValid.value = true
       isHolding.value = false
@@ -204,18 +156,41 @@ const startHold = () => {
 }
 
 const endHold = () => {
-  if (!isHolding.value) return
-  
   isHolding.value = false
-  
+
   if (holdTimer.value) {
     clearInterval(holdTimer.value)
     holdTimer.value = null
   }
-  
+
   // Reset progress if not completed
   if (!isCaptchaValid.value) {
     holdProgress.value = 0
+  }
+}
+
+// Global keyboard event handlers for Cmd+Enter (Mac) or Ctrl+Enter (Windows/Linux)
+const handleGlobalKeyDown = (event: KeyboardEvent) => {
+  // Only trigger if both keys are pressed in the same event
+  const isModifierPressed = event.metaKey || event.ctrlKey
+  const isEnterPressed = event.code === 'Enter'
+
+  if (isModifierPressed && isEnterPressed) {
+    event.preventDefault()
+
+    // Only start hold if not already holding and not already validated
+    if (!isHolding.value && !isCaptchaValid.value && !isSubmitting.value) {
+      startHold()
+    }
+  }
+}
+
+const handleGlobalKeyUp = (event: KeyboardEvent) => {
+  // End hold when either modifier or Enter key is released
+  if ((event.code === 'MetaLeft' || event.code === 'MetaRight' ||
+    event.code === 'ControlLeft' || event.code === 'ControlRight') ||
+    event.code === 'Enter') {
+    endHold()
   }
 }
 
@@ -232,31 +207,48 @@ const resetForm = () => {
 
 const closeForm = () => {
   resetForm()
-  emit('close')
+  isVisible.value = false
 }
+
+watch(isCaptchaValid, () => {
+  if (isCaptchaValid.value) {
+    handleSubmit()
+  }
+})
 
 const handleSubmit = async () => {
   if (!isCaptchaValid.value || isSubmitting.value) return
-  
+
   isSubmitting.value = true
   submitStatus.value = 'idle'
-  
+
   try {
-    await $fetch('/api/contact-me', {
+    const { data, error, status } = await useFetch('/api/contact-me', {
       method: 'POST',
-      body: form.value
+      body: form.value,
+      onResponseError: async (error) => {
+        console.error('Contact form error:', error)
+        submitStatus.value = 'error'
+
+        if (error.response.status === 400) {
+          const errorResponse = await error.response.json()
+          console.log(errorResponse)
+        }
+
+        isCaptchaValid.value = false
+        return false;
+      }
     })
-    
-    submitStatus.value = 'success'
-    
-    // Auto-close after success
-    setTimeout(() => {
-      closeForm()
-    }, 5000)
-    
-  } catch (error) {
-    console.error('Contact form error:', error)
-    submitStatus.value = 'error'
+
+    if (status.value === "success") {
+      submitStatus.value = 'success'
+
+      // Auto-close after success
+      setTimeout(() => {
+        closeForm()
+      }, 5000)
+    }
+
   } finally {
     isSubmitting.value = false
   }
@@ -270,7 +262,7 @@ onUnmounted(() => {
 })
 
 // Reset captcha when form becomes visible
-watch(() => props.isVisible, (newValue) => {
+watch(() => isVisible.value, (newValue) => {
   if (newValue) {
     resetForm()
   }
@@ -278,32 +270,31 @@ watch(() => props.isVisible, (newValue) => {
 </script>
 
 <style scoped>
-/* Additional styles for better UX */
-.animate-spin {
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Prevent context menu and text selection on captcha button */
-.captcha-button {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+/* Prevent context menu and text selection on submit button */
+.captcha-submit-button {
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
 
-.captcha-button:focus {
+.captcha-submit-button:focus {
   outline: none;
+}
+
+/* Contact form inline styling */
+.contact-form-inline {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
