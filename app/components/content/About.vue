@@ -14,9 +14,13 @@
     </section>
 
     <button
+      @click="showContactForm = true"
       class="block w-50 my-4 mx-auto border-2 border-primary-600 rounded-lg px-4 py-2 uppercase cursor-pointer transition-colors duration-150 hover:bg-primary-600 hover:text-foreground">
       {{ $t('about.contact-me') }}
     </button>
+
+    <!-- Contact Form Modal -->
+    <ContactForm :is-visible="showContactForm" @close="showContactForm = false" />
 
     <section class="skills-section mb-12">
       <h3 class="text-3xl font-bold my-8 text-center text-background">
@@ -208,6 +212,9 @@ interface ProfileData {
 }
 
 const props = defineProps<ProfileData>()
+
+// Contact form state
+const showContactForm = ref(false)
 </script>
 
 <style scoped>

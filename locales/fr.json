@@ -48,5 +48,24 @@
   "experiences": "Expériences",
   "about": {
     "contact-me": "Contactez moi"
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "name": "Nom",
+    "name_placeholder": "Votre nom complet",
+    "email": "Email",
+    "email_placeholder": "votre.email{'@'}exemple.com",
+    "message": "Message",
+    "message_placeholder": "Décrivez votre projet ou votre demande...",
+    "verified": "Verifié",
+    "holding": "Patientez...",
+    "hold_to_verify": "Maintenez appuyé...",
+    "captcha_instruction": "Vérification anti-robot",
+    "captcha_help": "Maintenez le bouton appuyé pendant 3 secondes pour vérifier que vous êtes humain",
+    "cancel": "Annuler",
+    "send": "Envoyer",
+    "sending": "Envoi...",
+    "success_message": "Votre message a été envoyé avec succès ! Je vous répondrai bientôt.",
+    "error_message": "Une erreur s'est produite lors de l'envoi. Veuillez réessayer."
   }
 }

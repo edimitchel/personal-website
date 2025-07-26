@@ -48,5 +48,24 @@
   "experiences": "Experiences",
   "about": {
     "contact-me": "Contact me"
+  },
+  "contact": {
+    "title": "Contact me",
+    "name": "Name",
+    "name_placeholder": "Your full name",
+    "email": "Email",
+    "email_placeholder": "your.email{'@'}example.com",
+    "message": "Message",
+    "message_placeholder": "Describe your project or inquiry...",
+    "verified": "Verified",
+    "holding": "Holding...",
+    "hold_to_verify": "Hold to verify",
+    "captcha_instruction": "Anti-robot verification",
+    "captcha_help": "Hold the button for 3 seconds to verify you're human",
+    "cancel": "Cancel",
+    "send": "Send",
+    "sending": "Sending...",
+    "success_message": "Your message has been sent successfully! I'll get back to you soon.",
+    "error_message": "An error occurred while sending. Please try again."
   }
 }
