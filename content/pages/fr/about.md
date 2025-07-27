@@ -1,16 +1,8 @@
 ---
-translation_state: draft
-original_slug: about
-source_content_hash: 3707c362eeb782e0e880a1e166014bd7
-translated_by: AI Translator
-translated_at: '2025-07-27T23:52:07.931Z'
-last_updated: '2025-07-27T23:52:07.931Z'
----
-```markdown
----
+translate_state: approved
 name: "Michel Edighoffer"
 title: "Développeur Web Full Stack & Innovateur Numérique"
-description: "Développeur web passionné avec une expertise dans la création d'applications modernes, réactives et conviviales. Je me spécialise dans la construction de solutions évolutives qui comblement l'écart entre le design et la fonctionnalité."
+description: "Développeur web passionné avec une expertise dans la création d'applications modernes et réactives. Spécilisé pour trouver les meilleures solutions transformant une idée en expériences utilisateur optimales."
 ---
 
 ::About{:title="title" :description="description" :experiences="experiences"}
