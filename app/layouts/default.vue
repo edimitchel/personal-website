@@ -2,9 +2,11 @@
   <Silk client-only class="fixed top-0 left-0 w-full h-full -z-1 opacity-5" :scale="1.5" :rotation="1" color="#eeeeee"
     :speed="5" :parallaxStrength="0.10" />
   <LayoutHeader :links :name="title ?? info.title" :with-emoji="info.withEmoji" :description="info.description"
-    :messages :header-color="headerColor" :emojis="info.emojis" :options="info.options" :dark-mode="colorMode.value === 'dark'"
+    :messages :header-color="headerColor" :emojis="info.emojis" :options="info.options"
+    :dark-mode="colorMode.value === 'dark'"
     @toggle-dark-mode="colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'" />
   <main class="container md:p-16 md:pt-4">
+    <div id="modals"></div>
     <slot />
   </main>
   <LayoutFooter />

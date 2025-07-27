@@ -47,10 +47,10 @@
   "enterprise_purposes": "L'identité de l'entreprise",
   "experiences": "Expériences",
   "about": {
-    "contact-me": "Contactez moi"
+    "contact-me": "Me contacter"
   },
   "contact": {
-    "title": "Contactez-moi",
+    "title": "Me contacter",
     "name": "Nom",
     "name_placeholder": "Votre nom complet",
     "email": "Email",
@@ -73,6 +73,7 @@
       "name": "Le nom est requis",
       "email": "L'e-mail est requis",
       "message": "Le message est requis"
-    }
+    },
+    "fill_form": "Complétez le formulaire"
   }
 }

@@ -73,6 +73,7 @@
       "name": "Name is required",
       "email": "Email is required",
       "message": "Message is required"
-    }
+    },
+    "fill_form": "Fill fields form"
   }
 }

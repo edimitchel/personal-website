@@ -22,19 +22,6 @@
     <ClientOnly>
       <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
         <ul>
-          <button class="mode-switcher" @click="cycleModes">
-            <Transition name="fade" mode="out-in">
-              <UnoIcon v-if="mode.preference === 'dark'" key="dark" class="i-ic-outline-dark-mode" />
-              <UnoIcon v-else-if="mode.preference === 'light'" key="light" class="i-ic-outline-light-mode" />
-              <UnoIcon v-else key="system" class="i-ic-outline-auto-mode" />
-            </Transition>
-          </button>
-          <li v-for="(item, index) in props.links" :key="item.path"
-            :style="{ '--index': index, '--count': props.links?.length }">
-            <NuxtLinkLocale :to="item.path" :class="item.class">
-              {{ item.name }}
-            </NuxtLinkLocale>
-          </li>
           <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
             :class="{ 'disabled': store.notTranslated }"
             :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')">
@@ -43,6 +30,31 @@
                 :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
             </Transition>
           </SwitchLocalePathLink>
+          <button class="mode-switcher" @click="cycleModes">
+            <Transition name="fade" mode="out-in">
+              <UnoIcon v-if="mode.preference === 'dark'" key="dark" class="i-line-md-lightbulb-off-twotone" />
+              <UnoIcon v-else-if="mode.preference === 'light'" key="light" class="i-line-md-lightbulb-twotone" />
+              <UnoIcon v-else key="system" class="i-line-md-light-dark" />
+            </Transition>
+          </button>
+
+          <li v-for="(item, index) in props.links" :key="item.path"
+            :style="{ '--index': index, '--count': props.links?.length }">
+            <NuxtLinkLocale :to="item.path" :class="item.class">
+              {{ item.name }}
+            </NuxtLinkLocale>
+          </li>
+
+          <button class="contact-button" @click="contactVisible = !contactVisible">
+            <UnoIcon class="i-line-md-chat-round-dots" />
+          </button>
+          <Teleport to="#modals">
+            <div v-if="contactVisible" class="fixed w-100vw h-100vh inset-0 p-10 backdrop-blur-sm z-110" @click.self="contactVisible = false">
+              <UnoIcon class="i-line-md-close absolute text-xl top-5 right-10 cursor-pointer text-background" @click="contactVisible = false" />
+              <ContactForm :isVisible="contactVisible" @update:isVisible="contactVisible = $event" class="text-background">
+              </ContactForm>
+            </div>
+          </Teleport>
         </ul>
       </nav>
     </ClientOnly>
@@ -59,6 +71,8 @@ import { UnoIcon } from '#components'
 const { locale } = useI18n()
 
 const mode = useColorMode();
+
+const contactVisible = ref(false)
 
 const store = layoutStore()
 
@@ -80,7 +94,7 @@ const cycleCount = ref(0)
 const cycleModes = () => {
   const modes = ['dark', 'light']
   const index = modes.indexOf(mode.value)
-  if(mode.preference !== 'system') {
+  if (mode.preference !== 'system') {
     cycleCount.value++
   }
   if (mode.preference !== 'system' && cycleCount.value >= 2) {
@@ -301,40 +315,65 @@ ul a.router-link-active::before {
   --uno: bg-primary-600 pointer-events-none -z-1 bottom-[-6px];
 }
 
-.header :deep(.mode-switcher) {
-  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-primary-200 bg-opacity-50 cursor-pointer;
-  top: -23.5px;
-  right: 95%;
-  rotate: 22.5deg;
+.mode-switcher,
+.contact-button,
+:deep(a.lang-switcher) {
+  --uno: absolute text-sm flex w-6 h-6 items-center justify-center rounded-full rounded-tr-full bg-primary-400/20 hover:bg-primary/40 cursor-pointer;
+  bottom: 45px;
+  right: 90%;
+  rotate: 21.5deg;
   transition: all 400ms ease;
 }
 
 @screen md {
-  .header :deep(.mode-switcher) {
-    rotate: 27deg;
-    top: -34.5px;
-    right: 105%;
+  .mode-switcher {
+    --uno: text-lg w-8 h-8;
+    bottom: 55px;
+    right: 100%;
+    rotate: 21.5deg;
   }
 }
 
-
-.header :deep(a.lang-switcher) {
-  --uno: absolute text-xl flex w-8 justify-center pt-1 rounded-tl-full rounded-tr-full bg-primary-200 bg-opacity-50;
-  top: -23.5px;
-  left: 95%;
+.contact-button {
+  --uno: text-lg;
+  bottom: 45px;
+  left: 92%;
   rotate: -22.5deg;
   transition: all 400ms ease;
 }
 
-.header :deep(a.lang-switcher.disabled) {
-  --uno: absolute filter-saturate-0 opacity-50;
+.contact-button>* {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @screen md {
-  .header :deep(a.lang-switcher) {
-    rotate: -27deg;
-    top: -34.5px;
-    left: 105%;
+  .contact-button {
+    --uno: text-2xl w-8 h-8;
+    bottom: 52px;
+    left: 100%;
+    rotate: -23.5deg;
+  }
+}
+
+:deep(a.lang-switcher) {
+  bottom: 58px;
+  right: 103%;
+  rotate: 30deg;
+}
+
+:deep(a.lang-switcher.disabled) {
+  --uno: absolute filter-saturate-0 opacity-50 text-xl;
+}
+
+@screen md {
+  :deep(a.lang-switcher) {
+    --uno: text-xl w-8 h-8;
+    bottom: 70px;
+    right: 113%;
+    rotate: 34deg;
   }
 }
 </style>

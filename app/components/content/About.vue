@@ -13,14 +13,7 @@
       </div>
     </section>
 
-
-    <!-- Contact Form Modal -->
-    <ContactForm #default="{ isVisible, onToggle }">
-      <button @click="onToggle"
-        class="block p-4 w-full uppercase cursor-pointer">
-        {{ $t('about.contact-me') }}
-      </button>
-    </ContactForm>
+    <ContactForm />
 
     <section class="skills-section mb-12">
       <h3 class="text-3xl font-bold my-8 text-center text-background">
