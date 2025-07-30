@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" class="relative overflow-hidden p-4 mb-4 w-full" :style="{
+  <div ref="containerRef" class="relative overflow-hidden py-4 mb-4 w-full" :style="{
     maxWidth: maxWidth ? `${maxWidth}px` : '100%'
   }">
     <Motion tag="div" class="flex" drag="x" :dragConstraints="dragConstraints" :style="{
@@ -81,7 +81,7 @@ const props = withDefaults(defineProps<CarouselProps>(), {
   maxWidth: undefined,
 });
 
-const containerPadding = 16;
+const containerPadding = 0;
 const containerWidth = ref(0);
 const itemWidth = computed(() => containerWidth.value - containerPadding * 2);
 const trackItemOffset = computed(() => itemWidth.value + GAP);

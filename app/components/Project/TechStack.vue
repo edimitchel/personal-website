@@ -40,6 +40,7 @@ function getTechIcon(tech: string): string | null {
     'Next.js': 'i-logos-nextjs-icon',
     'Tailwind': 'i-logos-tailwindcss-icon',
     'Docker': 'i-logos-docker-icon',
+    'Laravel': 'i-logos-laravel',
     'Git': 'i-logos-git-icon',
     'MySQL': 'i-logos-mysql',
     'PostgreSQL': 'i-logos-postgresql',
