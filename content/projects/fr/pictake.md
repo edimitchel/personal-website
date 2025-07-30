@@ -76,10 +76,3 @@ En prime, **Alsace 20** (une chaîne régionale) a retenu l'attention sur mon pr
 :iframe{:width='"auto"' allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allow-full-screen="true" frame-border="0" src="https://www.youtube.com/embed/4rub_lA4h2Y" title="Vidéo de promotion par Alsace 20"}
 
 *Promotional video by Alsace 20*
-
-## Liens
-
-- [Accéder à l'application](http://www.pictake.fr)
-- [Twitter](https://twitter.com/PictakeApp)
-- [Facebook](https://www.facebook.com/pictakeapp)
-- [Google +](https://plus.google.com/105755137064371505449)

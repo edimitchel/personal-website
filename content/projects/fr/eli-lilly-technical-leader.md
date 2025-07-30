@@ -1,25 +1,24 @@
 ---
 title: Chef de Projet Technique Fullstack (Spécialiste Frontend)
-description: >-
-  Rôle de consultant senior axé sur la modernisation des projets de fabrication
-  avec une architecture hexagonale
-completedAt: '2023-09-01'
+description: Rôle de consultant senior axé sur la modernisation des projets de
+  fabrication avec une architecture hexagonale
+completedAt: 2023-09-01
 status: completed
 organization: Eli Lilly and Company
 role: Chef de Projet Technique Fullstack (Spécialiste Frontend)
-location: 'Illkirch-Graffenstaden, Grand Est, France'
+location: Illkirch-Graffenstaden, Grand Est, France
 type: consulting
 technologies:
   - Angular
   - PostgreSQL
   - Docker
-image: 'https://companieslogo.com/img/orig/LLY-7d9e05a0.svg'
+image: https://companieslogo.com/img/orig/LLY-7d9e05a0.svg
 translation_state: draft
 original_slug: eli-lilly-technical-leader
 source_content_hash: e1cef109435882fa3cde51b2e1445b57
 translated_by: AI Translator
-translated_at: '2025-07-25T23:05:04.933Z'
-last_updated: '2025-07-25T23:05:04.933Z'
+translated_at: 2025-07-25T23:05:04.933Z
+last_updated: 2025-07-25T23:05:04.933Z
 ---
 
 # Chef de Projet Technique Fullstack

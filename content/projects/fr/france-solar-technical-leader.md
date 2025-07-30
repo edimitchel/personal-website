@@ -1,13 +1,12 @@
 ---
 title: Technical Fullstack Leader
-description: >-
-  Diriger l'équipe de développement pour des outils internes, une entreprise
-  d'énergie solaire
-completedAt: '2025-07-02'
+description: Diriger l'équipe de développement pour des outils internes, une
+  entreprise d'énergie solaire
+completedAt: 2025-07-02
 status: completed
 organization: France Solar
 role: Technical Fullstack Leader
-location: 'Brumath, Grand Est, France'
+location: Brumath, Grand Est, France
 type: experience
 technologies:
   - PHP
@@ -24,8 +23,8 @@ translation_state: draft
 original_slug: france-solar-technical-leader
 source_content_hash: 624177757208c8f59bf4332b02f8feef
 translated_by: AI Translator
-translated_at: '2025-07-25T23:05:08.394Z'
-last_updated: '2025-07-25T23:05:08.394Z'
+translated_at: 2025-07-25T23:05:08.394Z
+last_updated: 2025-07-25T23:05:08.394Z
 ---
 
 # Technical Fullstack Leader

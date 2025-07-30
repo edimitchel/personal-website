@@ -1,25 +1,24 @@
 ---
 title: Chef de projet Frontend - React
-description: >-
-  Diriger le développement frontend pour un système de suivi des doses
-  radioactives en utilisant React et FHIR
-completedAt: '2021-09-01'
+description: Diriger le développement frontend pour un système de suivi des
+  doses radioactives en utilisant React et FHIR
+completedAt: 2021-09-01
 status: completed
 organization: GE Healthcare
 role: Chef de projet Frontend - React
-location: 'Région de Strasbourg, France'
+location: Région de Strasbourg, France
 type: consulting
 technologies:
   - React
   - Redux
   - FHIR
-image: 'https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg'
+image: https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg
 translation_state: draft
 original_slug: ge-healthcare-react-leader
 source_content_hash: ffc2d75bf931406d936d85c30967adc0
 translated_by: AI Translator
-translated_at: '2025-07-25T23:05:13.356Z'
-last_updated: '2025-07-25T23:05:13.356Z'
+translated_at: 2025-07-25T23:05:13.356Z
+last_updated: 2025-07-25T23:05:13.356Z
 ---
 
 # Chef de projet Frontend - React

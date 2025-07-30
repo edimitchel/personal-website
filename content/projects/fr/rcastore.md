@@ -4,7 +4,7 @@ description: Un projet étudiant sur la création d'un e-commerce de A à Z
   utilisant tous les standards actuels du web (HTML 5, CSS 3, JS, jQuery,
   Bootstrap).
 image: /images/projects/rcastore/caption.png
-url: http://www.rcastore.pictake.fr
+url: ""
 type: application
 status: published
 completedAt: 2014-11-17
@@ -21,6 +21,8 @@ technologies:
   - Bootstrap
   - Smarty
   - Propel
+authors: []
+icons: []
 ---
 
 # RCA Store

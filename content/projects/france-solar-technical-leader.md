@@ -1,15 +1,23 @@
 ---
-title: "Technical Fullstack Leader"
-description: "Leading the development team for internal tools, a solar energy company"
-completedAt: "2025-07-02"
-status: "completed"
-organization: "France Solar"
-role: "Technical Fullstack Leader"
-location: "Brumath, Grand Est, France"
-type: "experience"
-technologies: ["PHP", "Laravel", "JavaScript", "Vue", "Nuxt"]
-skills: ["Project Management", "Team Leadership", "Full Stack Development"]
-image: "/images/projects/francesolar/caption.svg"
+title: Technical Fullstack Leader
+description: Leading the development team for internal tools, a solar energy company
+completedAt: 2025-07-02
+status: completed
+organization: France Solar
+role: Technical Fullstack Leader
+location: Brumath, Grand Est, France
+type: experience
+technologies:
+  - PHP
+  - Laravel
+  - JavaScript
+  - Vue
+  - Nuxt
+skills:
+  - Project Management
+  - Team Leadership
+  - Full Stack Development
+image: /images/projects/francesolar/caption.svg
 ---
 
 # Technical Fullstack Leader

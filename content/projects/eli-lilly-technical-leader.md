@@ -1,14 +1,18 @@
 ---
-title: "Fullstack Technical Leader (Frontend Specialist)"
-description: "Senior consultant role focusing on manufacturing projects with hexagonal architecture"
-completedAt: "2023-09-01"
-status: "completed"
-organization: "Eli Lilly and Company"
-role: "Fullstack Technical Leader (Frontend Specialist)"
-location: "Illkirch-Graffenstaden, Grand Est, France"
-type: "consulting"
-technologies: ["Angular", "PostgreSQL", "Docker"]
-image: "https://companieslogo.com/img/orig/LLY-7d9e05a0.svg"
+title: Fullstack Technical Leader (Frontend Specialist)
+description: Senior consultant role focusing on manufacturing projects with
+  hexagonal architecture
+completedAt: 2023-09-01
+status: completed
+organization: Eli Lilly and Company
+role: Fullstack Technical Leader (Frontend Specialist)
+location: Illkirch-Graffenstaden, Grand Est, France
+type: consulting
+technologies:
+  - Angular
+  - PostgreSQL
+  - Docker
+image: https://companieslogo.com/img/orig/LLY-7d9e05a0.svg
 ---
 
 # Fullstack Technical Leader

@@ -1,14 +1,18 @@
 ---
-title: "Frontend Technical Leader - React"
-description: "Leading frontend development for radioactive dose tracking system using React and FHIR"
-completedAt: "2021-09-01"
-status: "completed"
-organization: "GE Healthcare"
-role: "Frontend Technical Leader - React"
-location: "Strasbourg Region, France"
-type: "consulting"
-technologies: ["React", "Redux", "FHIR"]
-image: "https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg"
+title: Frontend Technical Leader - React
+description: Leading frontend development for radioactive dose tracking system
+  using React and FHIR
+completedAt: 2021-09-01
+status: completed
+organization: GE Healthcare
+role: Frontend Technical Leader - React
+location: Strasbourg Region, France
+type: consulting
+technologies:
+  - React
+  - Redux
+  - FHIR
+image: https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg
 ---
 
 # Frontend Technical Leader - React

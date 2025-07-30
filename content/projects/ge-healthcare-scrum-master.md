@@ -1,15 +1,18 @@
 ---
-title: "Scrum Master & Frontend Technical Leader"
-description: "Leading a 5-person team for Edison Design System - a global component library"
-completedAt: "2022-11-01"
-status: "completed"
-organization: "GE Healthcare"
-role: "Scrum Master & Frontend Technical Leader"
-location: "Strasbourg, Grand Est, France"
-type: "consulting"
-technologies: ["Angular", "React", "Web Components"]
-image: "https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg"
-url: "https://edisondesignsystem.com"
+title: Scrum Master & Frontend Technical Leader
+description: Leading a 5-person team for Edison Design System - a global component library
+completedAt: 2022-11-01
+status: completed
+organization: GE Healthcare
+role: Scrum Master & Frontend Technical Leader
+location: Strasbourg, Grand Est, France
+type: consulting
+technologies:
+  - Angular
+  - React
+  - Web Components
+image: https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg
+url: https://edisondesignsystem.com
 ---
 
 # Scrum Master & Frontend Technical Leader
