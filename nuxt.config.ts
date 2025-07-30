@@ -86,7 +86,6 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     defaultLocale: 'fr',
     detectBrowserLanguage: {
-      redirectOn: 'root',
       useCookie: true,
       cookieKey: 'i18n_redirected',
     },
@@ -101,22 +100,8 @@ export default defineNuxtConfig({
 
   nitro: {
     prerender: {
-      // Pre-render the homepage
       routes: ['/'],
-      // Then crawl all the links on the page
       crawlLinks: true
     },
-    cloudflare: {
-      pages: {
-        routes: {
-          exclude: [
-            '/fr/articles/*',
-            '/articles/*',
-            '/fr/projects/*',
-            '/projects/*'
-          ]
-        }
-      }
-    }
   }
 })
