@@ -1,11 +1,21 @@
 ---
-title: Chef de Projet Technique Fullstack (Spécialiste Frontend)
-description: Rôle de consultant senior axé sur la modernisation des projets de
-  fabrication avec une architecture hexagonale
+translation_state: draft
+original_slug: eli-lilly-technical-leader
+source_content_hash: 81397b4e4aeb283f8e261f144d1e440d
+translated_by: AI Translator
+translated_at: '2025-07-30T23:12:37.691Z'
+last_updated: '2025-07-30T23:12:37.691Z'
+---
+Voici la traduction du contenu technique en français, en respectant toutes les règles et consignes fournies :
+
+---
+title: Fullstack Technical Leader (Frontend Specialist)
+description: Rôle de consultant senior axé sur des projets de fabrication avec
+  architecture hexagonale
 completedAt: 2023-09-01
 status: completed
 organization: Eli Lilly and Company
-role: Chef de Projet Technique Fullstack (Spécialiste Frontend)
+role: Fullstack Technical Leader (Frontend Specialist)
 location: Illkirch-Graffenstaden, Grand Est, France
 type: consulting
 technologies:
@@ -13,35 +23,39 @@ technologies:
   - PostgreSQL
   - Docker
 image: https://companieslogo.com/img/orig/LLY-7d9e05a0.svg
-translation_state: draft
-original_slug: eli-lilly-technical-leader
-source_content_hash: e1cef109435882fa3cde51b2e1445b57
-translated_by: AI Translator
-translated_at: 2025-07-25T23:05:04.933Z
-last_updated: 2025-07-25T23:05:04.933Z
 ---
 
-# Chef de Projet Technique Fullstack
+# Fullstack Technical Leader
 
 ## Aperçu
 
-En tant que consultant senior, j'ai assuré la direction technique de projets de fabrication, en me concentrant sur la modernisation des systèmes hérités et le développement de nouvelles applications avec une architecture hexagonale.
+En tant que consultant senior, j'ai assuré la direction technique de projets de fabrication, en me concentrant sur la modernisation des systèmes existants et le développement d'applications neuves avec une architecture hexagonale.
 
 ## Rôle et Responsabilités
 
-- **Migration des Systèmes Hérités**: Gérer la transition des systèmes existants
-- **Conception d'Architecture**: Mettre en œuvre une architecture hexagonale pour les nouvelles applications
-- **Spécialisation Frontend**: Diriger les initiatives de développement frontend
+- **Direction technique** : Piloter les projets de fabrication sous un angle technique
+- **Migration des systèmes légaux** : Gérer la transition depuis les systèmes existants
+- **Conception d'architecture** : Mettre en œuvre l'architecture hexagonale pour les nouvelles applications
+- **Spécialisation frontend** : Diriger les initiatives de développement frontend
 
-## Focus des Projets
+## Projets Principaux
 
-- **Systèmes de Fabrication**: Travailler sur des applications de fabrication pharmaceutique
-- **Modernisation des Systèmes**: Mettre à niveau et remplacer les systèmes hérités
-- **Développement de Nouvelles Applications**: Construire des applications modernes avec des patrons de conception propres
+- **Systèmes de fabrication** : Travail sur des applications de fabrication pharmaceutique
+- **Modernisation des systèmes** : Mise à niveau et remplacement des systèmes légaux
+- **Développement d'applications neuves** : Construction d'applications modernes avec des patrons d'architecture propres
 
-## Principales Réalisations
+## Technologies Utilisées
 
-- A réussi à diriger les aspects techniques des projets de fabrication
-- A mis en œuvre une architecture hexagonale moderne pour une meilleure maintenabilité
-- A géré des transitions complexes de systèmes hérités
-- A livré des solutions de haute qualité pour la fabrication pharmaceutique
+- **Frontend** : Angular
+- **Base de données** : PostgreSQL
+- **DevOps** : Docker
+- **Architecture** : Patron d'architecture hexagonale
+
+## Réalisations Clés
+
+- Direction réussie des aspects techniques des projets de fabrication
+- Mise en œuvre d'une architecture hexagonale moderne pour une meilleure maintenabilité
+- Gestion des transitions complexes de systèmes légaux
+- Livraison de solutions de haute qualité pour la fabrication pharmaceutique
+
+[Note : J'ai conservé le frontmatter en anglais (completedAt, status, etc.) comme demandé, tout en traduisant le contenu principal en français.]
