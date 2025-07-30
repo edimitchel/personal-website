@@ -49,7 +49,7 @@
             <UnoIcon class="i-line-md-chat-round-dots" />
           </button>
           <Teleport to="#modals">
-            <div v-if="contactVisible" class="fixed w-100vw h-100vh inset-0 p-10 backdrop-blur-sm z-110" @click.self="contactVisible = false">
+            <div v-if="contactVisible" class="fixed w-100vw h-100lvh inset-0 p-10 backdrop-blur-sm z-110" @click.self="contactVisible = false">
               <UnoIcon class="i-line-md-close absolute text-xl top-5 right-10 cursor-pointer text-background" @click="contactVisible = false" />
               <ContactForm :isVisible="contactVisible" @update:isVisible="contactVisible = $event" class="text-background">
               </ContactForm>

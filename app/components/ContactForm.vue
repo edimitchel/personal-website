@@ -38,9 +38,9 @@
 
         <!-- Submit Button with Integrated Captcha -->
         <div class="flex gap-2 flex-col md:flex-row">
-          <button type="button" @click="closeForm"
+          <button v-if="!isSent" type="button" @click="closeForm"
             class="px-4 py-2 border border-primary-300 text-primary-700 rounded-md hover:bg-primary-400 hover:text-primary-50 transition-colors text-sm disabled:opacity-50"
-            :disabled="isSubmitting || isSent">
+            :disabled="isSubmitting">
             {{ $t('contact.cancel') }}
           </button>
 
