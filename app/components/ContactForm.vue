@@ -1,6 +1,6 @@
 <template>
   <div
-    class="contact-form-inline border-2 border-primary-600 md:w-1/2 w-full md:mx-auto rounded-lg my-4 bg-foreground shadow-lg transition-all duration-200"
+    class="contact-form-inline border-2 border-primary-600 md:w-1/2 w-full md:max-w-[600px] md:mx-auto rounded-lg my-4 bg-foreground shadow-lg transition-all duration-200"
     :class="{
       'md:w-full': isVisible,
     }">
@@ -20,34 +20,34 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <input v-model="form.name" type="text" required
-              class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
-              :placeholder="$t('contact.name_placeholder')" />
+              class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm disabled:opacity-50"
+              :placeholder="$t('contact.name_placeholder')" :disabled="isSubmitting || isSent" />
           </div>
           <div>
             <input v-model="form.email" type="email" required
-              class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm"
-              :placeholder="$t('contact.email_placeholder')" />
+              class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm disabled:opacity-50"
+              :placeholder="$t('contact.email_placeholder')" :disabled="isSubmitting || isSent" />
           </div>
         </div>
 
         <div>
           <textarea v-model="form.message" required rows="3"
-            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-vertical text-sm"
-            :placeholder="$t('contact.message_placeholder')"></textarea>
+            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-vertical text-sm disabled:opacity-50"
+            :placeholder="$t('contact.message_placeholder')" :disabled="isSubmitting || isSent"></textarea>
         </div>
 
         <!-- Submit Button with Integrated Captcha -->
-        <div class="flex gap-2">
+        <div class="flex gap-2 flex-col md:flex-row">
           <button type="button" @click="closeForm"
-            class="px-4 py-2 border border-primary-300 text-primary-700 rounded-md hover:bg-primary-400 transition-colors text-sm"
-            :disabled="isSubmitting">
+            class="px-4 py-2 border border-primary-300 text-primary-700 rounded-md hover:bg-primary-400 hover:text-primary-50 transition-colors text-sm disabled:opacity-50"
+            :disabled="isSubmitting || isSent">
             {{ $t('contact.cancel') }}
           </button>
 
           <button type="submit" @mousedown="startHold" @mouseup="endHold" @mouseleave="endHold" @touchstart="startHold"
             @touchend="endHold" @touchcancel="endHold" @blur="endHold" @contextmenu.prevent
-            class="flex-1 py-2 px-4 rounded-md font-medium transition-all duration-150 relative overflow-hidden captcha-submit-button text-sm"
-            :class="submitButtonClass" :disabled="isSubmitting">
+            class="flex-1 py-2 px-4 rounded-md font-medium transition-all duration-150 relative overflow-hidden captcha-submit-button text-sm disabled:opacity-50"
+            :class="submitButtonClass" :disabled="isSubmitting || isSent">
             <div class="absolute left-0 top-0 h-full transition-all duration-75 ease-linear"
               :class="!isCaptchaValid ? 'bg-primary-700' : 'bg-transparent'" :style="{ width: `${holdProgress}%` }">
             </div>
@@ -109,6 +109,7 @@ const form = ref<ContactForm>({
 // Captcha state
 const holdProgress = ref(0)
 const isCaptchaValid = ref(false)
+const isSent = ref(false)
 const isHolding = ref(false)
 const holdTimer = ref<NodeJS.Timeout | null>(null)
 const HOLD_DURATION = 2_000 // 2 seconds
@@ -120,7 +121,7 @@ const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
 // Computed properties
 const submitButtonClass = computed(() => {
   if (!isFormValid.value) {
-    return 'bg-gray-300 text-white cursor-not-allowed'
+    return 'bg-gray text-white cursor-not-allowed'
   }
   if (isSubmitting.value) {
     return 'bg-primary-600 text-white cursor-not-allowed'
@@ -235,6 +236,7 @@ const resetForm = () => {
   isCaptchaValid.value = false
   holdProgress.value = 0
   submitStatus.value = 'idle'
+  isSent.value = false;
 }
 
 const closeForm = () => {
@@ -271,6 +273,7 @@ const handleSubmit = async () => {
 
     if (status.value === "success") {
       submitStatus.value = 'success'
+      isSent.value = true
 
       // Auto-close after success
       setTimeout(() => {

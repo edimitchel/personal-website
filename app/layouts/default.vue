@@ -1,6 +1,8 @@
 <template>
-  <Silk client-only class="fixed top-0 left-0 w-full h-full -z-1 opacity-5" :scale="1.5" :rotation="1" color="#eeeeee"
-    :speed="5" :parallaxStrength="0.10" />
+  <ClientOnly>
+    <Silk class="fixed top-0 left-0 w-full h-full -z-1 opacity-5" :scale="1.5" :rotation="1" color="#dddddd"
+      :speed="5" :parallaxStrength="0.10" />
+  </ClientOnly>
   <LayoutHeader :links :name="title ?? info.title" :with-emoji="info.withEmoji" :description="info.description"
     :messages :header-color="headerColor" :emojis="info.emojis" :options="info.options"
     :dark-mode="colorMode.value === 'dark'"
@@ -52,7 +54,7 @@ export type LayoutHeaderProps = typeof info.value
 
 </script>
 
-<style>
+<style scoped>
 .container {
   --uno: px-4 mx-auto border-0 font-serif max-w-[600px] box-border;
   flex: 1;

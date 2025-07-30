@@ -318,18 +318,18 @@ ul a.router-link-active::before {
 .mode-switcher,
 .contact-button,
 :deep(a.lang-switcher) {
-  --uno: absolute text-sm flex w-6 h-6 items-center justify-center rounded-full rounded-tr-full bg-primary-400/20 hover:bg-primary/40 cursor-pointer;
-  bottom: 45px;
-  right: 90%;
+  --uno: absolute flex w-7 h-7 items-center justify-center rounded-full rounded-tr-full hover:backdrop-blur-none hover:ring-2 hover:ring-primary-600 cursor-pointer backdrop-blur-sm;
+  bottom: 46px;
+  right: 93%;
   rotate: 21.5deg;
   transition: all 400ms ease;
 }
 
 @screen md {
   .mode-switcher {
-    --uno: text-lg w-8 h-8;
-    bottom: 55px;
-    right: 100%;
+    --uno: text-lg w-7 h-7;
+    bottom: 48px;
+    right: 94%;
     rotate: 21.5deg;
   }
 }
@@ -352,15 +352,15 @@ ul a.router-link-active::before {
 @screen md {
   .contact-button {
     --uno: text-2xl w-8 h-8;
-    bottom: 52px;
-    left: 100%;
+    bottom: 44px;
+    left: 94%;
     rotate: -23.5deg;
   }
 }
 
 :deep(a.lang-switcher) {
   bottom: 58px;
-  right: 103%;
+  right: 105%;
   rotate: 30deg;
 }
 
@@ -370,9 +370,9 @@ ul a.router-link-active::before {
 
 @screen md {
   :deep(a.lang-switcher) {
-    --uno: text-xl w-8 h-8;
-    bottom: 70px;
-    right: 113%;
+    --uno: text-xl w-7 h-7;
+    bottom: 62px;
+    right: 107%;
     rotate: 34deg;
   }
 }

@@ -17,6 +17,7 @@ html.dark-mode {
   flex-direction: column;
   position: relative;
 }
+
 #app::after {
   content: '';
   position: fixed;
@@ -24,14 +25,16 @@ html.dark-mode {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to right, transparent -10%, var(--colors-foreground), transparent 110%);
+  mask: linear-gradient(to right, transparent -10%, white, transparent 110%);
+  backdrop-filter: blur(10px);
+  background-color: var(--colors-foreground);
   transition: background-color 300ms ease;
   z-index: -1;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (prefers-reduced-motion: reduce) {
   #app::after {
-    background: linear-gradient(to right, transparent 10%, var(--colors-foreground), transparent 90%);
+    display: none;
   }
 }
 </style>

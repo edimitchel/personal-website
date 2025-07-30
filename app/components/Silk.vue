@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!prefersReducedMotion" ref="containerRef" :class="[className, 'silk-container', { 'silk-visible': mounted }]" :style="style"></div>
+  <div v-if="!prefersReducedMotion" ref="containerRef" :class="[className, 'silk-container', { 'silk-visible': mounted, 'safari': isSafari }]" :style="style"></div>
 </template>
 
 <script setup lang="ts">
@@ -118,7 +118,7 @@ void main() {
 
   // Apply color with noise
   vec4 col = vec4(uColor, 1.0) * vec4(pattern) - rnd / 150.0 * uNoiseIntensity;
-  col.a = 0.10;
+  col.a = .5;
   gl_FragColor = col;
 }
 `;
@@ -138,12 +138,23 @@ let isScrollTransitioning = false;
 
 const mounted = ref(false);
 
+// Safari detection
+const isSafari = ref(false);
+
 // For reduced motion preference
 const prefersReducedMotion = ref(false);
 
 // Define the event handler type
 type MotionPreferenceChangeHandler = (event: MediaQueryListEvent) => void;
 let handleMotionPreferenceChange: MotionPreferenceChangeHandler;
+
+// Check for Safari browser
+const checkSafari = () => {
+  if (import.meta.client) {
+    const userAgent = navigator.userAgent;
+    isSafari.value = /^((?!chrome|android).)*safari/i.test(userAgent);
+  }
+};
 
 // Check for reduced motion preference
 const checkReducedMotion = () => {
@@ -152,8 +163,9 @@ const checkReducedMotion = () => {
   }
 };
 
-// Initialize reduced motion preference check
+// Initialize browser checks
 if (import.meta.client) {
+  checkSafari();
   checkReducedMotion();
 }
 
@@ -398,6 +410,11 @@ onUnmounted(() => {
   min-height: 100%;
   display: block;
   object-fit: cover;
+}
+
+/* Safari-specific opacity */
+.safari :deep(canvas) {
+  opacity: 0.2;
 }
 
 @media (prefers-reduced-motion: reduce) {
