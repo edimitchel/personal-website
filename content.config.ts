@@ -42,7 +42,7 @@ const projectSchema = baseContentSchema.extend({
     type: z.string(),
     children: z.any(),
   }),
-  icons: z.string().array(),
+  startedAt: z.date().optional(),
   completedAt: z.date().optional(),
   organization: z.string().optional(),
   duration: z.number().optional(),

@@ -22,7 +22,6 @@ technologies:
   - Smarty
   - Propel
 authors: []
-icons: []
 ---
 
 # RCA Store

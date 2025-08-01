@@ -29,6 +29,8 @@ function getTechIcon(tech: string): string | null {
     'Vue': 'i-logos-vue',
     'Angular': 'i-logos-angular-icon',
     'Redux': 'i-logos-redux',
+    'Vite': 'i-logos-vitejs',
+    'PWA': 'i-logos-pwa',
     'JavaScript': 'i-logos-javascript',
     'TypeScript': 'i-logos-typescript-icon',
     'PHP': 'i-logos-php',

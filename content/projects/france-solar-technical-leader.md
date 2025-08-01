@@ -1,6 +1,7 @@
 ---
 title: Technical Fullstack Leader
 description: Leading the development team for internal tools, a solar energy company
+startedAt: 2023-10-02
 completedAt: 2025-07-02
 status: completed
 organization: France Solar

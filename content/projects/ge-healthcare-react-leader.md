@@ -2,6 +2,7 @@
 title: Frontend Technical Leader - React
 description: Leading frontend development for radioactive dose tracking system
   using React and FHIR
+startedAt: 2019-08-01
 completedAt: 2021-09-01
 status: completed
 organization: GE Healthcare

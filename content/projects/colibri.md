@@ -1,6 +1,7 @@
 ---
 title: Colibri
 organization: IUT de Haguenau
+startedAt: 2016-09-01
 completedAt: 2017-07-01
 description: Learning to share knowledge — the ultimate goal of Colibri, the new
   innovative learning platform

@@ -2,6 +2,7 @@
 title: Chef de Projet Technique Fullstack (Spécialiste Frontend)
 description: Rôle de consultant senior axé sur la modernisation des projets de
   fabrication avec une architecture hexagonale
+startedAt: 2022-10-01
 completedAt: 2023-09-01
 status: completed
 organization: Eli Lilly and Company

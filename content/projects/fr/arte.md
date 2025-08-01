@@ -1,7 +1,8 @@
 ---
 title: Styleguide du site Arte TV
 organization: Arte GEIE
-completedAt: 2019-08-30T00:00:00.000Z
+startedAt: 2018-08-01
+completedAt: 2019-08-30
 description: Maintenance et développement de la bibliothèque de composants Arte TV
 image: 'https://photos-corporate.arte.tv/documents/ftp/ressources/180/images/logo.png'
 url: 'https://arte.tv'
@@ -16,9 +17,6 @@ technologies:
   - HTML
   - CSS
   - Styled Components
-icons:
-  - i-logos-react
-  - i-logos-javascript
 authors: []
 translation_state: draft
 original_slug: arte

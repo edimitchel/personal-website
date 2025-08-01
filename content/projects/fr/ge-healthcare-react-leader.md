@@ -2,6 +2,7 @@
 title: Chef de projet Frontend - React
 description: Diriger le développement frontend pour un système de suivi des
   doses radioactives en utilisant React et FHIR
+startedAt: 2019-08-01
 completedAt: 2021-09-01
 status: completed
 organization: GE Healthcare

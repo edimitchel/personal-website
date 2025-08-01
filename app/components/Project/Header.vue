@@ -52,7 +52,7 @@
           <div v-if="project.completedAt" class="flex items-center gap-2">
             <i class="i-mdi-calendar text-primary-400 w-4 h-4" />
             <span class="text-primary-600 dark:text-primary-300 text-sm">
-              {{ formatDate(project.completedAt) }}
+              <template v-if="project.startedAt">{{ formatDate(project.startedAt) }} – </template> {{ formatDate(project.completedAt) }}
             </span>
           </div>
         </div>
@@ -68,7 +68,6 @@ type ExtendedProject = ProjectsCollectionItem & {
   organization?: string
   categories?: string[]
   technologies?: string[]
-  completedAt?: string
 }
 
 interface Props {

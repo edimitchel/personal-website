@@ -8,6 +8,7 @@ last_updated: 2025-07-25T23:05:18.122Z
 title: Scrum Master & Frontend Technical Leader
 description: Diriger une équipe de 5 personnes pour le système de conception
   Edison - une bibliothèque de composants globale
+startedAt: 2021-09-01
 completedAt: 2022-11-01
 status: completed
 organization: GE Healthcare
@@ -22,7 +23,6 @@ image: https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg
 url: https://ethosdesignsystem.com/
 authors: []
 categories: []
-icons: []
 ---
 
 # Scrum Master & Frontend Technical Leader

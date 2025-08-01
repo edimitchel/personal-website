@@ -1,6 +1,7 @@
 ---
 title: Scrum Master & Frontend Technical Leader
 description: Leading a 5-person team for Edison Design System - a global component library
+startedAt: 2021-09-01
 completedAt: 2022-11-01
 status: completed
 organization: GE Healthcare

@@ -2,6 +2,7 @@
 title: Fullstack Technical Leader (Frontend Specialist)
 description: Senior consultant role focusing on manufacturing projects with
   hexagonal architecture
+startedAt: 2022-10-01
 completedAt: 2023-09-01
 status: completed
 organization: Eli Lilly and Company
