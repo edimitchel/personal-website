@@ -51,6 +51,7 @@ const projectSchema = baseContentSchema.extend({
   status: z.enum(['published', 'draft', 'stand by']),
   categories: z.enum(['web', 'application', 'other']).array(),
   technologies: z.string().array(),
+  relatedArticleSlug: z.string().optional(),
   image: z.string().editor({ input: 'media' }),
   date: z.string(),
   authors: z.string().array(),

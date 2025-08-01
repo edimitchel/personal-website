@@ -2,7 +2,7 @@
   <NuxtLinkLocale :to="'/projects/' + project.slug"
     class="block p-3 py-4 bg-foreground text-foreground rounded-lg shadow-sm shadow-primary/40 hover:shadow-md transition-shadow duration-200 group">
     <div class="flex items-start gap-3">
-      <div class="flex flex-col items-center gap-1 text-background">
+      <div class="w-18 flex flex-col items-center gap-1 text-background">
         <NuxtImg v-if="project.image" :src="project.image" :alt="project.title"
           class="w-16 h-16 object-contain rounded-lg flex-shrink-0" />
         <div v-if="project.completedAt" class="text-sm">{{ new Date(project.completedAt).getFullYear() }}</div>

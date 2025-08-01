@@ -26,7 +26,8 @@
       "typeAndCategories": "Type & Categories",
       "technologies": "Technologies",
       "details": "Project Details",
-      "visitProject": "Visit Project"
+      "visitProject": "Visit Project",
+      "readArticle": "Read Article"
     },
     "types": {
       "consulting": "Consulting",

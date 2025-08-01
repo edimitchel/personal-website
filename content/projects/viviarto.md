@@ -17,6 +17,7 @@ technologies:
   - TypeScript
   - Performance Analysis
 authors: []
+image: https://info.viviarto.com/wp-content/uploads/2022/08/LOGO_VIVIARTO_RVB-2.png
 ---
 
 # Association Management Platform

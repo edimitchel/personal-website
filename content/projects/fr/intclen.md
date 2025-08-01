@@ -17,6 +17,8 @@ technologies:
   - JavaScript
   - HTML
   - CSS
+relatedArticleSlug: interface-client-entreprise
+
 ---
 
 # Interface Client-Entreprise

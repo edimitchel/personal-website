@@ -15,6 +15,7 @@ technologies:
   - Vue.js
   - TypeScript
   - REST API
+image: https://beta.gouv.fr/img/logo-generique-startup-carre-2019.jpg
 authors: []
 ---
 

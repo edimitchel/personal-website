@@ -17,6 +17,7 @@ technologies:
   - TypeScript
   - Vite
 authors: []
+image: https://upload.wikimedia.org/wikipedia/commons/c/ce/Cora_logo.svg
 ---
 
 # Cora Marketplace

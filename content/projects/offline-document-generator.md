@@ -17,6 +17,7 @@ technologies:
   - Service Worker
   - IndexedDB
 authors: []
+image: https://www.tbm-solution.com/Images/205_60_TBM_Logo_V2.png
 ---
 
 # Offline Document Generation Application

@@ -55,6 +55,15 @@
               <template v-if="project.startedAt">{{ formatDate(project.startedAt) }} – </template> {{ formatDate(project.completedAt) }}
             </span>
           </div>
+          <div v-if="project.relatedArticleSlug" class="flex items-center gap-2">
+            <i class="i-mdi-book-open-page-variant text-primary-400 w-4 h-4" />
+            <NuxtLinkLocale
+              :to="`/articles/${project.relatedArticleSlug}`" 
+              class="text-primary-600 hover:underline text-sm"
+            >
+              {{ $t('project.info.readArticle') }}
+            </NuxtLinkLocale>
+          </div>
         </div>
       </ProjectInfo>
   </header>

@@ -26,7 +26,8 @@
       "typeAndCategories": "Type & Catégories",
       "technologies": "Technologies",
       "details": "Détails du Projet",
-      "visitProject": "Visiter le Projet"
+      "visitProject": "Visiter le Projet",
+      "readArticle": "Lire l'article"
     },
     "types": {
       "consulting": "Conseil",
