@@ -15,10 +15,10 @@
 
     <ContactForm />
 
-    <section class="skills-section mb-12">
-      <h3 class="text-3xl font-bold my-8 text-center text-background">
+    <section class="skills-section my-15">
+      <h2 class="text-2xl font-bold my-8 text-center text-background">
         {{ $t('skills_n_expertise') }}
-      </h3>
+      </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
           class="skill-category bg-foreground rounded-lg p-6 shadow-sm shadow-primary/40 transition-shadow"
@@ -30,7 +30,7 @@
           </h4>
           <div class="flex flex-wrap gap-2">
             <span v-for="skill in skillCategory.items" :key="skill"
-              class="px-3 py-1 bg-background text-foreground rounded-full text-sm font-medium">
+              class="px-3 py-1 bg-primary-200 text-primary-800 rounded-full text-sm font-medium">
               {{ skill }}
             </span>
           </div>
@@ -39,21 +39,21 @@
     </section>
 
     <section class="tech-stack-section mb-12">
-      <h3 class="text-3xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-background">
         {{ $t('tech_stack') }}
-      </h3>
+      </h2>
       <div class="grid grid-cols-1 gap-8">
         <div v-for="stackCategory in techStack" :key="stackCategory.category" class="stack-category">
-          <h4 class="text-xl font-semibold mb-4 text-background">
+          <h3 class="text-xl font-semibold m-0 mb-4 text-background">
             {{ stackCategory.category }}
-          </h4>
+          </h3>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
               class="tech-item bg-foreground rounded-lg p-4 text-center shadow-sm shadow-primary/40 transition-shadow">
 
               <div class="text-3xl mb-2"><i class="inline-block" :class="tech.iconName" /></div>
               <div class="text-sm font-medium text-background">{{ tech.name }}</div>
-              <div class="text-xs text-primary-500">{{ tech.level }}</div>
+              <div class="text-xs text-primary-600">{{ tech.level }}</div>
             </div>
           </div>
         </div>
@@ -61,9 +61,9 @@
     </section>
 
     <section class="passions-section mb-12">
-      <h3 class="text-3xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-background">
         {{ $t('passions') }}
-      </h3>
+      </h2>
       <div class="grid grid-cols-1 lg:grid-cols-2">
         <div v-for="(passion, index) in passions" :key="passion.title"
           class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
@@ -83,9 +83,9 @@
     <section client-only v-if="experiences" class="py-4">
       <!-- Experiences -->
 
-      <h3 class="text-3xl font-bold m-0 text-center text-background">
+      <h2 class="text-2xl font-bold m-0 text-center text-background">
         {{ $t('experiences') }}
-      </h3>
+      </h2>
 
       <!-- Carousel with experiences -->
       <Carousel :items="experiences">
@@ -104,9 +104,9 @@
 
     <section
       class="enterprise-section border-y-(5 primary) py-4 rounded-[5px] bg-linear-to-tb from-foreground to-primary-400 p-2">
-      <h3 class="text-3xl font-bold my-2 text-center text-background">
+      <h2 class="text-2xl font-bold my-2 text-center text-background">
         {{ $t('enterprise_purposes') }}
-      </h3>
+      </h2>
       <div class="flex flex-col p-2 gap-6 text-balance">
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Mission</h4>

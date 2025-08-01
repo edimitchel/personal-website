@@ -6,7 +6,8 @@
     }">
     <slot :isVisible="isVisible" @toggle="isVisible = !isVisible">
       <button @click="isVisible = !isVisible"
-        class="block p-4 w-full uppercase font-extrabold tracking-widest cursor-pointer">
+        class="p-4 w-full uppercase font-extrabold tracking-widest cursor-pointer flex justify-center gap-2">
+        <UnoIcon class="i-line-md-chat-round-dots text-2xl" />
         {{ $t('about.contact-me') }}
       </button>
     </slot>
@@ -38,7 +39,7 @@
 
         <!-- Submit Button with Integrated Captcha -->
         <div class="flex gap-2 flex-col md:flex-row">
-          <button v-if="!isSent" type="button" @click="closeForm"
+          <button v-if="!isSubmitting && !isSent" type="button" @click="closeForm"
             class="px-4 py-2 border border-primary-300 text-primary-700 rounded-md hover:bg-primary-400 hover:text-primary-50 transition-colors text-sm disabled:opacity-50"
             :disabled="isSubmitting">
             {{ $t('contact.cancel') }}
@@ -121,7 +122,7 @@ const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
 // Computed properties
 const submitButtonClass = computed(() => {
   if (!isFormValid.value) {
-    return 'bg-gray text-white cursor-not-allowed'
+    return 'bg-primary-400 text-white cursor-not-allowed'
   }
   if (isSubmitting.value) {
     return 'bg-primary-600 text-white cursor-not-allowed'

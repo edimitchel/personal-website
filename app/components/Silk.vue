@@ -401,7 +401,7 @@ onUnmounted(() => {
 }
 
 .silk-visible {
-  opacity: 1;
+  opacity: .4;
 }
 
 :deep(canvas) {

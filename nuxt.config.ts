@@ -89,9 +89,6 @@ export default defineNuxtConfig({
       useCookie: true,
       cookieKey: 'i18n_redirected',
     },
-    bundle: {
-      optimizeTranslationDirective: false,
-    }
   },
 
   hub: {
