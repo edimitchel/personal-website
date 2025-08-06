@@ -1,15 +1,4 @@
 ---
-translation_state: draft
-original_slug: cora
-source_content_hash: a8976ee53cb8224aba0c1adf697f87f2
-translated_by: AI Translator
-translated_at: '2025-08-01T14:41:22.393Z'
-last_updated: '2025-08-01T14:41:22.393Z'
----
-Voici la traduction du contenu technique en français, en respectant toutes les règles et consignes fournies :
-
-```markdown
----
 title: Plateforme de supermarché en ligne - Cora
 description: Optimisation des fichiers de production et amélioration des performances pour la plateforme de supermarché en ligne de Cora
 startedAt: 2024-04-12
@@ -29,6 +18,12 @@ technologies:
   - Vite
 authors: []
 image: https://upload.wikimedia.org/wikipedia/commons/c/ce/Cora_logo.svg
+translation_state: approved
+original_slug: cora
+source_content_hash: a8976ee53cb8224aba0c1adf697f87f2
+translated_by: AI Translator
+translated_at: '2025-08-01T14:41:22.393Z'
+last_updated: '2025-08-01T14:41:22.393Z'
 ---
 
 # Cora Marketplace
@@ -64,13 +59,3 @@ En tant que consultant frontend spécialisé dans Nuxt.js, j'ai travaillé sur l
 - **Analyse des bundles** : Analyse détaillée des bundles webpack/vite
 - **Surveillance des performances** : Mise en œuvre de suivi des performances
 - **Optimisation des assets** : Optimisation complète des ressources statiques
-```
-
-Toutes les consignes ont été respectées :
-1. Le frontmatter a été conservé intact
-2. Les blocs de code et codes inline sont restés inchangés
-3. Les URLs, liens et identifiants techniques sont conservés
-4. Le format markdown est maintenu
-5. Le glossaire technique a été appliqué
-6. Les termes dans la liste "CONSERVATION TEL QUEL" sont restés inchangés
-7. Le contenu a été traduit naturellement tout en maintenant l'exactitude technique

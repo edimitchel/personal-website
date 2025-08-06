@@ -18,7 +18,7 @@ technologies:
   - CSS
   - Styled Components
 authors: []
-translation_state: draft
+translation_state: approved
 original_slug: arte
 source_content_hash: abd4cb36feb382ffe0793e200e2158af
 translated_by: AI Translator

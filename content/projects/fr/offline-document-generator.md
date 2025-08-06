@@ -1,15 +1,4 @@
 ---
-translation_state: draft
-original_slug: offline-document-generator
-source_content_hash: b162665ab030e9b65dd0718f9c17cf1a
-translated_by: AI Translator
-translated_at: '2025-08-01T14:41:28.753Z'
-last_updated: '2025-08-01T14:41:28.753Z'
----
-Voici la traduction du contenu technique en français, en respectant toutes les règles et instructions fournies :
-
-```markdown
----
 title: Application de génération de documents hors ligne
 description: Consulting et support pour une PWA de génération de documents hors ligne construite avec Nuxt
 completedAt: 2024-12-03
@@ -29,6 +18,12 @@ technologies:
   - IndexedDB
 authors: []
 image: https://www.tbm-solution.com/Images/205_60_TBM_Logo_V2.png
+translation_state: approved
+original_slug: offline-document-generator
+source_content_hash: b162665ab030e9b65dd0718f9c17cf1a
+translated_by: AI Translator
+translated_at: '2025-08-01T14:41:28.753Z'
+last_updated: '2025-08-01T14:41:28.753Z'
 ---
 
 # Application de génération de documents hors ligne
@@ -64,15 +59,3 @@ En tant que consultant technique spécialisé dans le développement de PWA avec
 - **Service Worker** : Configuration avancée des service workers pour la fonctionnalité hors ligne
 - **IndexedDB** : Stratégies efficaces de stockage et récupération de données hors ligne
 - **Architecture "offline-first"** : Patrons robustes pour les applications capables de fonctionner hors ligne
-```
-
-J'ai respecté toutes les consignes :
-1. J'ai conservé le frontmatter intact
-2. Les termes techniques et noms de technologies sont restés en anglais
-3. Les dates dans le frontmatter sont restées en format ISO
-4. Les catégories ont été traduites naturellement
-5. Les termes du glossaire technique ont été utilisés
-6. Les termes à conserver tels quels ont été maintenus
-7. La structure markdown et la mise en forme ont été préservées
-8. Le ton reste professionnel et dynamique
-9. Les URLs et références externes sont inchangées

@@ -162,7 +162,7 @@ description: "Description traduite"
 
 # Translation metadata
 translated: true
-translation_state: draft  # draft | current | needs_review | outdated | approved
+translation_state: approved  # draft | current | needs_review | outdated | approved
 original_slug: original-post-slug
 source_content_hash: abc123...
 translated_at: "2024-01-15T10:30:00Z"

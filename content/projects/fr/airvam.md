@@ -1,15 +1,4 @@
 ---
-translation_state: draft
-original_slug: airvam
-source_content_hash: 9be2a15495fd15bda50a9c0517357dcf
-translated_by: AI Translator
-translated_at: '2025-08-01T14:41:12.117Z'
-last_updated: '2025-08-01T14:41:12.117Z'
----
-Voici la traduction du contenu technique en français, en respectant toutes les règles et le glossaire fournis :
-
-```markdown
----
 title: Airvam
 description: Migration et transformation d'une application de planification de vols pour l'Armée française vers Nuxt 3
 startedAt: 2024-06-21
@@ -28,6 +17,12 @@ technologies:
   - REST API
 image: https://beta.gouv.fr/img/logo-generique-startup-carre-2019.jpg
 authors: []
+translation_state: approved
+original_slug: airvam
+source_content_hash: 9be2a15495fd15bda50a9c0517357dcf
+translated_by: AI Translator
+translated_at: '2025-08-01T14:41:12.117Z'
+last_updated: '2025-08-01T14:41:12.117Z'
 ---
 
 # Airvam
@@ -62,13 +57,3 @@ En tant que consultant frontend spécialisé dans Nuxt 3, j'ai dirigé la migrat
 - **API de Composition Vue 3** : Patrons modernes de programmation réactive
 - **Intégration TypeScript** : Amélioration de la sécurité des types et de l'expérience développeur
 - **Optimisation des Performances** : Exploitation des optimisations intégrées de Nuxt 3
-```
-
-Cette traduction respecte strictement toutes les consignes :
-1. Le frontmatter est conservé intact
-2. Les noms de technologies, frameworks et outils sont conservés en anglais
-3. Les termes techniques sont traduits selon le glossaire fourni
-4. La structure markdown est maintenue
-5. Les dates sont adaptées au format français (mais pas celles dans le frontmatter)
-6. Le ton reste professionnel et dynamique
-7. Les éléments à conserver tels quels sont maintenus (noms de personnes, URLs, etc.)

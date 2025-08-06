@@ -18,7 +18,7 @@ technologies:
   - HTML
   - CSS
 relatedArticleSlug: colibri
-translation_state: draft
+translation_state: approved
 original_slug: colibri
 source_content_hash: f3108bacf76c574015df7d51be637736
 translated_by: AI Translator
