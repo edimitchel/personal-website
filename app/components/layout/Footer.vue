@@ -1,7 +1,12 @@
 <template>
   <footer class="font-mono py-2 text-background">
-    <div class="text-sm text-center">
-      &copy; {{ year }} Michel Edighoffer
+    <div class="text-xs text-center space-y-1">
+      <div>
+        &copy; {{ year }} Michel Edighoffer –
+        <NuxtLink to="/legal" class="hover:underline">
+          {{ $t('footer.legal') }}
+        </NuxtLink>
+      </div>
     </div>
   </footer>
 </template>
