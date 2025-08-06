@@ -197,8 +197,9 @@ jobs:
           echo "Switched to branch: $(git branch --show-current)"
           echo "Latest commit on main: $(git log -1 --oneline)"
 
-      # Build & Deploy Step - ONLY on main branch pushes (not PRs)
+      # Build & Deploy Step
       - name: Deploy with nuxt-hub cli
+        if: github.ref == 'refs/heads/main'
         run: npx nuxthub deploy
         env:
           NUXT_HUB_PROJECT_KEY: ${{ secrets.NUXT_HUB_PROJECT_KEY}}
