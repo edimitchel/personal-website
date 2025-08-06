@@ -8,7 +8,7 @@
   background-image: radial-gradient(circle, var(--colors-background) 1.5px, transparent 1.5px);
   background-size: 30px 30px;
   background-position: center top;
-  animation: fadeIn 0.6s ease-in;
+  animation: fadeIn 1s ease;
 }
 
 @keyframes fadeIn {

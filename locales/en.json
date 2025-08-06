@@ -76,5 +76,11 @@
       "message": "Message is required"
     },
     "fill_form": "Fill fields form"
+  },
+  "footer": {
+    "legal": "Legal"
+  },
+  "carousel": {
+    "loading": "Loading experiences"
   }
 }

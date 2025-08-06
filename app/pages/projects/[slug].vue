@@ -37,7 +37,7 @@ const { data: siblings } = content ? (await useAsyncData(`project-siblings-${rou
   fields: ['slug', 'title', 'stem']
 })
   .where('lang', '=', locale.value)
-  .order('completedAt', 'DESC'),
+  .order('startedAt', 'DESC'),
   {
     transform: siblings => siblings.map(sibling => sibling ? transformProject(sibling) : null)
   })

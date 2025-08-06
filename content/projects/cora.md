@@ -12,8 +12,8 @@ categories:
   - E-commerce
   - Performance Optimization
 technologies:
-  - Nuxt.js
-  - Vue.js
+  - Nuxt
+  - Vue
   - TypeScript
   - Vite
 authors: []

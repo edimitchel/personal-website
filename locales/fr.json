@@ -76,5 +76,11 @@
       "message": "Le message est requis"
     },
     "fill_form": "Complétez le formulaire"
+  },
+  "footer": {
+    "legal": "Mentions légales"
+  },
+  "carousel": {
+    "loading": "Chargement des expériences"
   }
 }

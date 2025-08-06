@@ -1,46 +1,50 @@
 <template>
-  <div ref="containerRef" class="relative overflow-hidden py-4 mb-4 w-full" :style="{
-    maxWidth: maxWidth ? `${maxWidth}px` : '100%'
-  }">
-    <Motion tag="div" class="flex" drag="x" :dragConstraints="dragConstraints" :style="{
-      width: itemWidth + 'px',
-      gap: `${GAP}px`,
-      perspective: 1000,
-      perspectiveOrigin: `${currentIndex * trackItemOffset + itemWidth / 2}px 50%`,
-      x: motionX
-    }" @dragEnd="handleDragEnd" :animate="{ x: -(currentIndex * trackItemOffset) }" :transition="effectiveTransition"
-      @animationComplete="handleAnimationComplete">
-      <Motion v-for="(item, index) in carouselItems" :key="index" tag="div" :class="[
-        'relative shrink-0 flex flex-col overflow-hidden cursor-grab active:cursor-grabbing min-h-[150px]',
-        'items-start justify-between bg-foreground shadow-sm shadow-primary/40 rounded-lg p-2'
-      ]" :style="{
-        width: itemWidth + 'px',
-        height: '100%',
-        rotateY: getRotateY(index),
-      }" :transition="effectiveTransition">
-        <div v-if="!$slots.default" class="p-1 text-primary-900">
-          <div class="mb-1 font-black text-lg">{{ item.title }}</div>
-          <p class="text-sm">{{ item.description }}</p>
-          <div class="my-4" v-if="item.icons">
-            <span class="flex gap-2 items-center">
-              <i v-for="icon in Array.isArray(item.icons) ? item.icons : [item.icons]" :key="icon" :class="icon"
-                class="text-foreground text-xl"></i>
-            </span>
-          </div>
-        </div>
-        <slot v-else :item="item" />
-      </Motion>
-    </Motion>
 
-    <div class="flex w-full justify-center pt-4 gap-2">
+  <div ref="containerRef" class="h-[230px]">
+    <div class="absolute overflow-hidden inset-x-0 py-4 mb-4 w-full" :style="{
+      maxWidth: maxWidth ? `${maxWidth}px` : '100%'
+    }">
+      <div class="relative w-full min-h-[170px]">
+        <div v-if="!isInitialized" class="absolute inset-0 flex items-center justify-center text-center">
+          <div class="text-primary-600 animate-pulse">{{ $t('carousel.loading') }}...</div>
+        </div>
+        <Motion v-if="isInitialized" tag="div" class="flex" drag="x" :dragConstraints="dragConstraints" :style="{
+          gap: `${GAP}px`,
+          x: motionX,
+        }" @dragEnd="handleDragEnd" :animate="{ x: -(currentIndex * trackItemOffset) }"
+          :transition="effectiveTransition" @animationComplete="handleAnimationComplete">
+          <Motion v-for="(item, index) in carouselItems" :key="index" tag="div" :class="[
+            'relative shrink-0 flex flex-col cursor-grab active:cursor-grabbing min-h-[150px]',
+            'items-start justify-between bg-foreground shadow-sm shadow-primary/40 rounded-lg p-2',
+            'transition-opacity duration-500'
+          ]" :style="{
+            width: itemWidth > 0 ? `${itemWidth}px` : '100%',
+            height: '100%',
+            opacity: getItemOpacity(index),
+          }" :transition="effectiveTransition">
+            <div v-if="!$slots.default" class="p-1 text-primary-900">
+              <div class="mb-1 font-black text-lg">{{ item.title }}</div>
+              <p class="text-sm">{{ item.description }}</p>
+              <div class="my-4" v-if="item.icons">
+                <span class="flex gap-2 items-center">
+                  <i v-for="icon in Array.isArray(item.icons) ? item.icons : [item.icons]" :key="icon" :class="icon"
+                    class="text-foreground text-xl"></i>
+                </span>
+              </div>
+            </div>
+            <slot v-else :item="item" />
+          </Motion>
+        </Motion>
+      </div>
+
+      <div v-if="isInitialized" class="flex w-full justify-center pt-4 gap-2">
         <Motion v-for="(_, index) in items" :key="index" tag="div" :class="[
           'h-3 w-3 rounded-full transition-colors duration-150 border border-primary-600 cursor-pointer',
           currentIndex % items.length === index
             ? 'bg-primary-600'
             : 'bg-primary-100'
-        ]" :animate="{
-      scale: currentIndex % items.length === index ? 1.2 : 1
-    }" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />
+        ]" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />
+      </div>
     </div>
   </div>
 </template>
@@ -106,23 +110,22 @@ const dragConstraints = computed(() => {
 
 const effectiveTransition = computed(() => (isResetting.value ? { duration: 0 } : SPRING_OPTIONS));
 
-const maxItems = Math.max(props.items.length + 1, 10);
-const rotateYTransforms = Array.from({ length: maxItems }, (_, index) => {
-  const range = computed(() => [
-    -(index + 1) * trackItemOffset.value,
-    -index * trackItemOffset.value,
-    -(index - 1) * trackItemOffset.value
-  ]);
-  const outputRange = [90, 0, -90];
-  return useTransform(motionX, range, outputRange, { clamp: false });
-});
+const getItemOpacity = (index: number) => {
+  if (containerWidth.value === 0) return 0;
 
-const getRotateY = (index: number) => {
-  return rotateYTransforms[index] || rotateYTransforms[0];
+  // Calculate visual distance based on position in 3D space
+  const visualDistance = Math.abs(index - currentIndex.value);
+
+  // Make opacity more pronounced - current item fully visible, others fade
+  if (visualDistance === 0) return 1;
+  if (visualDistance === 1) return 0.7;
+  if (visualDistance === 2) return 0.4;
+  return 0.2;
 };
 
 const setCurrentIndex = (index: number) => {
   currentIndex.value = index;
+  stopAutoplay();
 };
 
 const handleAnimationComplete = () => {
@@ -158,7 +161,7 @@ const handleDragEnd = (event: Event, info: DragInfo) => {
       currentIndex.value = Math.max(currentIndex.value - 1, 0);
     }
   }
-  restartAutoplay();
+  stopAutoplay();
 };
 
 const startAutoplay = () => {
@@ -208,7 +211,6 @@ watch(
   [
     () => props.autoplay,
     () => props.autoplayDelay,
-    isHovered,
     () => props.loop,
     () => props.items.length,
     () => carouselItems.value.length,
@@ -224,6 +226,9 @@ const updateContainerWidth = () => {
     containerWidth.value = containerRef.value.clientWidth;
   }
 };
+
+// Hide items until container width is calculated
+const isInitialized = computed(() => containerWidth.value > 0);
 
 onMounted(() => {
   if (containerRef.value) {
@@ -246,3 +251,9 @@ onUnmounted(() => {
   stopAutoplay();
 });
 </script>
+
+<style scoped>
+.relative {
+  position: relative;
+}
+</style>

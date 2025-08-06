@@ -7,6 +7,7 @@
 html {
   --uno: transition-colors duration-300;
 }
+
 html.dark-mode {
   background-color: #000;
 }
@@ -23,8 +24,9 @@ html.dark-mode {
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
   width: 100vw;
-  height: 100lvh;
+  height: 100%;
   mask-image: linear-gradient(to right, transparent -10%, white 20%, white 80%, transparent 110%);
   transition: background-color 300ms ease;
   z-index: -1;
@@ -33,7 +35,7 @@ html.dark-mode {
 
 @screen md {
   #app::after {
-  mask-image: linear-gradient(to right, transparent 0%, white 30%, white 70%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, white 30%, white 70%, transparent 100%);
   }
 }
 

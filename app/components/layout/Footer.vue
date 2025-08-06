@@ -3,9 +3,9 @@
     <div class="text-xs text-center space-y-1">
       <div>
         &copy; {{ year }} Michel Edighoffer –
-        <NuxtLink to="/legal" class="hover:underline">
+        <NuxtLinkLocale to="/legal" class="hover:underline">
           {{ $t('footer.legal') }}
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
     </div>
   </footer>

@@ -33,7 +33,7 @@
     </div>
     <!-- Project Details -->
     <ProjectInfo 
-        v-if="project.url || project.completedAt"
+        v-if="project.url || project.completedAt || project.startedAt || project.relatedArticleSlug"
         :title="$t('project.info.details')"
         icon="i-heroicons-information-circle"
       >
@@ -49,10 +49,15 @@
               {{ $t('project.info.visitProject') }}
             </NuxtLink>
           </div>
-          <div v-if="project.completedAt" class="flex items-center gap-2">
+          <div v-if="project.completedAt || project.startedAt" class="flex items-center gap-2">
             <i class="i-mdi-calendar text-primary-400 w-4 h-4" />
             <span class="text-primary-600 dark:text-primary-300 text-sm">
-              <template v-if="project.startedAt">{{ formatDate(locale, project.startedAt) }} – </template> {{ formatDate(locale, project.completedAt) }}
+              <template v-if="project.completedAt">
+                <template v-if="project.startedAt">{{ formatDate(locale, project.startedAt) }} – </template> {{ formatDate(locale, project.completedAt) }}
+              </template>
+              <template v-else-if="project.startedAt">
+                {{ formatDate(locale, project.startedAt) }} - {{ $t('project.info.inProgress') }}
+              </template>
             </span>
           </div>
           <div v-if="project.relatedArticleSlug" class="flex items-center gap-2">

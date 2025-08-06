@@ -39,6 +39,8 @@ function getTechIcon(tech: string): string | null {
     'HTML': 'i-logos-html-5',
     'CSS': 'i-logos-css-3',
     'Nuxt': 'i-logos-nuxt-icon',
+    'Nitro': 'i-unjs-nitro',
+    'Nuxt 3': 'i-logos-nuxt-icon',
     'Next.js': 'i-logos-nextjs-icon',
     'Tailwind': 'i-logos-tailwindcss-icon',
     'Docker': 'i-logos-docker-icon',
