@@ -52,7 +52,7 @@
           <div v-if="project.completedAt" class="flex items-center gap-2">
             <i class="i-mdi-calendar text-primary-400 w-4 h-4" />
             <span class="text-primary-600 dark:text-primary-300 text-sm">
-              <template v-if="project.startedAt">{{ formatDate(project.startedAt) }} – </template> {{ formatDate(project.completedAt) }}
+              <template v-if="project.startedAt">{{ formatDate(locale, project.startedAt) }} – </template> {{ formatDate(locale, project.completedAt) }}
             </span>
           </div>
           <div v-if="project.relatedArticleSlug" class="flex items-center gap-2">
@@ -86,10 +86,12 @@ interface Props {
 defineProps<Props>()
 
 const { locale } = useI18n()
+</script>
 
-function formatDate(dateString: string) {
+<script lang="ts">
+export function formatDate(locale: string, dateString: string) {
   const date = new Date(dateString)
-  return new Intl.DateTimeFormat(locale.value, {
+  return new Intl.DateTimeFormat(locale, {
     year: 'numeric',
     month: 'long',
   }).format(date)

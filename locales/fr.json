@@ -27,14 +27,15 @@
       "technologies": "Technologies",
       "details": "Détails du Projet",
       "visitProject": "Visiter le Projet",
-      "readArticle": "Lire l'article"
+      "readArticle": "Lire l'article",
+      "inProgress": "en cours.."
     },
     "types": {
       "consulting": "Conseil",
       "experience": "Expérience Professionnelle",
       "application": "Application",
       "static": "Site Statique"
-    }
+    },
   },
   "projects": {
     "experienceConsulting": "Expériences & Conseil",

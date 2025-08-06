@@ -25,11 +25,16 @@ html.dark-mode {
   left: 0;
   width: 100vw;
   height: 100lvh;
-  mask: linear-gradient(to right, transparent -10%, white, transparent 110%);
-  backdrop-filter: blur(10px);
-  background-color: var(--colors-foreground);
+  mask-image: linear-gradient(to right, transparent -10%, white 20%, white 80%, transparent 110%);
   transition: background-color 300ms ease;
   z-index: -1;
+  --uno: bg-opacity-80 bg-foreground;
+}
+
+@screen md {
+  #app::after {
+  mask-image: linear-gradient(to right, transparent 0%, white 30%, white 70%, transparent 100%);
+  }
 }
 
 @media screen and (prefers-reduced-motion: reduce) {

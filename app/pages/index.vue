@@ -23,7 +23,7 @@ const { content: about, isTranslated } = await useTranslatedContent('about', que
 
 const experiences = await useTranslatedContent(
   'experiences',
-  queryCollection('projects').where('type', 'IN', ['consulting', 'experience']),
+  queryCollection('projects').where('type', 'IN', ['consulting', 'experience']).order('completedAt', 'DESC'),
   (projects): Experience[] => projects.content.map(transformProject) as Experience[]
 );
 

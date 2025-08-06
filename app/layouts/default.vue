@@ -1,7 +1,6 @@
 <template>
   <ClientOnly>
-    <Silk class="fixed top-0 left-0 w-full h-full -z-1 opacity-5" :scale="1.5" :rotation="1" color="#dddddd"
-      :speed="5" :parallaxStrength="0.10" />
+    <Background />
   </ClientOnly>
   <LayoutHeader :links :name="title ?? info.title" :with-emoji="info.withEmoji" :description="info.description"
     :messages :header-color="headerColor" :emojis="info.emojis" :options="info.options"

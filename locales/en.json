@@ -27,7 +27,8 @@
       "technologies": "Technologies",
       "details": "Project Details",
       "visitProject": "Visit Project",
-      "readArticle": "Read Article"
+      "readArticle": "Read Article",
+      "inProgress": "on going.."
     },
     "types": {
       "consulting": "Consulting",

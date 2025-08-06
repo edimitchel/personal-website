@@ -97,7 +97,17 @@
           <h2 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h2>
           <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3">{{ item.description
             }}</p>
-          <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="self-center" />
+            <section class="flex justify-between w-full flex-col items-center md:flex-row md:justify-between gap-2 py-2">
+              <div class="text-sm">
+                <template v-if="item.completedAt">
+                  <template v-if="item.startedAt">{{ formatDate(locale, item.startedAt) }} – </template> {{ formatDate(locale, item.completedAt) }}
+                </template>
+                <template v-else>
+                  {{ formatDate(locale, item.startedAt) }} - {{ $t('project.info.inProgress') }}
+                </template>
+              </div>
+              <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="justify-center" />
+            </section>
         </template>
       </Carousel>
     </section>
@@ -151,6 +161,8 @@
 const iconClasses = [
   'i-logos-vue', 'i-logos-nuxt-icon', 'i-logos-typescript-icon', 'i-logos-react', 'i-logos-unocss', 'i-logos-sass', 'i-logos-nodejs', 'i-logos-php', 'i-logos-mysql', 'i-logos-postgresql',
 ];
+
+import { formatDate } from '~/components/Project/Header.vue'
 
 interface SkillCategory {
   category: string
@@ -207,23 +219,13 @@ interface ProfileData {
   experiences?: Experience[]
 }
 
-const props = defineProps<ProfileData>()
+const { locale } = useI18n()
+
+defineProps<ProfileData>()
 </script>
 
 <style scoped>
 .about-container {
-  animation: fadeIn 0.6s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  animation: fadeInAndSlide 0.6s ease-in-out;
 }
 </style>
