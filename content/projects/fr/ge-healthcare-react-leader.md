@@ -14,7 +14,7 @@ technologies:
   - Redux
   - FHIR
 image: https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg
-translation_state: draft
+translation_state: approved
 original_slug: ge-healthcare-react-leader
 source_content_hash: ffc2d75bf931406d936d85c30967adc0
 translated_by: AI Translator

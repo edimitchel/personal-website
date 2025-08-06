@@ -20,7 +20,7 @@ skills:
   - Team Leadership
   - Full Stack Development
 image: /images/projects/francesolar/caption.svg
-translation_state: draft
+translation_state: approved
 original_slug: france-solar-technical-leader
 source_content_hash: 624177757208c8f59bf4332b02f8feef
 translated_by: AI Translator

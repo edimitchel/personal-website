@@ -1,5 +1,5 @@
 ---
-translation_state: draft
+translation_state: approved
 original_slug: ge-healthcare-scrum-master
 source_content_hash: 8434baa5e95347b92bfe4f8f2e28bc72
 translated_by: AI Translator
