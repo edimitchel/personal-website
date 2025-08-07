@@ -70,4 +70,13 @@ if (content) {
 }
 
 store.notTranslated = !isTranslated
+
+defineOgImageComponent('Page', {
+  headline: t('project.info.title'),
+  image: content.image ?? null
+});
+
+if (content?.ogImage) {
+  defineOgImage(content.ogImage)
+}
 </script>

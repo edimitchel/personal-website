@@ -44,6 +44,12 @@ if (content) {
   })
 }
 
+defineOgImageComponent('Page', {
+  headline: 'Article',
+  title: (content?.title ?? '').replace('Michel Edighoffer / ', ''),
+});
+
+
 store.notTranslated = !isTranslated
 
 const formatDate = (date: string) => {
@@ -52,5 +58,9 @@ const formatDate = (date: string) => {
     month: 'long',
     day: 'numeric',
   })
+}
+
+if (content?.ogImage) {
+  defineOgImage(content.ogImage)
 }
 </script>

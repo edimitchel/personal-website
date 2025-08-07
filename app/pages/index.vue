@@ -8,6 +8,8 @@
 import type { Experience } from '~/components/content/About.vue';
 import { transformProject } from './projects/index.vue';
 
+defineOgImageComponent('Page');
+
 const appConfig = useAppConfig();
 const { messages: storeMessages } = storeToRefs(layoutStore())
 
@@ -50,5 +52,9 @@ if (about) {
       }
     ]
   })
+}
+
+if (about?.ogImage) {
+  defineOgImage(about.ogImage)
 }
 </script>

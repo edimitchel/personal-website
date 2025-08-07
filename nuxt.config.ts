@@ -21,7 +21,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@nuxt/fonts',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    'nuxt-og-image'
   ],
 
   unocss: {
@@ -93,6 +94,19 @@ export default defineNuxtConfig({
 
   hub: {
     database: true,
+    cache: true,
+  },
+  ogImage: {
+    runtimeCacheStorage: process.env.NODE_ENV === 'production'
+      ? {
+        driver: 'cloudflare-kv-binding',
+        binding: 'CACHE'
+      }
+      : false,
+    defaults: {
+      cacheMaxAgeSeconds: process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 31 : 0
+    },
+    zeroRuntime: false
   },
 
   nitro: {

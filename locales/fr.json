@@ -23,6 +23,7 @@
     "noneForThisLanguage": "Aucun projet disponible en français",
     "description": "{description} auprès de {organization}",
     "info": {
+      "title": "Projet",
       "typeAndCategories": "Type & Catégories",
       "technologies": "Technologies",
       "details": "Détails du Projet",

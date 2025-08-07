@@ -32,6 +32,8 @@ export const transformProject = (project: (PagesCollectionItem | ProjectsCollect
 <script setup lang="ts">
 import type { PagesCollectionItem, ContentNavigationItem, ProjectsCollectionItem } from '@nuxt/content';
 
+defineOgImageComponent('Page');
+
 const store = layoutStore();
 const { t } = useI18n()
 
@@ -57,4 +59,8 @@ store.notTranslated = !isTranslated
 useHead(() => ({
   title: 'Michel Edighoffer / ' + t('header.projects'),
 }))
+
+if (project?.ogImage) {
+  defineOgImage(project.ogImage)
+}
 </script>
