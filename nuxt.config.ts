@@ -10,6 +10,11 @@ export default defineNuxtConfig({
     }
   },
 
+  site: {
+    url: 'https://micheledighoffer.fr',
+    name: 'Michel Edighoffer'
+  },
+
   // Nuxt Modules
   // https://nuxt.com/modules
   modules: [
@@ -94,19 +99,27 @@ export default defineNuxtConfig({
 
   hub: {
     database: true,
-    cache: true,
+    blob: true,
   },
   ogImage: {
     runtimeCacheStorage: process.env.NODE_ENV === 'production'
       ? {
         driver: 'cloudflare-kv-binding',
-        binding: 'CACHE'
+        binding: 'KV'
       }
       : false,
     defaults: {
       cacheMaxAgeSeconds: process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 31 : 0
     },
-    zeroRuntime: false
+    compatibility: {
+      runtime: {
+        satori: 'node',
+        resvg: false,
+        'css-inline': false,
+        sharp: false,
+        chromium: false
+      }
+    }
   },
 
   nitro: {
