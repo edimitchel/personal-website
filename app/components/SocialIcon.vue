@@ -1,6 +1,6 @@
 <template>
   <div class="social-icon">
-    <a :href="url" target="_blank" :class="iconClass"></a>
+    <NuxtLink :to="url" target="_blank" :class="iconClass" :aria-label="platform"></NuxtLink>
   </div>
 </template>
 

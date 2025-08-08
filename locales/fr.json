@@ -4,7 +4,9 @@
     "articles": "Articles",
     "projects": "Projets",
     "switchLanguage": "Passer à l'anglais",
-    "switchLanguageNotTranslated": "English translation not available for this page"
+    "switchLanguageNotTranslated": "English translation not available for this page",
+    "cycleModes": "Cycle modes",
+    "contact": "Contact me"
   },
   "article": {
     "previous": "Article précédent",

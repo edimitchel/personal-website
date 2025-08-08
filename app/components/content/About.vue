@@ -90,24 +90,25 @@
       <!-- Carousel with experiences -->
       <Carousel :items="experiences">
         <template #default="{ item }">
-          <NuxtLinkLocale :to="`/projects/${item.slug}`" class="absolute p-1 top-0 right-0 text-xl rounded-tr-md bg-background/80 hover:bg-background">
+          <NuxtLinkLocale :to="`/projects/${item.slug}`"
+            class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-background/80 hover:bg-background">
             <UnoIcon class="i-ic-baseline-open-in-new bg-foreground" />
           </NuxtLinkLocale>
-          <h4 class="text-lg font-semibold m-0 m-0 text-background w-full pr-8 leading-4 truncate">{{ item.title }}</h4>
-          <h2 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h2>
+          <h2 class="text-lg font-semibold m-0 m-0 text-background w-full pr-8 -my-1 truncate">{{ item.title }}</h2>
+          <h4 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h4>
+          <div class="text-xs text-primary-700">
+            <template v-if="item.completedAt">
+              <template v-if="item.startedAt">{{ formatDate(locale, item.startedAt) }} – </template> {{
+                formatDate(locale, item.completedAt) }}
+            </template>
+            <template v-else>
+              {{ formatDate(locale, item.startedAt) }} - {{ $t('project.info.inProgress') }}
+            </template>
+          </div>
           <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3">{{ item.description
             }}</p>
-            <section class="flex justify-between w-full flex-col items-center md:flex-row md:justify-between gap-2 py-2">
-              <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="justify-center md:justify-start" />
-              <div class="text-sm flex-grow-2 flex-basis-50% text-center">
-                <template v-if="item.completedAt">
-                  <template v-if="item.startedAt">{{ formatDate(locale, item.startedAt) }} – </template> {{ formatDate(locale, item.completedAt) }}
-                </template>
-                <template v-else>
-                  {{ formatDate(locale, item.startedAt) }} - {{ $t('project.info.inProgress') }}
-                </template>
-              </div>
-            </section>
+          <ProjectTechStack v-if="item.technologies" :technologies="item.technologies"
+            class="justify-center" />
         </template>
       </Carousel>
     </section>

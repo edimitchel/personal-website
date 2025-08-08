@@ -30,7 +30,7 @@
                 :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
             </Transition>
           </SwitchLocalePathLink>
-          <button class="mode-switcher" @click="cycleModes">
+          <button class="mode-switcher" @click="cycleModes" :aria-label="$t('header.cycleModes')">
             <Transition name="fade" mode="out-in">
               <UnoIcon v-if="mode.preference === 'dark'" key="dark" class="i-line-md-lightbulb-off-twotone" />
               <UnoIcon v-else-if="mode.preference === 'light'" key="light" class="i-line-md-lightbulb-twotone" />
@@ -45,7 +45,7 @@
             </NuxtLinkLocale>
           </li>
 
-          <button class="contact-button" @click="contactVisible = !contactVisible">
+          <button class="contact-button" @click="contactVisible = !contactVisible" :aria-label="$t('header.contact')">
             <UnoIcon class="i-line-md-chat-round-dots" />
           </button>
           <Teleport to="#modals">
