@@ -12,8 +12,8 @@
           x: motionX,
         }" @dragEnd="handleDragEnd"
           :animate="{ x: -(currentIndex * trackItemOffset) + (viewportWidth / 2 - (itemWidth) / 2) }"
-          :transition="SPRING_OPTIONS" @animationComplete="handleAnimationComplete">
-          <Motion v-for="(item, index) in carouselItems" :key="index" tag="div" :class="[
+          :transition="SPRING_OPTIONS">
+          <Motion v-for="(item, index) in items" :key="index" tag="div" :class="[
             'relative shrink-0 flex flex-col cursor-grab active:cursor-grabbing min-h-[150px]',
             'items-start justify-between bg-foreground shadow-sm shadow-primary/40 rounded-lg p-2',
             'transition-opacity duration-500'
@@ -69,7 +69,6 @@ export interface CarouselProps {
   autoplay?: boolean;
   autoplayDelay?: number;
   pauseOnHover?: boolean;
-  loop?: boolean;
 }
 </script>
 
@@ -77,7 +76,7 @@ export interface CarouselProps {
 import { Motion, useMotionValue } from 'motion-v';
 import { useTemplateRef } from 'vue';
 
-const DRAG_BUFFER = 0;
+const DRAG_BUFFER = 30;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
 const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 300, damping: 30, bounce: 0 };
@@ -87,17 +86,14 @@ const props = withDefaults(defineProps<CarouselProps>(), {
   autoplay: true,
   autoplayDelay: 5000,
   pauseOnHover: true,
-  loop: true,
   maxWidth: undefined,
 });
 
-const containerPadding = 0;
 const containerWidth = ref(0);
 const viewportWidth = ref(0);
-const itemWidth = computed(() => containerWidth.value - containerPadding * 2);
+const itemWidth = computed(() => containerWidth.value);
 const trackItemOffset = computed(() => itemWidth.value + GAP);
 
-const carouselItems = computed(() => (props.loop ? [...props.items, ...(props.items[0] ? [props.items[0]] : [])] : props.items));
 const currentIndex = ref<number>(0);
 const motionX = useMotionValue(0);
 const isAutoplaying = ref<boolean>(false);
@@ -106,24 +102,15 @@ const containerRef = useTemplateRef<HTMLDivElement>('containerRef');
 let autoplayTimer: number | null = null;
 
 const dragConstraints = computed(() => {
-  return props.loop
-    ? {}
-    : {
-      left: -trackItemOffset.value * (carouselItems.value.length - 1),
-      right: 0
-    };
+  return {
+    left: -trackItemOffset.value * (props.items.length - 1) + itemWidth.value / 2,
+    right: viewportWidth.value - containerWidth.value - itemWidth.value / 2
+  };
 });
 
 const setCurrentIndex = (index: number) => {
   currentIndex.value = index;
   stopAutoplay();
-};
-
-const handleAnimationComplete = () => {
-  if (props.loop && currentIndex.value === carouselItems.value.length - 1) {
-    motionX.set(0);
-    currentIndex.value = 0;
-  }
 };
 
 interface DragInfo {
@@ -136,17 +123,11 @@ const handleDragEnd = (event: Event, info: DragInfo) => {
   const velocity = info.velocity.x;
 
   if (offset < -DRAG_BUFFER || velocity < -VELOCITY_THRESHOLD) {
-    if (props.loop && currentIndex.value === props.items.length - 1) {
-      currentIndex.value = currentIndex.value + 1;
-    } else {
-      currentIndex.value = Math.min(currentIndex.value + 1, carouselItems.value.length - 1);
-    }
+    // Move to next item, but don't go beyond the last item
+    currentIndex.value = Math.min(currentIndex.value + 1, props.items.length - 1);
   } else if (offset > DRAG_BUFFER || velocity > VELOCITY_THRESHOLD) {
-    if (props.loop && currentIndex.value === 0) {
-      currentIndex.value = props.items.length - 1;
-    } else {
-      currentIndex.value = Math.max(currentIndex.value - 1, 0);
-    }
+    // Move to previous item, but don't go below 0
+    currentIndex.value = Math.max(currentIndex.value - 1, 0);
   }
   stopAutoplay();
 };
@@ -155,13 +136,12 @@ const startAutoplay = () => {
   if (props.autoplay) {
     isAutoplaying.value = true;
     autoplayTimer = window.setInterval(() => {
-      currentIndex.value = (() => {
-        const prev = currentIndex.value;
-        if (prev === carouselItems.value.length - 1) {
-          return props.loop ? 0 : prev;
-        }
-        return prev + 1;
-      })();
+      const nextIndex = currentIndex.value + 1;
+      if (nextIndex >= props.items.length) {
+        stopAutoplay();
+      } else {
+        currentIndex.value = nextIndex;
+      }
     }, props.autoplayDelay);
   }
 };
@@ -189,9 +169,7 @@ watch(
   [
     () => props.autoplay,
     () => props.autoplayDelay,
-    () => props.loop,
     () => props.items.length,
-    () => carouselItems.value.length,
     () => props.pauseOnHover
   ],
   () => {
