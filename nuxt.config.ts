@@ -102,12 +102,7 @@ export default defineNuxtConfig({
     blob: true,
   },
   ogImage: {
-    runtimeCacheStorage: process.env.NODE_ENV === 'production'
-      ? {
-        driver: 'cloudflare-kv-binding',
-        binding: 'KV'
-      }
-      : false,
+    runtimeCacheStorage: false,
     defaults: {
       cacheMaxAgeSeconds: process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 31 : 0
     },
