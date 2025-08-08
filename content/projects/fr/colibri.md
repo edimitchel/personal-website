@@ -17,7 +17,7 @@ technologies:
   - JavaScript
   - HTML
   - CSS
-relatedArticleSlug: colibri
+relatedArticleSlug: apprendre-transmettre-objectif-ultime-de-colibri-la-plateforme-innovante
 translation_state: approved
 original_slug: colibri
 source_content_hash: f3108bacf76c574015df7d51be637736

@@ -90,8 +90,8 @@
       <!-- Carousel with experiences -->
       <Carousel :items="experiences">
         <template #default="{ item }">
-          <NuxtLinkLocale :to="`/projects/${item.slug}`" class="absolute p-2 top-1 right-1 text-xl">
-            <UnoIcon class="i-ic-baseline-open-in-new" />
+          <NuxtLinkLocale :to="`/projects/${item.slug}`" class="absolute p-1 top-0 right-0 text-xl rounded-tr-md bg-background/80 hover:bg-background">
+            <UnoIcon class="i-ic-baseline-open-in-new bg-foreground" />
           </NuxtLinkLocale>
           <h4 class="text-lg font-semibold m-0 m-0 text-background w-full pr-8 leading-4 truncate">{{ item.title }}</h4>
           <h2 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h2>
