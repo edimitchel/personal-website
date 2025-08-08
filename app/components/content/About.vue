@@ -83,7 +83,7 @@
     <section client-only v-if="experiences" class="py-4">
       <!-- Experiences -->
 
-      <h2 class="text-2xl font-bold m-0 text-center text-background">
+      <h2 class="text-2xl font-bold m-0 mb-3 text-center text-background">
         {{ $t('experiences') }}
       </h2>
 

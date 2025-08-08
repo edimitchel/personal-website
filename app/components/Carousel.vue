@@ -1,7 +1,6 @@
 <template>
-
-  <div ref="containerRef" class="h-[230px]">
-    <div class="absolute overflow-hidden inset-x-0 py-4 mb-4 w-full" :style="{
+  <div ref="containerRef" class="h-[240px]">
+    <div class="carousel absolute overflow-hidden inset-x-0 py-4 mb-4 w-full" :style="{
       maxWidth: maxWidth ? `${maxWidth}px` : '100%'
     }">
       <div class="relative w-full min-h-[170px]">
@@ -11,7 +10,7 @@
         <Motion v-if="isInitialized" tag="div" class="flex" drag="x" :dragConstraints="dragConstraints" :style="{
           gap: `${GAP}px`,
           x: motionX,
-        }" @dragEnd="handleDragEnd" :animate="{ x: -(currentIndex * trackItemOffset) }"
+        }" @dragEnd="handleDragEnd" :animate="{ x: -(currentIndex * trackItemOffset) + (viewportWidth/2 - (itemWidth)/2) }"
           :transition="effectiveTransition" @animationComplete="handleAnimationComplete">
           <Motion v-for="(item, index) in carouselItems" :key="index" tag="div" :class="[
             'relative shrink-0 flex flex-col cursor-grab active:cursor-grabbing min-h-[150px]',
@@ -20,7 +19,6 @@
           ]" :style="{
             width: itemWidth > 0 ? `${itemWidth}px` : '100%',
             height: '100%',
-            opacity: getItemOpacity(index),
           }" :transition="effectiveTransition">
             <div v-if="!$slots.default" class="p-1 text-primary-900">
               <div class="mb-1 font-black text-lg">{{ item.title }}</div>
@@ -69,7 +67,7 @@ export interface CarouselProps {
 </script>
 
 <script setup lang="ts">
-import { Motion, useMotionValue, useTransform } from 'motion-v';
+import { Motion, useMotionValue } from 'motion-v';
 
 const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
@@ -87,6 +85,7 @@ const props = withDefaults(defineProps<CarouselProps>(), {
 
 const containerPadding = 0;
 const containerWidth = ref(0);
+const viewportWidth = ref(0);
 const itemWidth = computed(() => containerWidth.value - containerPadding * 2);
 const trackItemOffset = computed(() => itemWidth.value + GAP);
 
@@ -109,19 +108,6 @@ const dragConstraints = computed(() => {
 });
 
 const effectiveTransition = computed(() => (isResetting.value ? { duration: 0 } : SPRING_OPTIONS));
-
-const getItemOpacity = (index: number) => {
-  if (containerWidth.value === 0) return 0;
-
-  // Calculate visual distance based on position in 3D space
-  const visualDistance = Math.abs(index - currentIndex.value);
-
-  // Make opacity more pronounced - current item fully visible, others fade
-  if (visualDistance === 0) return 1;
-  if (visualDistance === 1) return 0.7;
-  if (visualDistance === 2) return 0.4;
-  return 0.2;
-};
 
 const setCurrentIndex = (index: number) => {
   currentIndex.value = index;
@@ -166,7 +152,9 @@ const handleDragEnd = (event: Event, info: DragInfo) => {
 
 const startAutoplay = () => {
   if (props.autoplay && (!props.pauseOnHover || !isHovered.value)) {
+    console.log('Starting autoplay');
     autoplayTimer = window.setInterval(() => {
+      console.log('Autoplaying');
       currentIndex.value = (() => {
         const prev = currentIndex.value;
         if (prev === props.items.length - 1 && props.loop) {
@@ -200,13 +188,6 @@ const handleMouseEnter = () => {
   }
 };
 
-const handleMouseLeave = () => {
-  isHovered.value = false;
-  if (props.pauseOnHover) {
-    startAutoplay();
-  }
-};
-
 watch(
   [
     () => props.autoplay,
@@ -224,6 +205,7 @@ watch(
 const updateContainerWidth = () => {
   if (containerRef.value) {
     containerWidth.value = containerRef.value.clientWidth;
+    viewportWidth.value = document.documentElement.clientWidth;
   }
 };
 
@@ -234,7 +216,6 @@ onMounted(() => {
   if (containerRef.value) {
     if (props.pauseOnHover) {
       containerRef.value.addEventListener('mouseenter', handleMouseEnter);
-      containerRef.value.addEventListener('mouseleave', handleMouseLeave);
     }
     updateContainerWidth();
     window.addEventListener('resize', updateContainerWidth);
@@ -245,7 +226,6 @@ onMounted(() => {
 onUnmounted(() => {
   if (containerRef.value) {
     containerRef.value.removeEventListener('mouseenter', handleMouseEnter);
-    containerRef.value.removeEventListener('mouseleave', handleMouseLeave);
   }
   window.removeEventListener('resize', updateContainerWidth);
   stopAutoplay();
@@ -253,7 +233,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.relative {
-  position: relative;
+.carousel {
+  mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
 }
 </style>
