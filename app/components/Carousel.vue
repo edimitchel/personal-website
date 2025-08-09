@@ -1,5 +1,5 @@
 <template>
-  <div ref="containerRef" class="h-[280px] md:h-[250px]">
+  <div ref="containerRef" class="w-full h-[280px] md:h-[250px]">
     <div class="carousel absolute overflow-hidden inset-x-0 py-4 mb-4 w-full" :style="{
       maxWidth: maxWidth ? `${maxWidth}px` : '100%'
     }">
@@ -45,7 +45,8 @@
         ]" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />
         <Transition name="fade" mode="out-in">
           <button :key="isAutoplaying ? 'pause' : 'play'"
-            @click="() => isAutoplaying ? stopAutoplay() : startAutoplay()" class="block w-3 h-3 cursor-pointer ring-1 ring-primary-600">
+            @click="() => isAutoplaying ? stopAutoplay() : startAutoplay()"
+            class="block w-3 h-3 cursor-pointer ring-1 ring-primary-600">
             <UnoIcon class="w-3 h-3" :class="isAutoplaying ? 'i-ic-baseline-pause' : 'i-ic-baseline-play-arrow'" />
           </button>
         </Transition>
@@ -76,7 +77,7 @@ export interface CarouselProps {
 import { Motion, useMotionValue } from 'motion-v';
 import { useTemplateRef } from 'vue';
 
-const DRAG_BUFFER = 30;
+const DRAG_BUFFER = 0;
 const VELOCITY_THRESHOLD = 500;
 const GAP = 16;
 const SPRING_OPTIONS = { type: 'spring' as const, stiffness: 300, damping: 30, bounce: 0 };
@@ -102,9 +103,20 @@ const containerRef = useTemplateRef<HTMLDivElement>('containerRef');
 let autoplayTimer: number | null = null;
 
 const dragConstraints = computed(() => {
+  if (!isInitialized.value || props.items.length === 0) {
+    return { left: 0, right: 0 };
+  }
+
+  // Calculate the total width of all items including gaps (subtracting the last gap)
+  const totalTrackWidth = trackItemOffset.value * props.items.length - GAP;
+
+  const centerOffset = (viewportWidth.value - itemWidth.value) / 2;
+  const rightConstraint = centerOffset;
+  const leftConstraint = -(totalTrackWidth - itemWidth.value - centerOffset);
+
   return {
-    left: -trackItemOffset.value * (props.items.length - 1) + itemWidth.value / 2,
-    right: viewportWidth.value - containerWidth.value - itemWidth.value / 2
+    left: leftConstraint,
+    right: rightConstraint
   };
 });
 
@@ -178,10 +190,12 @@ watch(
 );
 
 const updateContainerWidth = () => {
-  if (containerRef.value) {
-    containerWidth.value = containerRef.value.clientWidth;
-    viewportWidth.value = document.documentElement.clientWidth;
-  }
+  setTimeout(() => {
+    if (containerRef.value) {
+      containerWidth.value = containerRef.value.clientWidth;
+      viewportWidth.value = document.documentElement.clientWidth;
+    }
+  }, isInitialized.value ? 0 : 400);
 };
 
 // Hide items until container width is calculated
