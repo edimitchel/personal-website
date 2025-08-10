@@ -1,5 +1,5 @@
 <template>
-    <ContentRenderer v-if="content" :value="content" class="prose" :data="{ updatedDate }" />
+    <ContentRenderer v-if="content" :value="content" class="prose text-background" :data="{ updatedDate }" />
 </template>
 
 <script setup lang="ts">
