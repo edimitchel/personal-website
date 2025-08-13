@@ -3,7 +3,7 @@
     <main class="prose text-background">
       <template v-if="content">
         <span class="block text-center text-sm">{{ formatDate(content.created) }}</span>
-        <h1 class="mt-0">{{ content.title }}</h1>
+        <h1 class="mt-0 text-center text-balance">{{ content.title }}</h1>
         <NuxtImg v-if="content.thumbnail" class="my-2 w-full max-h-40 md:max-h-50 object-cover" :src="content.thumbnail"
           :alt="content.title" />
         <ContentRenderer :value="content" />
