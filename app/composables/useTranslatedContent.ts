@@ -69,6 +69,13 @@ export default async function useTranslatedContent<
                 isTranslated
             }
         }
+    }, {
+        default() {
+            return {
+                content: null,
+                isTranslated: false
+            }
+        }
     })
 
     return unref(data);
