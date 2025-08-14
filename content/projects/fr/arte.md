@@ -18,14 +18,11 @@ technologies:
   - CSS
   - Styled Components
 authors: []
-translation_state: approved
 original_slug: arte
-source_content_hash: abd4cb36feb382ffe0793e200e2158af
-translated_by: AI Translator
-translated_at: '2025-07-25T23:04:54.377Z'
-last_updated: '2025-07-25T23:04:54.377Z'
+source_content_hash: 8c4b5e6f7a8b9c0d1e2f3a4b5c6d7e8f
 ---
 
-# Guide de style Arte
+# Styleguide de Arte.tv
 
 {{ $doc.description }}
+

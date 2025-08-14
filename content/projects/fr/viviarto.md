@@ -18,12 +18,8 @@ technologies:
   - Performance Analysis
 authors: []
 image: https://info.viviarto.com/wp-content/uploads/2022/08/LOGO_VIVIARTO_RVB-2.png
-translation_state: approved
 original_slug: viviarto
 source_content_hash: 230a6e00e4de5dfc507f66156e6d7f81
-translated_by: AI Translator
-translated_at: '2025-08-01T14:41:34.908Z'
-last_updated: '2025-08-01T14:41:34.908Z'
 ---
 
 # Plateforme de gestion d'associations

@@ -161,26 +161,11 @@ description: "Description traduite"
 # ... other content fields ...
 
 # Translation metadata
-translated: true
-translation_state: approved  # draft | current | needs_review | outdated | approved
 original_slug: original-post-slug
 source_content_hash: abc123...
-translated_at: "2024-01-15T10:30:00Z"
-translated_by: "AI (Mistral Codestral)"
 draft: true  # Hidden in production until published
 ---
 ```
-
-## Translation States
-
-The `translation_state` field combines status and quality into a single, simplified field:
-
-- 📝 **draft**: New translation, needs review (hidden in production)
-- ✅ **current**: Translation is up-to-date and published
-- ⚠️ **needs_review**: Source content changed, review needed
-- 🔄 **outdated**: Translation significantly behind source
-- 🚀 **approved**: Reviewed, approved, and published
-- ❌ **missing**: No translation exists
 
 ## Best Practices
 

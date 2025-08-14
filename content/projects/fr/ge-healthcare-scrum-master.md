@@ -1,10 +1,6 @@
 ---
-translation_state: approved
 original_slug: ge-healthcare-scrum-master
 source_content_hash: 8434baa5e95347b92bfe4f8f2e28bc72
-translated_by: AI Translator
-translated_at: 2025-07-25T23:05:18.122Z
-last_updated: 2025-07-25T23:05:18.122Z
 title: Scrum Master & Frontend Technical Leader
 description: Diriger une équipe de 5 personnes pour le système de conception
   Edison - une bibliothèque de composants globale

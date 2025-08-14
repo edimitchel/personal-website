@@ -18,12 +18,8 @@ technologies:
   - Vite
 authors: []
 image: https://upload.wikimedia.org/wikipedia/commons/c/ce/Cora_logo.svg
-translation_state: approved
 original_slug: cora
 source_content_hash: a8976ee53cb8224aba0c1adf697f87f2
-translated_by: AI Translator
-translated_at: '2025-08-01T14:41:22.393Z'
-last_updated: '2025-08-01T14:41:22.393Z'
 ---
 
 # Cora Marketplace

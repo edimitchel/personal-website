@@ -50,11 +50,8 @@ export const createMockTranslationFile = (options: {
 }) => ({
   frontmatter: {
     title: options.title,
-    translation_state: options.state || 'draft',
     source_content_hash: options.sourceHash || 'abc123',
     original_slug: options.title.toLowerCase().replace(/\s+/g, '-'),
-    translated_by: 'Test Translator',
-    translated_at: new Date().toISOString()
   },
   content: options.content
 })

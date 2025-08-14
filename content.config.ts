@@ -14,15 +14,8 @@ const baseContentSchema = z.object({
 
 // Translation metadata schema
 const translationMetaSchema = z.object({
-  translated: z.boolean().optional(),
-  translation_state: z.enum(['draft', 'current', 'needs_review', 'outdated', 'approved']).optional(),
   original_slug: z.string().optional(),
   source_content_hash: z.string().optional(),
-  translated_at: z.string().optional(),
-  translated_by: z.string().optional(),
-  published_at: z.string().optional(),
-  published_by: z.string().optional(),
-  source_updated_at: z.string().optional(),
 });
 
 // Article schema

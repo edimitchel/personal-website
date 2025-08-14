@@ -34,8 +34,7 @@ export interface ContentFile {
 
 export interface TranslationStatus {
   file: string;
-  state: 'draft' | 'current' | 'needs_review' | 'outdated' | 'approved' | 'missing';
-  lastTranslated?: string;
+  state: 'current' | 'outdated' | 'missing';
   sourceHash?: string;
   currentHash: string;
 }
@@ -145,15 +144,12 @@ export function getTranslationStatus(originalFile: ContentFile, contentDir?: str
   const translationMeta = frenchMatter.data;
 
   const sourceHash = translationMeta.source_content_hash;
-  const state = translationMeta.translation_state || 'draft';
-  const lastTranslated = translationMeta.translated_at;
 
   // Check if source content has changed
   if (sourceHash && sourceHash !== originalFile.hash) {
     return {
       file: originalFile.relativePath,
       state: 'outdated',
-      lastTranslated,
       sourceHash,
       currentHash: originalFile.hash
     };
@@ -161,8 +157,7 @@ export function getTranslationStatus(originalFile: ContentFile, contentDir?: str
 
   return {
     file: originalFile.relativePath,
-    state: state as TranslationStatus['state'],
-    lastTranslated,
+    state: 'current',
     sourceHash,
     currentHash: originalFile.hash
   };
@@ -176,33 +171,34 @@ export function createTranslationPrompt(content: string, context: TranslationCon
 
   const preserveList = context.preserve_as_is.join(', ');
 
-  return `Traduire le contenu technique suivant de l'anglais au français.
+  return `You are a professional technical translator. Translate the following content from English to French. Return ONLY the translated content without any meta-commentary, explanations, or introductory text.
 
-CONTEXTE:
-- Domaine: ${context.domain_context.primary_domain}
-- Domaines secondaires: ${context.domain_context.secondary_domains.join(', ')}
-- Public cible: ${context.domain_context.target_audience}
-- Ton: ${context.domain_context.tone}
+CONTEXT:
+- Domain: ${context.domain_context.primary_domain}
+- Secondary domains: ${context.domain_context.secondary_domains.join(', ')}
+- Target audience: ${context.domain_context.target_audience}
+- Tone: ${context.domain_context.tone}
 
-GLOSSAIRE TECHNIQUE:
+TECHNICAL GLOSSARY:
 ${glossaryEntries}
 
-CONSERVATION TEL QUEL:
+PRESERVE AS-IS:
 ${preserveList}
 
-REGLES DE TRADUCTION:
+TRANSLATION RULES:
 ${context.translation_rules.map(rule => `- ${rule}`).join('\n')}
 
-INSTRUCTIONS IMPORTANTES:
-1. Conserver le frontmatter (YAML entre ---) tel qu'il est
-2. Conserver les blocs de code et les codes inline tels qu'ils sont
-3. Conserver les URLs, liens et identifiants techniques tels qu'ils sont
-4. Maintenir le format markdown (entêtes, listes, emphases, etc.)
-5. Utiliser le glossaire technique pour une terminologie cohérente
-6. Conserver les termes dans la liste "CONSERVATION TEL QUEL" tels qu'ils sont
-7. Traduire le contenu naturellement tout en maintenant l'exactitude technique
+CRITICAL INSTRUCTIONS:
+1. Return ONLY the translated content - no explanations or meta-commentary
+2. Preserve frontmatter (YAML between ---) exactly as-is
+3. Preserve code blocks and inline code exactly as-is
+4. Preserve URLs, links, and technical identifiers exactly as-is
+5. Maintain markdown formatting (headers, lists, emphasis, etc.)
+6. Use the technical glossary for consistent terminology
+7. Keep terms in "PRESERVE AS-IS" list unchanged
+8. Translate content naturally while maintaining technical accuracy
 
-CONTENU A TRADUIRE:
+CONTENT TO TRANSLATE:
 ${content}
 `;
 }
@@ -289,21 +285,24 @@ export function saveTranslation(originalFile: ContentFile, translatedContent: st
     mkdirSync(frenchDir, { recursive: true });
   }
 
-  // Parse the translated content to add metadata
+  // Parse the translated content to add minimal metadata
   const parsed = matter(translatedContent);
-  const translatorName = process.env.TRANSLATOR_NAME || 'AI Translator';
-  const timestamp = new Date().toISOString();
 
-  // Add translation metadata
+  // Add only essential translation metadata
   const enhancedFrontmatter = {
     ...parsed.data,
-    translation_state: 'draft',
     original_slug: originalFile.slug,
-    source_content_hash: originalFile.hash,
-    translated_by: translatorName,
-    translated_at: timestamp,
-    last_updated: timestamp
+    source_content_hash: originalFile.hash
   };
+
+  // Remove unwanted metadata fields if they exist
+  delete enhancedFrontmatter.translation_state;
+  delete enhancedFrontmatter.translated_by;
+  delete enhancedFrontmatter.translated_at;
+  delete enhancedFrontmatter.last_updated;
+  delete enhancedFrontmatter.reviewed_by;
+  delete enhancedFrontmatter.reviewed_at;
+  delete enhancedFrontmatter.published_at;
 
   // Reconstruct the content with enhanced frontmatter
   const finalContent = matter.stringify(parsed.content, enhancedFrontmatter);
@@ -330,21 +329,19 @@ export function updateTranslationStatus(originalFile: ContentFile, contentDir?: 
     return; // No change needed
   }
 
-  // Update metadata to mark as outdated
+  // Update metadata with new source hash
   const updatedFrontmatter = {
     ...parsed.data,
-    translation_state: 'outdated',
-    source_content_hash: originalFile.hash,
-    last_updated: new Date().toISOString()
+    source_content_hash: originalFile.hash
   };
 
   const updatedContent = matter.stringify(parsed.content, updatedFrontmatter);
   writeFileSync(frenchPath, updatedContent, 'utf-8');
 
-  console.log(`⚠️  Translation marked as outdated: ${frenchPath}`);
+  console.log(`⚠️  Translation source hash updated: ${frenchPath}`);
 }
 
-// Publish translation (remove draft flag)
+// Publish translation (no-op since we removed state management)
 export function publishTranslation(collection: string, filename: string, contentDir?: string): void {
   const CONTENT_DIR = contentDir || join(process.cwd(), 'content');
   const frenchPath = join(CONTENT_DIR, collection, 'fr', filename);
@@ -354,24 +351,7 @@ export function publishTranslation(collection: string, filename: string, content
     return;
   }
 
-  const content = readFileSync(frenchPath, 'utf-8');
-  const parsed = matter(content);
-
-  const reviewerName = process.env.REVIEWER_NAME || 'Content Reviewer';
-  const timestamp = new Date().toISOString();
-
-  const updatedFrontmatter = {
-    ...parsed.data,
-    translation_state: 'approved',
-    reviewed_by: reviewerName,
-    reviewed_at: timestamp,
-    published_at: timestamp,
-  };
-
-  const updatedContent = matter.stringify(parsed.content, updatedFrontmatter);
-  writeFileSync(frenchPath, updatedContent, 'utf-8');
-
-  console.log(`🎉 Translation published: ${frenchPath}`);
+  console.log(`✅ Translation exists: ${frenchPath}`);
 }
 
 // List translation statuses
@@ -390,21 +370,14 @@ export function listTranslationStatuses(collection?: string, contentDir?: string
 
     const statusEmoji = {
       'missing': '❌',
-      'draft': '📝',
       'current': '✅',
-      'needs_review': '👀',
-      'outdated': '⚠️',
-      'approved': '🎉'
+      'outdated': '⚠️'
     }[status.state];
-
-    const lastTranslated = status.lastTranslated
-      ? new Date(status.lastTranslated).toLocaleDateString()
-      : 'Never';
 
     console.log(
       file.relativePath.padEnd(40) +
       `${statusEmoji} ${status.state}`.padEnd(15) +
-      lastTranslated
+      (status.sourceHash ? 'Translated' : 'Never')
     );
   }
 
@@ -429,11 +402,6 @@ export async function translateFile(file: ContentFile, context: TranslationConte
 
   if (status.state === 'current' && !force) {
     console.log(`✅ Translation is current: ${file.relativePath}`);
-    return;
-  }
-
-  if (status.state === 'approved' && !force) {
-    console.log(`🎉 Translation is approved: ${file.relativePath}`);
     return;
   }
 

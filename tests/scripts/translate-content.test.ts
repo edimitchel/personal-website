@@ -196,7 +196,6 @@ title: "Test Article"
     it('should return current status when translation is up to date', async () => {
       const mockTranslationContent = `---
 title: "Test Traduit"
-translation_state: "current"
 source_content_hash: "abc123"
 ---
 # Contenu de test`
@@ -204,7 +203,6 @@ source_content_hash: "abc123"
       const mockParsedTranslation = {
         data: {
           title: 'Test Traduit',
-          translation_state: 'current',
           source_content_hash: 'abc123'
         },
         content: '# Contenu de test',
@@ -239,7 +237,6 @@ source_content_hash: "abc123"
     it('should return outdated status when source content has changed', async () => {
       const mockTranslationContent = `---
 title: "Test Traduit"
-translation_state: "current"
 source_content_hash: "old123"
 ---
 # Contenu de test`
@@ -247,7 +244,6 @@ source_content_hash: "old123"
       const mockParsedTranslation = {
         data: {
           title: 'Test Traduit',
-          translation_state: 'current',
           source_content_hash: 'old123'
         },
         content: '# Contenu de test',
@@ -300,7 +296,7 @@ source_content_hash: "old123"
       const content = '# Test Article\n\nThis is about JavaScript and GitHub.'
       const prompt = createTranslationPrompt(content, mockContext)
 
-      expect(prompt).toContain('Traduire le contenu technique suivant de l\'anglais au français.')
+      expect(prompt).toContain('You are a professional technical translator')
       expect(prompt).toContain('Web Development')
       expect(prompt).toContain('JavaScript')
       expect(prompt).toContain('GitHub')
@@ -444,12 +440,8 @@ title: "Test Traduit"
       // Mock matter.stringify to return the expected content with metadata
       mockMatterStringify.mockReturnValue(`---
 title: "Test Traduit"
-translation_state: "draft"
 original_slug: "test"
 source_content_hash: "abc123"
-translated_by: "AI Translator"
-translated_at: "2023-01-01T00:00:00.000Z"
-last_updated: "2023-01-01T00:00:00.000Z"
 ---
 # Contenu traduit`)
 
@@ -494,10 +486,9 @@ last_updated: "2023-01-01T00:00:00.000Z"
   })
 
   describe('updateTranslationStatus', () => {
-    it('should update translation status to outdated when source changes', async () => {
+    it('should update translation source hash when source changes', async () => {
       const mockTranslationContent = `---
 title: "Test Traduit"
-translation_state: "current"
 source_content_hash: "old123"
 ---
 # Contenu traduit`
@@ -505,7 +496,6 @@ source_content_hash: "old123"
       const mockParsedTranslation = {
         data: {
           title: 'Test Traduit',
-          translation_state: 'current',
           source_content_hash: 'old123'
         },
         content: '# Contenu traduit',
@@ -520,9 +510,7 @@ source_content_hash: "old123"
       mockMatter.mockReturnValue(mockParsedTranslation)
       mockMatterStringify.mockReturnValue(`---
 title: "Test Traduit"
-translation_state: "outdated"
 source_content_hash: "new123"
-last_updated: "2023-01-01T00:00:00.000Z"
 ---
 # Contenu traduit`)
 
@@ -542,7 +530,7 @@ last_updated: "2023-01-01T00:00:00.000Z"
 
       expect(mockWriteFileSync).toHaveBeenCalledWith(
         expect.stringContaining('articles/fr/test.md'),
-        expect.stringContaining('translation_state: "outdated"'),
+        expect.stringContaining('source_content_hash: "new123"'),
         'utf-8'
       )
     })
@@ -569,46 +557,21 @@ last_updated: "2023-01-01T00:00:00.000Z"
   })
 
   describe('publishTranslation', () => {
-    it('should publish translation by updating metadata', async () => {
-      const mockTranslationContent = `---
-title: "Test Traduit"
-translation_state: "draft"
----
-# Contenu traduit`
-
-      const mockParsedTranslation = {
-        data: {
-          title: 'Test Traduit',
-          translation_state: 'draft'
-        },
-        content: '# Contenu traduit',
-        orig: mockTranslationContent,
-        language: '',
-        matter: '',
-        stringify: () => mockTranslationContent
-      }
-
+    it('should check if translation exists', async () => {
       mockExistsSync.mockReturnValue(true)
-      mockReadFileSync.mockReturnValue(mockTranslationContent)
-      mockMatter.mockReturnValue(mockParsedTranslation)
-      mockMatterStringify.mockReturnValue(`---
-title: "Test Traduit"
-translation_state: "approved"
-reviewed_by: "Content Reviewer"
-reviewed_at: "2023-01-01T00:00:00.000Z"
-published_at: "2023-01-01T00:00:00.000Z"
----
-# Contenu traduit`)
+
+      const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
 
       const { publishTranslation } = await import('../../scripts/translate-content-lib.js')
       
       publishTranslation('articles', 'test.md')
 
-      expect(mockWriteFileSync).toHaveBeenCalledWith(
-        expect.stringContaining('articles/fr/test.md'),
-        expect.stringContaining('translation_state: "approved"'),
-        'utf-8'
+      expect(consoleSpy).toHaveBeenCalledWith(
+        expect.stringContaining('Translation exists')
       )
+      expect(mockWriteFileSync).not.toHaveBeenCalled()
+
+      consoleSpy.mockRestore()
     })
 
     it('should handle missing translation file', async () => {

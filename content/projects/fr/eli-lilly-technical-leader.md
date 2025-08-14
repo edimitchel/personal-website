@@ -14,12 +14,8 @@ technologies:
   - PostgreSQL
   - Docker
 image: https://companieslogo.com/img/orig/LLY-7d9e05a0.svg
-translation_state: approved
 original_slug: eli-lilly-technical-leader
 source_content_hash: e1cef109435882fa3cde51b2e1445b57
-translated_by: AI Translator
-translated_at: 2025-07-25T23:05:04.933Z
-last_updated: 2025-07-25T23:05:04.933Z
 ---
 
 # Chef de Projet Technique Fullstack

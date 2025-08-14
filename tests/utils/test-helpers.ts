@@ -294,9 +294,7 @@ export const translationAssertions = {
    * Assert that frontmatter is properly updated
    */
   hasValidTranslationMetadata: (content: string, expectedHash?: string) => {
-    expect(content).toContain('translation_state:')
     expect(content).toContain('original_slug:')
-    expect(content).toContain('translated_at:')
 
     if (expectedHash) {
       expect(content).toContain(`source_content_hash: "${expectedHash}"`)

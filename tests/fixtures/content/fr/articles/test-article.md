@@ -3,11 +3,8 @@ title: "Article de Test"
 description: "Un article de test pour la traduction"
 date: "2024-01-01"
 tags: ["JavaScript", "tests"]
-translation_state: "current"
 original_slug: "test-article"
 source_content_hash: "abc123"
-translated_by: "Test Translator"
-translated_at: "2024-01-01T10:00:00Z"
 ---
 
 # Article de Test

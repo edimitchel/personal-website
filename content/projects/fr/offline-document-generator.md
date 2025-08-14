@@ -18,12 +18,8 @@ technologies:
   - IndexedDB
 authors: []
 image: https://www.tbm-solution.com/Images/205_60_TBM_Logo_V2.png
-translation_state: approved
 original_slug: offline-document-generator
 source_content_hash: b162665ab030e9b65dd0718f9c17cf1a
-translated_by: AI Translator
-translated_at: '2025-08-01T14:41:28.753Z'
-last_updated: '2025-08-01T14:41:28.753Z'
 ---
 
 # Application de génération de documents hors ligne

@@ -11,11 +11,8 @@ categories:
 thumbnail: >-
   https://blog.micheledighoffer.fr/blog/wp-content/uploads/2019/01/illusion-parking-serre-MICHEL-EDIGHOFFER-e1548688108219-825x510.jpg
 originalUrl: 'https://blog.micheledighoffer.fr/blog/parking-illusion-flaque/'
-translated: true
 original_slug: parking-illusion-flaque
 source_content_hash: c218718ed71fc0c89376062572aee47d
-translated_at: '2025-06-27T21:52:35.420Z'
-translated_by: AI (Mistral Codestral)
 ---
 
 Voici un article quelque peu spécial qui s'écarte de mes habitudes éditoriales habituelles.

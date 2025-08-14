@@ -17,12 +17,8 @@ technologies:
   - REST API
 image: https://beta.gouv.fr/img/logo-generique-startup-carre-2019.jpg
 authors: []
-translation_state: approved
 original_slug: airvam
 source_content_hash: 9be2a15495fd15bda50a9c0517357dcf
-translated_by: AI Translator
-translated_at: '2025-08-01T14:41:12.117Z'
-last_updated: '2025-08-01T14:41:12.117Z'
 ---
 
 # Airvam

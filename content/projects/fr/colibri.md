@@ -18,12 +18,8 @@ technologies:
   - HTML
   - CSS
 relatedArticleSlug: apprendre-transmettre-objectif-ultime-de-colibri-la-plateforme-innovante
-translation_state: approved
 original_slug: colibri
 source_content_hash: f3108bacf76c574015df7d51be637736
-translated_by: AI Translator
-translated_at: '2025-07-25T23:05:00.547Z'
-last_updated: '2025-07-25T23:05:00.547Z'
 ---
 
 # Colibri
