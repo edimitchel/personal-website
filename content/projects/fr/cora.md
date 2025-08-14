@@ -1,8 +1,10 @@
 ---
 title: Plateforme de supermarché en ligne - Cora
-description: Optimisation des fichiers de production et amélioration des performances pour la plateforme de supermarché en ligne de Cora
-startedAt: 2024-04-12
-completedAt: 2024-05-10
+description: >-
+  Optimisation des fichiers de production et amélioration des performances pour
+  la plateforme de supermarché en ligne de Cora
+startedAt: 2024-04-12T00:00:00.000Z
+completedAt: 2024-05-10T00:00:00.000Z
 status: completed
 organization: Cora
 type: consulting
@@ -17,9 +19,9 @@ technologies:
   - TypeScript
   - Vite
 authors: []
-image: https://upload.wikimedia.org/wikipedia/commons/c/ce/Cora_logo.svg
+image: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Cora_logo.svg'
 original_slug: cora
-source_content_hash: a8976ee53cb8224aba0c1adf697f87f2
+source_content_hash: e1f7965ce0addce69941f9275cde9c83
 ---
 
 # Cora Marketplace

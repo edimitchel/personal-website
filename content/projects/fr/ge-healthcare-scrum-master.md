@@ -1,22 +1,23 @@
 ---
 original_slug: ge-healthcare-scrum-master
-source_content_hash: 8434baa5e95347b92bfe4f8f2e28bc72
+source_content_hash: d79a012b19c2c2fb731a2797c76d1475
 title: Scrum Master & Frontend Technical Leader
-description: Diriger une équipe de 5 personnes pour le système de conception
-  Edison - une bibliothèque de composants globale
-startedAt: 2021-09-01
-completedAt: 2022-11-01
+description: >-
+  Diriger une équipe de 5 personnes pour le système de conception Edison - une
+  bibliothèque de composants globale
+startedAt: 2021-09-01T00:00:00.000Z
+completedAt: 2022-11-01T00:00:00.000Z
 status: completed
 organization: GE Healthcare
 role: Scrum Master & Frontend Technical Leader
-location: Strasbourg, Grand Est, France
+location: 'Strasbourg, Grand Est, France'
 type: consulting
 technologies:
   - Angular
   - React
   - Web Components
-image: https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg
-url: https://ethosdesignsystem.com/
+image: 'https://companieslogo.com/img/orig/GEHC-56c3ef0f.svg'
+url: 'https://ethosdesignsystem.com/'
 authors: []
 categories: []
 ---

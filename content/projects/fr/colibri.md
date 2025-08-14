@@ -1,10 +1,11 @@
 ---
 title: Colibri
 organization: IUT de Haguenau
-startedAt: 2016-09-01
-completedAt: 2017-07-01
+startedAt: 2016-09-01T00:00:00.000Z
+completedAt: 2017-07-01T00:00:00.000Z
 description: >-
-  Apprendre à partager la connaissance — l'objectif ultime de Colibri, la nouvelle plateforme d'apprentissage innovante
+  Apprendre à partager la connaissance — l'objectif ultime de Colibri, la
+  nouvelle plateforme d'apprentissage innovante
 image: /images/projects/colibri/caption.png
 url: 'https://colibri.unistra.fr'
 type: experience
@@ -19,7 +20,7 @@ technologies:
   - CSS
 relatedArticleSlug: apprendre-transmettre-objectif-ultime-de-colibri-la-plateforme-innovante
 original_slug: colibri
-source_content_hash: f3108bacf76c574015df7d51be637736
+source_content_hash: d3f60840587730730b79c157516b7fff
 ---
 
 # Colibri

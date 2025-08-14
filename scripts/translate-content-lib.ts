@@ -2,7 +2,6 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSy
 import { join, dirname, basename } from 'path';
 import { createHash } from 'crypto';
 import matter from 'gray-matter';
-import { loadConfig } from 'c12';
 
 // Configuration
 const MISTRAL_API_URL = 'https://api.mistral.ai/v1/chat/completions';
@@ -360,9 +359,9 @@ export function listTranslationStatuses(collection?: string, contentDir?: string
   const statuses: TranslationStatus[] = [];
 
   console.log('\n📊 Translation Status Report');
-  console.log('='.repeat(80));
-  console.log('File'.padEnd(40) + 'Status'.padEnd(15) + 'Last Translated');
-  console.log('-'.repeat(80));
+  console.log('='.repeat(90));
+  console.log('File'.padEnd(60) + 'Status'.padEnd(15) + 'Translated');
+  console.log('-'.repeat(90));
 
   for (const file of files) {
     const status = getTranslationStatus(file, contentDir);
@@ -375,13 +374,13 @@ export function listTranslationStatuses(collection?: string, contentDir?: string
     }[status.state];
 
     console.log(
-      file.relativePath.padEnd(40) +
+      file.relativePath.padEnd(60) +
       `${statusEmoji} ${status.state}`.padEnd(15) +
       (status.sourceHash ? 'Translated' : 'Never')
     );
   }
 
-  console.log('-'.repeat(80));
+  console.log('-'.repeat(90));
 
   const summary = statuses.reduce((acc, status) => {
     acc[status.state] = (acc[status.state] || 0) + 1;
@@ -394,6 +393,49 @@ export function listTranslationStatuses(collection?: string, contentDir?: string
   });
 
   return statuses;
+}
+
+// Update hashes for all files to avoid outdated mismatches
+export function updateAllHashes(collection?: string, contentDir?: string): void {
+  const files = getContentFiles(collection, contentDir);
+  let updatedCount = 0;
+
+  console.log('\n🔄 Updating file hashes...');
+  console.log('='.repeat(60));
+
+  for (const file of files) {
+    const frenchPath = getFrenchPath(file.path, contentDir);
+    
+    if (!existsSync(frenchPath)) {
+      console.log(`ℹ️  No translation exists: ${file.relativePath}`);
+      continue;
+    }
+
+    const frenchContent = readFileSync(frenchPath, 'utf-8');
+    const parsed = matter(frenchContent);
+    const currentSourceHash = parsed.data.source_content_hash;
+
+    // Update hash if it's different
+    if (currentSourceHash !== file.hash) {
+      const updatedFrontmatter = {
+        ...parsed.data,
+        source_content_hash: file.hash
+      };
+
+      const updatedContent = matter.stringify(parsed.content, updatedFrontmatter);
+      writeFileSync(frenchPath, updatedContent, 'utf-8');
+      
+      console.log(`✅ Hash updated: ${file.relativePath}`);
+      console.log(`   Old: ${currentSourceHash || 'none'}`);
+      console.log(`   New: ${file.hash}`);
+      updatedCount++;
+    } else {
+      console.log(`✓  Hash current: ${file.relativePath}`);
+    }
+  }
+
+  console.log('='.repeat(60));
+  console.log(`📊 Updated ${updatedCount} file hashes`);
 }
 
 // Translate a single file

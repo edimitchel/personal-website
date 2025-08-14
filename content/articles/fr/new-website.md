@@ -8,7 +8,7 @@ tags:
   - personal
 created: 2025-08-18T00:00:00.000Z
 original_slug: new-website
-source_content_hash: 8d2cb9ee98829f42ddfa22eb568132e6
+source_content_hash: 715bd01c40cc308263721c4e08315057
 ---
 
 Voici ma nouvelle page web.

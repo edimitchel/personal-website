@@ -1,8 +1,10 @@
 ---
 title: Airvam
-description: Migration et transformation d'une application de planification de vols pour l'Armée française vers Nuxt 3
-startedAt: 2024-06-21
-completedAt: 2024-09-06
+description: >-
+  Migration et transformation d'une application de planification de vols pour
+  l'Armée française vers Nuxt 3
+startedAt: 2024-06-21T00:00:00.000Z
+completedAt: 2024-09-06T00:00:00.000Z
 status: completed
 organization: Beta.gouv
 type: consulting
@@ -15,10 +17,10 @@ technologies:
   - Vue
   - TypeScript
   - REST API
-image: https://beta.gouv.fr/img/logo-generique-startup-carre-2019.jpg
+image: 'https://beta.gouv.fr/img/logo-generique-startup-carre-2019.jpg'
 authors: []
 original_slug: airvam
-source_content_hash: 9be2a15495fd15bda50a9c0517357dcf
+source_content_hash: 1b7bbf51fdde64ff3cdc5282bee25453
 ---
 
 # Airvam

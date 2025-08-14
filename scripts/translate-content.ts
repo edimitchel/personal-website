@@ -7,6 +7,7 @@ import {
   publishTranslation,
   listTranslationStatuses,
   calculateContentHash,
+  updateAllHashes,
   type ContentFile,
 } from './translate-content-lib.js';
 import { loadConfig } from 'c12';
@@ -31,7 +32,7 @@ async function main() {
   const command = args[0];
   const force = args.includes('--force');
   
-  if (!process.env.MISTRAL_API_KEY && !['list', 'status', 'publish'].includes(command || '')) {
+  if (!process.env.MISTRAL_API_KEY && !['list', 'status', 'publish', 'update-hashes'].includes(command || '')) {
     console.error('❌ MISTRAL_API_KEY environment variable is required for translation');
     process.exit(1);
   }
@@ -173,6 +174,11 @@ async function main() {
         listTranslationStatuses(statusCollection);
         break;
         
+      case 'update-hashes':
+        const hashCollection = args[1];
+        updateAllHashes(hashCollection);
+        break;
+        
       default:
         console.log(`
 🌐 AI Content Translation Tool
@@ -189,6 +195,7 @@ Commands:
   publish <collection> <filename>  Publish a translation (remove draft flag)
   list [collection]     List translation statuses
   status [collection]   Same as list
+  update-hashes [collection]  Update file hashes to avoid outdated mismatches (excludes arte)
 
 Options:
   --force              Force retranslation even if current
@@ -199,6 +206,8 @@ Examples:
   pnpm translate changed content/articles/post1.md content/projects/project1.md --force
   pnpm translate publish articles my-post.md
   pnpm translate list articles
+  pnpm translate update-hashes
+  pnpm translate update-hashes projects
 
 Environment Variables:
   MISTRAL_API_KEY      Required for translation (Mistral AI API key)
