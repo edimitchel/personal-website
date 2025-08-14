@@ -1,6 +1,7 @@
 ---
-title: New webpage for a new life
-description: New webpage for a new life
+title: Une nouvelle page pour une nouvelle vie
+description: "J'ai refait mon site pour marquer la nouvelle vie professionnelle
+  qui m'attend "
 slug: new-webpage
 categories:
   - Web
@@ -9,6 +10,8 @@ tags:
 created: 2025-08-18T00:00:00.000Z
 original_slug: new-website
 source_content_hash: 715bd01c40cc308263721c4e08315057
+ogImage:
+  props: {}
 ---
 
 Voici ma nouvelle page web.
@@ -47,7 +50,7 @@ Depuis juillet 2025, j'ai officiellement uniquement mon entreprise comme activit
 
 Je reste disponible pour du consulting Nuxt, mais depuis [l'acquisition de NuxtLabs par Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel), les missions sont réalisées directement avec moi, **donc si vous avez besoin d'aide pour un audit, une migration ou autre chose, n'hésitez pas à me contacter**.
 
-::ContactForm
+::contact-form
 ::
 
 # Bonjour nouveau site web
