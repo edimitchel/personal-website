@@ -1,11 +1,11 @@
 ---
-title: Librairie de composants Arte TV & Optimization Performance
+title: Arte TV Component Library & Performance Optimization
 organization: Arte GEIE
-startedAt: 2018-08-01
-completedAt: 2019-08-30
+startedAt: 2018-08-01T00:00:00.000Z
+completedAt: 2019-08-30T00:00:00.000Z
 description: >-
   Développement de composants React pour le site Arte.tv, intégration d'Arte
-  Concert et optimisation des performances
+  Concert et consulting sur l'optimisation des performances
 image: 'https://photos-corporate.arte.tv/documents/ftp/ressources/180/images/logo.png'
 url: 'https://arte.tv'
 type: consulting
@@ -34,13 +34,13 @@ Au cours de mon engagement en tant que consultant chez Arte GEIE, j'ai contribu�
 
 ## Développement de la bibliothèque de composants React
 
-J'ai développé et maintenu des composants React pour le site Arte.tv, conçus pour servir à la fois dans l'architecture principale et dans les applications internes d'Arte. Ces composants sont conçus pour fonctionner de manière transparente dans différents contextes :
+J'ai développé et maintenu des composants React pour le site Arte.tv, conçus pour servir à la fois dans l'architecture principale et dans les applications corporatives. Ces composants sont conçus pour fonctionner de manière transparente dans différents contextes :
 
 - **Intégration dans les applications fullstack** : Composants conçus pour la plateforme principale d'Arte.tv
-- **Compatibilité avec les applications internes** : Composants adaptés pour fonctionner avec les applications d'Arte
+- **Compatibilité avec les applications corporatives** : Composants adaptés pour fonctionner avec les applications internes d'Arte
 - **Approche framework-agnostique** : Utilisation de Preact pour créer des composants réutilisables sans dépendance à un framework spécifique
 
-La bibliothèque de composants garantit la cohérence à travers l'écosystème numérique d'Arte tout en maintenant une flexibilité pour différentes implémentations.
+La bibliothèque de composants garantit la cohérence à travers l'écosystème numérique d'Arte tout en maintenant une flexibilité pour différents contextes d'implémentation.
 
 ## Intégration de la page Arte Concert
 
@@ -51,7 +51,7 @@ J'ai collaboré étroitement avec l'équipe de design d'Arte pour mettre en œuv
 
 ## Consulting sur l'optimisation des performances
 
-Dans le cadre de mon rôle de consultant, j'ai réalisé une analyse des performances pour identifier les opportunités d'optimisation sur la plateforme d'Arte :
+Dans le cadre de mon rôle de consultant, j'ai réalisé une analyse des performances pour identifier les opportunités d'optimisation de la plateforme d'Arte :
 
 - **Audit des performances** : Analyse du code existant et identification des goulots d'étranglement
 - **Recommandations d'optimisation** : Fourniture d'insights actionnables pour améliorer les performances de l'application
