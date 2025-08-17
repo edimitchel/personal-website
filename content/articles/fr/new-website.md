@@ -28,11 +28,11 @@ Pendant ce nouveau poste, j'ai travaillé avec des technologies web que j'aime e
 
 La création officielle de mon entreprise a eu lieu le même jour que mon début de poste chez France Solar, quelle coïncidence.
 
-> Pour la blague, ma première mission – qui a lancé la création de mon entreprise – m'a été confiée par mon ancien manager N-2.
+> Autre coïncidence, ma première mission – qui a lancé la création de mon entreprise – m'a été confiée par mon ancien manager N-2.
 
 Quelques mois plus tard, j'ai rencontré Ferdinand de NuxtLabs lors de la conférence Vue Amsterdam (le jour de mon anniversaire en 2024). Cette rencontre a lancé mon parcours d'expert Nuxt. Quelle opportunité pour moi d'améliorer mon nouveau poste avec Nuxt et de faire à nouveau du consulting, mais avec un framework que j'aime.
 
-### Premières missions
+### Premières missions de consulting
 
 La première mission est arrivée rapidement en avril, puis une autre en juin, et ainsi de suite. *Jetez un œil à mes projets pour voir sur quoi j'ai travaillé.*
 
@@ -61,9 +61,11 @@ Je le voulais depuis un moment, et j'ai enfin trouvé le temps de le faire. C'es
 
 En tant qu'expert Nuxt, je n'aurais pu utiliser un autre framework que Nuxt. En particulier, je voulais quelque chose de simple pour éditer du contenu en utilisant du markdown, ainsi qu'un éditeur accessible pour me permettre de mettre à jour le contenu depuis n'importe quel terminal.
 
-J'ai été très heureux de voir que [Nuxt Studio serait open-source](https://nuxtlabs.com/blog) depuis l'acquisition de NuxtLabs. Cela m'aidera à développer son développement et à le rendre encore meilleur (par exemple, internationalisation intégrée, personnalisation, etc.).
-
 De plus, ce que je veux vraiment, c'est rendre mon contenu disponible dans toutes les langues que je parle, le français (ma langue maternelle) et l'anglais.
+
+J'ai été très heureux de voir que [Nuxt Studio sera open-source](https://nuxtlabs.com/blog) depuis l'acquisition de NuxtLabs. Cela m'aidera à développer son développement et à le rendre encore meilleur (par exemple, internationalisation intégrée, personnalisation, etc.).
+
+Aussi, j'ai décidé d'utiliser Nuxt Hub pour héberger mon site. Pour le moment, uniquement pour la base de données (pour Nuxt Content) et pour le déploiement. Restez à l'affût pour plus de fonctionnalités!
 
 ## Traduction de contenu alimentée par l'IA
 
@@ -73,4 +75,6 @@ J'ai choisi d'écrire du nouveau contenu en anglais et non en français, car je 
 
 # Plans futurs
 
-Maintenant que je suis indépendant, je veux partager davantage sur mon travail et mes expériences. Alors, attendez-vous à plus d'articles, de projets et d'expériences à l'avenir.
+Maintenant que je suis indépendant, je voudrais partager davantage sur mon travail et mes expériences. Alors, attendez-vous à plus d'articles, de projets et d'expériences à l'avenir.
+
+J'ai gardé les anciens articles en français venant de mes anciens blogs.

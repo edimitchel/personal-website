@@ -23,11 +23,11 @@ During this new job, I was working with web technologies that I love and that I 
 
 The official creation of my company was the same day I started my job at France Solar, what a coincidence.
 
-> For the joke, my first mission I had – which kickstart my enterprise creation – was given by my N-2 ex-manager.
+> Another coincidence, my first mission – which kickstart my enterprise creation – was given by my N-2 ex-manager.
 
 Few months after, I met Ferdinand from NuxtLabs during the Vue Amsterdam conference (the day of my birthday in 2024). This meeting kickstarted my Nuxt Expert journey. What an opportunity for me to empower my new job with Nuxt and doing consulting again but with a framework I love.
 
-### First missions
+### First consulting missions
 
 First mission came quickly in April, and then, another one in June, an so one after another. *Take a look to my projects to see what I've been working on.*
 
@@ -56,9 +56,11 @@ I've been meaning to do this for a while now, and finally found the time to make
 
 As an Nuxt Expert, I couldn't use another framework than Nuxt. Especially I wanted something simple to edit content using markdown thus an accessible editor to let me update the content from any terminal. 
 
-I was very happy to see that [Nuxt Studio would be open-sourced](https://nuxtlabs.com/blog) since NuxtLabs acquisition. This will help me to help its development and make it even better (i.e. built-in internationalization, customization, ...).
-
 Also, what I really want is to make my content available in all languages I speak, French (my native one) and English.
+
+I was very happy to see that [Nuxt Studio will be open-sourced](https://nuxtlabs.com/blog) since NuxtLabs acquisition. This will help me to help its development and make it even better (i.e. built-in internationalization, customization, ...).
+
+Also, I'm using Nuxt Hub for hosting. For the moment, only for the database (for Nuxt Content) and for the deployment. Stay tuned for more features!
 
 ## AI-powered content translation
 
@@ -68,5 +70,6 @@ I choose to write new content in English not in French as I'm used to.
 
 # Future plans
 
-Since I'm now independant, I want to share more about my work and my experiments. So, expect more articles, projects, and experiments in the future.
+Since I'm now independant, I would like to share more about my work and my experiments. So, expect more articles, projects, and experiments in the future.
 
+I keep legacy blog post from older web page, but only in french
