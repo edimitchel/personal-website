@@ -19,11 +19,11 @@ Pas seulement une nouvelle page web, mais aussi une nouvelle étape dans ma vie 
 
 ## Adieu à la vie d'employé
 
-Pendant plusieurs années d'emploi, j'ai été satisfait d'avoir un cadre pour me maintenir dans un emploi sécurisé. Après mon long parcours chez Altran (puis Capgemini Engineering), j'ai quitté pour un nouveau défi près de chez moi, mais aussi pour pouvoir plus ouvertement démarrer mon propre business à côté de mon emploi (ce qui n'était pas le cas avant). J'ai donc rejoint France Solar en tant que chef de projet technique.
+Pendant plusieurs années d'emploi, j'ai été satisfait d'avoir un cadre pour me maintenir dans une sécurisé d'emploi . Après mon long parcours chez Altran (puis Capgemini Engineering), j'ai quitté pour un nouveau défi près de chez moi, mais aussi pour pouvoir plus ouvertement démarrer mon propre business à côté de mon emploi (ce qui n'était pas le cas avant). J'ai donc rejoint France Solar en tant que chef de projet technique.
 
 Pendant ce nouveau poste, j'ai travaillé avec des technologies web que j'aime et que je n'avais pas eu l'occasion d'utiliser professionnellement avant : **Vue.js**.
 
-La création officielle de mon entreprise était le même jour que mon début de poste chez France Solar, quelle coïncidence.
+La création officielle de mon entreprise a été le même jour que mon démarrage de poste chez France Solar, quelle coïncidence.
 
 > Une autre coïncidence, ma première mission – qui a lancé la création de mon entreprise – m'a été confiée par mon ancien manager N-2.
 
@@ -37,7 +37,7 @@ Comme mon emploi prend la majeure partie de ma journée, j'ai dû travailler sur
 
 Ces missions ne sont pas assez fréquentes pour en faire un emploi à temps plein, mais c'est bien, cela a payé la rénovation de ma maison (haha).
 
-### Le coucher du soleil de France Solar
+### La fin de France Solar
 
 Quelque chose a changé dans ma situation : France Solar n'allait pas bien et sa fin était proche. Oui, mon emploi a pris fin un an et demi après mon début. Quelle tristesse, mais aussi quelle opportunité de travailler pleinement sur mon entreprise.
 
@@ -45,7 +45,7 @@ Quelque chose a changé dans ma situation : France Solar n'allait pas bien et sa
 
 Depuis juillet 2025, j'ai officiellement uniquement mon entreprise comme activité professionnelle. Cela semble effrayant quand on le dit comme ça, mais ce n'est pas si mal. Un ami m'a aidé à travailler sur un contrat minimum de 6 mois qui commence **aujourd'hui**.
 
-Je reste disponible pour le consulting Nuxt, mais depuis [l'acquisition de NuxtLabs par Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel), les missions sont réalisées directement avec moi, **donc si vous avez besoin d'aide pour un audit, une migration ou autre chose, n'hésitez pas à me contacter**.
+Je reste disponible pour du consulting Nuxt, mais depuis [l'acquisition de NuxtLabs par Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel), les missions sont réalisées directement avec moi, **donc si vous avez besoin d'aide pour un audit, une migration ou autre chose, n'hésitez pas à me contacter**.
 
 ::ContactForm
 ::
@@ -74,4 +74,4 @@ J'ai choisi d'écrire du nouveau contenu en anglais et non en français, car c'e
 
 Maintenant que je suis indépendant, je souhaite partager davantage sur mon travail et mes expériences. Alors, attendez-vous à plus d'articles, de projets et d'expériences à venir.
 
-Je conserve les anciens articles de blog de mon ancien site web, mais uniquement en français.
+Je conserve les anciens articles de blog de mon ancien site web, mais uniquement dans leur version française.
