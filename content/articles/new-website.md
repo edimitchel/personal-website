@@ -9,7 +9,7 @@ tags:
 created: 2025-08-18
 ---
 
-There it is, my new webpage. 
+There it is, my new webpage.
 
 Not only a new webpage but also a new step for my professional life.
 
@@ -23,7 +23,7 @@ During this new job, I was working with web technologies that I love and that I 
 
 The official creation of my company was the same day I started my job at France Solar, what a coincidence.
 
-> Another coincidence, my first mission – which kickstart my enterprise creation – was given by my N-2 ex-manager.
+> Another coincidence, my first mission – which kickstart my enterprise creation – was given by my N+2 ex-manager.
 
 Few months after, I met Ferdinand from NuxtLabs during the Vue Amsterdam conference (the day of my birthday in 2024). This meeting kickstarted my Nuxt Expert journey. What an opportunity for me to empower my new job with Nuxt and doing consulting again but with a framework I love.
 
@@ -45,7 +45,7 @@ Since July 2025, I have officially only my business as a professional loan. It s
 
 I'm still available for Nuxt consulting but since [NuxtLabs acquisition by Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel), missions are done directly with me, **so if you have need help for audit, for migration or anything else, don't hesitate to contact me**.
 
-::ContactForm
+::contact-form
 ::
 
 # Hello new website
@@ -54,7 +54,7 @@ I've been meaning to do this for a while now, and finally found the time to make
 
 ## Nuxt ecosystem with Nuxt Studio
 
-As an Nuxt Expert, I couldn't use another framework than Nuxt. Especially I wanted something simple to edit content using markdown thus an accessible editor to let me update the content from any terminal. 
+As an Nuxt Expert, I couldn't use another framework than Nuxt. Especially I wanted something simple to edit content using markdown thus an accessible editor to let me update the content from any terminal.
 
 Also, what I really want is to make my content available in all languages I speak, French (my native one) and English.
 

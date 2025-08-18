@@ -25,7 +25,7 @@ Pendant ce nouveau poste, j'ai travaillé avec des technologies web que j'aime e
 
 La création officielle de mon entreprise a été le même jour que mon démarrage de poste chez France Solar, quelle coïncidence.
 
-> Une autre coïncidence, ma première mission – qui a lancé la création de mon entreprise – m'a été confiée par mon ancien manager N-2.
+> Une autre coïncidence, ma première mission – qui a lancé la création de mon entreprise – m'a été confiée par mon ancien manager N+2.
 
 Quelques mois plus tard, j'ai rencontré Ferdinand de NuxtLabs lors de la conférence Vue Amsterdam (le jour de mon anniversaire en 2024). Cette rencontre a lancé mon parcours d'expert Nuxt. Quelle opportunité pour moi d'améliorer mon nouveau poste avec Nuxt et de faire à nouveau du consulting, mais avec un framework que j'aime.
 
@@ -47,7 +47,7 @@ Depuis juillet 2025, j'ai officiellement uniquement mon entreprise comme activit
 
 Je reste disponible pour du consulting Nuxt, mais depuis [l'acquisition de NuxtLabs par Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel), les missions sont réalisées directement avec moi, **donc si vous avez besoin d'aide pour un audit, une migration ou autre chose, n'hésitez pas à me contacter**.
 
-::ContactForm
+::contact-form
 ::
 
 # Bonjour nouveau site web
