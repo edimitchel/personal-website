@@ -21,22 +21,22 @@
 
     <ClientOnly>
       <nav class="navigation" v-if="noMenu || hideMenu" :class="{ hidden: hideMenu }">
+        <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
+          :class="{ 'disabled': store.notTranslated }"
+          :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')">
+          <Transition mode="out-in" name="fade">
+            <UnoIcon :key="locale"
+              :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
+          </Transition>
+        </SwitchLocalePathLink>
+        <button class="mode-switcher" @click="cycleModes" :aria-label="$t('header.cycleModes')">
+          <Transition name="fade" mode="out-in">
+            <UnoIcon v-if="mode.preference === 'dark'" key="dark" class="i-line-md-lightbulb-off-twotone" />
+            <UnoIcon v-else-if="mode.preference === 'light'" key="light" class="i-line-md-lightbulb-twotone" />
+            <UnoIcon v-else key="system" class="i-line-md-light-dark" />
+          </Transition>
+        </button>
         <ul>
-          <SwitchLocalePathLink :locale="locale === 'fr' ? 'en' : 'fr'" class="lang-switcher"
-            :class="{ 'disabled': store.notTranslated }"
-            :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')">
-            <Transition mode="out-in" name="fade">
-              <UnoIcon :key="locale"
-                :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'" />
-            </Transition>
-          </SwitchLocalePathLink>
-          <button class="mode-switcher" @click="cycleModes" :aria-label="$t('header.cycleModes')">
-            <Transition name="fade" mode="out-in">
-              <UnoIcon v-if="mode.preference === 'dark'" key="dark" class="i-line-md-lightbulb-off-twotone" />
-              <UnoIcon v-else-if="mode.preference === 'light'" key="light" class="i-line-md-lightbulb-twotone" />
-              <UnoIcon v-else key="system" class="i-line-md-light-dark" />
-            </Transition>
-          </button>
 
           <li v-for="(item, index) in props.links" :key="item.path"
             :style="{ '--index': index, '--count': props.links?.length }">
@@ -45,17 +45,21 @@
             </NuxtLinkLocale>
           </li>
 
-          <button class="contact-button" @click="contactVisible = !contactVisible" :aria-label="$t('header.contact')">
-            <UnoIcon class="i-line-md-chat-round-dots" />
-          </button>
-          <Teleport to="#modals">
-            <div v-if="contactVisible" class="fixed w-100vw h-100lvh inset-0 p-10 backdrop-blur-sm z-110" @click.self="contactVisible = false">
-              <UnoIcon class="i-line-md-close absolute text-xl left-50% -translate-x-1/2 top-5 block cursor-pointer text-foreground" @click="contactVisible = false" />
-              <ContactForm :isVisible="contactVisible" @update:isVisible="contactVisible = $event" class="text-background">
-              </ContactForm>
-            </div>
-          </Teleport>
         </ul>
+        <button class="contact-button" @click="contactVisible = !contactVisible" :aria-label="$t('header.contact')">
+          <UnoIcon class="i-line-md-chat-round-dots" />
+        </button>
+        <Teleport to="#modals">
+          <div v-if="contactVisible" class="fixed w-100vw h-100lvh inset-0 p-10 backdrop-blur-sm z-110"
+            @click.self="contactVisible = false">
+            <UnoIcon
+              class="i-line-md-close absolute text-xl left-50% -translate-x-1/2 top-5 block cursor-pointer text-foreground"
+              @click="contactVisible = false" />
+            <ContactForm :isVisible="contactVisible" @update:isVisible="contactVisible = $event"
+              class="text-background">
+            </ContactForm>
+          </div>
+        </Teleport>
       </nav>
     </ClientOnly>
   </header>

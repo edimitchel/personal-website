@@ -84,6 +84,7 @@
     "legal": "Legal"
   },
   "carousel": {
-    "loading": "Loading experiences"
+    "loading": "Loading experiences",
+    "toggle_autoplay": "Toggle autoplay"
   }
 }

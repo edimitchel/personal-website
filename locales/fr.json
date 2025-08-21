@@ -84,6 +84,7 @@
     "legal": "Mentions légales"
   },
   "carousel": {
-    "loading": "Chargement des expériences"
+    "loading": "Chargement des expériences",
+    "toggle_autoplay": "Relancer/Arrêter le slider"
   }
 }

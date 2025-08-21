@@ -46,7 +46,8 @@
         <Transition name="fade" mode="out-in">
           <button :key="isAutoplaying ? 'pause' : 'play'"
             @click="() => isAutoplaying ? stopAutoplay() : startAutoplay()"
-            class="block w-3 h-3 cursor-pointer ring-1 ring-primary-600">
+            class="block w-3 h-3 cursor-pointer ring-1 ring-primary-600"
+            aria-label="$t('carousel.toggle_autoplay')">
             <UnoIcon class="w-3 h-3" :class="isAutoplaying ? 'i-ic-baseline-pause' : 'i-ic-baseline-play-arrow'" />
           </button>
         </Transition>

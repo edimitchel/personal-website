@@ -91,10 +91,11 @@
       <Carousel :items="experiences">
         <template #default="{ item }">
           <NuxtLinkLocale :to="`/projects/${item.slug}`"
-            class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-background/80 hover:bg-background">
+            class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-background/80 hover:bg-background"
+            :aria-label="item.title">
             <UnoIcon class="i-ic-baseline-open-in-new bg-foreground" />
           </NuxtLinkLocale>
-          <LazyNuxtImg :src="item.image" class="hidden md:block absolute bottom-2 right-2 w-15 max-h-20 object-contain pointer-events-none" />
+          <LazyNuxtImg :src="item.image" class="hidden md:block absolute bottom-2 right-2 w-15 max-h-20 object-contain pointer-events-none" :aria-label="item.title" />
           <h2 class="text-lg font-semibold m-0 m-0 text-background w-full pr-8 -my-1 truncate">{{ item.title }}</h2>
           <h4 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h4>
           <div class="text-xs text-primary-700">
