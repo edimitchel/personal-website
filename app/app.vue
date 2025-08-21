@@ -4,6 +4,17 @@
     <NuxtPage />
   </NuxtLayout>
 </template>
+
+<script setup lang="ts">
+const localeHead = useLocaleHead()
+
+useHead({
+  htmlAttrs: {
+    lang: localeHead.value.htmlAttrs?.lang
+  }
+})
+</script>
+
 <style>
 html {
   --uno: transition-colors duration-300;

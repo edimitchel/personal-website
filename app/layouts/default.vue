@@ -50,7 +50,6 @@ const info = computed(() => ({
 }));
 
 export type LayoutHeaderProps = typeof info.value
-
 </script>
 
 <style scoped>
