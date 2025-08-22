@@ -19,7 +19,7 @@ Pas seulement une nouvelle page web, mais aussi une nouvelle étape dans ma vie 
 
 ## Adieu à la vie d'employé
 
-Pendant plusieurs années d'emploi, j'ai été satisfait d'avoir un cadre pour me maintenir dans une sécurisé d'emploi . Après mon long parcours chez Altran (puis Capgemini Engineering), j'ai quitté pour un nouveau défi près de chez moi, mais aussi pour pouvoir plus ouvertement démarrer mon propre business à côté de mon emploi (ce qui n'était pas le cas avant). J'ai donc rejoint France Solar en tant que chef de projet technique.
+Pendant plusieurs années d'emploi, j'ai été satisfait d'avoir un cadre pour me maintenir dans une sécurité d'emploi . Après mon long parcours chez Altran (puis Capgemini Engineering), j'ai quitté pour un nouveau défi près de chez moi, mais aussi pour pouvoir plus ouvertement démarrer mon propre business à côté de mon emploi (ce qui n'était pas le cas avant). J'ai donc rejoint France Solar en tant que chef de projet technique.
 
 Pendant ce nouveau poste, j'ai travaillé avec des technologies web que j'aime et que je n'avais pas eu l'occasion d'utiliser professionnellement avant : **Vue.js**.
 
