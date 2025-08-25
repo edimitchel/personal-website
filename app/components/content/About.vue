@@ -88,7 +88,7 @@
       </h2>
 
       <!-- Carousel with experiences -->
-      <Carousel :items="experiences">
+      <LazyCarousel :hydrate-on-visible="{ rootMargin: '200px' }" :items="experiences">
         <template #default="{ item }">
           <NuxtLinkLocale :to="`/projects/${item.slug}`"
             class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-background/80 hover:bg-background"
@@ -112,7 +112,7 @@
           }}</p>
           <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="justify-start" />
         </template>
-      </Carousel>
+      </LazyCarousel>
     </section>
 
     <section
@@ -223,6 +223,8 @@ interface ProfileData {
 }
 
 const { locale } = useI18n()
+
+const LazyCarousel = defineLazyHydrationComponent('visible', () => import('~/components/Carousel.vue'))
 
 defineProps<ProfileData>()
 </script>
