@@ -85,6 +85,7 @@ export default defineNuxtConfig({
 
   i18n: {
     restructureDir: '.',
+    baseUrl: 'https://micheledighoffer.fr',
     locales: [
       { code: 'en', file: 'en.json', name: 'English', language: 'en' },
       { code: 'fr', file: 'fr.json', name: 'Français', language: 'fr' }
