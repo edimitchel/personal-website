@@ -45,7 +45,7 @@ Quelque chose a changé dans ma situation : France Solar n'allait pas bien et sa
 
 Depuis juillet 2025, j'ai officiellement uniquement mon entreprise comme activité professionnelle. Cela semble effrayant quand on le dit comme ça, mais ce n'est pas si mal. Un ami m'a aidé à travailler sur un contrat minimum de 6 mois qui commence **aujourd'hui**.
 
-Je reste disponible pour du consulting Nuxt, mais depuis [l'acquisition de NuxtLabs par Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel), les missions sont réalisées directement avec moi, **donc si vous avez besoin d'aide pour un audit, une migration ou autre chose, n'hésitez pas à me contacter**.
+Je reste disponible pour du consulting Nuxt, mais depuis [l'acquisition de NuxtLabs par Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel){target="_blank"} , les missions sont réalisées directement avec moi, **donc si vous avez besoin d'aide pour un audit, une migration ou autre chose, n'hésitez pas à me contacter**.
 
 ::contact-form
 ::
@@ -60,7 +60,7 @@ En tant qu'expert Nuxt, je n'aurais pu utiliser un autre framework que Nuxt. En 
 
 De plus, ce que je veux vraiment, c'est rendre mon contenu disponible dans toutes les langues que je parle, le français (ma langue maternelle) et l'anglais.
 
-J'ai été très heureux de voir que [Nuxt Studio sera open-source](https://nuxtlabs.com) depuis l'acquisition de NuxtLabs. Cela m'aidera à développer et à améliorer Nuxt Studio (par exemple, internationalisation intégrée, personnalisation, etc.).
+J'ai été très heureux de voir que [Nuxt Studio sera open-source](https://nuxtlabs.com){target="_blank"}  depuis l'acquisition de NuxtLabs. Cela m'aidera à développer et à améliorer Nuxt Studio (par exemple, internationalisation intégrée, personnalisation, etc.).
 
 De plus, j'utilise Nuxt Hub pour l'hébergement. Pour le moment, uniquement pour la base de données (pour Nuxt Content) et pour le déploiement. Restez à l'écoute pour de nouvelles fonctionnalités !
 

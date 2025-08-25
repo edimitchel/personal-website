@@ -43,7 +43,7 @@ Something changed in my situation: France Solar wasn't in a good shape and its e
 
 Since July 2025, I have officially only my business as a professional loan. It sounds scary when you put it like that but it's not that bad. A friend of mine helped me to work on a minimum 6-months contract which starts **today**.
 
-I'm still available for Nuxt consulting but since [NuxtLabs acquisition by Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel), missions are done directly with me, **so if you have need help for audit, for migration or anything else, don't hesitate to contact me**.
+I'm still available for Nuxt consulting but since [NuxtLabs acquisition by Vercel](https://vercel.com/blog/nuxtlabs-joins-vercel){target="_blank"} , missions are done directly with me, **so if you have need help for audit, for migration or anything else, don't hesitate to contact me**.
 
 ::contact-form
 ::
@@ -58,7 +58,7 @@ As an Nuxt Expert, I couldn't use another framework than Nuxt. Especially I want
 
 Also, what I really want is to make my content available in all languages I speak, French (my native one) and English.
 
-I was very happy to see that [Nuxt Studio will be open-sourced](https://nuxtlabs.com) since NuxtLabs acquisition. This will help me to help its development and make it even better (i.e. built-in internationalization, customization, ...).
+I was very happy to see that [Nuxt Studio will be open-sourced](https://nuxtlabs.com){target="_blank"}  since NuxtLabs acquisition. This will help me to help its development and make it even better (i.e. built-in internationalization, customization, ...).
 
 Also, I'm using Nuxt Hub for hosting. For the moment, only for the database (for Nuxt Content) and for the deployment. Stay tuned for more features!
 
