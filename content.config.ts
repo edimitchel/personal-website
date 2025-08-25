@@ -1,5 +1,6 @@
-import { defineCollection, defineContentConfig, z } from "@nuxt/content";
+import { defineCollection, defineContentConfig, z, type Collection } from "@nuxt/content";
 import { asOgImageCollection } from "nuxt-og-image/content";
+import { asSchemaOrgCollection } from 'nuxt-schema-org/content'
 
 // Base content schema for reusability
 const baseContentSchema = z.object({
@@ -54,25 +55,28 @@ const projectSchema = baseContentSchema.extend({
 export default defineContentConfig({
   collections: {
     pages: defineCollection(
-      asOgImageCollection({
-        source: 'pages/**/*.md',
-        type: 'page',
-        schema: baseContentSchema,
-      })),
+        asSchemaOrgCollection(
+          asOgImageCollection({
+            source: 'pages/**/*.md',
+            type: 'page',
+            schema: baseContentSchema,
+          }))),
 
     // English collections
     articles: defineCollection(
-      asOgImageCollection({
-        source: 'articles/**/*.md',
-        type: 'page',
-        schema: articleSchema,
-      })),
+        asSchemaOrgCollection(
+          asOgImageCollection({
+            source: 'articles/**/*.md',
+            type: 'page',
+            schema: articleSchema,
+          }))),
 
     projects: defineCollection(
-      asOgImageCollection({
-        source: 'projects/**/*.md',
-        type: 'page',
-        schema: projectSchema,
-      })),
+        asSchemaOrgCollection(
+          asOgImageCollection({
+            source: 'projects/**/*.md',
+            type: 'page',
+            schema: projectSchema,
+          }))),
   }
-})
+});

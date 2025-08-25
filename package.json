@@ -19,7 +19,7 @@
     "translate:publish": "node dist/translate-content.js publish"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.364",
+    "@iconify/json": "^2.2.378",
     "@nuxt/content": "^3.6.3",
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/image": "^1.11.0",
@@ -27,34 +27,39 @@
     "@nuxtjs/color-mode": "3.5.2",
     "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
     "@pinia/nuxt": "^0.11.2",
-    "@unocss/extractor-mdc": "^66.3.3",
-    "@unocss/nuxt": "^66.3.3",
-    "@unocss/preset-icons": "^66.3.3",
+    "@unocss/extractor-mdc": "^66.4.2",
+    "@unocss/nuxt": "^66.4.2",
+    "@unocss/preset-icons": "^66.4.2",
     "better-sqlite3": "^12.2.0",
-    "motion-v": "^1.6.1",
-    "nuxt": "^4.0.2",
+    "motion-v": "^1.7.0",
+    "nuxt": "^4.0.3",
     "nuxt-og-image": "5.1.9",
+    "nuxt-schema-org": "5.0.6",
+    "nuxt-seo-utils": "7.0.14",
     "ogl": "^1.0.11"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.7.1",
+    "@nuxt/eslint": "^1.9.0",
     "@nuxt/test-utils": "^3.19.2",
     "@vitest/ui": "^3.2.4",
     "@vue/test-utils": "^2.4.6",
     "c12": "^3.2.0",
-    "eslint": "^9.32.0",
+    "eslint": "^9.34.0",
     "gray-matter": "^4.0.3",
     "happy-dom": "^18.0.1",
     "nuxthub": "^0.9.3",
-    "tsdown": "^0.13.0",
-    "tsx": "^4.20.3",
-    "unocss": "^66.3.3",
+    "tsdown": "^0.13.5",
+    "tsx": "^4.20.5",
+    "unocss": "^66.4.2",
     "unocss-preset-theme": "^0.14.1",
     "vitest": "^3.2.4",
-    "vue-tsc": "^3.0.4",
-    "wrangler": "^4.26.1"
+    "vue-tsc": "^3.0.6",
+    "wrangler": "^4.32.0"
   },
-  "packageManager": "pnpm@10.13.1",
+  "resolutions": {
+    "@nuxtjs/mdc": "^0.17.2"
+  },
+  "packageManager": "pnpm@10.15.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "better-sqlite3",

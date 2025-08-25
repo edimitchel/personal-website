@@ -27,7 +27,9 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
-    'nuxt-og-image'
+    'nuxt-og-image',
+    'nuxt-schema-org',
+    'nuxt-seo-utils'
   ],
 
   unocss: {
@@ -115,6 +117,26 @@ export default defineNuxtConfig({
         sharp: false,
         chromium: false
       }
+    }
+  },
+
+  seo: {
+    meta: {
+      twitterCreator: '@edimitchel',
+      author: 'Michel Edighoffer',
+      colorScheme: 'dark light',
+      applicationName: 'Michel Edighoffer',
+
+      // Nuxt SEO Utils already sets the below tags for you
+      ogSiteName: 'Michel Edighoffer',
+      ogLocale: 'fr_FR',
+      ogType: 'website',
+      ogUrl: 'https://micheledighoffer.fr',
+      ogTitle: 'Michel Edighoffer',
+
+      // Other Nuxt SEO modules handles these
+      ogImage: 'https://micheledighoffer.fr/__og-image__/static/og.png',
+      robots: 'index, follow',
     }
   },
 

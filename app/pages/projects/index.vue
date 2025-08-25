@@ -60,6 +60,7 @@ useHead(() => ({
   title: 'Michel Edighoffer / ' + t('header.projects'),
 }))
 
+
 if (project?.ogImage) {
   defineOgImage(project.ogImage)
 }
