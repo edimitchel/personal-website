@@ -60,7 +60,7 @@ En tant qu'expert Nuxt, je n'aurais pu utiliser un autre framework que Nuxt. En 
 
 De plus, ce que je veux vraiment, c'est rendre mon contenu disponible dans toutes les langues que je parle, le français (ma langue maternelle) et l'anglais.
 
-J'ai été très heureux de voir que [Nuxt Studio sera open-source](https://nuxtlabs.com/blog) depuis l'acquisition de NuxtLabs. Cela m'aidera à développer et à améliorer Nuxt Studio (par exemple, internationalisation intégrée, personnalisation, etc.).
+J'ai été très heureux de voir que [Nuxt Studio sera open-source](https://nuxtlabs.com) depuis l'acquisition de NuxtLabs. Cela m'aidera à développer et à améliorer Nuxt Studio (par exemple, internationalisation intégrée, personnalisation, etc.).
 
 De plus, j'utilise Nuxt Hub pour l'hébergement. Pour le moment, uniquement pour la base de données (pour Nuxt Content) et pour le déploiement. Restez à l'écoute pour de nouvelles fonctionnalités !
 
