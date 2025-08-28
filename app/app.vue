@@ -14,6 +14,10 @@ html.dark-mode {
   background-color: #000;
 }
 
+html.light-mode {
+  background-color: #fff;
+}
+
 #app {
   min-height: 100lvh;
   display: flex;
