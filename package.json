@@ -54,7 +54,7 @@
     "unocss-preset-theme": "^0.14.1",
     "vitest": "^3.2.4",
     "vue-tsc": "^3.0.6",
-    "wrangler": "^4.32.0"
+    "wrangler": "^4.59.1"
   },
   "resolutions": {
     "@nuxtjs/mdc": "^0.17.2"
