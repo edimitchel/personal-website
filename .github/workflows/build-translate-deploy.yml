@@ -61,8 +61,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # Translation Step
+      # Translation — main branch only (disabled on PRs and feature branches)
       - name: Check for content changes
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: content-changes
         run: |
           # Check if any content files were changed - exclude French files
@@ -80,6 +81,7 @@ jobs:
           fi
 
       - name: Check commit message for translation keywords
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: check-commit
         run: |
           COMMIT_MSG="${{ github.event.head_commit.message }}"
@@ -95,7 +97,7 @@ jobs:
           fi
 
       - name: Run translations
-        if: steps.content-changes.outputs.content_changed == 'true' || steps.check-commit.outputs.force_translate == 'true'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && (steps.content-changes.outputs.content_changed == 'true' || steps.check-commit.outputs.force_translate == 'true')
         run: |
           echo "🌐 Running translations..."
           
@@ -112,6 +114,7 @@ jobs:
           fi
 
       - name: Check for translation changes
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: translation-changes
         run: |
           # Check if any French translation files have unstaged changes
@@ -241,8 +244,6 @@ jobs:
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
             echo "🎉 PR validation completed!"
             echo "📊 Summary:"
-            echo "  - Content changed: ${{ steps.content-changes.outputs.content_changed }}"
-            echo "  - Force translation: ${{ steps.check-commit.outputs.force_translate }}"
-            echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
-            echo "  - Deployment: ⏸️ Skipped (PR mode)"
+            echo "  - Translation: ⏸️ Disabled on branches"
+            echo "  - Deployment: ✅ Preview deployed"
           fi
