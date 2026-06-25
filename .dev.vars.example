@@ -1,0 +1,5 @@
+# Copy to .dev.vars for local `wrangler dev` (never commit .dev.vars)
+TELEGRAM_BOT_TOKEN=
+TELEGRAM_CHAT_ID=
+STUDIO_GITHUB_CLIENT_ID=
+STUDIO_GITHUB_CLIENT_SECRET=

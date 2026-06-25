@@ -1,6 +1,65 @@
 {
-    "compatibility_flags": [
-        "nodejs_compat"
-    ],
-    "compatibility_date": "2024-09-23"
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "website",
+  "main": "./.output/server/index.mjs",
+  "compatibility_date": "2026-06-25",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": "./.output/public/",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "r2_buckets": [
+    {
+      "binding": "BLOB",
+      "bucket_name": "website"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "CACHE",
+      "id": "c900c19350ec44b48274b187cea85db5"
+    },
+    {
+      "binding": "KV",
+      "id": "f93eebd07ea34777a8c09cd342cd816b"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_id": "b8e2cd39-ab48-424c-b949-21f8a7d3496f"
+    }
+  ],
+  "env": {
+    "preview": {
+      "name": "website-preview",
+      "r2_buckets": [
+        {
+          "binding": "BLOB",
+          "bucket_name": "website-preview"
+        }
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "58fafc1fc83540298ba220412908a387"
+        },
+        {
+          "binding": "KV",
+          "id": "374a0465ec34454bbe40d577e9aafefc"
+        }
+      ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_id": "6c38991d-7c91-4660-9e1d-6387c437f211"
+        }
+      ]
+    }
+  }
 }
