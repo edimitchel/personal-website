@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@iconify/json": "^2.2.491",
+    "@libsql/client": "^0.17.4",
     "@nuxt/content": "^3.14.0",
     "@nuxt/fonts": "^0.14.0",
     "@nuxt/image": "^1.11.0",
