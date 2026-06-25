@@ -9,6 +9,8 @@ on:
       - 'nuxt.config.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - '.github/workflows/build-translate-deploy.yml'
+      - 'wrangler.jsonc'
   pull_request:
     branches: ['main']
     types: [opened, synchronize, reopened, closed]
@@ -20,7 +22,7 @@ env:
 jobs:
   build-translate-deploy:
     runs-on: ubuntu-latest
-    environment: NuxtHub
+    environment: Cloudflare
     
     # Skip if commit was made by a bot to prevent infinite loops
     if: github.actor != 'github-actions[bot]'
@@ -59,8 +61,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # Translation Step
+      # Translation — main branch only (disabled on PRs and feature branches)
       - name: Check for content changes
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: content-changes
         run: |
           # Check if any content files were changed - exclude French files
@@ -78,6 +81,7 @@ jobs:
           fi
 
       - name: Check commit message for translation keywords
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: check-commit
         run: |
           COMMIT_MSG="${{ github.event.head_commit.message }}"
@@ -93,7 +97,7 @@ jobs:
           fi
 
       - name: Run translations
-        if: steps.content-changes.outputs.content_changed == 'true' || steps.check-commit.outputs.force_translate == 'true'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && (steps.content-changes.outputs.content_changed == 'true' || steps.check-commit.outputs.force_translate == 'true')
         run: |
           echo "🌐 Running translations..."
           
@@ -110,6 +114,7 @@ jobs:
           fi
 
       - name: Check for translation changes
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: translation-changes
         run: |
           # Check if any French translation files have unstaged changes
@@ -197,12 +202,26 @@ jobs:
           echo "Switched to branch: $(git branch --show-current)"
           echo "Latest commit on main: $(git log -1 --oneline)"
 
-      # Build & Deploy Step - ONLY on main branch pushes (not PRs)
-      - name: Deploy with nuxt-hub cli
-        run: npx nuxthub deploy
+      # Build — validate on PRs, deploy on main
+      - name: Build
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+        run: pnpm build
+
+      # Deploy preview — pull requests
+      - name: Deploy to Cloudflare Workers (preview)
+        if: github.event_name == 'pull_request'
+        run: npx wrangler deploy --env preview
         env:
-          NUXT_HUB_PROJECT_KEY: ${{ secrets.NUXT_HUB_PROJECT_KEY}}
-          NUXT_HUB_USER_TOKEN: ${{ secrets.NUXT_HUB_USER_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # Deploy production — main branch only
+      - name: Deploy to Cloudflare Workers (production)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
       - name: Final status
         run: |
@@ -225,8 +244,6 @@ jobs:
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
             echo "🎉 PR validation completed!"
             echo "📊 Summary:"
-            echo "  - Content changed: ${{ steps.content-changes.outputs.content_changed }}"
-            echo "  - Force translation: ${{ steps.check-commit.outputs.force_translate }}"
-            echo "  - Translation changes: ${{ steps.translation-changes.outputs.has_changes }}"
-            echo "  - Deployment: ⏸️ Skipped (PR mode)"
+            echo "  - Translation: ⏸️ Disabled on branches"
+            echo "  - Deployment: ✅ Preview deployed"
           fi

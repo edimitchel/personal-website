@@ -4,7 +4,7 @@ description: >-
   Diriger l'équipe de développement pour des outils internes, une entreprise
   d'énergie solaire
 startedAt: 2023-10-02T00:00:00.000Z
-completedAt: 2025-07-02T00:00:00.000Z
+completedAt: 2025-08-07T00:00:00.000Z
 status: completed
 organization: France Solar
 role: Technical Fullstack Leader

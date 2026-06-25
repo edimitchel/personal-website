@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  compatibilityDate: "2025-07-26",
+  compatibilityDate: "2026-06-25",
   experimental: {
     defaults: {
       nuxtLink: {
@@ -101,8 +101,10 @@ export default defineNuxtConfig({
   },
 
   hub: {
-    database: true,
+    db: "sqlite",
     blob: true,
+    kv: true,
+    cache: true,
   },
 
   ogImage: {
@@ -132,9 +134,19 @@ export default defineNuxtConfig({
   },
 
   nitro: {
+    preset: "cloudflare_module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+    },
     prerender: {
       routes: ["/"],
       crawlLinks: true,
+      ignore: [
+        // FR-only projects — no English content to prerender
+        "/en/projects/intclen",
+        "/en/projects/pictake",
+      ],
     },
   },
 });
