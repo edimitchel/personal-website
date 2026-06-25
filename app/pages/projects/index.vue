@@ -26,7 +26,7 @@ export const transformProject = (project: (PagesCollectionItem | ProjectsCollect
 <script setup lang="ts">
 import type { PagesCollectionItem, ContentNavigationItem, ProjectsCollectionItem } from '@nuxt/content';
 
-defineOgImageComponent('Page');
+defineOgImage('Page');
 
 const store = layoutStore();
 const { t } = useI18n()

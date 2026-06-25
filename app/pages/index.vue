@@ -8,7 +8,7 @@
 import type { Experience } from '~/components/content/About.vue';
 import { transformProject } from './projects/index.vue';
 
-defineOgImageComponent('Page');
+defineOgImage('Page');
 
 const appConfig = useAppConfig();
 const { messages: storeMessages } = storeToRefs(layoutStore())

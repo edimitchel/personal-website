@@ -111,15 +111,6 @@ export default defineNuxtConfig({
       cacheMaxAgeSeconds:
         process.env.NODE_ENV === "production" ? 60 * 60 * 24 * 31 : 0,
     },
-    compatibility: {
-      runtime: {
-        satori: "node",
-        resvg: false,
-        "css-inline": false,
-        sharp: false,
-        chromium: false,
-      },
-    },
   },
 
   seo: {
@@ -136,8 +127,6 @@ export default defineNuxtConfig({
       ogUrl: "https://micheledighoffer.fr",
       ogTitle: "Michel Edighoffer",
 
-      // Other Nuxt SEO modules handles these
-      ogImage: "https://micheledighoffer.fr/__og-image__/static/og.png",
       robots: "index, follow",
     },
   },

@@ -44,7 +44,7 @@ if (content) {
   })
 }
 
-defineOgImageComponent('Page', {
+defineOgImage('Page', {
   headline: 'Article',
   title: (content?.title ?? '').replace('Michel Edighoffer / ', ''),
 });

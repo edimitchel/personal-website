@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import defaultImage from '~/assets/images/self-image.jpeg'
+const defaultImage = '/images/self-image.jpeg'
 
 defineProps<{
   title: string,
@@ -27,7 +27,7 @@ defineProps<{
       </defs>
     </svg>
     
-    <img class="absolute top-[175px] left-[50px] object-contain" width="250" height="250" :src="image ?? defaultImage" />
+    <img class="absolute top-[175px] left-[50px] object-contain" :width="250" :height="250" :src="image ?? defaultImage" />
 
     <div class="w-full pl-[350px] pr-[50px] text-white">
       <p v-if="headline" class="uppercase text-[24px] mb-4 font-semibold">
