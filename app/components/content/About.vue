@@ -110,7 +110,7 @@
           <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3 md:pr-17">{{
             item.description
           }}</p>
-          <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="justify-start" />
+          <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="justify-start mr-15" />
         </template>
       </LazyCarousel>
     </section>
