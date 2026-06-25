@@ -100,6 +100,14 @@ export default defineNuxtConfig({
     },
   },
 
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@unhead/schema-org/vue',
+      ]
+    }
+  },
+
   hub: {
     db: "sqlite",
     blob: true,
