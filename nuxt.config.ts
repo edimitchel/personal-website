@@ -60,6 +60,13 @@ export default defineNuxtConfig({
 
   css: ["~/assets/style.css"],
 
+  fonts: {
+    families: [
+      { name: "Gabarito", weights: [400, 500, 600, 700, 800, 900], global: true },
+      { name: "Source Code Pro", weights: [400, 500], global: true },
+    ],
+  },
+
   content: {
     experimental: { nativeSqlite: true },
     preview: {
@@ -120,6 +127,11 @@ export default defineNuxtConfig({
     defaults: {
       cacheMaxAgeSeconds:
         process.env.NODE_ENV === "production" ? 60 * 60 * 24 * 31 : 0,
+    },
+    security: {
+      secret:
+        process.env.NUXT_OG_IMAGE_SECRET
+        || (process.env.NODE_ENV === "development" ? false : undefined),
     },
   },
 

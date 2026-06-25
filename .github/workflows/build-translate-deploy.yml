@@ -42,7 +42,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: 'pnpm'
 
       - name: Get pnpm store directory
@@ -206,11 +206,13 @@ jobs:
       - name: Build
         if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
         run: pnpm build
+        env:
+          NUXT_OG_IMAGE_SECRET: ${{ secrets.NUXT_OG_IMAGE_SECRET }}
 
       # Deploy preview — pull requests
       - name: Deploy to Cloudflare Workers (preview)
         if: github.event_name == 'pull_request'
-        run: npx wrangler deploy --env preview
+        run: pnpm exec wrangler deploy --env preview
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -218,7 +220,7 @@ jobs:
       # Deploy production — main branch only
       - name: Deploy to Cloudflare Workers (production)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: npx wrangler deploy
+        run: pnpm exec wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

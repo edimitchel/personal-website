@@ -60,8 +60,9 @@ export default defineConfig({
             ...colors,
         },
         font: {
+            sans: 'Gabarito',
             serif: 'Gabarito',
-            mono: 'Source Code Pro'
+            mono: 'Source Code Pro',
         },
     },
     transformers: [

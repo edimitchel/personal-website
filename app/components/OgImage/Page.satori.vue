@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col justify-center bg-black">
+  <div class="w-full h-full flex flex-col justify-center bg-black font-sans">
     <svg class="absolute top-0 right-0" width="1200" height="675" viewBox="0 0 1200 675" fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <g style="mix-blend-mode:overlay" opacity="0.7" filter="url(#filter0_f_448_25)">

@@ -2,6 +2,9 @@
   "name": "nuxthub-starter",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -49,6 +52,7 @@
     "@vitest/ui": "^3.2.4",
     "@vue/test-utils": "^2.4.11",
     "c12": "^3.3.3",
+    "drizzle-kit": "^0.31.4",
     "eslint": "^9.39.2",
     "gray-matter": "^4.0.3",
     "happy-dom": "^18.0.1",
