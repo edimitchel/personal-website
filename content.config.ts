@@ -1,6 +1,11 @@
-import { defineCollection, defineContentConfig, z, type Collection } from "@nuxt/content";
-import { asOgImageCollection } from "nuxt-og-image/content";
-import { asSchemaOrgCollection } from 'nuxt-schema-org/content'
+import { defineCollection, defineContentConfig, z } from "@nuxt/content";
+import { defineOgImageSchema } from "nuxt-og-image/content";
+import { defineSchemaOrgSchema } from "nuxt-schema-org/content";
+
+const seoSchema = z.object({
+  ogImage: defineOgImageSchema(),
+  schemaOrg: defineSchemaOrgSchema(),
+});
 
 // Base content schema for reusability
 const baseContentSchema = z.object({
@@ -11,7 +16,7 @@ const baseContentSchema = z.object({
   updated: z.date(),
   slug: z.string(),
   draft: z.boolean().optional().default(false),
-});
+}).merge(seoSchema);
 
 // Translation metadata schema
 const translationMetaSchema = z.object({
@@ -54,29 +59,22 @@ const projectSchema = baseContentSchema.extend({
 
 export default defineContentConfig({
   collections: {
-    pages: defineCollection(
-        asSchemaOrgCollection(
-          asOgImageCollection({
-            source: 'pages/**/*.md',
-            type: 'page',
-            schema: baseContentSchema,
-          }))),
+    pages: defineCollection({
+      source: 'pages/**/*.md',
+      type: 'page',
+      schema: baseContentSchema,
+    }),
 
-    // English collections
-    articles: defineCollection(
-        asSchemaOrgCollection(
-          asOgImageCollection({
-            source: 'articles/**/*.md',
-            type: 'page',
-            schema: articleSchema,
-          }))),
+    articles: defineCollection({
+      source: 'articles/**/*.md',
+      type: 'page',
+      schema: articleSchema,
+    }),
 
-    projects: defineCollection(
-        asSchemaOrgCollection(
-          asOgImageCollection({
-            source: 'projects/**/*.md',
-            type: 'page',
-            schema: projectSchema,
-          }))),
+    projects: defineCollection({
+      source: 'projects/**/*.md',
+      type: 'page',
+      schema: projectSchema,
+    }),
   }
 });
