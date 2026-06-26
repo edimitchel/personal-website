@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-defineOgImageComponent('Page');
+defineOgImage('Page');
 
 
 const { content: blog, isTranslated } = await useTranslatedContent('blog', queryCollection('pages').where('stem', 'LIKE', `%blog`));

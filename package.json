@@ -2,6 +2,9 @@
   "name": "nuxthub-starter",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",
@@ -20,47 +23,49 @@
     "translate:publish": "node dist/translate-content.js publish"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.378",
-    "@nuxt/content": "^3.6.3",
-    "@nuxt/fonts": "^0.11.4",
+    "@iconify/json": "^2.2.491",
+    "@libsql/client": "^0.17.4",
+    "@nuxt/content": "^3.14.0",
+    "@nuxt/fonts": "^0.14.0",
     "@nuxt/image": "^1.11.0",
     "@nuxthub/core": "^0.10.7",
     "@nuxtjs/color-mode": "3.5.2",
-    "@nuxtjs/i18n": "npm:@nuxtjs/i18n-edge",
-    "@pinia/nuxt": "^0.11.2",
-    "@unocss/extractor-mdc": "^66.4.2",
-    "@unocss/nuxt": "^66.4.2",
-    "@unocss/preset-icons": "^66.4.2",
-    "better-sqlite3": "^12.2.0",
+    "@nuxtjs/i18n": "10.4.0",
+    "@pinia/nuxt": "^0.11.3",
+    "@resvg/resvg-js": "^2.6.2",
+    "@unocss/extractor-mdc": "~66.7.2",
+    "@unocss/nuxt": "~66.7.2",
+    "@unocss/preset-icons": "~66.7.2",
+    "better-sqlite3": "^12.11.1",
     "drizzle-orm": "^0.45.2",
-    "motion-v": "^1.7.0",
-    "nuxt": "^4.0.3",
-    "nuxt-og-image": "5.1.9",
-    "nuxt-schema-org": "5.0.6",
-    "nuxt-seo-utils": "7.0.14",
-    "ogl": "^1.0.11"
+    "motion-v": "^1.9.0",
+    "nuxt": "~4.4.8",
+    "nuxt-og-image": "6.7.0",
+    "nuxt-schema-org": "6.2.2",
+    "nuxt-seo-utils": "8.3.1",
+    "ogl": "^1.0.11",
+    "satori": "^0.26.0"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.9.0",
-    "@nuxt/test-utils": "^3.19.2",
+    "@nuxt/eslint": "^1.12.1",
+    "@nuxt/test-utils": "^3.23.0",
     "@vitest/ui": "^3.2.4",
-    "@vue/test-utils": "^2.4.6",
-    "c12": "^3.2.0",
-    "eslint": "^9.34.0",
+    "@vue/test-utils": "^2.4.11",
+    "c12": "^3.3.3",
+    "drizzle-kit": "^0.31.4",
+    "eslint": "^9.39.2",
     "gray-matter": "^4.0.3",
     "happy-dom": "^18.0.1",
     "tsdown": "^0.13.5",
-    "tsx": "^4.20.5",
-    "unocss": "^66.4.2",
+    "tsx": "^4.22.4",
+    "unocss": "~66.7.2",
     "unocss-preset-theme": "^0.14.1",
     "vitest": "^3.2.4",
-    "vue-tsc": "^3.0.6",
-    "wrangler": "^4.32.0"
+    "vue-tsc": "^3.3.5",
+    "wrangler": "^4.105.0"
   },
-  "resolutions": {
-    "@nuxtjs/mdc": "^0.17.2"
-  },
-  "packageManager": "pnpm@10.15.0",
+  "resolutions": {},
+  "packageManager": "pnpm@10.28.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "better-sqlite3",
@@ -71,6 +76,9 @@
       "unrs-resolver",
       "vue-demi",
       "workerd"
-    ]
+    ],
+    "overrides": {
+      "vite": "npm:rolldown-vite@latest"
+    }
   }
 }

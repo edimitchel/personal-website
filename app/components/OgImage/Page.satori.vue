@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import defaultImage from '~/assets/images/self-image.jpeg'
+const defaultImage = '/images/self-image.jpeg'
 
 defineProps<{
   title: string,
@@ -10,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="w-full h-full flex flex-col justify-center bg-black">
+  <div class="w-full h-full flex flex-col justify-center bg-black font-sans">
     <svg class="absolute top-0 right-0" width="1200" height="675" viewBox="0 0 1200 675" fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <g style="mix-blend-mode:overlay" opacity="0.7" filter="url(#filter0_f_448_25)">
@@ -27,7 +27,7 @@ defineProps<{
       </defs>
     </svg>
     
-    <img class="absolute top-[175px] left-[50px] object-contain" width="250" height="250" :src="image ?? defaultImage" />
+    <img class="absolute top-[175px] left-[50px] object-contain" :width="250" :height="250" :src="image ?? defaultImage" />
 
     <div class="w-full pl-[350px] pr-[50px] text-white">
       <p v-if="headline" class="uppercase text-[24px] mb-4 font-semibold">
