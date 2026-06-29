@@ -61,6 +61,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Restore prerender cache
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/prerender-html
+            .cache/prerender-manifest.json
+          key: prerender-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'nuxt.config.ts', 'content.config.ts') }}
+          restore-keys: |
+            prerender-${{ runner.os }}-
+
       # Translation — main branch only (disabled on PRs and feature branches)
       - name: Check for content changes
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'

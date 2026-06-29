@@ -1,4 +1,14 @@
+import { join } from 'node:path'
 import { collectPrerenderRoutes } from './scripts/collect-prerender-routes'
+import {
+  createPrerenderPlan,
+  logPrerenderPlan,
+  restoreCachedRoutes,
+  savePrerenderedRoutes,
+  type PrerenderPlan,
+} from './scripts/incremental-prerender-lib'
+
+const prerenderState: { plan: PrerenderPlan | null } = { plan: null }
 
 export default defineNuxtConfig({
 
@@ -82,8 +92,29 @@ export default defineNuxtConfig({
     },
     prerender: {
       routes: collectPrerenderRoutes(),
-      crawlLinks: true,
+      crawlLinks: false,
       failOnError: false,
+      ignore: ['/_og/**'],
+    },
+    hooks: {
+      'prerender:routes': (routes) => {
+        prerenderState.plan = createPrerenderPlan()
+        logPrerenderPlan(prerenderState.plan)
+        for (const route of [...routes]) {
+          routes.delete(route)
+        }
+        for (const route of prerenderState.plan.routesToPrerender) {
+          routes.add(route)
+        }
+      },
+      'prerender:done': async (result) => {
+        const plan = prerenderState.plan ?? createPrerenderPlan()
+        const publicDir = join(process.cwd(), '.output/public')
+        savePrerenderedRoutes(result.prerenderedRoutes, publicDir, {
+          resetManifest: !plan.enabled || plan.shellChanged,
+        })
+        restoreCachedRoutes(plan.routesToRestore, publicDir)
+      },
     },
   },
 
