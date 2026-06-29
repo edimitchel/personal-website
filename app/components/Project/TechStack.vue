@@ -1,21 +1,28 @@
 <template>
-  <div class="flex flex-wrap gap-1 group">
-    <span
-      v-for="(tech, index) in technologies"
-      :key="tech"
-      class="inline-flex items-center px-2 py-1 text-xs bg-primary-300 text-primary-800 rounded font-medium"
-      :class="{ 'md:hidden md:group-hover:block': hiddenMoreThan && index >= hiddenMoreThan }"
+  <div
+    class="relative"
+    :class="{ 'tech-stack--collapsible': hiddenMoreThan }"
+  >
+    <div
+      class="flex flex-wrap gap-1"
+      :class="hiddenMoreThan ? 'tech-stack__tags' : undefined"
     >
-      <i
-        v-if="getTechIcon(tech)"
-        :class="getTechIcon(tech)"
-        class="inline-block shrink-0 w-3.5 h-3.5 mr-1"
-      />
-      {{ tech }}
-    </span>
+      <span
+        v-for="tech in technologies"
+        :key="tech"
+        class="inline-flex items-center px-2 py-1 text-xs bg-primary-300 text-primary-800 rounded font-medium"
+      >
+        <i
+          v-if="getTechIcon(tech)"
+          :class="getTechIcon(tech)"
+          class="inline-block shrink-0 w-3.5 h-3.5 mr-1"
+        />
+        {{ tech }}
+      </span>
+    </div>
     <span
       v-if="hiddenMoreThan && technologies.length > hiddenMoreThan"
-      class="px-2 py-1 text-xs text-primary-800 hidden md:block md:group-hover:hidden"
+      class="tech-stack__more hidden md:block absolute right-0 bottom-0 px-2 py-1 text-xs text-primary-800 pointer-events-none"
     >
       +{{ technologies.length - hiddenMoreThan }}
     </span>
@@ -78,3 +85,26 @@ function getTechIcon(tech: string): string | null {
   return techIcons[tech] ?? null
 }
 </script>
+
+<style scoped>
+@media (min-width: 768px) {
+  .tech-stack--collapsible .tech-stack__tags {
+    max-height: 1.75rem;
+    overflow: hidden;
+    transition: max-height 350ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .group:hover .tech-stack--collapsible .tech-stack__tags {
+    max-height: 6rem;
+  }
+
+  .tech-stack__more {
+    opacity: 1;
+    transition: opacity 250ms ease;
+  }
+
+  .group:hover .tech-stack__more {
+    opacity: 0;
+  }
+}
+</style>
