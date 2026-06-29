@@ -33,6 +33,24 @@
   transition-delay: 100ms;
 }
 
+.rise-enter-active,
+.rise-leave-active {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  transition: opacity 250ms ease, transform 300ms ease-out;
+}
+
+.rise-enter-from {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.rise-leave-to {
+  opacity: 0;
+  transform: translateY(-14px);
+}
+
 .balance-enter-active,
 .balance-leave-active {
   position: absolute;
@@ -50,6 +68,28 @@
 }
 
 .balance-leave-to {
+  transform: rotate(5deg);
+}
+
+/* Same balance slide, pivot on the logo center */
+.balance-center-enter-active,
+.balance-center-leave-active {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 50%;
+  transition: opacity 200ms ease, transform 300ms ease-out;
+}
+
+.balance-center-enter-from,
+.balance-center-leave-to {
+  opacity: 0;
+}
+
+.balance-center-enter-from {
+  transform: rotate(-5deg);
+}
+
+.balance-center-leave-to {
   transform: rotate(5deg);
 }
 

@@ -25,7 +25,7 @@
       to="/"
       class="logo"
     >
-      <Transition name="fade">
+      <Transition name="balance-center">
         <img
           v-if="headerImage && !headerCover"
           :key="headerImage.src"
@@ -37,8 +37,7 @@
     <div class="titles">
       <Transition
         v-if="computedName"
-        name="fade"
-        mode="out-in"
+        name="balance"
       >
         <CurvedText
           :key="computedName"
@@ -49,7 +48,7 @@
       </Transition>
       <MessageCarousel
         v-slot="{ message, level = 2 }"
-        transition-name="balance"
+        transition-name="rise"
         :list="messages"
       >
         <CurvedText
@@ -267,10 +266,13 @@ const { isLoading: pulse } = useLoadingIndicator()
   z-index: 100;
   overflow: hidden;
   margin-top: -15px;
+  position: relative;
   transition: all 150ms ease;
 
   & img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 

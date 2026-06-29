@@ -1,41 +1,99 @@
 <template>
-  <div :class="{ pulse }" class="side-shadow">
+  <div
+    :class="{ pulse }"
+    class="side-shadow"
+  >
     <ClientOnly>
-      <svg width="100%" :height="height" fill="none">
+      <svg
+        width="100%"
+        :height="height"
+        fill="none"
+      >
         <defs>
           <mask id="insideClip">
-            <circle :r="height - 90" cx="50%" cy="-24%" fill="white" />
-            <circle :r="height - 40" cx="50%" cy="-58%" fill="black" />
+            <circle
+              :r="height - 90"
+              cx="50%"
+              cy="-24%"
+              fill="white"
+            />
+            <circle
+              :r="height - 40"
+              cx="50%"
+              cy="-58%"
+              fill="black"
+            />
           </mask>
           <mask id="imageClip">
-            <circle :r="height - 40" cx="50%" cy="-58%" fill="white" />
+            <circle
+              :r="height - 40"
+              cx="50%"
+              cy="-58%"
+              fill="white"
+            />
           </mask>
         </defs>
-        <circle :r="height - 75" cx="50%" cy="-35%" :style="{ fill: fillColor.bottom, opacity: 1 }"
-          mask="url(#insideClip)" />
-        <circle :r="height - 90" cx="50%" cy="-24%" :style="{ fill: fillColor.bottom, opacity: .5 }"
-          mask="url(#insideClip)" />
-        <circle v-if="!reversed" ref="innerCircle" :r="height - 40" cx="50%" cy="-58%"
-          :style="{ fill: fillColor.top }" />
-        <circle v-if="pulse" class="progress-border indeterminate" :r="height - 75 + progressWidth / 2" cx="50%"
-          cy="-35%" :stroke="progressColor" :stroke-width="progressWidth" fill="none"
-          :stroke-dasharray="progressCircumference * 0.25 + ',' + progressCircumference * 0.35" />
-        <image v-if="image" id="image" :x="(image?.nudge?.x || 0) + '%'" :y="(image?.nudge?.y || 0) + '%'" width="100%"
-          mask="url(#imageClip)" :xlink:href="image.src" preserveAspectRatio="xMidYMid" />
+        <circle
+          :r="height - 75"
+          cx="50%"
+          cy="-35%"
+          :style="{ fill: fillColor.bottom, opacity: 1 }"
+          mask="url(#insideClip)"
+          class="color-layer"
+        />
+        <circle
+          :r="height - 90"
+          cx="50%"
+          cy="-24%"
+          :style="{ fill: fillColor.bottom, opacity: .5 }"
+          mask="url(#insideClip)"
+          class="color-layer"
+        />
+        <circle
+          v-if="!reversed"
+          ref="innerCircle"
+          :r="height - 40"
+          cx="50%"
+          cy="-58%"
+          :style="{ fill: fillColor.top }"
+          class="color-layer"
+        />
+        <circle
+          v-if="pulse"
+          class="progress-border indeterminate"
+          :r="height - 75 + progressWidth / 2"
+          cx="50%"
+          cy="-35%"
+          :stroke="progressColor"
+          :stroke-width="progressWidth"
+          fill="none"
+          :stroke-dasharray="progressCircumference * 0.25 + ',' + progressCircumference * 0.35"
+        />
+        <image
+          v-if="image"
+          id="image"
+          :x="(image?.nudge?.x || 0) + '%'"
+          :y="(image?.nudge?.y || 0) + '%'"
+          width="100%"
+          mask="url(#imageClip)"
+          :xlink:href="image.src"
+          preserveAspectRatio="xMidYMid"
+        />
       </svg>
     </ClientOnly>
   </div>
 </template>
+
 <script setup lang="ts">
 const { color, height = 420, pulse = false, reversed, image, progressColor = 'grey', progressWidth = 3 } = defineProps<{
-  color?: string | string[],
-  height?: number,
-  pulse?: boolean,
-  reversed?: boolean,
-  image?: { src: string, nudge?: { y?: number, x?: number } },
-  progressColor?: string,
-  progressWidth?: number,
-}>();
+  color?: string | string[]
+  height?: number
+  pulse?: boolean
+  reversed?: boolean
+  image?: { src: string, nudge?: { y?: number, x?: number } }
+  progressColor?: string
+  progressWidth?: number
+}>()
 
 const mode = useColorMode()
 
@@ -52,13 +110,13 @@ const fillColor = computed(() => {
     : colors.value.split(/,\|/)
   return {
     top,
-    bottom
+    bottom,
   }
 })
 
 const progressCircumference = computed(() => 2 * Math.PI * (height - 110))
-
 </script>
+
 <style scoped>
 div {
   overflow: hidden;
@@ -69,7 +127,13 @@ div {
 
 circle {
   transform-origin: 50% 0;
-  transition: all 300ms ease;
+  transition: transform 300ms ease;
+}
+
+.color-layer {
+  transition:
+    fill 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .progress-border {

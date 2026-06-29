@@ -1,8 +1,15 @@
 <template>
-  <Transition
-    :name="transitionName"
-  >
-    <slot :message="currentMessage" :level="currentLevel" />
+  <Transition :name="transitionName">
+    <div
+      v-if="currentMessage"
+      :key="`${index}-${currentMessage}`"
+      class="carousel-slot"
+    >
+      <slot
+        :message="currentMessage"
+        :level="currentLevel"
+      />
+    </div>
   </Transition>
 </template>
 
@@ -20,7 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
   alive: true,
   list: () => [],
   transitionName: 'fade',
-  duration: 5000
+  duration: 5000,
 })
 
 const index = ref(0)
@@ -48,7 +55,7 @@ const run = () => {
       return
     }
   }
-  
+
   timerId = setInterval(() => {
     if (props.list.length > 0) {
       index.value = (index.value + 1) % props.list.length
@@ -72,3 +79,11 @@ onUnmounted(() => {
   }
 })
 </script>
+
+<style scoped>
+.carousel-slot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+}
+</style>
