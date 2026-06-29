@@ -2,35 +2,38 @@
   <ClientOnly>
     <Background />
   </ClientOnly>
-  <LayoutHeader :links :name="title ?? info.title" :with-emoji="info.withEmoji" :description="info.description"
-    :messages :header-color="headerColor" :emojis="info.emojis" :options="info.options"
-    :dark-mode="colorMode.value === 'dark'"
-    @toggle-dark-mode="colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'" />
+  <LayoutHeader
+    :links
+    :with-emoji="info.withEmoji"
+    :description="info.description"
+    :messages
+    :header-color="headerColor"
+    :emojis="info.emojis"
+    :options="info.options"
+  />
   <main class="container md:p-16 md:pt-4">
-    <div id="modals"></div>
+    <div id="modals" />
     <slot />
   </main>
   <LayoutFooter />
 </template>
 
 <script setup lang="ts">
-import { isBirthday } from '~/utils';
+import { isBirthday } from '~/utils'
 
 const { t } = useI18n()
 const appConfig = useAppConfig()
-const { messages, title, color, withEmoji } = storeToRefs(layoutStore());
-
-const colorMode = useColorMode()
+const { messages, title, color, withEmoji } = storeToRefs(layoutStore())
 
 const links = computed(() => [{
   path: '/',
-  name: t('header.about')
+  name: t('header.about'),
 }, {
   path: '/projects',
-  name: t('header.projects')
+  name: t('header.projects'),
 }, {
   path: '/articles',
-  name: t('header.articles')
+  name: t('header.articles'),
 }])
 
 const headerColor = color
@@ -46,8 +49,8 @@ const info = computed(() => ({
   emojis: {
     normal: appConfig.ui?.icons?.normal as string[] ?? [],
     birthday: appConfig.ui?.icons?.birthday as string[] ?? [],
-  }
-}));
+  },
+}))
 
 export type LayoutHeaderProps = typeof info.value
 </script>
