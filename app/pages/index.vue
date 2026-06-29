@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import type { Experience } from '~/components/content/About.vue';
-import { transformProject } from './projects/index.vue';
+import { transformProject } from '~/utils/transformProject';
 
 defineOgImage('Page');
 

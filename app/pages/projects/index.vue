@@ -16,15 +16,9 @@
   </section>
 </template>
 
-<script lang="ts">
-function getProjectName(projectContent: PagesCollectionItem | ContentNavigationItem) {
-  return projectContent.stem?.split('/').at(-1);
-}
-
-export const transformProject = (project: (PagesCollectionItem | ProjectsCollectionItem) | ContentNavigationItem) => ({ ...project, slug: getProjectName(project) });
-</script>
 <script setup lang="ts">
-import type { PagesCollectionItem, ContentNavigationItem, ProjectsCollectionItem } from '@nuxt/content';
+import type { ProjectsCollectionItem } from '@nuxt/content';
+import { transformProject } from '~/utils/transformProject';
 
 defineOgImage('Page');
 
