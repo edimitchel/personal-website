@@ -72,6 +72,8 @@ if (content) {
 defineOgImage('Page', {
   headline: 'Article',
   title: (content?.title ?? '').replace('Michel Edighoffer / ', ''),
+  description: content?.description ?? '',
+  ...(content?.thumbnail ? { image: content.thumbnail } : {}),
 })
 
 store.notTranslated = !isTranslated

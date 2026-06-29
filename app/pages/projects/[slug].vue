@@ -96,7 +96,11 @@ store.notTranslated = !isTranslated
 
 defineOgImage('Page', {
   headline: t('project.info.title'),
-  image: content?.image ?? null,
+  title: content?.title ?? '',
+  description: content
+    ? t('project.description', { organization: content.organization, description: content.description })
+    : '',
+  ...(content?.image ? { image: content.image } : {}),
 })
 
 if (content?.ogImage) {
