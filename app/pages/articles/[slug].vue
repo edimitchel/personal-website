@@ -3,21 +3,40 @@
     <main class="prose text-background">
       <template v-if="content">
         <span class="block text-center text-sm">{{ formatDate(content.created) }}</span>
-        <h1 class="mt-0 text-center text-balance">{{ content.title }}</h1>
-        <NuxtImg v-if="content.thumbnail" class="my-2 w-full max-h-40 md:max-h-50 object-cover" :src="content.thumbnail"
-          :alt="content.title" />
+        <h1 class="mt-0 text-center text-balance">
+          {{ content.title }}
+        </h1>
+        <img
+          v-if="content.thumbnail"
+          :src="content.thumbnail"
+          :alt="content.title"
+          class="my-2 w-full max-h-40 md:max-h-50 object-cover"
+          loading="lazy"
+        >
         <ContentRenderer :value="content" />
 
-        <SiblingNavigation v-if="siblings" :siblings="siblings" collection="articles" />
+        <SiblingNavigation
+          v-if="siblings"
+          :siblings="siblings"
+          collection="articles"
+        />
       </template>
       <div v-else>
         <h1>{{ $t('article.notFound') }}</h1>
         <p>{{ $t('article.notFoundDescription') }}</p>
-        <SwitchLocalePathLink v-if="isTranslated" :locale="locale === 'fr' ? 'en' : 'fr'">
+        <SwitchLocalePathLink
+          v-if="isTranslated"
+          :locale="locale === 'fr' ? 'en' : 'fr'"
+        >
           {{ $t('article.switchLanguageForContent') }}
         </SwitchLocalePathLink>
 
-        <NuxtLinkLocale v-else to="/articles">{{ $t('article.goToArticles') }}</NuxtLinkLocale>
+        <NuxtLinkLocale
+          v-else
+          to="/articles"
+        >
+          {{ $t('article.goToArticles') }}
+        </NuxtLinkLocale>
       </div>
     </main>
   </article>
@@ -30,11 +49,17 @@ const { locale } = useI18n()
 const { content, isTranslated } = await useTranslatedContent(
   `article-${route.params.slug}`,
   queryCollection('articles').where('slug', '=', route.params.slug),
-);
+)
 
-const { data: siblings } = content ? await useAsyncData(`siblings-articles-${route.params.slug}`, () => queryCollectionItemSurroundings('articles', content?.path, {
-  fields: ['slug', 'title']
-}).where('lang', '=', locale.value).order('created', 'DESC')) : { data: null }
+const { data: siblings } = content
+  ? await useAsyncData(
+      `siblings-articles-${route.params.slug}`,
+      () => queryCollectionItemSurroundings('articles', content.path, {
+        fields: ['slug', 'title'],
+      }).where('lang', '=', locale.value).order('created', 'DESC'),
+      { default: () => null },
+    )
+  : { data: null }
 
 const store = layoutStore()
 if (content) {
@@ -47,8 +72,7 @@ if (content) {
 defineOgImage('Page', {
   headline: 'Article',
   title: (content?.title ?? '').replace('Michel Edighoffer / ', ''),
-});
-
+})
 
 store.notTranslated = !isTranslated
 

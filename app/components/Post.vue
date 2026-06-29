@@ -1,5 +1,5 @@
 <template>
-  <NuxtLinkLocale class="post prose" :class :to="{ name: 'articles-slug', params: { slug: props.to } }">
+  <NuxtLinkLocale class="post prose" :class :to="`/articles/${props.to}`">
     <header class="post__header">
       <small v-if="post.created" class="post__date" :title="formatDate(post.created, true)">
         {{ formatDate(post.created) }}
