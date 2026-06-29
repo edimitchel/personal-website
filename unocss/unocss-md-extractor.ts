@@ -10,7 +10,7 @@ export default function extractorMarkdownIcons(): Extractor {
   return {
     name: 'markdown',
     extract({ code, id, extracted }) {
-      const iconRegex = /i-logos(?:-[a-zA-Z0-9-]+)*/g
+      const iconRegex = /i-(?:logos|simple-icons|skill-icons|mdi|devicon|unjs)(?:-[a-zA-Z0-9-]+)*/g
       const matches = code.match(iconRegex)
       if (matches) {
         matches.forEach(match => extracted.add(match))

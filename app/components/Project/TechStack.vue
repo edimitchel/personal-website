@@ -1,15 +1,22 @@
 <template>
   <div class="flex flex-wrap gap-1 group">
-    <span 
-      v-for="(tech, index) in technologies" 
+    <span
+      v-for="(tech, index) in technologies"
       :key="tech"
       class="inline-flex items-center px-2 py-1 text-xs bg-primary-300 text-primary-800 rounded font-medium"
       :class="{ 'md:hidden md:group-hover:block': hiddenMoreThan && index >= hiddenMoreThan }"
     >
-      <i v-if="getTechIcon(tech)" :class="getTechIcon(tech)" class="w-3 h-3 mr-1" />
+      <i
+        v-if="getTechIcon(tech)"
+        :class="getTechIcon(tech)"
+        class="inline-block shrink-0 w-3.5 h-3.5 mr-1"
+      />
       {{ tech }}
     </span>
-    <span v-if="hiddenMoreThan && technologies.length > hiddenMoreThan" class="px-2 py-1 text-xs text-primary-800 hidden md:block md:group-hover:hidden">
+    <span
+      v-if="hiddenMoreThan && technologies.length > hiddenMoreThan"
+      class="px-2 py-1 text-xs text-primary-800 hidden md:block md:group-hover:hidden"
+    >
       +{{ technologies.length - hiddenMoreThan }}
     </span>
   </div>
@@ -29,6 +36,7 @@ function getTechIcon(tech: string): string | null {
     'Vue': 'i-logos-vue',
     'Angular': 'i-logos-angular-icon',
     'Redux': 'i-logos-redux',
+    'Preact': 'i-logos-preact',
     'Vite': 'i-logos-vitejs',
     'PWA': 'i-logos-pwa',
     'JavaScript': 'i-logos-javascript',
@@ -41,6 +49,13 @@ function getTechIcon(tech: string): string | null {
     'Nuxt': 'i-logos-nuxt-icon',
     'Nitro': 'i-unjs-nitro',
     'Nuxt 3': 'i-logos-nuxt-icon',
+    'Nuxt 4': 'i-logos-nuxt-icon',
+    'Nuxt UI': 'i-skill-icons-nuxtjs-dark',
+    'NestJS': 'i-logos-nestjs',
+    'TypeORM': 'i-logos-typeorm',
+    'Vitest': 'i-logos-vitest',
+    'FullCalendar': 'i-mdi-calendar-month-outline',
+    'rrule': 'i-mdi-repeat-variant',
     'Next.js': 'i-logos-nextjs-icon',
     'Tailwind': 'i-logos-tailwindcss-icon',
     'Docker': 'i-logos-docker-icon',
@@ -56,8 +71,10 @@ function getTechIcon(tech: string): string | null {
     'Netlify': 'i-logos-netlify',
     'jQuery': 'i-logos-jquery',
     'Bootstrap': 'i-logos-bootstrap',
+    'Service Worker': 'i-logos-pwa',
+    'REST API': 'i-mdi-api',
   }
-  
-  return techIcons[tech] || null
+
+  return techIcons[tech] ?? null
 }
 </script>
