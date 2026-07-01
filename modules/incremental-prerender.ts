@@ -22,11 +22,43 @@ export default defineNuxtModule({
 
     nuxt.hook('nitro:init', (nitro) => {
       nitro.hooks.hook('prerender:routes', (routes) => {
-        if (shouldRestoreNuxtAssets() && restoreNuxtAssets(publicDir())) {
-          console.log('[prerender] restored cached client assets')
+        const outputDir = publicDir()
+        let plan = createPrerenderPlan({ publicDir: outputDir })
+
+        // Only swap in cached client assets on a full cache hit.
+        // Restoring _nuxt before a partial prerender would serve HTML
+        // that references new hashes while stale files are on disk.
+        if (
+          plan.enabled
+          && !plan.shellChanged
+          && plan.routesToPrerender.length === 0
+          && plan.routesToRestore.length > 0
+        ) {
+          if (!restoreNuxtAssets(outputDir)) {
+            console.log('[prerender] missing nuxt cache — full prerender')
+            plan = {
+              ...plan,
+              routesToPrerender: plan.allRoutes,
+              routesToRestore: [],
+              shellChanged: true,
+            }
+          }
+          else {
+            console.log('[prerender] restored cached client assets')
+            plan = createPrerenderPlan({ publicDir: outputDir })
+            if (plan.routesToPrerender.length > 0) {
+              console.log('[prerender] nuxt cache mismatch — full prerender')
+              plan = {
+                ...plan,
+                routesToPrerender: plan.allRoutes,
+                routesToRestore: [],
+                shellChanged: true,
+              }
+            }
+          }
         }
 
-        state.plan = createPrerenderPlan({ publicDir: publicDir() })
+        state.plan = plan
         logPrerenderPlan(state.plan)
         for (const route of [...routes]) {
           routes.delete(route)

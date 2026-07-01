@@ -76,7 +76,7 @@ jobs:
             .cache/prerender-html
             .cache/prerender-nuxt
             .cache/prerender-manifest.json
-          key: prerender-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'nuxt.config.ts', 'content.config.ts', 'scripts/incremental-prerender-lib.ts', 'scripts/collect-prerender-routes.ts', 'modules/incremental-prerender.ts') }}
+          key: prerender-v2-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'nuxt.config.ts', 'content.config.ts', 'scripts/incremental-prerender-lib.ts', 'scripts/collect-prerender-routes.ts', 'modules/incremental-prerender.ts') }}
 
       # Translation — main branch only (disabled on PRs and feature branches)
       - name: Check for content changes
