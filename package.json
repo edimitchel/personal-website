@@ -60,7 +60,7 @@
     "tsx": "^4.22.4",
     "unocss": "~66.7.2",
     "unocss-preset-theme": "^0.14.1",
-    "vitest": "^3.2.4",
+    "vitest": "^3.2.6",
     "vue-tsc": "^3.3.5",
     "wrangler": "^4.105.0"
   },
