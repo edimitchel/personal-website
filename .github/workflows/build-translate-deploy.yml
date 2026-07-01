@@ -6,6 +6,13 @@ on:
     paths:
       - 'content/**/*.md'
       - 'app/**'
+      - 'server/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'transformers/**'
+      - 'unocss/**'
+      - 'locales/**'
+      - 'content.config.ts'
       - 'nuxt.config.ts'
       - 'package.json'
       - 'pnpm-lock.yaml'
@@ -67,10 +74,9 @@ jobs:
         with:
           path: |
             .cache/prerender-html
+            .cache/prerender-nuxt
             .cache/prerender-manifest.json
-          key: prerender-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'nuxt.config.ts', 'content.config.ts') }}
-          restore-keys: |
-            prerender-${{ runner.os }}-
+          key: prerender-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'nuxt.config.ts', 'content.config.ts', 'scripts/incremental-prerender-lib.ts', 'scripts/collect-prerender-routes.ts', 'modules/incremental-prerender.ts') }}
 
       # Translation — main branch only (disabled on PRs and feature branches)
       - name: Check for content changes

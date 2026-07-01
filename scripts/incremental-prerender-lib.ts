@@ -8,11 +8,12 @@ import {
   statSync,
   writeFileSync,
 } from 'node:fs'
-import { basename, join, relative } from 'node:path'
+import { join, relative } from 'node:path'
 import type { PrerenderRoute } from 'nitropack'
 import { collectPrerenderRoutes } from './collect-prerender-routes'
 
 export const PRERENDER_CACHE_DIR = join(process.cwd(), '.cache/prerender-html')
+export const PRERENDER_NUXT_CACHE_DIR = join(process.cwd(), '.cache/prerender-nuxt')
 export const PRERENDER_MANIFEST_PATH = join(process.cwd(), '.cache/prerender-manifest.json')
 
 const SHELL_PATHS = [
@@ -20,14 +21,25 @@ const SHELL_PATHS = [
   'transformers',
   'unocss',
   'locales',
+  'scripts/collect-prerender-routes.ts',
+  'scripts/incremental-prerender-lib.ts',
   'content.config.ts',
   'nuxt.config.ts',
+  'package.json',
+  'pnpm-lock.yaml',
 ] as const
+
+const ASSET_DIRS = ['_fonts', '_i18n'] as const
+
+function isStableNuxtAsset(path: string) {
+  return /\.(js|css|mjs|woff2)$/.test(path) && !/\/builds\//.test(path)
+}
 
 type CollectionName = 'articles' | 'projects' | 'pages'
 
 export interface PrerenderManifest {
   shellHash: string
+  assetHash: string
   collections: Record<CollectionName, string>
   routes: Record<string, { hash: string, files: string[] }>
 }
@@ -95,6 +107,47 @@ export function computeShellHash(rootDir = process.cwd()) {
     }
   }
   return hashContent(parts.join(':'))
+}
+
+export function computeAssetHash(publicDir: string) {
+  const parts: string[] = []
+
+  const nuxtDir = join(publicDir, '_nuxt')
+  for (const file of walkFiles(nuxtDir, isStableNuxtAsset)) {
+    parts.push(relative(publicDir, file))
+  }
+
+  for (const dir of ASSET_DIRS) {
+    const absoluteDir = join(publicDir, dir)
+    for (const file of walkFiles(absoluteDir, () => true)) {
+      parts.push(relative(publicDir, file))
+    }
+  }
+
+  return hashContent(parts.sort().join(':'))
+}
+
+export function extractNuxtAssetReferences(html: string) {
+  return [...new Set(html.match(/\/_nuxt\/[^"'\s>]+/g) ?? [])]
+}
+
+export function cachedHtmlReferencesValid(
+  cachedFiles: string[],
+  publicDir: string,
+  cacheDir = PRERENDER_CACHE_DIR,
+) {
+  const htmlFile = cachedFiles.find(file => file.endsWith('.html'))
+  if (!htmlFile) {
+    return false
+  }
+
+  const htmlPath = join(cacheDir, htmlFile)
+  if (!existsSync(htmlPath)) {
+    return false
+  }
+
+  const refs = extractNuxtAssetReferences(readFileSync(htmlPath, 'utf8'))
+  return refs.every(ref => existsSync(join(publicDir, ref.slice(1))))
 }
 
 export function computeCollectionHash(
@@ -220,7 +273,22 @@ function readManifest(): PrerenderManifest | null {
   if (!existsSync(PRERENDER_MANIFEST_PATH)) {
     return null
   }
-  return JSON.parse(readFileSync(PRERENDER_MANIFEST_PATH, 'utf8')) as PrerenderManifest
+
+  const manifest = JSON.parse(readFileSync(PRERENDER_MANIFEST_PATH, 'utf8')) as Partial<PrerenderManifest>
+  if (!manifest.shellHash || !manifest.routes) {
+    return null
+  }
+
+  return {
+    assetHash: manifest.assetHash ?? '',
+    shellHash: manifest.shellHash,
+    collections: manifest.collections ?? {
+      articles: '',
+      projects: '',
+      pages: '',
+    },
+    routes: manifest.routes,
+  }
 }
 
 export function isIncrementalPrerenderEnabled() {
@@ -228,13 +296,32 @@ export function isIncrementalPrerenderEnabled() {
   return flag !== '0' && flag !== 'false'
 }
 
+export function shouldFullPrerender(options: {
+  enabled: boolean
+  manifest: PrerenderManifest | null
+  shellHash: string
+}) {
+  if (!options.enabled || !options.manifest) {
+    return { full: true, shellChanged: true }
+  }
+
+  const shellChanged = options.manifest.shellHash !== options.shellHash
+
+  return {
+    full: shellChanged,
+    shellChanged,
+  }
+}
+
 export function createPrerenderPlan(options: {
   contentRoot?: string
+  publicDir?: string
   manifest?: PrerenderManifest | null
   enabled?: boolean
   skipCacheFileCheck?: boolean
 } = {}): PrerenderPlan {
   const contentRoot = options.contentRoot ?? join(process.cwd(), 'content')
+  const publicDir = options.publicDir ?? join(process.cwd(), '.output/public')
   const enabled = options.enabled ?? isIncrementalPrerenderEnabled()
   const allRoutes = collectPrerenderRoutes(contentRoot)
   const shellHash = computeShellHash()
@@ -245,13 +332,14 @@ export function createPrerenderPlan(options: {
   }
 
   const manifest = options.manifest === undefined ? readManifest() : options.manifest
+  const rebuild = shouldFullPrerender({ enabled, manifest, shellHash })
 
-  if (!enabled || !manifest || manifest.shellHash !== shellHash) {
+  if (rebuild.full) {
     return {
       allRoutes,
       routesToPrerender: allRoutes,
       routesToRestore: [],
-      shellChanged: !manifest || manifest.shellHash !== shellHash,
+      shellChanged: rebuild.shellChanged,
       enabled,
     }
   }
@@ -261,11 +349,14 @@ export function createPrerenderPlan(options: {
 
   for (const route of allRoutes) {
     const routeHash = computeRouteHash(route, contentRoot, shellHash, collectionHashes)
-    const cached = manifest.routes[route]
+    const cached = manifest!.routes[route]
     const cacheExists = options.skipCacheFileCheck
       || cached?.files.every(file => existsSync(join(PRERENDER_CACHE_DIR, file)))
+    const assetRefsValid = options.skipCacheFileCheck
+      || !cached
+      || cachedHtmlReferencesValid(cached.files, publicDir)
 
-    if (!cached || cached.hash !== routeHash || !cacheExists) {
+    if (!cached || cached.hash !== routeHash || !cacheExists || !assetRefsValid) {
       routesToPrerender.push(route)
     }
     else {
@@ -298,6 +389,7 @@ export function savePrerenderedRoutes(
   ensureDir(PRERENDER_CACHE_DIR)
 
   const shellHash = computeShellHash()
+  const assetHash = computeAssetHash(publicDir)
   const collectionHashes: Record<CollectionName, string> = {
     articles: computeCollectionHash(contentRoot, 'articles'),
     projects: computeCollectionHash(contentRoot, 'projects'),
@@ -306,10 +398,11 @@ export function savePrerenderedRoutes(
 
   const existingManifest = readManifest()
   const manifest: PrerenderManifest = options.resetManifest || !existingManifest
-    ? { shellHash, collections: collectionHashes, routes: {} }
+    ? { shellHash, assetHash, collections: collectionHashes, routes: {} }
     : existingManifest
 
   manifest.shellHash = shellHash
+  manifest.assetHash = assetHash
   manifest.collections = collectionHashes
 
   for (const route of routes) {
@@ -352,6 +445,65 @@ export function savePrerenderedRoutes(
   writeFileSync(PRERENDER_MANIFEST_PATH, JSON.stringify(manifest, null, 2))
 }
 
+export function shouldRestoreNuxtAssets() {
+  if (!isIncrementalPrerenderEnabled()) {
+    return false
+  }
+
+  const manifest = readManifest()
+  if (!manifest) {
+    return false
+  }
+
+  return manifest.shellHash === computeShellHash()
+}
+
+export function saveNuxtAssets(publicDir: string) {
+  ensureDir(PRERENDER_NUXT_CACHE_DIR)
+
+  for (const dir of [...ASSET_DIRS, '_nuxt'] as const) {
+    const source = join(publicDir, dir)
+    if (!existsSync(source)) {
+      continue
+    }
+    const destination = join(PRERENDER_NUXT_CACHE_DIR, dir)
+    cpSync(source, destination, { recursive: true, force: true })
+  }
+}
+
+export function restoreNuxtAssets(publicDir: string) {
+  if (!existsSync(PRERENDER_NUXT_CACHE_DIR)) {
+    return false
+  }
+
+  let restored = false
+
+  for (const dir of [...ASSET_DIRS, '_nuxt'] as const) {
+    const source = join(PRERENDER_NUXT_CACHE_DIR, dir)
+    const destination = join(publicDir, dir)
+    if (!existsSync(source)) {
+      continue
+    }
+    cpSync(source, destination, { recursive: true, force: true })
+    restored = true
+  }
+
+  return restored
+}
+
+export function finalizePrerenderManifest(publicDir: string) {
+  const manifest = readManifest()
+  if (!manifest) {
+    return false
+  }
+
+  manifest.shellHash = computeShellHash()
+  manifest.assetHash = computeAssetHash(publicDir)
+  ensureDir(join(PRERENDER_MANIFEST_PATH, '..'))
+  writeFileSync(PRERENDER_MANIFEST_PATH, JSON.stringify(manifest, null, 2))
+  return true
+}
+
 export function restoreCachedRoutes(
   routes: string[],
   publicDir: string,
@@ -365,7 +517,7 @@ export function restoreCachedRoutes(
 
   for (const route of routes) {
     const cached = manifest.routes[route]
-    if (!cached) {
+    if (!cached || !cachedHtmlReferencesValid(cached.files, publicDir)) {
       continue
     }
 
