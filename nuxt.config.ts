@@ -1,4 +1,10 @@
+import { existsSync } from 'node:fs'
+import { createRequire } from 'node:module'
+import { dirname, join } from 'node:path'
 import { collectPrerenderRoutes } from './scripts/collect-prerender-routes'
+
+const require = createRequire(import.meta.url)
+const mdcProseDir = join(dirname(require.resolve('@nuxtjs/mdc')), 'runtime/components/prose')
 
 export default defineNuxtConfig({
 
@@ -12,9 +18,9 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@nuxt/image',
     '@pinia/nuxt',
-    '@nuxt/fonts',
+    // Registers @nuxt/fonts, @nuxtjs/color-mode and @nuxt/icon.
+    '@nuxt/ui',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode',
     'nuxt-og-image',
     'nuxt-schema-org',
     'nuxt-seo-utils',
@@ -33,7 +39,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/style.css'],
+  css: ['~/assets/css/main.css', '~/assets/style.css'],
 
   vue: {
     propsDestructure: true,
@@ -47,6 +53,25 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'system',
     fallback: 'light',
+    // Keep -mode so UnoCSS (.dark-mode) and app.vue keep working.
+    // Nuxt UI defaults to an empty suffix (.dark). main.css extends the dark variant to .dark-mode.
+    classSuffix: '-mode',
+    disableTransition: false,
+  },
+
+  ui: {
+    // Public prose stays on UnoCSS. 4.10 still registers Prose* when Content is installed.
+    prose: false,
+  },
+
+  mdc: {
+    highlight: {
+      theme: {
+        default: 'github-light',
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    },
   },
 
   content: {
@@ -167,6 +192,29 @@ export default defineNuxtConfig({
     configFile: 'unocss/uno.config.ts',
     content: {
       filesystem: ['app/../content/*.vue'],
+    },
+  },
+
+  hooks: {
+    'components:extend'(components) {
+      // Nuxt UI 4.10 registers Prose* whenever Content is installed and wins the name clash.
+      // Point the shared tags back at @nuxtjs/mdc so UnoCSS `.prose` still styles real h1/p/a/…
+      // Keep the app ProseImg. Leave Nuxt UI-only tags (callout, accordion, …) untouched.
+      for (let index = components.length - 1; index >= 0; index--) {
+        const component = components[index]
+        if (!component?.filePath.includes('/node_modules/@nuxt/ui/') || !component.pascalName.startsWith('Prose')) {
+          continue
+        }
+        if (component.pascalName === 'ProseImg') {
+          components.splice(index, 1)
+          continue
+        }
+        const replacement = join(mdcProseDir, `${component.pascalName}.vue`)
+        if (existsSync(replacement)) {
+          component.filePath = replacement
+          component.declarationPath = replacement
+        }
+      }
     },
   },
 })
