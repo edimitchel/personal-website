@@ -1,5 +1,5 @@
 ---
-title: Interface Client-Entreprise &#8211; Projet personnel et professionnel
+title: Interface Client-Entreprise – Projet personnel et professionnel
 description: "Ça y est je me (re)lance sur le projet que j'ai lancé en août 2012
   : Celui de créer une interface client/entreprise...."
 created: 2013-04-15

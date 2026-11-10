@@ -1,5 +1,5 @@
 ---
-title: Voir sans lunettes naturellement &#8211; un défi de 60 jours
+title: Voir sans lunettes naturellement – un défi de 60 jours
 description: Ça m'arrive souvent d’être dérangé quand, dans certaines
   situations, je ne vois plus rien ou que mon activité est interrompue à cause
   d'elles. J'ai trouvé une s...
