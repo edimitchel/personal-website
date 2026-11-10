@@ -420,7 +420,6 @@ ul a.router-link-active::before {
 }
 
 .mode-switcher,
-.contact-button,
 :deep(a.lang-switcher) {
   @apply absolute flex w-7 h-7 items-center justify-center rounded-full rounded-tr-full hover:backdrop-blur-none hover:ring-2 hover:ring-tone-600 cursor-pointer backdrop-blur-sm;
   bottom: 46px;
@@ -439,32 +438,27 @@ ul a.router-link-active::before {
 }
 
 .contact-button {
-  @apply text-lg;
+  --contact-tilt: -22.5deg;
+  @apply absolute flex w-7 h-7 items-center justify-center rounded-full text-lg cursor-pointer backdrop-blur-sm hover:ring-2 hover:ring-tone-600;
   bottom: 45px;
   left: 92%;
-  rotate: -22.5deg;
+  right: auto;
+  rotate: var(--contact-tilt);
   transition: all 400ms ease;
 }
 
-.contact-button>* {
+.contact-button > :deep(.iconify) {
   width: 1em;
   height: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transform: rotate(22.5deg);
+  rotate: calc(var(--contact-tilt) * -1);
 }
 
 @variant md {
   .contact-button {
+    --contact-tilt: -23.5deg;
     @apply text-2xl w-8 h-8;
     bottom: 44px;
     left: 94%;
-    rotate: -23.5deg;
-  }
-
-  .contact-button > * {
-    transform: rotate(23.5deg);
   }
 }
 
