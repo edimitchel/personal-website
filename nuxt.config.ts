@@ -164,9 +164,11 @@ export default defineNuxtConfig({
         process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 31 : 0,
     },
     security: {
-      secret:
-        process.env.NUXT_OG_IMAGE_SECRET
-        || (process.env.NODE_ENV === 'development' ? false : undefined),
+      // v7 only accepts `false` here. Signing comes from NUXT_APP_SECRET,
+      // with NUXT_OG_IMAGE_SECRET still read when that secret is empty.
+      secret: process.env.NODE_ENV === 'development' ? false : undefined,
+      // The Workers preset renders with WASM resvg. A few images miss the 15s default.
+      renderTimeout: 45_000,
     },
   },
 
