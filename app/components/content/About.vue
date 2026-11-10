@@ -1,5 +1,5 @@
 <template>
-  <div class="about-container mx-auto px-4 py-2">
+  <div class="about-container mx-auto min-w-0 max-w-full px-4 py-2">
     <section>
       <div class="flex flex-col lg:flex-row items-center gap-8">
         <div class="profile-info flex-1 text-center">
@@ -19,20 +19,20 @@
       <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('skills_n_expertise') }}
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+      <div class="grid min-w-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
-          class="skill-category bg-paper rounded-lg p-6 shadow-sm shadow-tone/40 transition-shadow"
+          class="skill-category min-w-0 bg-paper rounded-lg p-6 shadow-sm shadow-tone/40 transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
-          <h4 class="text-xl font-semibold m-0 mb-4 text-ink flex items-center">
-            <span class="text-2xl mr-2">
+          <h4 class="text-xl font-semibold m-0 mb-4 text-ink flex min-w-0 items-center">
+            <span class="text-2xl mr-2 shrink-0">
               <UIcon v-if="skillCategory.iconName" :name="skillCategory.iconName" />
               <template v-else>{{ skillCategory.icon }}</template>
             </span>
-            {{ skillCategory.category }}
+            <span class="min-w-0">{{ skillCategory.category }}</span>
           </h4>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex min-w-0 max-w-full flex-wrap gap-2">
             <span v-for="skill in skillCategory.items" :key="skill"
-              class="px-3 py-1 bg-tone-200 text-tone-800 rounded-full text-sm font-medium">
+              class="max-w-full break-words px-3 py-1 bg-tone-200 text-tone-800 rounded-full text-sm font-medium">
               {{ skill }}
             </span>
           </div>
@@ -44,20 +44,20 @@
       <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('tech_stack') }}
       </h2>
-      <div class="grid grid-cols-1 gap-8">
-        <div v-for="stackCategory in techStack" :key="stackCategory.category" class="stack-category">
+      <div class="grid min-w-0 grid-cols-1 gap-8">
+        <div v-for="stackCategory in techStack" :key="stackCategory.category" class="stack-category min-w-0">
           <h3 class="text-xl font-semibold m-0 mb-4 text-ink">
             {{ stackCategory.category }}
           </h3>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="grid min-w-0 grid-cols-2 gap-4 sm:grid-cols-3">
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
-              class="tech-item bg-paper rounded-lg p-4 text-center shadow-sm shadow-tone/40 transition-shadow">
+              class="tech-item min-w-0 bg-paper rounded-lg p-4 text-center shadow-sm shadow-tone/40 transition-shadow">
 
               <div class="mb-2 flex justify-center text-3xl">
                 <UIcon :name="tech.iconName" />
               </div>
-              <div class="text-sm font-medium text-ink">{{ tech.name }}</div>
-              <div class="text-xs text-tone-600">{{ tech.level }}</div>
+              <div class="break-words text-sm font-medium text-ink">{{ tech.name }}</div>
+              <div class="break-words text-xs text-tone-600">{{ tech.level }}</div>
             </div>
           </div>
         </div>
