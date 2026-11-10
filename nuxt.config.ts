@@ -1,10 +1,4 @@
-import { existsSync } from 'node:fs'
-import { createRequire } from 'node:module'
-import { dirname, join } from 'node:path'
 import { collectPrerenderRoutes } from './scripts/collect-prerender-routes'
-
-const require = createRequire(import.meta.url)
-const mdcProseDir = join(dirname(require.resolve('@nuxtjs/mdc')), 'runtime/components/prose')
 
 export default defineNuxtConfig({
 
@@ -15,7 +9,6 @@ export default defineNuxtConfig({
     '@nuxthub/core',
     '@nuxt/eslint',
     '@nuxt/content',
-    '@unocss/nuxt',
     '@nuxt/image',
     '@pinia/nuxt',
     // Registers @nuxt/fonts, @nuxtjs/color-mode and @nuxt/icon.
@@ -53,15 +46,18 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'system',
     fallback: 'light',
-    // Keep -mode so UnoCSS (.dark-mode) and app.vue keep working.
-    // Nuxt UI defaults to an empty suffix (.dark). main.css extends the dark variant to .dark-mode.
-    classSuffix: '-mode',
+    classSuffix: '',
     disableTransition: false,
   },
 
   ui: {
-    // Public prose stays on UnoCSS. 4.10 still registers Prose* when Content is installed.
-    prose: false,
+    prose: true,
+  },
+
+  icon: {
+    serverBundle: {
+      collections: ['mdi', 'logos', 'heroicons', 'line-md', 'ic', 'skill-icons', 'unjs', 'svg-spinners', 'noto-v1'],
+    },
   },
 
   mdc: {
@@ -186,33 +182,4 @@ export default defineNuxtConfig({
     },
   },
 
-  unocss: {
-    configFile: 'unocss/uno.config.ts',
-    content: {
-      filesystem: ['app/../content/*.vue'],
-    },
-  },
-
-  hooks: {
-    'components:extend'(components) {
-      // Nuxt UI 4.10 registers Prose* whenever Content is installed and wins the name clash.
-      // Point the shared tags back at @nuxtjs/mdc so UnoCSS `.prose` still styles real h1/p/a/…
-      // Keep the app ProseImg. Leave Nuxt UI-only tags (callout, accordion, …) untouched.
-      for (let index = components.length - 1; index >= 0; index--) {
-        const component = components[index]
-        if (!component?.filePath.includes('/node_modules/@nuxt/ui/') || !component.pascalName.startsWith('Prose')) {
-          continue
-        }
-        if (component.pascalName === 'ProseImg') {
-          components.splice(index, 1)
-          continue
-        }
-        const replacement = join(mdcProseDir, `${component.pascalName}.vue`)
-        if (existsSync(replacement)) {
-          component.filePath = replacement
-          component.declarationPath = replacement
-        }
-      }
-    },
-  },
 })

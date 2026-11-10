@@ -42,7 +42,7 @@ const TECH_ICONS: Record<string, string> = {
   'REST API': 'i-mdi-api',
 }
 
-export const TECH_ICON_CLASSES = Object.values(TECH_ICONS)
+export const TECH_ICON_NAMES = Object.values(TECH_ICONS)
 
 export function getTechIcon(tech: string): string | null {
   return TECH_ICONS[tech] ?? null

@@ -1,10 +1,10 @@
 <template>
   <NuxtLinkLocale
     :to="'/projects/' + project.slug"
-    class="block p-3 py-4 bg-foreground text-foreground rounded-lg shadow-sm shadow-primary/40 hover:shadow-md transition-[box-shadow,transform] duration-300 ease-out group no-underline hover:-translate-y-px"
+    class="block p-3 py-4 bg-paper text-paper rounded-lg shadow-sm shadow-tone/40 hover:shadow-md transition-[box-shadow,transform] duration-300 ease-out group no-underline hover:-translate-y-px"
   >
     <div class="flex items-start gap-3">
-      <div class="w-18 flex flex-col items-center gap-1 text-background">
+      <div class="w-18 flex flex-col items-center gap-1 text-ink">
         <img
           v-if="project.image"
           :src="project.image"
@@ -20,16 +20,16 @@
         </div>
       </div>
       <div class="flex flex-col flex-1 min-w-0">
-        <h3 class="text-xl font-semibold text-primary-900 dark:text-primary-100">
+        <h3 class="text-xl font-semibold text-tone-900 dark:text-tone-100">
           {{ project.title }}
         </h3>
         <p
           v-if="project.organization"
-          class="text-sm font-bold text-primary-600 dark:text-primary-200"
+          class="text-sm font-bold text-tone-600 dark:text-tone-200"
         >
           {{ project.organization }}
         </p>
-        <p class="text-primary-600 dark:text-primary-300 text-sm line-clamp-2">
+        <p class="text-tone-600 dark:text-tone-300 text-sm line-clamp-2">
           {{ project.description }}
         </p>
         <div

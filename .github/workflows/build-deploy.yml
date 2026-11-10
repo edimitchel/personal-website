@@ -10,7 +10,6 @@ on:
       - 'public/**'
       - 'scripts/**'
       - 'transformers/**'
-      - 'unocss/**'
       - 'locales/**'
       - 'content.config.ts'
       - 'nuxt.config.ts'

@@ -10,11 +10,11 @@
       <span
         v-for="tech in technologies"
         :key="tech"
-        class="inline-flex items-center px-2 py-1 text-xs bg-primary-300 text-primary-800 rounded font-medium"
+        class="inline-flex items-center px-2 py-1 text-xs bg-tone-300 text-tone-800 rounded font-medium"
       >
-        <i
+        <UIcon
           v-if="getTechIcon(tech)"
-          :class="getTechIcon(tech)"
+          :name="getTechIcon(tech)!"
           class="inline-block shrink-0 w-3.5 h-3.5 mr-1"
         />
         {{ tech }}
@@ -22,7 +22,7 @@
     </div>
     <span
       v-if="hiddenMoreThan && technologies.length > hiddenMoreThan"
-      class="tech-stack__more hidden md:block absolute right-0 bottom-0 px-2 py-1 text-xs text-primary-800 pointer-events-none"
+      class="tech-stack__more hidden md:block absolute right-0 bottom-0 px-2 py-1 text-xs text-tone-800 pointer-events-none"
     >
       +{{ technologies.length - hiddenMoreThan }}
     </span>
@@ -36,54 +36,6 @@ interface Props {
 }
 
 defineProps<Props>()
-
-function getTechIcon(tech: string): string | null {
-  const techIcons: Record<string, string> = {
-    'React': 'i-logos-react',
-    'Vue': 'i-logos-vue',
-    'Angular': 'i-logos-angular-icon',
-    'Redux': 'i-logos-redux',
-    'Preact': 'i-logos-preact',
-    'Vite': 'i-logos-vitejs',
-    'PWA': 'i-logos-pwa',
-    'JavaScript': 'i-logos-javascript',
-    'TypeScript': 'i-logos-typescript-icon',
-    'PHP': 'i-logos-php',
-    'Python': 'i-logos-python',
-    'Node.js': 'i-logos-nodejs-icon',
-    'HTML': 'i-logos-html-5',
-    'CSS': 'i-logos-css-3',
-    'Nuxt': 'i-logos-nuxt-icon',
-    'Nitro': 'i-unjs-nitro',
-    'Nuxt 3': 'i-logos-nuxt-icon',
-    'Nuxt 4': 'i-logos-nuxt-icon',
-    'Nuxt UI': 'i-skill-icons-nuxtjs-dark',
-    'NestJS': 'i-logos-nestjs',
-    'TypeORM': 'i-logos-typeorm',
-    'Vitest': 'i-logos-vitest',
-    'FullCalendar': 'i-mdi-calendar-month-outline',
-    'rrule': 'i-mdi-repeat-variant',
-    'Next.js': 'i-logos-nextjs-icon',
-    'Tailwind': 'i-logos-tailwindcss-icon',
-    'Docker': 'i-logos-docker-icon',
-    'Laravel': 'i-logos-laravel',
-    'Git': 'i-logos-git-icon',
-    'MySQL': 'i-logos-mysql',
-    'PostgreSQL': 'i-logos-postgresql',
-    'MongoDB': 'i-logos-mongodb-icon',
-    'Redis': 'i-logos-redis',
-    'AWS': 'i-logos-aws',
-    'Firebase': 'i-logos-firebase',
-    'Vercel': 'i-logos-vercel-icon',
-    'Netlify': 'i-logos-netlify',
-    'jQuery': 'i-logos-jquery',
-    'Bootstrap': 'i-logos-bootstrap',
-    'Service Worker': 'i-logos-pwa',
-    'REST API': 'i-mdi-api',
-  }
-
-  return techIcons[tech] ?? null
-}
 </script>
 
 <style scoped>

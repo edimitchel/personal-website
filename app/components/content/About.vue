@@ -3,7 +3,7 @@
     <section>
       <div class="flex flex-col lg:flex-row items-center gap-8">
         <div class="profile-info flex-1 text-center">
-          <h2 class="text-2xl lg:text-3xl underline underline-primary-600 mb-4 mt-0">
+          <h2 class="text-2xl lg:text-3xl underline decoration-tone-600 mb-4 mt-0">
             {{ title }}
           </h2>
           <p class="text-lg leading-relaxed text-balance">
@@ -16,21 +16,21 @@
     <ContactForm />
 
     <section class="skills-section my-15">
-      <h2 class="text-2xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('skills_n_expertise') }}
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
         <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
-          class="skill-category bg-foreground rounded-lg p-6 shadow-sm shadow-primary/40 transition-shadow"
+          class="skill-category bg-paper rounded-lg p-6 shadow-sm shadow-tone/40 transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
-          <h4 class="text-xl font-semibold m-0 mb-4 text-background flex items-center">
+          <h4 class="text-xl font-semibold m-0 mb-4 text-ink flex items-center">
             <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template
                 v-else>{{ skillCategory.icon }}</template></span>
             {{ skillCategory.category }}
           </h4>
           <div class="flex flex-wrap gap-2">
             <span v-for="skill in skillCategory.items" :key="skill"
-              class="px-3 py-1 bg-primary-200 text-primary-800 rounded-full text-sm font-medium">
+              class="px-3 py-1 bg-tone-200 text-tone-800 rounded-full text-sm font-medium">
               {{ skill }}
             </span>
           </div>
@@ -39,21 +39,21 @@
     </section>
 
     <section class="tech-stack-section mb-12">
-      <h2 class="text-2xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('tech_stack') }}
       </h2>
       <div class="grid grid-cols-1 gap-8">
         <div v-for="stackCategory in techStack" :key="stackCategory.category" class="stack-category">
-          <h3 class="text-xl font-semibold m-0 mb-4 text-background">
+          <h3 class="text-xl font-semibold m-0 mb-4 text-ink">
             {{ stackCategory.category }}
           </h3>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
-              class="tech-item bg-foreground rounded-lg p-4 text-center shadow-sm shadow-primary/40 transition-shadow">
+              class="tech-item bg-paper rounded-lg p-4 text-center shadow-sm shadow-tone/40 transition-shadow">
 
               <div class="text-3xl mb-2"><i class="inline-block" :class="tech.iconName" /></div>
-              <div class="text-sm font-medium text-background">{{ tech.name }}</div>
-              <div class="text-xs text-primary-600">{{ tech.level }}</div>
+              <div class="text-sm font-medium text-ink">{{ tech.name }}</div>
+              <div class="text-xs text-tone-600">{{ tech.level }}</div>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
     </section>
 
     <section class="passions-section mb-12">
-      <h2 class="text-2xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('passions') }}
       </h2>
       <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -70,10 +70,10 @@
           :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }">
 
           <div class="text-4xl mb-4 text-center"><i class="block" :class="passion.icon" /></div>
-          <h4 class="text-lg font-semibold mb-2 text-center text-background">
+          <h4 class="text-lg font-semibold mb-2 text-center text-ink">
             {{ passion.title }}
           </h4>
-          <p class="text-primary-600 text-center m-0">
+          <p class="text-tone-600 text-center m-0">
             {{ passion.description }}
           </p>
         </div>
@@ -83,7 +83,7 @@
     <section client-only v-if="experiences" class="py-4">
       <!-- Experiences -->
 
-      <h2 class="text-2xl font-bold m-0 mb-3 text-center text-background">
+      <h2 class="text-2xl font-bold m-0 mb-3 text-center text-ink">
         {{ $t('experiences') }}
       </h2>
 
@@ -91,14 +91,14 @@
       <LazyCarousel :hydrate-on-visible="{ rootMargin: '200px' }" :items="experiences">
         <template #default="{ item }">
           <NuxtLinkLocale :to="`/projects/${item.slug}`"
-            class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-background/80 hover:bg-background"
+            class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-ink/80 hover:bg-ink"
             :aria-label="item.title">
-            <UnoIcon class="i-ic-baseline-open-in-new bg-foreground" />
+            <UIcon name="i-ic-baseline-open-in-new" class="bg-paper" />
           </NuxtLinkLocale>
           <LazyNuxtImg :src="item.image" class="hidden md:block absolute bottom-2 right-2 w-15 max-h-20 object-contain pointer-events-none" :aria-label="item.title" />
-          <h2 class="text-lg font-semibold m-0 m-0 text-background w-full pr-8 -my-1 truncate">{{ item.title }}</h2>
-          <h4 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h4>
-          <div class="text-xs text-primary-700">
+          <h2 class="text-lg font-semibold m-0 m-0 text-ink w-full pr-8 -my-1 truncate">{{ item.title }}</h2>
+          <h4 class="text-sm font-normal m-0 text-ink">{{ item.organization }}</h4>
+          <div class="text-xs text-tone-700">
             <template v-if="item.completedAt">
               <template v-if="item.startedAt">{{ formatDate(locale, item.startedAt) }} – </template> {{
                 formatDate(locale, item.completedAt) }}
@@ -107,7 +107,7 @@
               {{ formatDate(locale, item.startedAt) }} - {{ $t('project.info.inProgress') }}
             </template>
           </div>
-          <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3 md:pr-17">{{
+          <p class="text-tone-600 grow m-0 my-1 leading-tight text-balance line-clamp-3 md:pr-16">{{
             item.description
           }}</p>
           <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="justify-start mr-15" />
@@ -116,36 +116,36 @@
     </section>
 
     <section
-      class="enterprise-section border-y-(5 primary) py-4 rounded-[5px] bg-linear-to-tb from-foreground to-primary-400 p-2">
-      <h2 class="text-2xl font-bold my-2 text-center text-background">
+      class="enterprise-section border-y-[5px] border-tone py-4 rounded-[5px] bg-linear-to-b from-paper to-tone-400 p-2">
+      <h2 class="text-2xl font-bold my-2 text-center text-ink">
         {{ $t('enterprise_purposes') }}
       </h2>
       <div class="flex flex-col p-2 gap-6 text-balance">
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Mission</h4>
-          <p class="text-primary-600 text-balance leading-relaxed m-0">
+          <p class="text-tone-600 text-balance leading-relaxed m-0">
             {{ enterprise?.mission }}
           </p>
         </div>
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Vision</h4>
-          <p class="text-primary-600 text-balance leading-relaxed m-0">
+          <p class="text-tone-600 text-balance leading-relaxed m-0">
             {{ enterprise?.vision }}
           </p>
         </div>
         <div>
           <h4 class="text-2xl font-semibold m-0 mb-2">Services</h4>
           <div class="grid grid-rows-3 gap-2">
-            <div v-for="service in enterprise?.services" :key="service.name" class="bg-opacity-20 rounded-lg flex">
+            <div v-for="service in enterprise?.services" :key="service.name" class="bg-tone/20 rounded-lg flex">
               <div class="text-2xl w-10 grow-0 shrink-0">
-                <UnoIcon v-if="service.iconName" :class="service.iconName" />
+                <UIcon v-if="service.iconName" :name="service.iconName" />
                 <template v-else>
                   {{ service.icon }}
                 </template>
               </div>
               <div>
                 <h5 class="font-semibold">{{ service.name }}</h5>
-                <p class="text-sm text-primary-600 m-0 text-balance sm:pr-20">{{ service.description }}</p>
+                <p class="text-sm text-tone-600 m-0 text-balance sm:pr-20">{{ service.description }}</p>
               </div>
             </div>
           </div>
