@@ -69,8 +69,8 @@
       >
         <SwitchLocalePathLink
           :locale="locale === 'fr' ? 'en' : 'fr'"
-          class="lang-switcher"
-          :class="{ disabled: store.notTranslated }"
+          class="lang-switcher absolute flex h-7 w-7 items-center justify-center rounded-full cursor-pointer backdrop-blur-sm hover:backdrop-blur-none hover:ring-2 hover:ring-tone-600 md:text-xl"
+          :class="{ 'saturate-0 opacity-50 text-xl': store.notTranslated }"
           :title="store.notTranslated ? $t('header.switchLanguageNotTranslated') : $t('header.switchLanguage')"
         >
           <Transition
@@ -84,7 +84,7 @@
           </Transition>
         </SwitchLocalePathLink>
         <button
-          class="mode-switcher"
+          class="mode-switcher absolute flex h-7 w-7 items-center justify-center rounded-full cursor-pointer backdrop-blur-sm hover:backdrop-blur-none hover:ring-2 hover:ring-tone-600 md:text-lg"
           :aria-label="$t('header.cycleModes')"
           @click="cycleModes"
         >
@@ -124,7 +124,7 @@
           </li>
         </ul>
         <button
-          class="contact-button"
+          class="contact-button absolute flex h-7 w-7 items-center justify-center rounded-full text-lg cursor-pointer backdrop-blur-sm hover:backdrop-blur-none hover:ring-2 hover:ring-tone-600 md:h-8 md:w-8 md:text-2xl"
           :aria-label="$t('header.contact')"
           @click="contactVisible = !contactVisible"
         >
@@ -419,9 +419,7 @@ ul a.router-link-active::before {
   @apply bg-tone-600 pointer-events-none -z-[1] bottom-[-6px];
 }
 
-.mode-switcher,
-:deep(a.lang-switcher) {
-  @apply absolute flex w-7 h-7 items-center justify-center rounded-full rounded-tr-full hover:backdrop-blur-none hover:ring-2 hover:ring-tone-600 cursor-pointer backdrop-blur-sm;
+.mode-switcher {
   bottom: 46px;
   right: 93%;
   rotate: 21.5deg;
@@ -430,35 +428,23 @@ ul a.router-link-active::before {
 
 @variant md {
   .mode-switcher {
-    @apply text-lg w-7 h-7;
     bottom: 48px;
     right: 94%;
-    rotate: 21.5deg;
   }
 }
 
 .contact-button {
-  --contact-tilt: -22.5deg;
-  @apply absolute flex w-7 h-7 items-center justify-center rounded-full text-lg cursor-pointer backdrop-blur-sm hover:ring-2 hover:ring-tone-600;
   bottom: 45px;
   left: 92%;
-  right: auto;
-  rotate: var(--contact-tilt);
+  rotate: -22.5deg;
   transition: all 400ms ease;
-}
-
-.contact-button > :deep(.iconify) {
-  width: 1em;
-  height: 1em;
-  rotate: calc(var(--contact-tilt) * -1);
 }
 
 @variant md {
   .contact-button {
-    --contact-tilt: -23.5deg;
-    @apply text-2xl w-8 h-8;
     bottom: 44px;
     left: 94%;
+    rotate: -23.5deg;
   }
 }
 
@@ -466,15 +452,11 @@ ul a.router-link-active::before {
   bottom: 58px;
   right: 105%;
   rotate: 30deg;
-}
-
-:deep(a.lang-switcher.disabled) {
-  @apply absolute saturate-0 opacity-50 text-xl;
+  transition: all 400ms ease;
 }
 
 @variant md {
   :deep(a.lang-switcher) {
-    @apply text-xl w-7 h-7;
     bottom: 62px;
     right: 107%;
     rotate: 34deg;
