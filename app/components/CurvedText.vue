@@ -111,6 +111,8 @@ const path = computed(() => {
 })
 </script>
 <style scoped>
+@reference "../assets/css/main.css";
+
 .sr-only {
   display: none;
 }
@@ -124,11 +126,11 @@ text {
 }
 
 text textPath {
-  --uno: fill-background;
+  @apply fill-ink;
 }
 
 .alone {
-  --uno: pt-4;
+  @apply pt-4;
 }
 
 .stop-white {

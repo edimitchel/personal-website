@@ -1,5 +1,5 @@
 <template>
-    <ContentRenderer v-if="content" :value="content" class="prose text-background" :data="{ updatedDate }" />
+    <ContentRenderer v-if="content" :value="content" class="prose text-ink" :data="{ updatedDate }" />
 </template>
 
 <script setup lang="ts">
@@ -34,14 +34,14 @@ const updatedDate = computed(() => {
 
 <style scoped>
 :deep(.prose) {
-    color: var(--color-foreground);
+    color: var(--site-ink);
 }
 
 :deep(.prose h1) {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 1rem;
-    color: var(--color-foreground);
+    color: var(--site-ink);
 }
 
 :deep(.prose h2) {
@@ -49,21 +49,21 @@ const updatedDate = computed(() => {
     font-weight: 600;
     margin-bottom: 0.75rem;
     margin-top: 1.5rem;
-    color: var(--color-foreground);
+    color: var(--site-ink);
 }
 
 :deep(.prose p) {
     margin-bottom: 1rem;
-    color: rgba(var(--color-foreground), 0.9);
+    color: color-mix(in srgb, var(--site-ink) 90%, transparent);
 }
 
 :deep(.prose ul) {
     margin-bottom: 1rem;
-    color: rgba(var(--color-foreground), 0.9);
+    color: color-mix(in srgb, var(--site-ink) 90%, transparent);
 }
 
 :deep(.prose li) {
     margin-bottom: 0.25rem;
-    color: rgba(var(--color-foreground), 0.9);
+    color: color-mix(in srgb, var(--site-ink) 90%, transparent);
 }
 </style>

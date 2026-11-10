@@ -1,6 +1,8 @@
 <template>
   <div class="social-icon">
-    <NuxtLink :to="url" target="_blank" :class="iconClass" :aria-label="platform"></NuxtLink>
+    <NuxtLink :to="url" target="_blank" :aria-label="platform">
+      <UIcon :name="iconClass" class="size-full" />
+    </NuxtLink>
   </div>
 </template>
 
@@ -15,19 +17,19 @@ const props = defineProps<Props>()
 const platformConfig = {
   linkedin: {
     baseUrl: 'https://linkedin.com/in/',
-    iconClass: 'i-line-md:linkedin'
+    iconClass: 'i-line-md-linkedin'
   },
   github: {
     baseUrl: 'https://github.com/',
-    iconClass: 'i-line-md:github'
+    iconClass: 'i-line-md-github'
   },
   twitter: {
     baseUrl: 'https://x.com/',
-    iconClass: 'i-line-md:twitter-x'
+    iconClass: 'i-line-md-twitter-x'
   },
   youtube: {
     baseUrl: 'https://youtube.com/@',
-    iconClass: 'i-line-md:youtube'
+    iconClass: 'i-line-md-youtube'
   },
 }
 
@@ -42,18 +44,18 @@ const iconClass = computed(() => {
 </script>
 
 <style scoped>
+@reference "../assets/css/main.css";
+
 .social-icon {
-  --uno: w-6 h-6 flex items-center text-center rounded-full 
-  transition(ease duration-200 all) 
-  bg-foreground bg-opacity-50 backdrop-blur-sm
-  hover:(bg-primary-600 scale-125 z-200 text-foreground bg-opacity-100)
+  @apply w-6 h-6 flex items-center text-center rounded-full transition-all duration-200 ease-out bg-paper/50 backdrop-blur-sm hover:bg-tone-600 hover:scale-125 hover:z-[200] hover:text-paper;
 }
 
 .social-icon a {
-  --uno: w-full h-full m-1;
+  @apply w-full h-full m-1;
 }
+
 .social-icon:where(a:hover),
 .social-icon:where(a:focus-visible) {
-  --uno: border(primary-200 1px solid) bg-opacity-100;
+  @apply border border-solid border-tone-200;
 }
 </style>

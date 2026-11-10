@@ -3,7 +3,7 @@
     v-if="projects.length"
     class="mb-12"
   >
-    <h2 class="text-2xl font-bold mb-6 text-primary-800 dark:text-primary-200">
+    <h2 class="text-2xl font-bold mb-6 text-tone-800 dark:text-tone-200">
       {{ projects.length }} {{ title }}
     </h2>
     <div class="grid gap-4">
@@ -21,7 +21,7 @@
         class="mt-4 text-center"
       >
         <button
-          class="px-6 py-1 bg-primary-600/80 hover:bg-background text-primary-100 cursor-pointer rounded-md transition-colors duration-200"
+          class="px-6 py-1 bg-tone-600/80 hover:bg-ink text-tone-100 cursor-pointer rounded-md transition-colors duration-200"
           @click="toggleShowAll"
         >
           {{ showAll ? $t('projects.showLess') : $t('projects.showMore', {

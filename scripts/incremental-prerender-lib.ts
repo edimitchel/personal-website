@@ -19,7 +19,6 @@ export const PRERENDER_MANIFEST_PATH = join(process.cwd(), '.cache/prerender-man
 const SHELL_PATHS = [
   'app',
   'transformers',
-  'unocss',
   'locales',
   'scripts/collect-prerender-routes.ts',
   'scripts/incremental-prerender-lib.ts',

@@ -56,8 +56,10 @@ export type LayoutHeaderProps = typeof info.value
 </script>
 
 <style scoped>
+@reference "../assets/css/main.css";
+
 .container {
-  --uno: px-4 mx-auto border-0 font-serif max-w-[600px] box-border;
+  @apply px-4 mx-auto border-0 font-serif max-w-[600px] box-border;
   flex: 1;
 }
 </style>

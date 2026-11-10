@@ -1,6 +1,6 @@
 <template>
   <section class="prose">
-    <ContentRenderer v-if="project" :value="project" class="prose text-background" />
+    <ContentRenderer v-if="project" :value="project" class="prose text-ink" />
 
     <div v-if="projects?.length">
       <!-- Experience + Consulting -->
@@ -10,7 +10,7 @@
       <ProjectSection :projects="personalProjects" :title="$t('projects.personal')" />
     </div>
 
-    <div class="prose text-background" v-else>
+    <div class="prose text-ink" v-else>
       <h3>{{ $t('project.noneForThisLanguage') }}</h3>
     </div>
   </section>

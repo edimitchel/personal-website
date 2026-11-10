@@ -32,47 +32,49 @@ function formatDate(date: string, simple = false) {
 </script>
 
 <style scoped>
+@reference "../assets/css/main.css";
+
 .post {
-  --uno: block overflow-hidden pb-3;
+  @apply block overflow-hidden pb-3;
 }
 
 .post:last-child {
-  --uno: border-0;
+  @apply border-0;
 }
 
 .post__header {
-  --uno: flex items-baseline justify-start gap-2 -mb-1;
+  @apply flex items-baseline justify-start gap-2 -mb-1;
 }
 
 .post__tags {
-  --uno: text-sm flex;
+  @apply text-sm flex;
 }
 
 .post__tag {
-  --uno: outline-none rounded-full text-background;
+  @apply outline-none rounded-full text-ink;
   ;
 }
 
 .post__tag:not(:last-child)::after {
   content: ', ';
-  --uno: mr-1;
+  @apply mr-1;
 }
 
 .post__tag.active {
-  --uno: bg-primary-500 text-background;
+  @apply bg-tone-500 text-ink;
 }
 
 .post__date {
-  --uno: block uppercase text-xs text-primary-600 font-bold;
+  @apply block uppercase text-xs text-tone-600 font-bold;
 }
 
 .post__title {
-  --uno: m-0 py-1 leading-tight text-lg font-semibold text-background line-clamp-1;
+  @apply m-0 py-1 leading-tight text-lg font-semibold text-ink line-clamp-1;
   ;
 }
 
 .post__description {
-  --uno: text-sm m-0 leading-snug text-balance line-clamp-2 text-background;
+  @apply text-sm m-0 leading-snug text-balance line-clamp-2 text-ink;
   ;
 }
 </style>

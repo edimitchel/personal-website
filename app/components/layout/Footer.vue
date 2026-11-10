@@ -1,5 +1,5 @@
 <template>
-  <footer class="font-mono py-2 text-background">
+  <footer class="font-mono py-2 text-ink">
     <div class="text-xs text-center space-y-1">
       <div>
         &copy; {{ year }} Michel Edighoffer –

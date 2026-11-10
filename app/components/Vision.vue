@@ -24,18 +24,20 @@ export default {
 }
 </script>
 <style scoped>
+@reference "../assets/css/main.css";
+
 article {
-  --uno: py-8;
+  @apply py-8;
 }
 .vision-title {
-  --uno: mb-5
+  @apply mb-5
     text-3xl
     text-center
     font-bold
     uppercase;
 }
 .vision-excerpt {
-  --uno: text-center
+  @apply text-center
     my-2;
 }
 </style>

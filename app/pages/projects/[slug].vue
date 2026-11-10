@@ -5,7 +5,7 @@
         <ProjectHeader :project="content" />
         <ContentRenderer
           :value="content"
-          class="prose text-background"
+          class="prose text-ink"
         />
         <SiblingNavigation
           v-if="siblings"
@@ -15,7 +15,7 @@
       </template>
       <div
         v-else
-        class="prose text-background"
+        class="prose text-ink"
       >
         <h1>{{ $t('project.notFound') }}</h1>
         <p>{{ $t('project.notFoundDescription') }}</p>

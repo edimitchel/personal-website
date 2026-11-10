@@ -1,7 +1,7 @@
 <template>
   <div v-if="posts.length" class="posts">
     <section v-for="[time, posts] of timeSections" :key="time">
-      <h2 v-if="timeSection(time)" class="text-xl uppercase font-bold text-primary-800 py-2">{{ timeSection(time) }}</h2>
+      <h2 v-if="timeSection(time)" class="text-xl uppercase font-bold text-tone-800 py-2">{{ timeSection(time) }}</h2>
       <Post v-for="post in posts" :key="post.slug" :to="post.slug" :post="post" />
     </section>
   </div>
@@ -50,26 +50,28 @@ function timeSection(time: number) {
 }
 </script>
 <style scoped>
+@reference "../assets/css/main.css";
+
 .posts {
-  --uno: relative flex flex-col gap-2;
+  @apply relative flex flex-col gap-2;
 }
 
-@screen md {
+@variant md {
   .posts {
-    --uno: gap-6;
+    @apply gap-6;
   }
 }
 
 .categories {
-  --uno: flex flex-wrap justify-between;
+  @apply flex flex-wrap justify-between;
 }
 
 .category {
   transition: all 300ms ease;
-  --uno: sticky p-2 mx-2 outline-none rounded-full text-background mb-2;
+  @apply sticky p-2 mx-2 outline-none rounded-full text-ink mb-2;
 }
 
 .category.active {
-  --uno: bg-primary-500 text-foreground;
+  @apply bg-tone-500 text-paper;
 }
 </style>

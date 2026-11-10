@@ -77,9 +77,9 @@
             mode="out-in"
             name="fade"
           >
-            <UnoIcon
+            <UIcon
               :key="locale"
-              :class="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'"
+              :name="locale === 'fr' ? 'i-noto-v1-flag-for-flag-france' : 'i-noto-v1-flag-for-flag-united-kingdom'"
             />
           </Transition>
         </SwitchLocalePathLink>
@@ -92,20 +92,20 @@
             name="fade"
             mode="out-in"
           >
-            <UnoIcon
+            <UIcon
               v-if="mode.preference === 'dark'"
               key="dark"
-              class="i-line-md-lightbulb-off-twotone"
+              name="i-line-md-lightbulb-off-twotone"
             />
-            <UnoIcon
+            <UIcon
               v-else-if="mode.preference === 'light'"
               key="light"
-              class="i-line-md-lightbulb-twotone"
+              name="i-line-md-lightbulb-twotone"
             />
-            <UnoIcon
+            <UIcon
               v-else
               key="system"
-              class="i-line-md-light-dark"
+              name="i-line-md-light-dark"
             />
           </Transition>
         </button>
@@ -128,21 +128,22 @@
           :aria-label="$t('header.contact')"
           @click="contactVisible = !contactVisible"
         >
-          <UnoIcon class="i-line-md-chat-round-dots" />
+          <UIcon name="i-line-md-chat-round-dots" />
         </button>
         <Teleport to="#modals">
           <div
             v-if="contactVisible"
-            class="fixed w-100vw h-100lvh inset-0 p-10 backdrop-blur-sm z-110"
+            class="fixed w-screen h-lvh inset-0 p-10 backdrop-blur-sm z-[110]"
             @click.self="contactVisible = false"
           >
-            <UnoIcon
-              class="i-line-md-close absolute text-xl left-50% -translate-x-1/2 top-5 block cursor-pointer text-foreground"
+            <UIcon
+              name="i-line-md-close"
+              class="absolute text-xl left-1/2 -translate-x-1/2 top-5 block cursor-pointer text-paper"
               @click="contactVisible = false"
             />
             <ContactForm
               :is-visible="contactVisible"
-              class="text-background"
+              class="text-ink"
               @update:is-visible="contactVisible = $event"
             />
           </div>
@@ -157,8 +158,6 @@ import type { LayoutHeaderProps } from '~/layouts/default.vue'
 import type { MessageObject } from '~/stores/layout'
 import { random } from '~/utils'
 import { useI18n } from 'vue-i18n'
-import { UnoIcon } from '#components'
-
 const { locale } = useI18n()
 
 const mode = useColorMode()
@@ -245,14 +244,16 @@ const { isLoading: pulse } = useLoadingIndicator()
 </script>
 
 <style scoped>
+@reference "../../assets/css/main.css";
+
 .header {
   height: 238px;
-  --uno: overflow-hidden flex items-center flex-col text-center relative pt-2 flex-shrink-0 z-50 text-background transition-colors duration-200;
+  @apply overflow-hidden flex items-center flex-col text-center relative pt-2 flex-shrink-0 z-50 text-ink transition-colors duration-200;
 }
 
 @media screen and (min-height: 400px) and (min-width: 1024px) {
   .header {
-    --uno: sticky;
+    @apply sticky;
     top: -143px;
   }
 }
@@ -288,7 +289,7 @@ const { isLoading: pulse } = useLoadingIndicator()
 .icons-bottom,
 .icons-top {
   max-width: 140px;
-  --uno: flex justify-between absolute w-full;
+  @apply flex justify-between absolute w-full;
 }
 
 .icons-top {
@@ -312,12 +313,12 @@ const { isLoading: pulse } = useLoadingIndicator()
   position: absolute;
   inset: 0;
   width: 100%;
-  --uno: text-2xl font-serif font-900 flex items-center justify-center;
+  @apply text-2xl font-serif font-black flex items-center justify-center;
 }
 
-@screen md {
+@variant md {
   .title-header {
-    --uno: text-2xl;
+    @apply text-2xl;
   }
 }
 
@@ -325,24 +326,24 @@ const { isLoading: pulse } = useLoadingIndicator()
   position: absolute;
   top: 7px;
   width: 100%;
-  --uno: uppercase font-500 flex items-center justify-center;
+  @apply uppercase font-medium flex items-center justify-center;
 }
 
 .subtitle-header.level-1 {
-  --uno: text-sm;
+  @apply text-sm;
 }
 
 .subtitle-header.level-2 {
-  --uno: text-xs;
+  @apply text-xs;
 }
 
-@screen md {
+@variant md {
   .subtitle-header.level-1 {
-    --uno: text-lg;
+    @apply text-lg;
   }
 
   .subtitle-header.level-2 {
-    --uno: text-sm;
+    @apply text-sm;
   }
 }
 
@@ -358,7 +359,7 @@ const { isLoading: pulse } = useLoadingIndicator()
   position: absolute;
   bottom: 0px;
   height: 35px;
-  --uno: font-serif text-background transition-colors duration-200;
+  @apply font-serif text-ink transition-colors duration-200;
 }
 
 .navigation.hidden {
@@ -367,11 +368,11 @@ const { isLoading: pulse } = useLoadingIndicator()
 }
 
 ul {
-  --uno: flex m-0 p-0 list-none;
+  @apply flex m-0 p-0 list-none;
 }
 
 ul li {
-  --uno: leading-none align-middle w-20;
+  @apply leading-none align-middle w-20;
 
   --mid: calc(round(down, var(--count) / 2));
   --delta: calc(var(--index) - var(--mid));
@@ -381,7 +382,7 @@ ul li {
 }
 
 ul a {
-  --uno: block mx-2 my-1 rounded-full transition-all;
+  @apply block mx-2 my-1 rounded-full transition-all;
   position: relative;
 }
 
@@ -415,22 +416,22 @@ ul a::before {
 }
 
 ul a.router-link-active::before {
-  --uno: bg-primary-600 pointer-events-none -z-1 bottom-[-6px];
+  @apply bg-tone-600 pointer-events-none -z-[1] bottom-[-6px];
 }
 
 .mode-switcher,
 .contact-button,
 :deep(a.lang-switcher) {
-  --uno: absolute flex w-7 h-7 items-center justify-center rounded-full rounded-tr-full hover:backdrop-blur-none hover:ring-2 hover:ring-primary-600 cursor-pointer backdrop-blur-sm;
+  @apply absolute flex w-7 h-7 items-center justify-center rounded-full rounded-tr-full hover:backdrop-blur-none hover:ring-2 hover:ring-tone-600 cursor-pointer backdrop-blur-sm;
   bottom: 46px;
   right: 93%;
   rotate: 21.5deg;
   transition: all 400ms ease;
 }
 
-@screen md {
+@variant md {
   .mode-switcher {
-    --uno: text-lg w-7 h-7;
+    @apply text-lg w-7 h-7;
     bottom: 48px;
     right: 94%;
     rotate: 21.5deg;
@@ -438,7 +439,7 @@ ul a.router-link-active::before {
 }
 
 .contact-button {
-  --uno: text-lg;
+  @apply text-lg;
   bottom: 45px;
   left: 92%;
   rotate: -22.5deg;
@@ -446,18 +447,24 @@ ul a.router-link-active::before {
 }
 
 .contact-button>* {
-  height: 100%;
+  width: 1em;
+  height: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: rotate(22.5deg);
 }
 
-@screen md {
+@variant md {
   .contact-button {
-    --uno: text-2xl w-8 h-8;
+    @apply text-2xl w-8 h-8;
     bottom: 44px;
     left: 94%;
     rotate: -23.5deg;
+  }
+
+  .contact-button > * {
+    transform: rotate(23.5deg);
   }
 }
 
@@ -468,12 +475,12 @@ ul a.router-link-active::before {
 }
 
 :deep(a.lang-switcher.disabled) {
-  --uno: absolute filter-saturate-0 opacity-50 text-xl;
+  @apply absolute saturate-0 opacity-50 text-xl;
 }
 
-@screen md {
+@variant md {
   :deep(a.lang-switcher) {
-    --uno: text-xl w-7 h-7;
+    @apply text-xl w-7 h-7;
     bottom: 62px;
     right: 107%;
     rotate: 34deg;
