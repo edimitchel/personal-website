@@ -3,7 +3,7 @@
     :class="badgeClasses"
     class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium"
   >
-    <i :class="iconClass" class="w-3 h-3 mr-1" />
+    <UIcon :name="iconClass" class="mr-1 size-3" />
     {{ typeLabel }}
   </span>
 </template>

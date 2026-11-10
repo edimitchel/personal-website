@@ -24,8 +24,10 @@
           class="skill-category bg-paper rounded-lg p-6 shadow-sm shadow-tone/40 transition-shadow"
           :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
           <h4 class="text-xl font-semibold m-0 mb-4 text-ink flex items-center">
-            <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template
-                v-else>{{ skillCategory.icon }}</template></span>
+            <span class="text-2xl mr-2">
+              <UIcon v-if="skillCategory.iconName" :name="skillCategory.iconName" />
+              <template v-else>{{ skillCategory.icon }}</template>
+            </span>
             {{ skillCategory.category }}
           </h4>
           <div class="flex flex-wrap gap-2">
@@ -51,7 +53,9 @@
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
               class="tech-item bg-paper rounded-lg p-4 text-center shadow-sm shadow-tone/40 transition-shadow">
 
-              <div class="text-3xl mb-2"><i class="inline-block" :class="tech.iconName" /></div>
+              <div class="mb-2 flex justify-center text-3xl">
+                <UIcon :name="tech.iconName" />
+              </div>
               <div class="text-sm font-medium text-ink">{{ tech.name }}</div>
               <div class="text-xs text-tone-600">{{ tech.level }}</div>
             </div>
@@ -69,11 +73,11 @@
           class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
           :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }">
 
-          <div class="text-4xl mb-4 text-center"><i class="block" :class="passion.icon" /></div>
-          <h4 class="text-lg font-semibold mb-2 text-center text-ink">
+          <div class="mb-4 text-center text-4xl leading-none">{{ passion.icon }}</div>
+          <h4 class="passion-title mb-2 text-center text-lg font-semibold">
             {{ passion.title }}
           </h4>
-          <p class="text-tone-600 text-center m-0">
+          <p class="m-0 text-center text-gray-600">
             {{ passion.description }}
           </p>
         </div>
@@ -160,11 +164,6 @@
 </template>
 
 <script setup lang="ts">
-// Explicitly include icon classes for UnoCSS to detect
-const iconClasses = [
-  'i-logos-vue', 'i-logos-nuxt-icon', 'i-logos-typescript-icon', 'i-logos-react', 'i-logos-unocss', 'i-logos-sass', 'i-logos-nodejs', 'i-logos-php', 'i-logos-mysql', 'i-logos-postgresql',
-];
-
 import { formatDate } from '~/components/Project/Header.vue'
 
 interface SkillCategory {
@@ -232,5 +231,10 @@ defineProps<ProfileData>()
 <style scoped>
 .about-container {
   animation: fadeInAndSlide 0.6s ease-in-out;
+}
+
+/* The card gradient stays light in both themes. Prose heading color must not flip it to white. */
+.passion-title {
+  color: var(--color-gray-900);
 }
 </style>
