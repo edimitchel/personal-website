@@ -1,5 +1,10 @@
 import { field, group } from "@nuxt/content/preview";
 
+// Nuxt injects this global when it loads the schema file. The app TS project
+// does not see that global, so declare it here. The identity return keeps
+// `typeof` of this file precise for app.config.ts.
+declare const defineNuxtSchema: <T>(schema: T) => T
+
 export default defineNuxtSchema({
     appConfig: {
         information: group({
@@ -65,14 +70,6 @@ export default defineNuxtSchema({
                     icon: 'i-mdi-calendar-blank',
                     default: '',
                 }),
-            }
-        }),
-
-        ui: group({
-            title: 'UI',
-            description: 'Visual stuff of the website',
-            icon: 'i-mdi-drawing-box',
-            fields: {
                 icons: group({
                     description: 'Icons used between full name',
                     title: 'Icons',
@@ -97,6 +94,14 @@ export default defineNuxtSchema({
                     icon: 'i-mdi-message',
                     default: [],
                 }),
+            }
+        }),
+
+        ui: group({
+            title: 'UI',
+            description: 'Visual stuff of the website',
+            icon: 'i-mdi-drawing-box',
+            fields: {
                 colors: group({
                     title: 'Nuxt UI colors',
                     description: 'Semantic aliases. primary and neutral stay on Tailwind gray.',

@@ -1,30 +1,54 @@
+// @vitest-environment node
+// The Nuxt test environment externalizes node:fs, so an automock never reaches
+// this script (vi.mocked(readFileSync) is the real function). These factories
+// stay in effect under the node environment.
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { readFileSync, writeFileSync, existsSync, readdirSync, statSync, mkdirSync, rmSync } from 'node:fs'
-import { join } from 'path'
-import matter from 'gray-matter'
+const {
+  mockReadFileSync,
+  mockWriteFileSync,
+  mockExistsSync,
+  mockReaddirSync,
+  mockStatSync,
+  mockMkdirSync,
+} = vi.hoisted(() => ({
+  mockReadFileSync: vi.fn(),
+  mockWriteFileSync: vi.fn(),
+  mockExistsSync: vi.fn(),
+  mockReaddirSync: vi.fn(),
+  mockStatSync: vi.fn(),
+  mockMkdirSync: vi.fn(),
+}))
 
-// Mock the modules
-vi.mock('node:fs')
-vi.mock('gray-matter')
+const { mockMatter, mockMatterStringify } = vi.hoisted(() => {
+  const mockMatterStringify = vi.fn()
+  const mockMatter = Object.assign(vi.fn(), { stringify: mockMatterStringify })
+  return { mockMatter, mockMatterStringify }
+})
+
+vi.mock('node:fs', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('node:fs')>()
+  return {
+    ...actual,
+    default: actual,
+    readFileSync: mockReadFileSync,
+    writeFileSync: mockWriteFileSync,
+    existsSync: mockExistsSync,
+    readdirSync: mockReaddirSync,
+    statSync: mockStatSync,
+    mkdirSync: mockMkdirSync,
+  }
+})
+
+vi.mock('gray-matter', () => ({
+  default: mockMatter,
+}))
+
 vi.mock('c12', () => ({
   loadConfig: vi.fn().mockResolvedValue({ config: {} })
 }))
 
 // Mock fetch for API calls
 global.fetch = vi.fn()
-
-// Import the functions we want to test
-// Since the script uses top-level await, we'll need to import the functions directly
-const mockReadFileSync = vi.mocked(readFileSync)
-const mockWriteFileSync = vi.mocked(writeFileSync)
-const mockExistsSync = vi.mocked(existsSync)
-const mockReaddirSync = vi.mocked(readdirSync)
-const mockStatSync = vi.mocked(statSync)
-const mockMatter = vi.mocked(matter)
-const mockMkdirSync = vi.mocked(mkdirSync)
-// Mock matter.stringify as well
-const mockMatterStringify = vi.fn()
-mockMatter.stringify = mockMatterStringify
 
 describe('Translation Content Script', () => {
   beforeEach(() => {

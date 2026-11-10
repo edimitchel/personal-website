@@ -103,7 +103,5 @@ defineOgImage('Page', {
   ...(content?.image ? { image: content.image } : {}),
 })
 
-if (content?.ogImage) {
-  defineOgImage(content.ogImage)
-}
+defineContentOgImage(content?.ogImage)
 </script>

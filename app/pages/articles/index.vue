@@ -20,7 +20,5 @@ useHead(() => ({
   title: () => 'Michel Edighoffer / Articles'
 }))
 
-if (blog?.ogImage) {
-  defineOgImage(blog.ogImage)
-}
+defineContentOgImage(blog?.ogImage)
 </script>

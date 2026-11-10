@@ -1,5 +1,3 @@
-import type AppConfig from "../nuxt.schema";
-
 export default defineAppConfig({
   information: {
     title: "Michel Edighoffer",
@@ -11,13 +9,6 @@ export default defineAppConfig({
       twitter: "edimitchel",
     },
     birthdate: '1993-02-28',
-  },
-
-  ui: {
-    colors: {
-      primary: "gray",
-      neutral: "gray",
-    },
     icons: {
       normal: ["👋", "🖖"],
       birthday: ["🎂"]
@@ -30,4 +21,11 @@ export default defineAppConfig({
       'Alsace ❤',
     ]
   },
-} satisfies typeof AppConfig)
+
+  ui: {
+    colors: {
+      primary: "gray",
+      neutral: "gray",
+    },
+  },
+})

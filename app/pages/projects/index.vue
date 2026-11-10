@@ -49,7 +49,5 @@ useHead(() => ({
 }))
 
 
-if (project?.ogImage) {
-  defineOgImage(project.ogImage)
-}
+defineContentOgImage(project?.ogImage)
 </script>
