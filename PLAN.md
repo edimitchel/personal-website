@@ -44,10 +44,20 @@ Deux options viables sur Workers :
 |---|---|---|
 | Source de vérité | les `.md` dans git (Content v3 inchangé) | D1 au runtime, git éventuellement en retard |
 | Visiteurs | attendent le deploy CI (quelques minutes) | instantané si on **arrête le prerender** des pages contenu |
-| Traduction Mistral / prerender incrémental | restent tels quels | à réécrire |
+| Traduction | édition FR/EN dans l’admin (plus de Mistral) | à réécrire avec le prerender incrémental |
 | Complexité | admin + token GitHub serveur | admin + lecture/écriture D1 + stratégie cache |
 
-**Recommandation : A**, avec brouillons en D1/KV et images en R2. On garde Content v3, la CI `build-translate-deploy.yml` et le prerender. L’admin appelle une API serveur (token GitHub uniquement côté Worker, jamais dans le navigateur) qui commit sur la branche prévue ; la CI déploie. Les brouillons ne sont pas publics tant qu’on n’a pas publié. Option B seulement si la publication publique instantanée redevient non négociable (il faudra alors cesser de pré-rendre `/`, `/articles/*`, `/projects/*`, `/legal`).
+**Recommandation : A**, avec brouillons en D1/KV et images en R2. On garde Content v3, la CI `build-deploy.yml` et le prerender. L’admin appelle une API serveur (token GitHub uniquement côté Worker, jamais dans le navigateur) qui commit sur la branche prévue ; la CI déploie. Les brouillons ne sont pas publics tant qu’on n’a pas publié. Option B seulement si la publication publique instantanée redevient non négociable (il faudra alors cesser de pré-rendre `/`, `/articles/*`, `/projects/*`, `/legal`).
+
+### 4. Traduction — dans l’admin, pas par Mistral
+
+La traduction automatique Mistral (scripts `translate` / `translate:publish`, PR de traduction dans la CI) est retirée. Les fichiers déjà traduits dans `content/*/fr/` restent la version française publiée. L’UI i18n (chaînes de chrome, locales) ne change pas.
+
+La traduction du contenu se fera dans `/admin`, plus tard :
+
+- édition **FR et EN côte à côte** pour chaque article, projet ou page ;
+- indicateur **manquante** (pas de fichier dans l’autre langue) ou **obsolète** (la source a changé depuis la traduction) ;
+- publication par le même commit GitHub que le reste du contenu, sans appel à une API de traduction.
 
 Auth admin (étape dédiée) : **Cloudflare Access** devant `/admin` (zéro code métier) + token GitHub côté serveur. Alternative : OAuth GitHub session, plus de code à maintenir.
 
@@ -111,6 +121,7 @@ Vérifications :
 - API serveur uniquement : lire un fichier contenu (git ou Content), enregistrer un brouillon (D1 ou KV), **publier = commit GitHub** (Contents ou Git Data API) sur une branche dédiée ou `main` selon ce que Michel tranchera au moment de l’implémentation.
 - Token GitHub uniquement en secret Worker / `.dev.vars` local (déjà prévu de ne pas le committer). Ne pas configurer le secret prod sans demande.
 - Frontmatter : formulaires générés depuis `content.config.ts` (après alignement des enums `status` / `type` qui divergent du contenu réel — à corriger ici ou juste avant).
+- Traduction : pour chaque contenu, éditeur FR/EN côte à côte et indicateur manquante / obsolète (décision 4). Pas d’appel Mistral.
 - Vérifications : en local, créer/editer un brouillon sans commit ; un commit de test uniquement si Michel l’autorise, jamais sur `main` prod. Build OK. `/admin` non lié dans le header public.
 
 ### Étape 4 — UEditor custom (Markdown, toolbar, slash, images R2, MDC About)

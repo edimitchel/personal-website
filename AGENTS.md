@@ -17,7 +17,7 @@ Le détail des étapes et les décisions (UnoCSS, UEditor, persistance) est dans
 - @nuxthub/core (bindings D1 `DB`, KV `KV`/`CACHE`, R2 `BLOB` déjà dans `wrangler.jsonc`)
 - UnoCSS (presetWind4) **en cours de remplacement** par Nuxt UI + Tailwind CSS v4 — ne pas rajouter de dépendances UnoCSS
 - Contenu : Markdown dans `content/pages|articles|projects` (FR dans `…/fr/`)
-- CI existante : `.github/workflows/build-translate-deploy.yml` (build + `wrangler deploy` sur `main`, preview sur PR)
+- CI existante : `.github/workflows/build-deploy.yml` (build + `wrangler deploy` sur `main`, preview sur PR)
 
 ## Commandes
 
