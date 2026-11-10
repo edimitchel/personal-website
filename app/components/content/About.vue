@@ -68,16 +68,16 @@
       <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('passions') }}
       </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div v-for="(passion, index) in passions" :key="passion.title"
-          class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
+          class="passion-card rounded-lg p-5 text-center"
           :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }">
 
-          <div class="mb-4 text-center text-4xl leading-none">{{ passion.icon }}</div>
-          <h4 class="passion-title mb-2 text-center text-lg font-semibold">
+          <div class="mb-3 text-4xl leading-none">{{ passion.icon }}</div>
+          <h4 class="mb-2 text-lg font-semibold text-ink">
             {{ passion.title }}
           </h4>
-          <p class="m-0 text-center text-gray-600">
+          <p class="m-0 text-tone-600">
             {{ passion.description }}
           </p>
         </div>
@@ -233,8 +233,12 @@ defineProps<ProfileData>()
   animation: fadeInAndSlide 0.6s ease-in-out;
 }
 
-/* The card gradient stays light in both themes. Prose heading color must not flip it to white. */
-.passion-title {
-  color: var(--color-gray-900);
+.passion-card {
+  background-image: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
+}
+
+.dark .passion-card {
+  background-color: var(--site-paper);
+  background-image: none;
 }
 </style>
