@@ -86,7 +86,5 @@ const formatDate = (date: string) => {
   })
 }
 
-if (content?.ogImage) {
-  defineOgImage(content.ogImage)
-}
+defineContentOgImage(content?.ogImage)
 </script>

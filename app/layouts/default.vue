@@ -47,8 +47,8 @@ const info = computed(() => ({
     isBirthday: appConfig.information?.birthdate ? isBirthday(appConfig.information?.birthdate) : false,
   },
   emojis: {
-    normal: appConfig.ui?.icons?.normal as string[] ?? [],
-    birthday: appConfig.ui?.icons?.birthday as string[] ?? [],
+    normal: appConfig.information?.icons?.normal ?? [],
+    birthday: appConfig.information?.icons?.birthday ?? [],
   },
 }))
 
