@@ -181,15 +181,8 @@ export default defineNuxtConfig({
       author: 'Michel Edighoffer',
       colorScheme: 'dark light',
       applicationName: 'Michel Edighoffer',
-
-      // Nuxt SEO Utils already sets the below tags for you
-      ogSiteName: 'Michel Edighoffer',
       ogLocale: 'fr_FR',
-      ogType: 'website',
-      ogUrl: 'https://micheledighoffer.fr',
       ogTitle: 'Michel Edighoffer',
-
-      robots: 'index, follow',
     },
   },
 
