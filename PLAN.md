@@ -49,15 +49,67 @@ Deux options viables sur Workers :
 
 **Recommandation : A**, avec brouillons en D1/KV et images en R2. On garde Content v3, la CI `build-deploy.yml` et le prerender. L’admin appelle une API serveur (token GitHub uniquement côté Worker, jamais dans le navigateur) qui commit sur la branche prévue ; la CI déploie. Les brouillons ne sont pas publics tant qu’on n’a pas publié. Option B seulement si la publication publique instantanée redevient non négociable (il faudra alors cesser de pré-rendre `/`, `/articles/*`, `/projects/*`, `/legal`).
 
-### 4. Traduction — dans l’admin, pas par Mistral
+### 4. Traduction — modèle Content #3753, implémenté chez nous
 
-La traduction automatique Mistral (scripts `translate` / `translate:publish`, PR de traduction dans la CI) est retirée. Les fichiers déjà traduits dans `content/*/fr/` restent la version française publiée. L’UI i18n (chaînes de chrome, locales) ne change pas.
+La traduction automatique Mistral (scripts, PR de CI) est retirée. Les fichiers déjà dans `content/*/fr/` restent publiés. Les chaînes d’UI (`i18n/locales`) ne bougent pas.
 
-La traduction du contenu se fera dans `/admin`, plus tard :
+On **ne dépend pas** de [nuxt/content#3753](https://github.com/nuxt/content/pull/3753) (ouverte, non mergée au 10 nov. 2026). On calque son modèle pour pouvoir remplacer nos utils par les siens le jour où elle est dans `@nuxt/content` :
 
-- édition **FR et EN côte à côte** pour chaque article, projet ou page ;
-- indicateur **manquante** (pas de fichier dans l’autre langue) ou **obsolète** (la source a changé depuis la traduction) ;
-- publication par le même commit GitHub que le reste du contenu, sans appel à une API de traduction.
+- **Même stem par locale.** Le nom de fichier n’est pas traduit (`new-webpage.md` des deux côtés, pas `nouvelle-page.md`). La PR ne relie pas deux fichiers dont les stems diffèrent (`queryCollectionLocales` échoue dans ce cas).
+- **Hash de la source** stocké sur chaque traduction, champ `_i18nSourceHash` (nom de la PR). C’est le hash du Markdown source au moment de la publication de la traduction.
+- **`getLocales(collection, stem)`** a le contrat de `queryCollectionLocales` : toutes les variantes d’un stem, pour la grille admin FR/EN et les `hreflang`. Quand la PR sera disponible, le corps de l’util appelle `queryCollectionLocales` et les appelants ne changent pas.
+
+Disposition **actuelle** (on ne la migre pas dans cette décision) :
+
+- Sources à la racine de la collection, en pratique l’anglais : `content/articles/new-website.md`, `content/projects/logitud.md`, `content/pages/about.md`.
+- Traductions dans `fr/` : `content/articles/fr/…`, `content/projects/fr/…`, `content/pages/fr/…`.
+- Beaucoup de fichiers `fr/` ont déjà un **nom français différent** de la source (`content/articles/fr/les-outils-gratuits-que-jutilise.md` n’a pas le même stem que sa source anglaise). Les paires au même nom (`training-nuxt-interactive-platform.md` à la racine et sous `fr/`) sont le cas cible.
+- Routes publiques : FR sans préfixe, EN sous `/en` (`prefix_except_default`). Le prerender incrémental associe aujourd’hui la route FR au fichier `fr/` et la route `/en` au fichier racine (`getRouteContentFiles`).
+
+Réorganisation **proposée, non faite**, compatible avec les préfixes de locale de la PR :
+
+```text
+content/<collection>/en/<stem>.md
+content/<collection>/fr/<stem>.md
+```
+
+Même `<stem>` dans les deux dossiers. Le préfixe `en/` ou `fr/` n’entre pas dans le stem. Les fichiers au nom français restent en place tant qu’une migration dédiée ne les renomme pas. Pas de déplacement dans cette étape.
+
+Indicateur, calculé par `getLocales` :
+
+| État | Règle |
+|---|---|
+| Source | locale d’origine du stem, pas de hash à comparer |
+| À jour | traduction présente et `_i18nSourceHash` égal au hash actuel de la source |
+| Manquante | pas de fichier pour cette locale |
+| Obsolète | fichier présent, hash stocké différent du hash actuel de la source |
+
+### 5. IA de traduction branchable
+
+Bouton **Traduire** sur un contenu de l’admin. Le résultat est un **brouillon D1**, relu dans l’éditeur côte à côte, publié seulement par le commit GitHub de l’étape 3. Aucun appel IA n’écrit dans `content/` ni ne pousse une PR.
+
+Interface côté Worker (clé jamais dans le client ni dans git) :
+
+```ts
+interface TranslationProvider {
+  id: string
+  translate(input: {
+    sourceLocale: 'fr' | 'en'
+    targetLocale: 'fr' | 'en'
+    markdown: string
+  }): Promise<string>
+}
+```
+
+Le fournisseur parle le protocole **OpenAI** (`POST {baseURL}/chat/completions`, `model`, en-tête `Authorization`). La clé est un secret Workers (`TRANSLATION_API_KEY` ou un secret par fournisseur). Fournisseurs interchangeables, même interface :
+
+| id | baseURL typique |
+|---|---|
+| `xai` | `https://api.x.ai/v1` |
+| `mistral` | `https://api.mistral.ai/v1` |
+| `local` | URL OpenAI-compatible (Ollama ou autre), configurable |
+
+Le prompt impose de préserver le MDC (`::Composant`, slots, props) et le frontmatter (clés, slugs, dates, hash). Seules les chaînes humaines sont traduites. Les blocs de code ne bougent pas. `_i18nSourceHash` est écrit au moment de la publication du brouillon validé, pas par le modèle.
 
 Auth admin (étape dédiée) : **Cloudflare Access** devant `/admin` (zéro code métier) + token GitHub côté serveur. Alternative : OAuth GitHub session, plus de code à maintenir.
 
@@ -121,7 +173,7 @@ Vérifications :
 - API serveur uniquement : lire un fichier contenu (git ou Content), enregistrer un brouillon (D1 ou KV), **publier = commit GitHub** (Contents ou Git Data API) sur une branche dédiée ou `main` selon ce que Michel tranchera au moment de l’implémentation.
 - Token GitHub uniquement en secret Worker / `.dev.vars` local (déjà prévu de ne pas le committer). Ne pas configurer le secret prod sans demande.
 - Frontmatter : formulaires générés depuis `content.config.ts` (après alignement des enums `status` / `type` qui divergent du contenu réel — à corriger ici ou juste avant).
-- Traduction : pour chaque contenu, éditeur FR/EN côte à côte et indicateur manquante / obsolète (décision 4). Pas d’appel Mistral.
+- Traduction de contenu : hors de cette étape. Voir l’étape 7 (décisions 4 et 5).
 - Vérifications : en local, créer/editer un brouillon sans commit ; un commit de test uniquement si Michel l’autorise, jamais sur `main` prod. Build OK. `/admin` non lié dans le header public.
 
 ### Étape 4 — UEditor custom (Markdown, toolbar, slash, images R2, MDC About)
@@ -144,3 +196,14 @@ Vérifications :
 - Dead code, README à jour (plus le starter NuxtHub), scripts, dépendances (`drizzle` / `@libsql` aujourd’hui inutilisés dans l’app, à confirmer avant suppression).
 - Décider du sort de l’ancienne conf `content.preview.api` (api.nuxt.studio) : la retirer si l’admin maison la remplace.
 - Vérifications : `pnpm lint`, `pnpm typecheck`, `pnpm test:run`, `pnpm build` ; diff final relu ; toujours pas de deploy prod.
+
+### Étape 7 — Traduction du contenu dans l’admin
+
+Dépend des étapes 3 (brouillon D1 + commit GitHub) et 4 (UEditor). N’installe pas la PR Content #3753. Ne déplace pas les fichiers `content/` dans cette étape.
+
+- Util `getLocales(collection, stem)` au contrat de `queryCollectionLocales` : une entrée par locale (`fr`, `en`) avec chemin, existence, `_i18nSourceHash` et état `source` / `current` / `missing` / `outdated`. Sert la grille admin et les `hreflang` publics. Même stem des deux côtés ; un nom de fichier traduit n’est pas une paire.
+- Écran d’édition : FR et EN côte à côte pour un stem. L’indicateur reprend `getLocales`.
+- `TranslationProvider` OpenAI-compatible (`baseURL`, `model`, clé en secret Workers). Au moins un fournisseur branché (xAI, Mistral ou local) et un second remplaçable sans changer l’écran.
+- Bouton Traduire : appelle le provider, enregistre le Markdown proposé en brouillon D1. Pas de commit tant que la relecture n’a pas publié. Le brouillon garde le MDC et le frontmatter (contrôle sur un article qui contient un `::` et un bloc de code).
+- À la publication, le fichier cible reçoit `_i18nSourceHash` égal au hash de la source. Republier la source sans republier la traduction passe l’indicateur à obsolète.
+- Vérifications : `pnpm build` ; aucun secret dans le diff ; aucun appel réseau de traduction pendant le build ; les pages publiques FR/EN déjà en ligne ne changent pas de slug. La réorganisation `content/<collection>/{en,fr}/<stem>.md` reste un chantier séparé, non fait ici.

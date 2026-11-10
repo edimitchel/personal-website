@@ -67,6 +67,7 @@ Si la branche existe déjà, s’y replacer et continuer dessus. Commits atomiqu
 - Images nouvelles : R2 (`BLOB`), pas de commit de binaires lourds dans git.
 - Pour UEditor / TipTap : ajouter si besoin `vite.optimizeDeps.include` pour les paquets `prosemirror-*` (voir docs Nuxt UI Editor).
 - Persistance des `.md` : **commit GitHub via API côté serveur, puis CI** (décision dans `PLAN.md`). Pas d’écriture directe du filesystem en production. Les brouillons peuvent aller en D1/KV.
+- Traduction du contenu : dans l’admin, pas via Mistral en CI. Modèle calqué sur [nuxt/content#3753](https://github.com/nuxt/content/pull/3753) sans en dépendre (même stem, `_i18nSourceHash`, `getLocales`). Détail : décisions 4 et 5 et étape 7 de `PLAN.md`. Ne pas déplacer `content/` tant que cette étape ne le demande pas.
 
 ## Definition of done (chaque étape)
 
