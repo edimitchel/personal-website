@@ -97,6 +97,23 @@ export default defineNuxtSchema({
                     icon: 'i-mdi-message',
                     default: [],
                 }),
+                colors: group({
+                    title: 'Nuxt UI colors',
+                    description: 'Semantic aliases. primary and neutral stay on Tailwind gray.',
+                    icon: 'i-mdi-palette',
+                    fields: {
+                        primary: field({
+                            type: 'string',
+                            title: 'Primary',
+                            default: 'gray',
+                        }),
+                        neutral: field({
+                            type: 'string',
+                            title: 'Neutral',
+                            default: 'gray',
+                        }),
+                    },
+                }),
             }
         })
     }

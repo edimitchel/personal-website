@@ -14,6 +14,10 @@ export default defineAppConfig({
   },
 
   ui: {
+    colors: {
+      primary: "gray",
+      neutral: "gray",
+    },
     icons: {
       normal: ["👋", "🖖"],
       birthday: ["🎂"]

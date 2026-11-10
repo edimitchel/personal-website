@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/*
+  UnoCSS et le CSS public lisent html.light-mode / html.dark-mode.
+  Nuxt UI lit .light / .dark. Le variant couvre les deux suffixes
+  sans ajouter .dark sur <html> (Shiki bascule dessus).
+  L'échelle gray n'est pas inversée en dark.
+*/
+@variant light (&:where(.light, .light *, .light-mode, .light-mode *));
+@variant dark (&:where(.dark, .dark *, .dark-mode, .dark-mode *));
+
+@theme static {
+  --font-sans: "Gabarito", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Gabarito", ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-gray: #6b7280;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+}
+
+/* Page: light #fff / texte sombre, dark #000 / texte clair. */
+:root,
+html.light-mode {
+  --ui-bg: #fff;
+  --ui-text: #000;
+  --ui-text-highlighted: #000;
+}
+
+.dark,
+html.dark-mode {
+  --ui-text-dimmed: var(--ui-color-neutral-500);
+  --ui-text-muted: var(--ui-color-neutral-400);
+  --ui-text-toned: var(--ui-color-neutral-300);
+  --ui-text: #fff;
+  --ui-text-highlighted: #fff;
+  --ui-text-inverted: var(--ui-color-neutral-900);
+
+  --ui-bg: #000;
+  --ui-bg-muted: var(--ui-color-neutral-800);
+  --ui-bg-elevated: var(--ui-color-neutral-800);
+  --ui-bg-accented: var(--ui-color-neutral-700);
+  --ui-bg-inverted: #fff;
+
+  --ui-border: var(--ui-color-neutral-800);
+  --ui-border-muted: var(--ui-color-neutral-700);
+  --ui-border-accented: var(--ui-color-neutral-700);
+  --ui-border-inverted: #fff;
+}
