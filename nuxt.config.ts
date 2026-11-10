@@ -164,8 +164,11 @@ export default defineNuxtConfig({
         process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 31 : 0,
     },
     security: {
-      // v7 only accepts `false` here. Signing comes from NUXT_APP_SECRET,
-      // with NUXT_OG_IMAGE_SECRET still read when that secret is empty.
+      // v7 rejects a string secret in this field. Signing uses
+      // runtimeConfig.appSecret (NUXT_APP_SECRET). When that value is empty,
+      // the module still reads NUXT_OG_IMAGE_SECRET from the environment and
+      // from the Cloudflare binding, then warns once. The CI build step sets
+      // that variable. `false` disables signing, and only in dev.
       secret: process.env.NODE_ENV === 'development' ? false : undefined,
       // The Workers preset renders with WASM resvg. A few images miss the 15s default.
       renderTimeout: 45_000,
