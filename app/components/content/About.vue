@@ -53,9 +53,7 @@
             <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
               class="tech-item min-w-0 bg-paper rounded-lg p-4 text-center shadow-sm shadow-tone/40 transition-shadow">
 
-              <div class="mb-2 flex justify-center text-3xl">
-                <UIcon :name="tech.iconName" />
-              </div>
+              <div class="text-3xl mb-2"><Icon :name="tech.iconName" mode="css" class="tech-logo inline-block" /></div>
               <div class="break-words text-sm font-medium text-ink">{{ tech.name }}</div>
               <div class="break-words text-xs text-tone-600">{{ tech.level }}</div>
             </div>
@@ -68,16 +66,16 @@
       <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('passions') }}
       </h2>
-      <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
         <div v-for="(passion, index) in passions" :key="passion.title"
-          class="passion-card rounded-lg p-5 text-center"
+          class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
           :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }">
 
-          <div class="mb-3 text-4xl leading-none">{{ passion.icon }}</div>
-          <h4 class="mb-2 text-lg font-semibold text-ink">
+          <div class="text-4xl mb-4 text-center"><i class="block" :class="passion.icon" /></div>
+          <h4 class="text-lg font-semibold mb-2 text-center text-ink">
             {{ passion.title }}
           </h4>
-          <p class="m-0 text-tone-600">
+          <p class="text-tone-600 text-center m-0">
             {{ passion.description }}
           </p>
         </div>
@@ -233,12 +231,8 @@ defineProps<ProfileData>()
   animation: fadeInAndSlide 0.6s ease-in-out;
 }
 
-.passion-card {
-  background-image: linear-gradient(to bottom right, #eff6ff, #e0e7ff);
-}
-
-.dark .passion-card {
-  background-color: var(--site-paper);
-  background-image: none;
+/* preset-icons scale 1 : 1em, baseline, couleurs du SVG. */
+.tech-logo {
+  vertical-align: baseline;
 }
 </style>

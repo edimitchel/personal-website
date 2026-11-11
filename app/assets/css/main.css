@@ -105,6 +105,14 @@ html.dark-mode {
   --ui-border-inverted: #fff;
 }
 
+/* The Node wordmark is #333, identical to dark paper, so the mark disappears.
+   A white plate keeps the same graphic as in light mode. Other logos stay on the card. */
+.dark .iconify[class*="i-logos:nodejs"],
+.dark .iconify[class*="i-logos-nodejs"] {
+  background-color: #fff;
+  border-radius: 2px;
+}
+
 /* Content typography. Replaces Uno presetTypography `.prose`. */
 .prose {
   color: var(--site-ink);
