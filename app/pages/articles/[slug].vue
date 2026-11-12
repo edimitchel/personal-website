@@ -51,6 +51,10 @@ const { content, isTranslated } = await useTranslatedContent(
   queryCollection('articles').where('slug', '=', route.params.slug),
 )
 
+if (content?.stem) {
+  await useContentHreflang('articles', content.stem)
+}
+
 const { data: siblings } = content
   ? await useAsyncData(
       `siblings-articles-${route.params.slug}`,

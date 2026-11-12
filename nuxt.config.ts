@@ -56,7 +56,7 @@ export default defineNuxtConfig({
 
   icon: {
     serverBundle: {
-      collections: ['mdi', 'logos', 'heroicons', 'line-md', 'ic', 'skill-icons', 'unjs', 'svg-spinners', 'noto-v1'],
+      collections: ['mdi', 'logos', 'heroicons', 'lucide', 'line-md', 'ic', 'skill-icons', 'unjs', 'svg-spinners', 'noto-v1'],
     },
   },
 
@@ -96,6 +96,28 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2026-06-25',
 
+  runtimeConfig: {
+    githubToken: '',
+    github: {
+      owner: 'edimitchel',
+      repo: 'personal-website',
+      branch: 'content/admin',
+    },
+    translation: {
+      provider: 'xai',
+      baseURL: '',
+      model: '',
+      apiKey: '',
+    },
+  },
+
+  routeRules: {
+    '/admin': { robots: false },
+    '/admin/**': { robots: false },
+    '/en/admin': { robots: false },
+    '/en/admin/**': { robots: false },
+  },
+
   nitro: {
     preset: 'cloudflare_module',
     cloudflare: {
@@ -106,7 +128,7 @@ export default defineNuxtConfig({
       routes: collectPrerenderRoutes(),
       crawlLinks: false,
       failOnError: process.env.NUXT_PRERENDER_FAIL_ON_ERROR === 'true',
-      ignore: ['/_og/**'],
+      ignore: ['/_og/**', '/admin', '/admin/**', '/en/admin', '/en/admin/**'],
     },
   },
 
@@ -121,6 +143,11 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: [
         '@unhead/schema-org/vue',
+        '@nuxt/ui > prosemirror-state',
+        '@nuxt/ui > prosemirror-transform',
+        '@nuxt/ui > prosemirror-model',
+        '@nuxt/ui > prosemirror-view',
+        '@nuxt/ui > prosemirror-gapcursor',
       ],
     },
   },

@@ -50,6 +50,10 @@ const { content, isTranslated } = await useTranslatedContent(
   queryCollection('projects').where('stem', 'LIKE', '%/' + route.params.slug + '%'),
 )
 
+if (content?.stem) {
+  await useContentHreflang('projects', content.stem)
+}
+
 const { data: siblings } = content
   ? await useAsyncData(
       `project-siblings-${route.params.slug}`,

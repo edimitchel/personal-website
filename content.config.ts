@@ -1,6 +1,7 @@
 import { defineCollection, defineContentConfig, z } from "@nuxt/content";
 import { defineOgImageSchema } from "nuxt-og-image/content";
 import { defineSchemaOrgSchema } from "nuxt-schema-org/content";
+import { projectStatuses, projectTypes } from "./shared/admin/collections";
 
 const seoSchema = z.object({
   ogImage: defineOgImageSchema(),
@@ -16,6 +17,7 @@ const baseContentSchema = z.object({
   updated: z.date(),
   slug: z.string(),
   draft: z.boolean().optional().default(false),
+  _i18nSourceHash: z.string().optional(),
 }).merge(seoSchema);
 
 // Translation metadata schema
@@ -46,10 +48,10 @@ const projectSchema = baseContentSchema.extend({
   completedAt: z.date().optional(),
   organization: z.string().optional(),
   duration: z.number().optional(),
-  type: z.enum(['application', 'website', 'consulting', 'experience']),
+  type: z.enum(projectTypes),
   url: z.string().optional(),
-  status: z.enum(['published', 'draft', 'stand by']),
-  categories: z.enum(['web', 'application', 'other']).array(),
+  status: z.enum(projectStatuses).optional(),
+  categories: z.array(z.string()),
   technologies: z.string().array(),
   relatedArticleSlug: z.string().optional(),
   image: z.string().editor({ input: 'media' }),
