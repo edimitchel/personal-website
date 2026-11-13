@@ -1,6 +1,6 @@
 <template>
   <article>
-    <main class="prose text-background">
+    <main class="prose text-ink">
       <template v-if="content">
         <span class="block text-center text-sm">{{ formatDate(content.created) }}</span>
         <h1 class="mt-0 text-center text-balance">
@@ -51,6 +51,10 @@ const { content, isTranslated } = await useTranslatedContent(
   queryCollection('articles').where('slug', '=', route.params.slug),
 )
 
+if (content?.stem) {
+  await useContentHreflang('articles', content.stem)
+}
+
 const { data: siblings } = content
   ? await useAsyncData(
       `siblings-articles-${route.params.slug}`,
@@ -86,7 +90,5 @@ const formatDate = (date: string) => {
   })
 }
 
-if (content?.ogImage) {
-  defineOgImage(content.ogImage)
-}
+defineContentOgImage(content?.ogImage)
 </script>

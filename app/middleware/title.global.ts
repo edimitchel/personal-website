@@ -1,6 +1,6 @@
 export default defineNuxtRouteMiddleware((to) => {
   const store = layoutStore()
-  const appConfigTitle = useAppConfig().information.title
+  const appConfigTitle = useAppConfig().information?.title
 
   store.withEmoji = store.withEmoji ?? false
   store.messages = []

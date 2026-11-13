@@ -7,14 +7,14 @@ export default defineNuxtConfig({
   modules: [
     './modules/incremental-prerender',
     '@nuxthub/core',
+    '@nuxtjs/better-auth',
     '@nuxt/eslint',
     '@nuxt/content',
-    '@unocss/nuxt',
     '@nuxt/image',
     '@pinia/nuxt',
-    '@nuxt/fonts',
+    // Registers @nuxt/fonts, @nuxtjs/color-mode and @nuxt/icon.
+    '@nuxt/ui',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode',
     'nuxt-og-image',
     'nuxt-schema-org',
     'nuxt-seo-utils',
@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/style.css'],
+  css: ['~/assets/css/main.css', '~/assets/style.css'],
 
   vue: {
     propsDestructure: true,
@@ -47,6 +47,28 @@ export default defineNuxtConfig({
   colorMode: {
     preference: 'system',
     fallback: 'light',
+    classSuffix: '',
+    disableTransition: false,
+  },
+
+  ui: {
+    prose: true,
+  },
+
+  icon: {
+    serverBundle: {
+      collections: ['mdi', 'logos', 'heroicons', 'lucide', 'line-md', 'ic', 'skill-icons', 'unjs', 'svg-spinners', 'noto-v1'],
+    },
+  },
+
+  mdc: {
+    highlight: {
+      theme: {
+        default: 'github-light',
+        light: 'github-light',
+        dark: 'github-dark',
+      },
+    },
   },
 
   content: {
@@ -75,6 +97,47 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2026-06-25',
 
+  runtimeConfig: {
+    githubToken: '',
+    adminEmail: '',
+    authTrustedOrigins: '',
+    githubOauth: {
+      clientId: '',
+      clientSecret: '',
+    },
+    github: {
+      owner: 'edimitchel',
+      repo: 'personal-website',
+      branch: 'content/admin',
+    },
+    translation: {
+      provider: 'xai',
+      baseURL: '',
+      model: '',
+      apiKey: '',
+    },
+  },
+
+  auth: {
+    hubSecondaryStorage: false,
+    preserveRedirect: true,
+    redirects: {
+      login: '/admin/login',
+      guest: '/',
+      authenticated: '/admin',
+      logout: '/admin/login',
+    },
+  },
+
+  routeRules: {
+    '/admin/login': { robots: false, auth: { only: 'guest', redirectTo: '/admin' } },
+    '/admin': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/admin/**': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/en/admin/login': { robots: false, auth: { only: 'guest', redirectTo: '/admin' } },
+    '/en/admin': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/en/admin/**': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+  },
+
   nitro: {
     preset: 'cloudflare_module',
     cloudflare: {
@@ -85,7 +148,7 @@ export default defineNuxtConfig({
       routes: collectPrerenderRoutes(),
       crawlLinks: false,
       failOnError: process.env.NUXT_PRERENDER_FAIL_ON_ERROR === 'true',
-      ignore: ['/_og/**'],
+      ignore: ['/_og/**', '/admin', '/admin/**', '/en/admin', '/en/admin/**'],
     },
   },
 
@@ -100,6 +163,11 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: [
         '@unhead/schema-org/vue',
+        '@nuxt/ui > prosemirror-state',
+        '@nuxt/ui > prosemirror-transform',
+        '@nuxt/ui > prosemirror-model',
+        '@nuxt/ui > prosemirror-view',
+        '@nuxt/ui > prosemirror-gapcursor',
       ],
     },
   },
@@ -139,9 +207,14 @@ export default defineNuxtConfig({
         process.env.NODE_ENV === 'production' ? 60 * 60 * 24 * 31 : 0,
     },
     security: {
-      secret:
-        process.env.NUXT_OG_IMAGE_SECRET
-        || (process.env.NODE_ENV === 'development' ? false : undefined),
+      // v7 rejects a string secret in this field. Signing uses
+      // runtimeConfig.appSecret (NUXT_APP_SECRET). When that value is empty,
+      // the module still reads NUXT_OG_IMAGE_SECRET from the environment and
+      // from the Cloudflare binding, then warns once. The CI build step sets
+      // that variable. `false` disables signing, and only in dev.
+      secret: process.env.NODE_ENV === 'development' ? false : undefined,
+      // The Workers preset renders with WASM resvg. A few images miss the 15s default.
+      renderTimeout: 45_000,
     },
   },
 
@@ -151,22 +224,9 @@ export default defineNuxtConfig({
       author: 'Michel Edighoffer',
       colorScheme: 'dark light',
       applicationName: 'Michel Edighoffer',
-
-      // Nuxt SEO Utils already sets the below tags for you
-      ogSiteName: 'Michel Edighoffer',
       ogLocale: 'fr_FR',
-      ogType: 'website',
-      ogUrl: 'https://micheledighoffer.fr',
       ogTitle: 'Michel Edighoffer',
-
-      robots: 'index, follow',
     },
   },
 
-  unocss: {
-    configFile: 'unocss/uno.config.ts',
-    content: {
-      filesystem: ['app/../content/*.vue'],
-    },
-  },
 })

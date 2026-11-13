@@ -118,6 +118,8 @@ const progressCircumference = computed(() => 2 * Math.PI * (height - 110))
 </script>
 
 <style scoped>
+@reference "../assets/css/main.css";
+
 div {
   overflow: hidden;
   height: 300px;
@@ -139,7 +141,7 @@ circle {
 .progress-border {
   transform-origin: center -35%;
   stroke-linecap: round;
-  --uno: stroke-background/20
+  @apply stroke-ink/20
 }
 
 .indeterminate {

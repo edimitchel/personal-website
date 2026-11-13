@@ -1,11 +1,11 @@
 <template>
-  <header class="mb-8 pb-6 border-b border-primary-200">
+  <header class="mb-8 pb-6 border-b border-tone-200">
     <div class="flex items-start gap-6 mb-6">
       <div class="flex-1 min-w-0">
-        <p v-if="project.organization" class="text-lg text-center text-primary-600 mb-3">
+        <p v-if="project.organization" class="text-lg text-center text-tone-600 mb-3">
           {{ project.organization }}
         </p>
-        <p v-if="project.description" class="text-center text-balance text-background text-base leading-relaxed">
+        <p v-if="project.description" class="text-center text-balance text-ink text-base leading-relaxed">
           {{ project.description }}
         </p>
       </div>
@@ -39,19 +39,19 @@
       >
         <div class="space-y-2">
           <div v-if="project.url" class="flex items-center gap-2">
-            <i class="i-heroicons-link text-primary-400 w-4 h-4" />
+            <UIcon name="i-heroicons-link" class="text-tone-400 w-4 h-4" />
             <NuxtLink
               :to="project.url" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="text-primary-600 hover:underline text-sm"
+              class="text-tone-600 hover:underline text-sm"
             >
               {{ $t('project.info.visitProject') }}
             </NuxtLink>
           </div>
           <div v-if="project.completedAt || project.startedAt" class="flex items-center gap-2">
-            <i class="i-mdi-calendar text-primary-400 w-4 h-4" />
-            <span class="text-primary-600 dark:text-primary-300 text-sm">
+            <UIcon name="i-mdi-calendar" class="text-tone-400 w-4 h-4" />
+            <span class="text-tone-600 dark:text-tone-300 text-sm">
               <template v-if="project.completedAt">
                 <template v-if="project.startedAt">{{ formatDate(locale, project.startedAt) }} – </template> {{ formatDate(locale, project.completedAt) }}
               </template>
@@ -61,10 +61,10 @@
             </span>
           </div>
           <div v-if="project.relatedArticleSlug" class="flex items-center gap-2">
-            <i class="i-mdi-book-open-page-variant text-primary-400 w-4 h-4" />
+            <UIcon name="i-mdi-book-open-page-variant" class="text-tone-400 w-4 h-4" />
             <NuxtLinkLocale
               :to="`/articles/${project.relatedArticleSlug}`" 
-              class="text-primary-600 hover:underline text-sm"
+              class="text-tone-600 hover:underline text-sm"
             >
               {{ $t('project.info.readArticle') }}
             </NuxtLinkLocale>

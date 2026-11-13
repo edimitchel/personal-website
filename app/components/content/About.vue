@@ -1,14 +1,16 @@
 <template>
-  <div class="about-container mx-auto px-4 py-2">
+  <div class="about-container mx-auto min-w-0 max-w-full px-4 py-2">
     <section>
       <div class="flex flex-col lg:flex-row items-center gap-8">
         <div class="profile-info flex-1 text-center">
-          <h2 class="text-2xl lg:text-3xl underline underline-primary-600 mb-4 mt-0">
-            {{ title }}
-          </h2>
-          <p class="text-lg leading-relaxed text-balance">
-            {{ description }}
-          </p>
+          <slot name="identity">
+            <h2 class="text-2xl lg:text-3xl underline decoration-tone-600 mb-4 mt-0">
+              {{ title }}
+            </h2>
+            <p class="text-lg leading-relaxed text-balance">
+              {{ description }}
+            </p>
+          </slot>
         </div>
       </div>
     </section>
@@ -16,21 +18,37 @@
     <ContactForm />
 
     <section class="skills-section my-15">
-      <h2 class="text-2xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('skills_n_expertise') }}
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        <SpotlightCard spotlight-color="#f4f4f4" v-for="(skillCategory, index) in skills" :key="skillCategory.category"
-          class="skill-category bg-foreground rounded-lg p-6 shadow-sm shadow-primary/40 transition-shadow"
-          :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }">
-          <h4 class="text-xl font-semibold m-0 mb-4 text-background flex items-center">
-            <span class="text-2xl mr-2"><i v-if="skillCategory.iconName" :class="skillCategory.iconName" /><template
-                v-else>{{ skillCategory.icon }}</template></span>
-            {{ skillCategory.category }}
+      <div class="grid min-w-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        <template v-if="$slots.skills">
+          <slot name="skills" />
+        </template>
+        <SpotlightCard
+          v-for="(skillCategory, index) in skills"
+          v-else
+          :key="skillCategory.category"
+          spotlight-color="#f4f4f4"
+          class="skill-category min-w-0 bg-paper rounded-lg p-6 shadow-sm shadow-tone/40 transition-shadow"
+          :class="{ 'md:col-span-2': index % 2 === 0 && index === skills.length - 1 }"
+        >
+          <h4 class="text-xl font-semibold m-0 mb-4 text-ink flex min-w-0 items-center">
+            <span class="text-2xl mr-2 shrink-0">
+              <UIcon
+                v-if="skillCategory.iconName"
+                :name="skillCategory.iconName"
+              />
+              <template v-else>{{ skillCategory.icon }}</template>
+            </span>
+            <span class="min-w-0">{{ skillCategory.category }}</span>
           </h4>
-          <div class="flex flex-wrap gap-2">
-            <span v-for="skill in skillCategory.items" :key="skill"
-              class="px-3 py-1 bg-primary-200 text-primary-800 rounded-full text-sm font-medium">
+          <div class="flex min-w-0 max-w-full flex-wrap gap-2">
+            <span
+              v-for="skill in skillCategory.items"
+              :key="skill"
+              class="max-w-full break-words px-3 py-1 bg-tone-200 text-tone-800 rounded-full text-sm font-medium"
+            >
               {{ skill }}
             </span>
           </div>
@@ -39,117 +57,192 @@
     </section>
 
     <section class="tech-stack-section mb-12">
-      <h2 class="text-2xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('tech_stack') }}
       </h2>
-      <div class="grid grid-cols-1 gap-8">
-        <div v-for="stackCategory in techStack" :key="stackCategory.category" class="stack-category">
-          <h3 class="text-xl font-semibold m-0 mb-4 text-background">
-            {{ stackCategory.category }}
-          </h3>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            <div v-for="(tech, index) in stackCategory.technologies" :key="tech.name"
-              class="tech-item bg-foreground rounded-lg p-4 text-center shadow-sm shadow-primary/40 transition-shadow">
-
-              <div class="text-3xl mb-2"><i class="inline-block" :class="tech.iconName" /></div>
-              <div class="text-sm font-medium text-background">{{ tech.name }}</div>
-              <div class="text-xs text-primary-600">{{ tech.level }}</div>
+      <div class="grid min-w-0 grid-cols-1 gap-8">
+        <slot name="stack">
+          <div
+            v-for="stackCategory in techStack"
+            :key="stackCategory.category"
+            class="stack-category min-w-0"
+          >
+            <h3 class="text-xl font-semibold m-0 mb-4 text-ink">
+              {{ stackCategory.category }}
+            </h3>
+            <div class="grid min-w-0 grid-cols-2 gap-4 sm:grid-cols-3">
+              <div
+                v-for="tech in stackCategory.technologies"
+                :key="tech.name"
+                class="tech-item min-w-0 bg-paper rounded-lg p-4 text-center shadow-sm shadow-tone/40 transition-shadow"
+              >
+                <div class="text-3xl mb-2">
+                  <Icon
+                    :name="tech.iconName"
+                    mode="css"
+                    class="tech-logo inline-block"
+                  />
+                </div>
+                <div class="break-words text-sm font-medium text-ink">
+                  {{ tech.name }}
+                </div>
+                <div class="break-words text-xs text-tone-600">
+                  {{ tech.level }}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </slot>
       </div>
     </section>
 
     <section class="passions-section mb-12">
-      <h2 class="text-2xl font-bold my-8 text-center text-background">
+      <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('passions') }}
       </h2>
       <div class="grid grid-cols-1 lg:grid-cols-2">
-        <div v-for="(passion, index) in passions" :key="passion.title"
-          class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
-          :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }">
-
-          <div class="text-4xl mb-4 text-center"><i class="block" :class="passion.icon" /></div>
-          <h4 class="text-lg font-semibold mb-2 text-center text-background">
-            {{ passion.title }}
-          </h4>
-          <p class="text-primary-600 text-center m-0">
-            {{ passion.description }}
-          </p>
-        </div>
+        <slot name="passions">
+          <div
+            v-for="(passion, index) in passions"
+            :key="passion.title"
+            class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
+            :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }"
+          >
+            <div class="text-4xl mb-4 text-center">
+              <i
+                class="block"
+                :class="passion.icon"
+              />
+            </div>
+            <h4 class="text-lg font-semibold mb-2 text-center text-ink">
+              {{ passion.title }}
+            </h4>
+            <p class="text-tone-600 text-center m-0">
+              {{ passion.description }}
+            </p>
+          </div>
+        </slot>
       </div>
     </section>
 
-    <section client-only v-if="experiences" class="py-4">
+    <section
+      v-if="experiences"
+      client-only
+      class="py-4"
+    >
       <!-- Experiences -->
 
-      <h2 class="text-2xl font-bold m-0 mb-3 text-center text-background">
+      <h2 class="text-2xl font-bold m-0 mb-3 text-center text-ink">
         {{ $t('experiences') }}
       </h2>
 
       <!-- Carousel with experiences -->
-      <LazyCarousel :hydrate-on-visible="{ rootMargin: '200px' }" :items="experiences">
+      <LazyCarousel
+        :hydrate-on-visible="{ rootMargin: '200px' }"
+        :items="experiences"
+      >
         <template #default="{ item }">
-          <NuxtLinkLocale :to="`/projects/${item.slug}`"
-            class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-background/80 hover:bg-background"
-            :aria-label="item.title">
-            <UnoIcon class="i-ic-baseline-open-in-new bg-foreground" />
+          <NuxtLinkLocale
+            :to="`/projects/${item.slug}`"
+            class="absolute p-1 top-0 right-0 text-xl rounded-tr-md rounded-bl-md bg-ink/80 hover:bg-ink"
+            :aria-label="item.title"
+          >
+            <UIcon
+              name="i-ic-baseline-open-in-new"
+              class="bg-paper"
+            />
           </NuxtLinkLocale>
-          <LazyNuxtImg :src="item.image" class="hidden md:block absolute bottom-2 right-2 w-15 max-h-20 object-contain pointer-events-none" :aria-label="item.title" />
-          <h2 class="text-lg font-semibold m-0 m-0 text-background w-full pr-8 -my-1 truncate">{{ item.title }}</h2>
-          <h4 class="text-sm font-normal m-0 text-background">{{ item.organization }}</h4>
-          <div class="text-xs text-primary-700">
+          <LazyNuxtImg
+            :src="item.image"
+            class="hidden md:block absolute bottom-2 right-2 w-15 max-h-20 object-contain pointer-events-none"
+            :aria-label="item.title"
+          />
+          <h2 class="text-lg font-semibold m-0 m-0 text-ink w-full pr-8 -my-1 truncate">
+            {{ item.title }}
+          </h2>
+          <h4 class="text-sm font-normal m-0 text-ink">
+            {{ item.organization }}
+          </h4>
+          <div class="text-xs text-tone-700">
             <template v-if="item.completedAt">
-              <template v-if="item.startedAt">{{ formatDate(locale, item.startedAt) }} – </template> {{
+              <template v-if="item.startedAt">
+                {{ formatDate(locale, item.startedAt) }} –
+              </template> {{
                 formatDate(locale, item.completedAt) }}
             </template>
             <template v-else>
               {{ formatDate(locale, item.startedAt) }} - {{ $t('project.info.inProgress') }}
             </template>
           </div>
-          <p class="text-primary-600 flex-grow-1 m-0 my-1 leading-tight text-balance line-clamp-3 md:pr-17">{{
-            item.description
-          }}</p>
-          <ProjectTechStack v-if="item.technologies" :technologies="item.technologies" class="justify-start mr-15" />
+          <p class="text-tone-600 grow m-0 my-1 leading-tight text-balance line-clamp-3 md:pr-16">
+            {{
+              item.description
+            }}
+          </p>
+          <ProjectTechStack
+            v-if="item.technologies"
+            :technologies="item.technologies"
+            class="justify-start mr-15"
+          />
         </template>
       </LazyCarousel>
     </section>
 
     <section
-      class="enterprise-section border-y-(5 primary) py-4 rounded-[5px] bg-linear-to-tb from-foreground to-primary-400 p-2">
-      <h2 class="text-2xl font-bold my-2 text-center text-background">
+      class="enterprise-section border-y-[5px] border-tone py-4 rounded-[5px] bg-linear-to-b from-paper to-tone-400 p-2"
+    >
+      <h2 class="text-2xl font-bold my-2 text-center text-ink">
         {{ $t('enterprise_purposes') }}
       </h2>
       <div class="flex flex-col p-2 gap-6 text-balance">
-        <div>
-          <h4 class="text-2xl font-semibold m-0 mb-2">Mission</h4>
-          <p class="text-primary-600 text-balance leading-relaxed m-0">
-            {{ enterprise?.mission }}
-          </p>
-        </div>
-        <div>
-          <h4 class="text-2xl font-semibold m-0 mb-2">Vision</h4>
-          <p class="text-primary-600 text-balance leading-relaxed m-0">
-            {{ enterprise?.vision }}
-          </p>
-        </div>
-        <div>
-          <h4 class="text-2xl font-semibold m-0 mb-2">Services</h4>
-          <div class="grid grid-rows-3 gap-2">
-            <div v-for="service in enterprise?.services" :key="service.name" class="bg-opacity-20 rounded-lg flex">
-              <div class="text-2xl w-10 grow-0 shrink-0">
-                <UnoIcon v-if="service.iconName" :class="service.iconName" />
-                <template v-else>
-                  {{ service.icon }}
-                </template>
-              </div>
-              <div>
-                <h5 class="font-semibold">{{ service.name }}</h5>
-                <p class="text-sm text-primary-600 m-0 text-balance sm:pr-20">{{ service.description }}</p>
+        <slot name="enterprise">
+          <div>
+            <h4 class="text-2xl font-semibold m-0 mb-2">
+              Mission
+            </h4>
+            <p class="text-tone-600 text-balance leading-relaxed m-0">
+              {{ enterprise?.mission }}
+            </p>
+          </div>
+          <div>
+            <h4 class="text-2xl font-semibold m-0 mb-2">
+              Vision
+            </h4>
+            <p class="text-tone-600 text-balance leading-relaxed m-0">
+              {{ enterprise?.vision }}
+            </p>
+          </div>
+          <div>
+            <h4 class="text-2xl font-semibold m-0 mb-2">
+              Services
+            </h4>
+            <div class="grid grid-rows-3 gap-2">
+              <div
+                v-for="service in enterprise?.services"
+                :key="service.name"
+                class="bg-tone/20 rounded-lg flex"
+              >
+                <div class="text-2xl w-10 grow-0 shrink-0">
+                  <UIcon
+                    v-if="service.iconName"
+                    :name="service.iconName"
+                  />
+                  <template v-else>
+                    {{ service.icon }}
+                  </template>
+                </div>
+                <div>
+                  <h5 class="font-semibold">
+                    {{ service.name }}
+                  </h5>
+                  <p class="text-sm text-tone-600 m-0 text-balance sm:pr-20">
+                    {{ service.description }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </slot>
       </div>
     </section>
 
@@ -160,11 +253,6 @@
 </template>
 
 <script setup lang="ts">
-// Explicitly include icon classes for UnoCSS to detect
-const iconClasses = [
-  'i-logos-vue', 'i-logos-nuxt-icon', 'i-logos-typescript-icon', 'i-logos-react', 'i-logos-unocss', 'i-logos-sass', 'i-logos-nodejs', 'i-logos-php', 'i-logos-mysql', 'i-logos-postgresql',
-];
-
 import { formatDate } from '~/components/Project/Header.vue'
 
 interface SkillCategory {
@@ -205,7 +293,7 @@ interface Enterprise {
 }
 
 export interface Experience {
-  id: string,
+  id: string
   title: string
   organization?: string
   description: string
@@ -226,11 +314,41 @@ const { locale } = useI18n()
 
 const LazyCarousel = defineLazyHydrationComponent('visible', () => import('~/components/Carousel.vue'))
 
-defineProps<ProfileData>()
+withDefaults(defineProps<Partial<ProfileData>>(), {
+  title: '',
+  description: '',
+  skills: () => [],
+  techStack: () => [],
+  passions: () => [],
+})
 </script>
 
 <style scoped>
 .about-container {
   animation: fadeInAndSlide 0.6s ease-in-out;
+}
+
+/* preset-icons scale 1 : 1em, baseline, couleurs du SVG. */
+.tech-logo {
+  vertical-align: baseline;
+}
+
+.profile-info :deep(h1) {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+  text-decoration: underline;
+  text-decoration-color: #6b7280;
+}
+
+.profile-info :deep(p) {
+  font-size: 1.125rem;
+  line-height: 1.625;
+  text-wrap: balance;
+}
+
+@media (min-width: 1024px) {
+  .profile-info :deep(h1) {
+    font-size: 1.875rem;
+  }
 }
 </style>

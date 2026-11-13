@@ -1,0 +1,106 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'content/**/*.md'
+      - 'app/**'
+      - 'server/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'transformers/**'
+      - 'locales/**'
+      - 'content.config.ts'
+      - 'nuxt.config.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/build-deploy.yml'
+      - 'wrangler.jsonc'
+  pull_request:
+    branches: ['main']
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    environment: Cloudflare
+
+    # Skip if commit was made by a bot to prevent infinite loops
+    if: github.actor != 'github-actions[bot]'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Get pnpm store directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Restore prerender cache
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/prerender-html
+            .cache/prerender-nuxt
+            .cache/prerender-manifest.json
+          key: prerender-v2-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml', 'package.json', 'nuxt.config.ts', 'content.config.ts', 'scripts/incremental-prerender-lib.ts', 'scripts/collect-prerender-routes.ts', 'modules/incremental-prerender.ts') }}
+
+      # Build — validate on PRs, deploy on main
+      - name: Build
+        if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
+        run: pnpm build
+        env:
+          NUXT_OG_IMAGE_SECRET: ${{ secrets.NUXT_OG_IMAGE_SECRET }}
+
+      # Deploy preview — pull requests
+      - name: Deploy to Cloudflare Workers (preview)
+        if: github.event_name == 'pull_request'
+        run: pnpm exec wrangler deploy --env preview
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      # Deploy production — main branch only
+      - name: Deploy to Cloudflare Workers (production)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: pnpm exec wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Final status
+        run: |
+          if [ "${{ github.event_name }}" = "push" ] && [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "Deployment completed."
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "PR validation completed. Preview deployed."
+          fi

@@ -5,7 +5,7 @@
     }">
       <div class="relative w-full min-h-[170px]" v-on="sliderEvents">
         <div v-if="!isInitialized" class="absolute inset-0 flex items-center justify-center text-center">
-          <div class="text-primary-600 animate-pulse">{{ $t('carousel.loading') }}...</div>
+          <div class="text-tone-600 animate-pulse">{{ $t('carousel.loading') }}...</div>
         </div>
         <Motion v-if="isInitialized" tag="div" class="flex" drag="x" :dragConstraints="dragConstraints" :style="{
           gap: `${GAP}px`,
@@ -15,19 +15,23 @@
           :transition="SPRING_OPTIONS">
           <Motion v-for="(item, index) in items" :key="index" tag="div" :class="[
             'relative shrink-0 flex flex-col cursor-grab active:cursor-grabbing min-h-[150px]',
-            'items-start justify-between bg-foreground shadow-sm shadow-primary/40 rounded-lg p-2',
+            'items-start justify-between bg-paper shadow-sm shadow-tone/40 rounded-lg p-2',
             'transition-opacity duration-500'
           ]" :style="{
             width: itemWidth > 0 ? `${itemWidth}px` : '100%',
             height: '100%',
           }" :transition="SPRING_OPTIONS">
-            <div v-if="!$slots.default" class="p-1 text-primary-900">
+            <div v-if="!$slots.default" class="p-1 text-tone-900">
               <div class="mb-1 font-black text-lg">{{ item.title }}</div>
               <p class="text-sm">{{ item.description }}</p>
               <div class="my-4" v-if="item.icons">
                 <span class="flex gap-2 items-center">
-                  <i v-for="icon in Array.isArray(item.icons) ? item.icons : [item.icons]" :key="icon" :class="icon"
-                    class="text-foreground text-xl"></i>
+                  <UIcon
+                    v-for="icon in Array.isArray(item.icons) ? item.icons : [item.icons]"
+                    :key="icon"
+                    :name="icon"
+                    class="text-paper text-xl"
+                  />
                 </span>
               </div>
             </div>
@@ -38,17 +42,17 @@
 
       <div v-if="isInitialized" class="flex w-full justify-center pt-4 gap-2">
         <Motion v-for="(_, index) in items" :key="index" tag="div" :class="[
-          'h-3 w-3 rounded-full transition-colors duration-150 border border-primary-600 cursor-pointer',
+          'h-3 w-3 rounded-full transition-colors duration-150 border border-tone-600 cursor-pointer',
           currentIndex % items.length === index
-            ? 'bg-primary-600'
-            : 'bg-primary-100'
+            ? 'bg-tone-600'
+            : 'bg-tone-100'
         ]" @click="() => setCurrentIndex(index)" :transition="{ duration: 0.15 }" />
         <Transition name="fade" mode="out-in">
           <button :key="isAutoplaying ? 'pause' : 'play'"
             @click="() => isAutoplaying ? stopAutoplay() : startAutoplay()"
-            class="block w-3 h-3 cursor-pointer ring-1 ring-primary-600"
+            class="block w-3 h-3 cursor-pointer ring-1 ring-tone-600"
             aria-label="$t('carousel.toggle_autoplay')">
-            <UnoIcon class="w-3 h-3" :class="isAutoplaying ? 'i-ic-baseline-pause' : 'i-ic-baseline-play-arrow'" />
+            <UIcon class="w-3 h-3" :name="isAutoplaying ? 'i-ic-baseline-pause' : 'i-ic-baseline-play-arrow'" />
           </button>
         </Transition>
       </div>
@@ -221,11 +225,13 @@ const sliderEvents = computed(() => {
 </script>
 
 <style scoped>
+@reference "../assets/css/main.css";
+
 .carousel {
   mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
-@screen md {
+@variant md {
   .carousel {
     mask-image: linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%);
   }

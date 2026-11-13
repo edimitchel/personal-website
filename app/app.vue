@@ -1,20 +1,24 @@
 <template>
-  <NuxtRouteAnnouncer />
-  <NuxtLayout>
-    <NuxtPage />
-  </NuxtLayout>
+  <UApp>
+    <NuxtRouteAnnouncer />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
 </template>
 
 <style>
+@reference "assets/css/main.css";
+
 html {
-  --uno: transition-colors duration-300;
+  @apply transition-colors duration-300;
 }
 
-html.dark-mode {
+html.dark {
   background-color: #000;
 }
 
-html.light-mode {
+html.light {
   background-color: #fff;
 }
 
@@ -36,10 +40,10 @@ html.light-mode {
   mask-image: linear-gradient(to right, transparent -10%, white 20%, white 80%, transparent 110%);
   transition: background-color 300ms ease;
   z-index: -1;
-  --uno: bg-opacity-80 bg-foreground;
+  @apply bg-paper/80;
 }
 
-@screen md {
+@variant md {
   #app::after {
     mask-image: linear-gradient(to right, transparent 0%, white 30%, white 70%, transparent 100%);
   }

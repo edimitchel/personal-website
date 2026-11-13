@@ -3,3 +3,16 @@ TELEGRAM_BOT_TOKEN=
 TELEGRAM_CHAT_ID=
 STUDIO_GITHUB_CLIENT_ID=
 STUDIO_GITHUB_CLIENT_SECRET=
+
+# Admin auth. NUXT_APP_SECRET must be 32+ characters in production.
+# Local `nuxt dev` runs without it. Do not put a real secret in this example.
+# NUXT_APP_SECRET=
+# NUXT_ADMIN_EMAIL=
+# NUXT_PUBLIC_SITE_URL=https://micheledighoffer.fr
+# NUXT_GITHUB_OAUTH_CLIENT_ID=
+# NUXT_GITHUB_OAUTH_CLIENT_SECRET=
+
+# Admin publish, server only. Empty keeps drafts local. The target branch is
+# NUXT_GITHUB_BRANCH (default content/admin) and is never main.
+# NUXT_GITHUB_TOKEN=
+# NUXT_TRANSLATION_API_KEY=

@@ -1,13 +1,13 @@
 <template>
   <div
-    class="contact-form-inline border-2 border-primary-600 md:w-1/2 w-full md:max-w-[600px] md:mx-auto rounded-lg my-4 bg-foreground shadow-lg transition-all duration-200"
+    class="contact-form-inline border-2 border-tone-600 md:w-1/2 w-full md:max-w-[600px] md:mx-auto rounded-lg my-4 bg-paper shadow-lg transition-all duration-200"
     :class="{
       'md:w-full': isVisible,
     }">
     <slot :isVisible="isVisible" @toggle="isVisible = !isVisible">
       <button @click="isVisible = !isVisible"
         class="p-4 w-full uppercase font-extrabold tracking-widest cursor-pointer flex justify-center gap-2">
-        <UnoIcon class="i-line-md-chat-round-dots text-2xl" />
+        <UIcon name="i-line-md-chat-round-dots" class="text-2xl" />
         {{ $t('about.contact-me') }}
       </button>
     </slot>
@@ -15,32 +15,32 @@
     <Transition name="contact-form" mode="out-in">
       <form v-if="isVisible" ref="formRef" @submit.prevent @keydown="handleGlobalKeyDown" @keyup="handleGlobalKeyUp"
         class="px-4 space-y-3 pb-4" :class="{
-          'absolute m-0 p-10 top-0 left-0 right-0 text-background bg-foreground z-110': teleport && isVisible
+          'absolute m-0 p-10 top-0 left-0 right-0 text-ink bg-paper z-[110]': teleport && isVisible
         }">
         <!-- Form Fields in a compact grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           <div>
             <input v-model="form.name" type="text" required
-              class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm disabled:opacity-50"
+              class="w-full px-3 py-2 border border-tone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-tone-500 focus:border-transparent text-sm disabled:opacity-50"
               :placeholder="$t('contact.name_placeholder')" :disabled="isSubmitting || isSent" />
           </div>
           <div>
             <input v-model="form.email" type="email" required
-              class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent text-sm disabled:opacity-50"
+              class="w-full px-3 py-2 border border-tone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-tone-500 focus:border-transparent text-sm disabled:opacity-50"
               :placeholder="$t('contact.email_placeholder')" :disabled="isSubmitting || isSent" />
           </div>
         </div>
 
         <div>
           <textarea v-model="form.message" required rows="3"
-            class="w-full px-3 py-2 border border-primary-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent resize-vertical text-sm disabled:opacity-50"
+            class="w-full px-3 py-2 border border-tone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-tone-500 focus:border-transparent resize-vertical text-sm disabled:opacity-50"
             :placeholder="$t('contact.message_placeholder')" :disabled="isSubmitting || isSent"></textarea>
         </div>
 
         <!-- Submit Button with Integrated Captcha -->
         <div class="flex gap-2 flex-col md:flex-row">
           <button v-if="!isSubmitting && !isSent" type="button" @click="closeForm"
-            class="px-4 py-2 border border-primary-300 text-primary-700 rounded-md hover:bg-primary-400 hover:text-primary-50 transition-colors text-sm disabled:opacity-50"
+            class="px-4 py-2 border border-tone-300 text-tone-700 rounded-md hover:bg-tone-400 hover:text-tone-50 transition-colors text-sm disabled:opacity-50"
             :disabled="isSubmitting">
             {{ $t('contact.cancel') }}
           </button>
@@ -50,17 +50,17 @@
             class="flex-1 py-2 px-4 rounded-md font-medium transition-all duration-150 relative overflow-hidden captcha-submit-button text-sm disabled:opacity-50"
             :class="submitButtonClass" :disabled="isSubmitting || isSent">
             <div class="absolute left-0 top-0 h-full transition-all duration-75 ease-linear"
-              :class="!isCaptchaValid ? 'bg-primary-700' : 'bg-transparent'" :style="{ width: `${holdProgress}%` }">
+              :class="!isCaptchaValid ? 'bg-tone-700' : 'bg-transparent'" :style="{ width: `${holdProgress}%` }">
             </div>
             <span class="relative z-10 flex gap-2 items-center justify-center">
-              <UnoIcon v-if="isSubmitting" class="i-svg-spinners-180-ring-with-bg" />
+              <UIcon v-if="isSubmitting" name="i-svg-spinners-180-ring-with-bg" />
               {{ submitButtonText }}
             </span>
           </button>
         </div>
 
         <!-- Compact help text -->
-        <div v-if="!isCaptchaValid && !isSubmitting" class="text-xs text-primary-600 text-center">
+        <div v-if="!isCaptchaValid && !isSubmitting" class="text-xs text-tone-600 text-center">
           {{ $t('contact.captcha_help_short') }}
         </div>
 
@@ -122,18 +122,18 @@ const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
 // Computed properties
 const submitButtonClass = computed(() => {
   if (!isFormValid.value) {
-    return 'bg-primary-400 text-white cursor-not-allowed'
+    return 'bg-tone-400 text-white cursor-not-allowed'
   }
   if (isSubmitting.value) {
-    return 'bg-primary-600 text-white cursor-not-allowed'
+    return 'bg-tone-600 text-white cursor-not-allowed'
   }
   if (isCaptchaValid.value) {
     return 'bg-green-700 text-white hover:bg-green-700'
   }
   if (isHolding.value) {
-    return 'bg-primary-600 text-white'
+    return 'bg-tone-600 text-white'
   }
-  return 'bg-primary-600 text-white hover:bg-primary-700'
+  return 'bg-tone-600 text-white hover:bg-tone-700'
 })
 
 const submitButtonText = computed(() => {

@@ -5,7 +5,7 @@
         <ProjectHeader :project="content" />
         <ContentRenderer
           :value="content"
-          class="prose text-background"
+          class="prose text-ink"
         />
         <SiblingNavigation
           v-if="siblings"
@@ -15,7 +15,7 @@
       </template>
       <div
         v-else
-        class="prose text-background"
+        class="prose text-ink"
       >
         <h1>{{ $t('project.notFound') }}</h1>
         <p>{{ $t('project.notFoundDescription') }}</p>
@@ -49,6 +49,10 @@ const { content, isTranslated } = await useTranslatedContent(
   `project-${route.params.slug}`,
   queryCollection('projects').where('stem', 'LIKE', '%/' + route.params.slug + '%'),
 )
+
+if (content?.stem) {
+  await useContentHreflang('projects', content.stem)
+}
 
 const { data: siblings } = content
   ? await useAsyncData(
@@ -103,7 +107,5 @@ defineOgImage('Page', {
   ...(content?.image ? { image: content.image } : {}),
 })
 
-if (content?.ogImage) {
-  defineOgImage(content.ogImage)
-}
+defineContentOgImage(content?.ogImage)
 </script>

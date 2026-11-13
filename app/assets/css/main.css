@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/*
+  Color mode uses .light / .dark. Shiki follows .dark.
+  The public tone scale flips in dark. Nuxt UI gray does not.
+*/
+@variant light (&:where(.light, .light *, .light-mode, .light-mode *));
+@variant dark (&:where(.dark, .dark *, .dark-mode, .dark-mode *));
+
+@theme static {
+  --font-sans: "Gabarito", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Gabarito", ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-gray: #6b7280;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+
+  /* Public site colors. They flip in dark the way Uno did.
+     Nuxt UI gray (--color-gray-*) stays uninverted. */
+  --color-ink: var(--site-ink);
+  --color-paper: var(--site-paper);
+  --color-tone-50: var(--site-tone-50);
+  --color-tone-100: var(--site-tone-100);
+  --color-tone-200: var(--site-tone-200);
+  --color-tone-300: var(--site-tone-300);
+  --color-tone-400: var(--site-tone-400);
+  --color-tone-500: var(--site-tone-500);
+  --color-tone-600: var(--site-tone-600);
+  --color-tone-700: var(--site-tone-700);
+  --color-tone-800: var(--site-tone-800);
+  --color-tone-900: var(--site-tone-900);
+  --color-tone-950: var(--site-tone-950);
+  --color-tone: var(--site-tone-500);
+}
+
+:root,
+html.light-mode,
+.light {
+  --site-ink: #000;
+  --site-paper: #fff;
+  --site-tone-50: #f9fafb;
+  --site-tone-100: #f3f4f6;
+  --site-tone-200: #e5e7eb;
+  --site-tone-300: #d1d5db;
+  --site-tone-400: #9ca3af;
+  --site-tone-500: #6b7280;
+  --site-tone-600: #4b5563;
+  --site-tone-700: #374151;
+  --site-tone-800: #1f2937;
+  --site-tone-900: #111827;
+  --site-tone-950: #030712;
+}
+
+/* Page: light #fff / texte sombre, dark #000 / texte clair. */
+:root,
+html.light-mode {
+  --ui-bg: #fff;
+  --ui-text: #000;
+  --ui-text-highlighted: #000;
+}
+
+.dark,
+html.dark-mode {
+  --site-ink: #fff;
+  --site-paper: #333;
+  --site-tone-50: #030712;
+  --site-tone-100: #111827;
+  --site-tone-200: #1f2937;
+  --site-tone-300: #374151;
+  --site-tone-400: #4b5563;
+  --site-tone-500: #6b7280;
+  --site-tone-600: #9ca3af;
+  --site-tone-700: #d1d5db;
+  --site-tone-800: #e5e7eb;
+  --site-tone-900: #f3f4f6;
+  --site-tone-950: #f9fafb;
+
+  --ui-text-dimmed: var(--ui-color-neutral-500);
+  --ui-text-muted: var(--ui-color-neutral-400);
+  --ui-text-toned: var(--ui-color-neutral-300);
+  --ui-text: #fff;
+  --ui-text-highlighted: #fff;
+  --ui-text-inverted: var(--ui-color-neutral-900);
+
+  --ui-bg: #000;
+  --ui-bg-muted: var(--ui-color-neutral-800);
+  --ui-bg-elevated: var(--ui-color-neutral-800);
+  --ui-bg-accented: var(--ui-color-neutral-700);
+  --ui-bg-inverted: #fff;
+
+  --ui-border: var(--ui-color-neutral-800);
+  --ui-border-muted: var(--ui-color-neutral-700);
+  --ui-border-accented: var(--ui-color-neutral-700);
+  --ui-border-inverted: #fff;
+}
+
+/* The Node wordmark is #333, identical to dark paper, so the mark disappears.
+   A white plate keeps the same graphic as in light mode. Other logos stay on the card. */
+.dark .iconify[class*="i-logos:nodejs"],
+.dark .iconify[class*="i-logos-nodejs"] {
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+/* Content typography. Replaces Uno presetTypography `.prose`. */
+.prose {
+  color: var(--site-ink);
+  line-height: 1.6;
+}
+
+.prose :where(h1, h2, h3, h4) {
+  color: var(--site-ink);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.prose :where(h1) {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.prose :where(h2) {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.prose :where(h3) {
+  font-size: 1.125rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.prose :where(p, ul, ol) {
+  margin: 0 0 1rem;
+}
+
+.prose :where(a) {
+  color: var(--site-tone-700);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.prose :where(code) {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.prose :where(pre) {
+  overflow-x: auto;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  background: var(--site-tone-100);
+}
+
+.prose :where(ul, ol) {
+  padding-left: 1.25rem;
+}
+
+.prose :where(li) {
+  margin: 0.25rem 0;
+}
+
+.prose :where(img) {
+  max-width: 100%;
+  height: auto;
+}

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <ContentRenderer v-if="about" :value="about" :data="{ experiences }" class="prose text-background" />
+    <ContentRenderer v-if="about" :value="about" :data="{ experiences }" class="prose text-ink" />
   </section>
 </template>
 
@@ -13,7 +13,7 @@ defineOgImage('Page');
 const appConfig = useAppConfig();
 const { messages: storeMessages } = storeToRefs(layoutStore())
 
-const messages = useState('randomIndex', () => appConfig.ui?.messages?.sort(() => Math.random() - 0.5))
+const messages = useState('randomIndex', () => appConfig.information?.messages?.sort(() => Math.random() - 0.5))
 
 if (messages.value) {
   storeMessages.value = messages.value
@@ -54,7 +54,5 @@ if (about) {
   })
 }
 
-if (about?.ogImage) {
-  defineOgImage(about.ogImage)
-}
+defineContentOgImage(about?.ogImage)
 </script>

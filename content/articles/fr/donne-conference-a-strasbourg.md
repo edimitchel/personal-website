@@ -1,6 +1,6 @@
 ---
 title: Je donne une conférence à Strasbourg !
-description: "Je vais donner une conférence avec mon ami &#038; collègue Yannick
+description: "Je vais donner une conférence avec mon ami & collègue Yannick
   Milanetto : un nouveau point de Vue sur les frameworks front-end
   (javascript)...."
 created: 2018-05-15
