@@ -1,8 +1,9 @@
 import { isSiteAdmin, previewEnabled } from '../utils/site-admin'
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
+  const admin = await isSiteAdmin(event)
   return {
-    admin: isSiteAdmin(event),
-    enabled: isSiteAdmin(event) && previewEnabled(event),
+    admin,
+    enabled: admin && previewEnabled(event),
   }
 })

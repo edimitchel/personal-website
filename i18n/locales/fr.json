@@ -91,9 +91,34 @@
     "loading": "Chargement des expériences",
     "toggle_autoplay": "Relancer/Arrêter le slider"
   },
+  "auth": {
+    "errors": {
+      "USER_NOT_FOUND": "Compte introuvable",
+      "INVALID_PASSWORD": "Mot de passe incorrect",
+      "INVALID_EMAIL_OR_PASSWORD": "Adresse ou mot de passe incorrect",
+      "USER_ALREADY_EXISTS": "Ce compte existe déjà",
+      "INVALID_EMAIL": "Adresse invalide",
+      "PASSWORD_TOO_SHORT": "Le mot de passe doit contenir au moins 12 caractères",
+      "FORBIDDEN": "Cette adresse n'est pas autorisée"
+    }
+  },
   "admin": {
     "title": "Administration",
     "backToSite": "Voir le site",
+    "auth": {
+      "signIn": "Connexion",
+      "signUp": "Créer le compte",
+      "signOut": "Se déconnecter",
+      "email": "Adresse",
+      "password": "Mot de passe",
+      "description": "Seul le compte autorisé sur le serveur peut être créé.",
+      "createAccount": "Créer le compte",
+      "haveAccount": "J'ai déjà un compte",
+      "or": "ou",
+      "github": "Continuer avec GitHub",
+      "invalid": "Connexion impossible.",
+      "notAllowed": "Cette adresse n'est pas autorisée."
+    },
     "intro": "Les brouillons restent en base. Publier envoie un commit GitHub sur une branche dédiée, jamais sur main.",
     "draft": "Brouillon",
     "open": "Éditer",

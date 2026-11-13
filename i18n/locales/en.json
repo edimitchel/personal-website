@@ -91,9 +91,34 @@
     "loading": "Loading experiences",
     "toggle_autoplay": "Toggle autoplay"
   },
+  "auth": {
+    "errors": {
+      "USER_NOT_FOUND": "Account not found",
+      "INVALID_PASSWORD": "Incorrect password",
+      "INVALID_EMAIL_OR_PASSWORD": "Incorrect email or password",
+      "USER_ALREADY_EXISTS": "This account already exists",
+      "INVALID_EMAIL": "Invalid email",
+      "PASSWORD_TOO_SHORT": "Password must be at least 12 characters",
+      "FORBIDDEN": "This address is not allowed"
+    }
+  },
   "admin": {
     "title": "Admin",
     "backToSite": "View the site",
+    "auth": {
+      "signIn": "Sign in",
+      "signUp": "Create the account",
+      "signOut": "Sign out",
+      "email": "Email",
+      "password": "Password",
+      "description": "Only the address allowed on the server can create an account.",
+      "createAccount": "Create the account",
+      "haveAccount": "I already have an account",
+      "or": "or",
+      "github": "Continue with GitHub",
+      "invalid": "Sign-in failed.",
+      "notAllowed": "This address is not allowed."
+    },
     "intro": "Drafts stay in the database. Publishing sends a GitHub commit on a dedicated branch, never on main.",
     "draft": "Draft",
     "open": "Edit",

@@ -63,7 +63,7 @@ Si la branche existe déjà, s’y replacer et continuer dessus. Commits atomiqu
 - Contenu public : uniquement via Nuxt Content (pas de texte métier en dur dans les composants, hors chrome déjà existant à migrer).
 - Le rendu public doit rester visuellement fidèle (palette gray, typo Gabarito / Source Code Pro, colonne `max-w-[600px]`, dark mode). Ne pas « redesigner » sans demande.
 - Pages de contenu aujourd’hui pré-rendues au build : ne pas casser le prerender tant que `PLAN.md` ne le demande pas.
-- Admin : routes sous `/admin`, jamais indexées (`robots`). Auth prévue (Cloudflare Access et/ou session), ne pas laisser `/admin` public.
+- Admin : routes sous `/admin`, jamais indexées (`robots`). Session Better Auth (`@nuxtjs/better-auth`) sur D1 via NuxtHub, sans KV secondaire. Ne pas laisser `/admin` public. Ne pas lancer `nuxt db migrate` ni `wrangler d1` sur la base distante sans demande.
 - Images nouvelles : R2 (`BLOB`), pas de commit de binaires lourds dans git.
 - Pour UEditor / TipTap : ajouter si besoin `vite.optimizeDeps.include` pour les paquets `prosemirror-*` (voir docs Nuxt UI Editor).
 - Persistance des `.md` : **commit GitHub via API côté serveur, puis CI** (décision dans `PLAN.md`). Pas d’écriture directe du filesystem en production. Les brouillons peuvent aller en D1/KV.

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   modules: [
     './modules/incremental-prerender',
     '@nuxthub/core',
+    '@nuxtjs/better-auth',
     '@nuxt/eslint',
     '@nuxt/content',
     '@nuxt/image',
@@ -98,6 +99,12 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     githubToken: '',
+    adminEmail: '',
+    authTrustedOrigins: '',
+    githubOauth: {
+      clientId: '',
+      clientSecret: '',
+    },
     github: {
       owner: 'edimitchel',
       repo: 'personal-website',
@@ -111,11 +118,24 @@ export default defineNuxtConfig({
     },
   },
 
+  auth: {
+    hubSecondaryStorage: false,
+    preserveRedirect: true,
+    redirects: {
+      login: '/admin/login',
+      guest: '/',
+      authenticated: '/admin',
+      logout: '/admin/login',
+    },
+  },
+
   routeRules: {
-    '/admin': { robots: false },
-    '/admin/**': { robots: false },
-    '/en/admin': { robots: false },
-    '/en/admin/**': { robots: false },
+    '/admin/login': { robots: false, auth: { only: 'guest', redirectTo: '/admin' } },
+    '/admin': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/admin/**': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/en/admin/login': { robots: false, auth: { only: 'guest', redirectTo: '/admin' } },
+    '/en/admin': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/en/admin/**': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
   },
 
   nitro: {

@@ -4,7 +4,8 @@ import { inspectHeading } from '../../shared/admin/heading'
 import { untranslatedParagraphs, type ProseBlock } from '../../shared/admin/paragraphs'
 import { fileStemFromPath, localeState, pathForLocale } from '../../shared/admin/locales'
 import { routeContentPath } from '../../shared/site/route-content'
-import { decidePublish, isAdminPath, parseContentPath } from '../../shared/admin/paths'
+import { isAllowedAdminEmail } from '../../shared/admin/auth'
+import { decidePublish, isAdminApiPath, isAdminPath, parseContentPath } from '../../shared/admin/paths'
 
 describe('admin content paths', () => {
   it('accepts a markdown file inside its collection', () => {
@@ -36,6 +37,21 @@ describe('admin content paths', () => {
     expect(isAdminPath('/')).toBe(false)
     expect(isAdminPath('/articles')).toBe(false)
     expect(isAdminPath('/administration')).toBe(false)
+  })
+
+  it('guards admin APIs and leaves the login page to the session redirect', () => {
+    expect(isAdminApiPath('/api/admin/drafts')).toBe(true)
+    expect(isAdminApiPath('/api/admin/drafts?x=1')).toBe(true)
+    expect(isAdminApiPath('/admin/login')).toBe(false)
+    expect(isAdminApiPath('/api/preview')).toBe(false)
+    expect(isAdminApiPath('/api/admin-auth/providers')).toBe(false)
+  })
+
+  it('allows only the configured admin address to create an account', () => {
+    expect(isAllowedAdminEmail('Michel@Example.test', 'michel@example.test')).toBe(true)
+    expect(isAllowedAdminEmail('other@example.test', 'michel@example.test')).toBe(false)
+    expect(isAllowedAdminEmail('michel@example.test', '  ')).toBe(false)
+    expect(isAllowedAdminEmail('', 'michel@example.test')).toBe(false)
   })
 })
 

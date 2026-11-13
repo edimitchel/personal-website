@@ -113,6 +113,7 @@ type Entry = {
 
 definePageMeta({
   layout: 'admin',
+  auth: 'user',
 })
 defineI18nRoute(false)
 

@@ -28,12 +28,14 @@
     "@nuxt/image": "^2.2.1",
     "@nuxt/ui": "^4.12.0",
     "@nuxthub/core": "^0.10.12",
+    "@nuxtjs/better-auth": "0.3.16",
     "@nuxtjs/color-mode": "4.1.0",
     "@nuxtjs/i18n": "10.6.0",
     "@pinia/nuxt": "^1.0.3",
     "@resvg/resvg-js": "^2.6.2",
     "@resvg/resvg-wasm": "^2.6.2",
     "@vue/devtools-api": "^8.2.1",
+    "better-auth": "1.7.22",
     "better-sqlite3": "^12.11.1",
     "comark": "^0.9.1",
     "drizzle-orm": "^0.45.2",
@@ -52,6 +54,7 @@
     "@nuxt/test-utils": "^4.4.0",
     "@vitest/ui": "^4.1.12",
     "@vue/test-utils": "^2.5.1",
+    "auth": "1.7.22",
     "drizzle-kit": "^0.31.4",
     "eslint": "^9.39.2",
     "gray-matter": "^4.0.3",
@@ -63,6 +66,11 @@
   "resolutions": {},
   "packageManager": "pnpm@10.28.0",
   "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "auth": "1.7.22"
+      }
+    },
     "onlyBuiltDependencies": [
       "better-sqlite3",
       "sharp"

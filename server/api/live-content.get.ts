@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'path' })
   }
 
-  const showDraft = isSiteAdmin(event) && previewEnabled(event)
+  const showDraft = await isSiteAdmin(event) && previewEnabled(event)
   const draft = showDraft ? await readDraft(target.collection, target.path) : null
   const row = draft ?? await readPublishedCopy(target.collection, target.path)
   if (!row) {

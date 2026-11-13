@@ -186,9 +186,12 @@ Vérifications :
 
 ### Étape 5 — Auth admin
 
-- Cloudflare Access devant `/admin` (préférence) **ou** session OAuth GitHub. Documenter le branchement (sans appliquer les règles Access en prod sans demande).
-- Vérifier que les API d’écriture refusent les requêtes non authentifiées.
-- Vérifications : `/admin` inaccessible sans auth en configuration documentée ; les pages publiques restent ouvertes.
+Décision : **Better Auth** (`@nuxtjs/better-auth` + `better-auth` 1.7, CLI `auth` à la même version) sur la base SQLite NuxtHub (D1). Sessions en base. `auth.hubSecondaryStorage` reste `false` : le KV NuxtHub n’a pas les opérations atomiques exigées par Better Auth 1.7.
+
+- Pages `/admin` : redirection vers `/admin/login` sans session. `/api/admin` : `requireUserSession` (401). L’aperçu public ne s’active qu’avec cette session.
+- Compte unique : `NUXT_ADMIN_EMAIL`. GitHub optionnel via `NUXT_GITHUB_OAUTH_CLIENT_ID` / `NUXT_GITHUB_OAUTH_CLIENT_SECRET`. Secret : `NUXT_APP_SECRET` (32+ caractères) en production Workers, plus `NUXT_PUBLIC_SITE_URL`.
+- Ne pas appliquer de migration D1 distante (`nuxt db migrate`, `wrangler d1`) sans demande. Le dev local applique le schéma.
+- Vérifications : `/admin` et les API d’écriture refusent un visiteur anonyme ; les pages publiques restent ouvertes.
 
 ### Étape 6 — Nettoyage
 
@@ -200,6 +203,8 @@ Vérifications :
 ### Étape 7 — Traduction du contenu dans l’admin
 
 Dépend des étapes 3 (brouillon D1 + commit GitHub) et 4 (UEditor). N’installe pas la PR Content #3753. Ne déplace pas les fichiers `content/` dans cette étape.
+
+npm i https://pkg.pr.new/@nuxt/content@3753
 
 - Util `getLocales(collection, stem)` au contrat de `queryCollectionLocales` : une entrée par locale (`fr`, `en`) avec chemin, existence, `_i18nSourceHash` et état `source` / `current` / `missing` / `outdated`. Sert la grille admin et les `hreflang` publics. Même stem des deux côtés ; un nom de fichier traduit n’est pas une paire.
 - Écran d’édition : FR et EN côte à côte pour un stem. L’indicateur reprend `getLocales`.

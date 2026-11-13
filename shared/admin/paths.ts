@@ -45,12 +45,20 @@ export function decidePublish(input: { branch: string, token: string }): Publish
   return 'ok'
 }
 
+function barePath(path: string) {
+  return (path.split('?')[0] ?? '').replace(/\/+$/, '') || '/'
+}
+
+export function isAdminApiPath(path: string) {
+  const bare = barePath(path)
+  return bare === '/api/admin' || bare.startsWith('/api/admin/')
+}
+
 export function isAdminPath(path: string) {
-  const bare = (path.split('?')[0] ?? '').replace(/\/+$/, '') || '/'
+  const bare = barePath(path)
   return bare === '/admin'
     || bare.startsWith('/admin/')
     || bare === '/en/admin'
     || bare.startsWith('/en/admin/')
-    || bare === '/api/admin'
-    || bare.startsWith('/api/admin/')
+    || isAdminApiPath(path)
 }

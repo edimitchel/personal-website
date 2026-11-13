@@ -9,6 +9,15 @@
       </NuxtLink>
       <div class="ml-auto flex items-center gap-1">
         <UButton
+          v-if="loggedIn"
+          color="neutral"
+          variant="ghost"
+          icon="i-lucide-log-out"
+          :aria-label="$t('admin.auth.signOut')"
+          :loading="signingOut"
+          @click="logout"
+        />
+        <UButton
           to="/"
           color="neutral"
           variant="ghost"
@@ -26,6 +35,19 @@
 useSeoMeta({
   robots: 'noindex, nofollow',
 })
+
+const { loggedIn, signOut } = useUserSession()
+const signingOut = ref(false)
+
+async function logout() {
+  signingOut.value = true
+  try {
+    await signOut()
+  }
+  finally {
+    signingOut.value = false
+  }
+}
 </script>
 
 <style>

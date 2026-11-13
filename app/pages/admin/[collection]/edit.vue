@@ -189,6 +189,7 @@ import { ensureHeading, inspectHeading } from '~~/shared/admin/heading'
 
 definePageMeta({
   layout: 'admin',
+  auth: 'user',
 })
 defineI18nRoute(false)
 

@@ -36,6 +36,7 @@
 <script setup lang="ts">
 definePageMeta({
   layout: 'admin',
+  auth: 'user',
 })
 defineI18nRoute(false)
 

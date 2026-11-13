@@ -1,10 +1,8 @@
 import type { H3Event } from 'h3'
 
-export function isSiteAdmin(event: H3Event) {
-  if (import.meta.dev) {
-    return true
-  }
-  return Boolean(getRequestHeader(event, 'cf-access-jwt-assertion'))
+export async function isSiteAdmin(event: H3Event) {
+  const session = await getUserSession(event)
+  return Boolean(session?.user)
 }
 
 export function previewEnabled(event: H3Event) {

@@ -6,7 +6,7 @@ const bodySchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  if (!isSiteAdmin(event)) {
+  if (!await isSiteAdmin(event)) {
     throw createError({ statusCode: 401, statusMessage: 'admin' })
   }
   const parsed = await readValidatedBody(event, bodySchema.safeParse)
