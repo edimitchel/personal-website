@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   modules: [
     './modules/incremental-prerender',
     '@nuxthub/core',
+    '@nuxtjs/better-auth',
     '@nuxt/eslint',
     '@nuxt/content',
     '@nuxt/image',
@@ -56,7 +57,7 @@ export default defineNuxtConfig({
 
   icon: {
     serverBundle: {
-      collections: ['mdi', 'logos', 'heroicons', 'line-md', 'ic', 'skill-icons', 'unjs', 'svg-spinners', 'noto-v1'],
+      collections: ['mdi', 'logos', 'heroicons', 'lucide', 'line-md', 'ic', 'skill-icons', 'unjs', 'svg-spinners', 'noto-v1'],
     },
   },
 
@@ -96,6 +97,47 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2026-06-25',
 
+  runtimeConfig: {
+    githubToken: '',
+    adminEmail: '',
+    authTrustedOrigins: '',
+    githubOauth: {
+      clientId: '',
+      clientSecret: '',
+    },
+    github: {
+      owner: 'edimitchel',
+      repo: 'personal-website',
+      branch: 'content/admin',
+    },
+    translation: {
+      provider: 'xai',
+      baseURL: '',
+      model: '',
+      apiKey: '',
+    },
+  },
+
+  auth: {
+    hubSecondaryStorage: false,
+    preserveRedirect: true,
+    redirects: {
+      login: '/admin/login',
+      guest: '/',
+      authenticated: '/admin',
+      logout: '/admin/login',
+    },
+  },
+
+  routeRules: {
+    '/admin/login': { robots: false, auth: { only: 'guest', redirectTo: '/admin' } },
+    '/admin': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/admin/**': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/en/admin/login': { robots: false, auth: { only: 'guest', redirectTo: '/admin' } },
+    '/en/admin': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+    '/en/admin/**': { robots: false, auth: { only: 'user', redirectTo: '/admin/login' } },
+  },
+
   nitro: {
     preset: 'cloudflare_module',
     cloudflare: {
@@ -106,7 +148,7 @@ export default defineNuxtConfig({
       routes: collectPrerenderRoutes(),
       crawlLinks: false,
       failOnError: process.env.NUXT_PRERENDER_FAIL_ON_ERROR === 'true',
-      ignore: ['/_og/**'],
+      ignore: ['/_og/**', '/admin', '/admin/**', '/en/admin', '/en/admin/**'],
     },
   },
 
@@ -121,6 +163,11 @@ export default defineNuxtConfig({
     optimizeDeps: {
       include: [
         '@unhead/schema-org/vue',
+        '@nuxt/ui > prosemirror-state',
+        '@nuxt/ui > prosemirror-transform',
+        '@nuxt/ui > prosemirror-model',
+        '@nuxt/ui > prosemirror-view',
+        '@nuxt/ui > prosemirror-gapcursor',
       ],
     },
   },

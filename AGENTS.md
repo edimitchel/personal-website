@@ -17,7 +17,7 @@ Le détail des étapes et les décisions (UnoCSS, UEditor, persistance) est dans
 - @nuxthub/core (bindings D1 `DB`, KV `KV`/`CACHE`, R2 `BLOB` déjà dans `wrangler.jsonc`)
 - UnoCSS (presetWind4) **en cours de remplacement** par Nuxt UI + Tailwind CSS v4 — ne pas rajouter de dépendances UnoCSS
 - Contenu : Markdown dans `content/pages|articles|projects` (FR dans `…/fr/`)
-- CI existante : `.github/workflows/build-translate-deploy.yml` (build + `wrangler deploy` sur `main`, preview sur PR)
+- CI : `.github/workflows/build-deploy.yml` (build, preview `website-preview` sur PR, `wrangler deploy` sur `main`)
 
 ## Commandes
 
@@ -63,10 +63,11 @@ Si la branche existe déjà, s’y replacer et continuer dessus. Commits atomiqu
 - Contenu public : uniquement via Nuxt Content (pas de texte métier en dur dans les composants, hors chrome déjà existant à migrer).
 - Le rendu public doit rester visuellement fidèle (palette gray, typo Gabarito / Source Code Pro, colonne `max-w-[600px]`, dark mode). Ne pas « redesigner » sans demande.
 - Pages de contenu aujourd’hui pré-rendues au build : ne pas casser le prerender tant que `PLAN.md` ne le demande pas.
-- Admin : routes sous `/admin`, jamais indexées (`robots`). Auth prévue (Cloudflare Access et/ou session), ne pas laisser `/admin` public.
+- Admin : routes sous `/admin`, jamais indexées (`robots`). Session Better Auth (`@nuxtjs/better-auth`) sur D1 via NuxtHub, sans KV secondaire. Ne pas laisser `/admin` public. Ne pas lancer `nuxt db migrate` ni `wrangler d1` sur la base distante sans demande.
 - Images nouvelles : R2 (`BLOB`), pas de commit de binaires lourds dans git.
 - Pour UEditor / TipTap : ajouter si besoin `vite.optimizeDeps.include` pour les paquets `prosemirror-*` (voir docs Nuxt UI Editor).
 - Persistance des `.md` : **commit GitHub via API côté serveur, puis CI** (décision dans `PLAN.md`). Pas d’écriture directe du filesystem en production. Les brouillons peuvent aller en D1/KV.
+- Traduction du contenu : dans l’admin, pas via Mistral en CI. Modèle calqué sur [nuxt/content#3753](https://github.com/nuxt/content/pull/3753). Détail : `PLAN.md`. Ne pas déplacer `content/` tant que cette étape ne le demande pas.
 
 ## Definition of done (chaque étape)
 

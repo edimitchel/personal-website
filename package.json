@@ -11,32 +11,33 @@
     "preview": "nuxt preview",
     "deploy": "pnpm build && wrangler deploy",
     "deploy:preview": "pnpm build && wrangler deploy --env preview",
-    "postinstall": "nuxt prepare && tsdown scripts/translate-content.ts --tsconfig scripts/tsconfig.json",
+    "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "typecheck": "nuxt typecheck",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "translate": "node dist/translate-content.js",
-    "translate:check": "node dist/translate-content.js list",
-    "translate:publish": "node dist/translate-content.js publish"
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@comark/vue": "^0.9.1",
     "@iconify/json": "^2.2.491",
     "@libsql/client": "^0.17.4",
-    "@nuxt/content": "^3.16.2",
+    "@nuxt/content": "https://pkg.pr.new/@nuxt/content@3753",
     "@nuxt/fonts": "^1.2.0",
     "@nuxt/image": "^2.2.1",
     "@nuxt/ui": "^4.12.0",
     "@nuxthub/core": "^0.10.12",
+    "@nuxtjs/better-auth": "0.3.16",
     "@nuxtjs/color-mode": "4.1.0",
     "@nuxtjs/i18n": "10.6.0",
     "@pinia/nuxt": "^1.0.3",
     "@resvg/resvg-js": "^2.6.2",
     "@resvg/resvg-wasm": "^2.6.2",
     "@vue/devtools-api": "^8.2.1",
+    "better-auth": "1.7.22",
     "better-sqlite3": "^12.11.1",
+    "comark": "^0.9.1",
     "drizzle-orm": "^0.45.2",
     "motion-v": "^1.9.0",
     "nuxt": "~4.6.4",
@@ -53,13 +54,12 @@
     "@nuxt/test-utils": "^4.4.0",
     "@vitest/ui": "^4.1.12",
     "@vue/test-utils": "^2.5.1",
+    "auth": "1.7.22",
     "c12": "^3.3.3",
     "drizzle-kit": "^0.31.4",
     "eslint": "^9.39.2",
     "gray-matter": "^4.0.3",
     "happy-dom": "^20.14.6",
-    "tsdown": "^0.13.5",
-    "tsx": "^4.22.4",
     "vitest": "^4.1.12",
     "vue-tsc": "^3.3.5",
     "wrangler": "^4.160.0"
@@ -67,6 +67,11 @@
   "resolutions": {},
   "packageManager": "pnpm@10.28.0",
   "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "auth": "1.7.22"
+      }
+    },
     "onlyBuiltDependencies": [
       "better-sqlite3",
       "sharp"

@@ -45,18 +45,23 @@
 <script setup lang="ts">
 const route = useRoute()
 const { locale } = useI18n()
+const nuxtApp = useNuxtApp()
 
 const { content, isTranslated } = await useTranslatedContent(
   `article-${route.params.slug}`,
   queryCollection('articles').where('slug', '=', route.params.slug),
 )
 
+if (content?.stem) {
+  await nuxtApp.runWithContext(() => useContentHreflang('articles', content.stem))
+}
+
 const { data: siblings } = content
   ? await useAsyncData(
       `siblings-articles-${route.params.slug}`,
       () => queryCollectionItemSurroundings('articles', content.path, {
         fields: ['slug', 'title'],
-      }).where('lang', '=', locale.value).order('created', 'DESC'),
+      }).order('created', 'DESC'),
       { default: () => null },
     )
   : { data: null }

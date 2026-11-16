@@ -1,7 +1,7 @@
 ---
 title: ALTRAN à la nuit de l’info – Sa première expérience à Strasbourg
-description: Vous en avez certainement entendu parlé &#8211; ou peut-être pas
-  &#8211; en tout cas, la dixième édition de la nuit de l’info a eu lieu en
+description: Vous en avez certainement entendu parlé – ou peut-être pas
+  – en tout cas, la dixième édition de la nuit de l’info a eu lieu en
   cette fin d’année 201...
 created: 2017-12-11
 slug: altran-nuit-de-l-info-premiere-experience-a-strasbourg

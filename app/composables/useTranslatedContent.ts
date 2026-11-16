@@ -42,32 +42,31 @@ export default async function useTranslatedContent<
 ) {
     const { locale } = useI18n()
 
-    const { data } = await useAsyncData(`${name}-${locale.value}`, async () => {
+    const { data } = await useAsyncData(`${name}-${locale.value}`, async (nuxtApp) => {
+        // The collection already returns the active locale and falls back to English.
         const contents = await query.all()
 
-        if (!contents) {
+        if (!contents?.length) {
             return { content: null, isTranslated: false }
         }
 
-        const currentLanguageContent = contents.filter((c) => c.lang === locale.value);
+        const result = { content: contents as ContentT[], isTranslated: false }
 
-        const isTranslated = contents.length > 1 || currentLanguageContent.length !== contents.length;
-
-        if (currentLanguageContent.length === 0) {
-            return { content: null, isTranslated }
-        }
-
-        const result = { content: currentLanguageContent as ContentT[], isTranslated }
-
-        // Apply transform function if provided, otherwise return first content by default
         if (transform) {
             return transform(result)
-        } else {
-            // Default behavior: return first content item
-            return {
-                content: currentLanguageContent[0] as ContentT,
-                isTranslated
-            }
+        }
+
+        const item = contents[0] as ContentT
+        const collection = String(item.stem ?? '').split('/')[0]
+        let isTranslated = false
+        if (collection === 'pages' || collection === 'articles' || collection === 'projects') {
+            const locales = await nuxtApp.runWithContext(() => queryCollectionLocales(collection, String(item.stem)))
+            isTranslated = locales.some(entry => entry.locale !== locale.value)
+        }
+
+        return {
+            content: item,
+            isTranslated,
         }
     }, {
         default() {
