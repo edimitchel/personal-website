@@ -218,22 +218,21 @@ jobs:
           echo "Switched to branch: $(git branch --show-current)"
           echo "Latest commit on main: $(git log -1 --oneline)"
 
-      # Build — validate on PRs, deploy on main
+      # Build — validate on PRs, deploy on main.
+      # NuxtHub reads CLOUDFLARE_ENV while building and writes the matching
+      # worker into .output/server/wrangler.json. Unset means production.
       - name: Build
         if: github.event_name == 'pull_request' || (github.event_name == 'push' && github.ref == 'refs/heads/main')
         run: pnpm build
         env:
           NUXT_OG_IMAGE_SECRET: ${{ secrets.NUXT_OG_IMAGE_SECRET }}
+          CLOUDFLARE_ENV: ${{ github.event_name == 'pull_request' && github.event.action != 'closed' && 'preview' || '' }}
 
-      # Nitro writes one worker config, named website, and Wrangler follows it.
-      # Rewrite that file to env.preview before a pull request deploy.
-      - name: Prepare preview worker
-        if: github.event_name == 'pull_request' && github.event.action != 'closed'
-        run: node scripts/prepare-preview-worker.mjs
-
+      # Deploy preview — pull requests. wrangler deploy follows the generated
+      # config, so this publishes website-preview, not website.
       - name: Deploy to Cloudflare Workers (preview)
         if: github.event_name == 'pull_request' && github.event.action != 'closed'
-        run: pnpm exec wrangler deploy
+        run: pnpm exec wrangler d1 migrations apply DB --remote --config .output/server/wrangler.json && pnpm exec wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
