@@ -1,10 +1,15 @@
 <template>
-  <UDashboardPanel>
+  <UDashboardPanel :ui="{ root: 'min-h-0 flex-1', body: 'gap-0 overflow-y-auto p-0 sm:gap-0 sm:p-0' }">
     <template #header>
-      <UDashboardNavbar :title="title">
+      <UDashboardNavbar
+        :toggle="false"
+        :title="title"
+        :ui="{ root: 'px-6 sm:px-6', right: 'gap-2' }"
+      >
         <template #right>
           <UButton
             icon="i-lucide-plus"
+            size="sm"
             :label="$t('admin.newDraft')"
             @click="openCreate"
           />
@@ -13,52 +18,60 @@
     </template>
 
     <template #body>
-      <div class="mb-4 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-        <UInput
-          v-model="query"
-          icon="i-lucide-search"
-          :placeholder="$t('admin.search')"
-          class="w-full lg:max-w-sm"
-        />
-        <UTabs
-          v-model="state"
-          :content="false"
-          :items="filters"
-          class="w-full lg:w-auto"
-        />
-      </div>
+      <div class="admin-page">
+        <div class="admin-row">
+          <UInput
+            v-model="query"
+            icon="i-lucide-search"
+            size="sm"
+            :placeholder="$t('admin.search')"
+            class="w-full sm:max-w-xs"
+          />
+          <UTabs
+            v-model="state"
+            :content="false"
+            variant="link"
+            color="neutral"
+            size="sm"
+            :items="filters"
+            :ui="{ root: 'w-auto gap-0', list: 'w-auto p-0' }"
+          />
+        </div>
 
-      <UAlert
-        v-if="error"
-        color="error"
-        variant="subtle"
-        :title="$t('admin.loadError')"
-      />
-      <UTable
-        v-else
-        :data="filtered"
-        :columns="columns"
-        :loading="status === 'pending'"
-        :empty="$t(query || state !== 'all' ? 'admin.emptySearch' : 'admin.empty')"
-        @select="onSelect"
-      >
-        <template #title-cell="{ row }">
-          <p class="truncate font-medium">
-            {{ row.original.title }}
-          </p>
-          <p class="text-muted truncate text-xs">
-            {{ row.original.path }}
-          </p>
-        </template>
-        <template #state-cell="{ row }">
-          <UBadge
-            :color="row.original.hasDraft ? 'warning' : 'neutral'"
-            variant="subtle"
-          >
-            {{ row.original.hasDraft ? $t('admin.draft') : $t('admin.statePublished') }}
-          </UBadge>
-        </template>
-      </UTable>
+        <UAlert
+          v-if="error"
+          color="error"
+          variant="subtle"
+          :title="$t('admin.loadError')"
+        />
+        <UTable
+          v-else
+          class="admin-bleed"
+          :data="filtered"
+          :columns="columns"
+          :loading="status === 'pending'"
+          :empty="$t(query || state !== 'all' ? 'admin.emptySearch' : 'admin.empty')"
+          :ui="{ th: 'px-[var(--admin-pad)] py-2 text-xs font-medium text-[var(--admin-muted)]', td: 'px-[var(--admin-pad)] py-2.5 text-sm' }"
+          @select="onSelect"
+        >
+          <template #title-cell="{ row }">
+            <p class="truncate font-medium">
+              {{ row.original.title }}
+            </p>
+            <p class="text-muted truncate text-xs">
+              {{ row.original.path }}
+            </p>
+          </template>
+          <template #state-cell="{ row }">
+            <UBadge
+              :color="row.original.hasDraft ? 'warning' : 'neutral'"
+              variant="subtle"
+            >
+              {{ row.original.hasDraft ? $t('admin.draft') : $t('admin.statePublished') }}
+            </UBadge>
+          </template>
+        </UTable>
+      </div>
 
       <UModal
         v-model:open="createOpen"
@@ -146,7 +159,7 @@ const filters = computed(() => [
 
 const columns = computed(() => [
   { accessorKey: 'title', header: t('admin.fields.title') },
-  { accessorKey: 'state', header: t('admin.state') },
+  { accessorKey: 'state', header: t('admin.state'), meta: { class: { th: 'text-end', td: 'text-end' } } },
 ])
 
 const filtered = computed(() => {

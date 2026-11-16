@@ -44,6 +44,7 @@ import { transformProject } from '~/utils/transformProject'
 const { t } = useI18n()
 const route = useRoute()
 const { locale } = useI18n()
+const nuxtApp = useNuxtApp()
 
 const { content, isTranslated } = await useTranslatedContent(
   `project-${route.params.slug}`,
@@ -51,7 +52,7 @@ const { content, isTranslated } = await useTranslatedContent(
 )
 
 if (content?.stem) {
-  await useContentHreflang('projects', content.stem)
+  await nuxtApp.runWithContext(() => useContentHreflang('projects', content.stem))
 }
 
 const { data: siblings } = content
@@ -61,7 +62,6 @@ const { data: siblings } = content
         queryCollectionItemSurroundings('projects', content.path, {
           fields: ['slug', 'title', 'stem'],
         })
-          .where('lang', '=', locale.value)
           .order('completedAt', 'DESC'),
       {
         transform: siblings => siblings.map(sibling => sibling ? transformProject(sibling) : null),

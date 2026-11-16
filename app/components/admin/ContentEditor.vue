@@ -7,14 +7,16 @@
       :extensions="[AboutBlock]"
       :handlers="handlers"
       :placeholder="$t('admin.editorPlaceholder')"
-      :ui="{ base: 'px-4 py-3 sm:px-6' }"
-      class="border-default min-h-[32rem] rounded-lg border bg-transparent"
+      :ui="{
+        root: 'flex w-full min-w-0 flex-col',
+        base: 'px-[var(--admin-pad)] pt-4 pb-24 sm:px-[var(--admin-pad)]',
+      }"
     >
       <template #default="{ editor }">
         <UEditorToolbar
           :editor="editor"
           :items="toolbar"
-          class="border-default bg-default sticky top-0 z-10 overflow-x-auto border-b px-2 py-1"
+          class="admin-editor-toolbar"
         />
         <UEditorToolbar
           :editor="editor"
@@ -71,22 +73,22 @@ const handlers = {
   },
 } satisfies EditorCustomHandlers
 
-const toolbar = [[
-  { kind: 'undo', icon: 'i-lucide-undo', tooltip: { text: 'Undo' } },
-  { kind: 'redo', icon: 'i-lucide-redo', tooltip: { text: 'Redo' } },
+const toolbar = computed(() => [[
+  { kind: 'undo' as const, icon: 'i-lucide-undo', tooltip: { text: t('admin.toolbar.undo') } },
+  { kind: 'redo' as const, icon: 'i-lucide-redo', tooltip: { text: t('admin.toolbar.redo') } },
 ], [
-  { kind: 'heading', level: 2, icon: 'i-lucide-heading-2', tooltip: { text: 'H2' } },
-  { kind: 'heading', level: 3, icon: 'i-lucide-heading-3', tooltip: { text: 'H3' } },
-  { kind: 'bulletList', icon: 'i-lucide-list', tooltip: { text: 'Liste' } },
-  { kind: 'orderedList', icon: 'i-lucide-list-ordered', tooltip: { text: 'Liste numérotée' } },
-  { kind: 'blockquote', icon: 'i-lucide-text-quote', tooltip: { text: 'Citation' } },
-  { kind: 'codeBlock', icon: 'i-lucide-square-code', tooltip: { text: 'Code' } },
+  { kind: 'heading' as const, level: 2 as const, icon: 'i-lucide-heading-2', tooltip: { text: t('admin.toolbar.h2') } },
+  { kind: 'heading' as const, level: 3 as const, icon: 'i-lucide-heading-3', tooltip: { text: t('admin.toolbar.h3') } },
+  { kind: 'bulletList' as const, icon: 'i-lucide-list', tooltip: { text: t('admin.toolbar.bullet') } },
+  { kind: 'orderedList' as const, icon: 'i-lucide-list-ordered', tooltip: { text: t('admin.toolbar.ordered') } },
+  { kind: 'blockquote' as const, icon: 'i-lucide-text-quote', tooltip: { text: t('admin.toolbar.quote') } },
+  { kind: 'codeBlock' as const, icon: 'i-lucide-square-code', tooltip: { text: t('admin.toolbar.codeBlock') } },
 ], [
-  { kind: 'mark', mark: 'bold', icon: 'i-lucide-bold', tooltip: { text: 'Gras' } },
-  { kind: 'mark', mark: 'italic', icon: 'i-lucide-italic', tooltip: { text: 'Italique' } },
-  { kind: 'mark', mark: 'strike', icon: 'i-lucide-strikethrough', tooltip: { text: 'Barré' } },
-  { kind: 'mark', mark: 'code', icon: 'i-lucide-code', tooltip: { text: 'Code' } },
-]] satisfies EditorToolbarItem<typeof handlers>[][]
+  { kind: 'mark' as const, mark: 'bold' as const, icon: 'i-lucide-bold', tooltip: { text: t('admin.toolbar.bold') } },
+  { kind: 'mark' as const, mark: 'italic' as const, icon: 'i-lucide-italic', tooltip: { text: t('admin.toolbar.italic') } },
+  { kind: 'mark' as const, mark: 'strike' as const, icon: 'i-lucide-strikethrough', tooltip: { text: t('admin.toolbar.strike') } },
+  { kind: 'mark' as const, mark: 'code' as const, icon: 'i-lucide-code', tooltip: { text: t('admin.toolbar.code') } },
+]] satisfies EditorToolbarItem<typeof handlers>[][])
 
 const bubble = [[
   { kind: 'mark', mark: 'bold', icon: 'i-lucide-bold' },

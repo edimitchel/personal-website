@@ -1,41 +1,40 @@
 <template>
-  <div class="flex flex-1 items-center justify-center p-4">
-    <UPageCard class="w-full max-w-md">
-      <UAuthForm
-        :schema="schema"
-        :fields="fields"
-        :providers="providers"
-        :title="title"
-        :description="$t('admin.auth.description')"
-        :separator="providers.length ? $t('admin.auth.or') : undefined"
-        :loading="pending"
-        :submit="{ label: submitLabel }"
-        icon="i-lucide-lock"
-        @submit="onSubmit"
+  <div class="flex flex-1 items-center justify-center px-6">
+    <UAuthForm
+      class="w-full max-w-sm"
+      :schema="schema"
+      :fields="fields"
+      :providers="providers"
+      :title="title"
+      :description="$t('admin.auth.description')"
+      :separator="providers.length ? $t('admin.auth.or') : undefined"
+      :loading="pending"
+      :submit="{ label: submitLabel }"
+      icon="i-lucide-lock"
+      @submit="onSubmit"
+    >
+      <template
+        v-if="formError"
+        #validation
       >
-        <template
-          v-if="formError"
-          #validation
+        <UAlert
+          color="error"
+          variant="subtle"
+          icon="i-lucide-circle-alert"
+          :title="formError"
+        />
+      </template>
+      <template #footer>
+        <UButton
+          color="neutral"
+          variant="link"
+          class="px-0"
+          @click="toggleMode"
         >
-          <UAlert
-            color="error"
-            variant="subtle"
-            icon="i-lucide-circle-alert"
-            :title="formError"
-          />
-        </template>
-        <template #footer>
-          <UButton
-            color="neutral"
-            variant="link"
-            class="px-0"
-            @click="toggleMode"
-          >
-            {{ mode === 'sign-in' ? $t('admin.auth.createAccount') : $t('admin.auth.haveAccount') }}
-          </UButton>
-        </template>
-      </UAuthForm>
-    </UPageCard>
+          {{ mode === 'sign-in' ? $t('admin.auth.createAccount') : $t('admin.auth.haveAccount') }}
+        </UButton>
+      </template>
+    </UAuthForm>
   </div>
 </template>
 

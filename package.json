@@ -23,7 +23,7 @@
     "@comark/vue": "^0.9.1",
     "@iconify/json": "^2.2.491",
     "@libsql/client": "^0.17.4",
-    "@nuxt/content": "^3.16.2",
+    "@nuxt/content": "https://pkg.pr.new/@nuxt/content@3753",
     "@nuxt/fonts": "^1.2.0",
     "@nuxt/image": "^2.2.1",
     "@nuxt/ui": "^4.12.0",

@@ -59,24 +59,35 @@ const projectSchema = baseContentSchema.extend({
   authors: z.string().array(),
 });
 
+// English files stay at the collection root. French files stay in `fr/`.
+// The site default locale is French, so the collection default must stay English:
+// a file outside a locale directory belongs to the collection default.
+const contentI18n = {
+  locales: ['en', 'fr'],
+  defaultLocale: 'en',
+};
+
 export default defineContentConfig({
   collections: {
     pages: defineCollection({
       source: 'pages/**/*.md',
       type: 'page',
       schema: baseContentSchema,
+      i18n: contentI18n,
     }),
 
     articles: defineCollection({
       source: 'articles/**/*.md',
       type: 'page',
       schema: articleSchema,
+      i18n: contentI18n,
     }),
 
     projects: defineCollection({
       source: 'projects/**/*.md',
       type: 'page',
       schema: projectSchema,
+      i18n: contentI18n,
     }),
   }
 });

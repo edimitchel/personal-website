@@ -1,5 +1,5 @@
 <template>
-  <div class="passion-card rounded-lg bg-gradient-to-br from-blue-50 to-indigo-100 p-2">
+  <div class="passion-card rounded-lg bg-gradient-to-br from-blue-50/20 to-indigo-100/20 p-2">
     <div class="mb-4 flex justify-center text-4xl">
       <UIcon
         v-if="icon?.startsWith('i-')"

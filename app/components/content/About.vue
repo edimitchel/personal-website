@@ -18,7 +18,7 @@
     <ContactForm />
 
     <section class="skills-section my-15">
-      <h2 class="text-2xl font-bold my-8 text-center text-ink">
+      <h2 class="text-2xl font-bold my-4 text-center text-ink">
         {{ $t('skills_n_expertise') }}
       </h2>
       <div class="grid min-w-0 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
@@ -60,7 +60,7 @@
       <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('tech_stack') }}
       </h2>
-      <div class="grid min-w-0 grid-cols-1 gap-8">
+      <div class="grid min-w-0 grid-cols-1 gap-4">
         <slot name="stack">
           <div
             v-for="stackCategory in techStack"
@@ -100,7 +100,7 @@
       <h2 class="text-2xl font-bold my-8 text-center text-ink">
         {{ $t('passions') }}
       </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-2">
+      <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <slot name="passions">
           <div
             v-for="(passion, index) in passions"

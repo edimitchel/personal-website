@@ -1,80 +1,46 @@
 <template>
-  <div class="mb-8 grid gap-4">
-    <UTextarea
+  <div class="admin-fiche">
+    <AdminFrontmatterField
       v-if="description"
-      :model-value="text(description.key)"
-      :rows="2"
-      :placeholder="$t(description.labelKey)"
-      class="w-full text-base"
-      @update:model-value="model[description.key] = String($event)"
+      v-model="model"
+      :field="description"
     />
-
-    <div
+    <AdminFrontmatterField
       v-for="field in lists"
       :key="field.key"
-      class="grid gap-1"
-    >
-      <p class="text-sm text-[var(--admin-muted)]">
-        {{ $t(field.labelKey) }}
-      </p>
-      <UInputTags
-        :model-value="tags(field.key)"
-        :placeholder="$t('admin.addItem')"
-        class="w-full"
-        @update:model-value="model[field.key] = $event"
-      />
-    </div>
-
+      v-model="model"
+      :field="field"
+    />
+    <AdminFrontmatterField
+      v-for="field in shorts"
+      :key="field.key"
+      v-model="model"
+      :field="field"
+    />
+    <AdminFrontmatterField
+      v-for="field in flags"
+      :key="field.key"
+      v-model="model"
+      :field="field"
+    />
     <div
-      v-if="shorts.length || flags.length"
-      class="grid gap-3 sm:grid-cols-2"
+      v-for="entry in extraEntries"
+      :key="entry.key"
+      class="admin-field"
     >
-      <UFormField
-        v-for="field in shorts"
-        :key="field.key"
-        :label="$t(field.labelKey)"
-        :class="field.kind === 'text' ? 'sm:col-span-2' : ''"
-      >
-        <USelect
-          v-if="field.kind === 'enum'"
-          :model-value="text(field.key) || undefined"
-          :items="enumItems(field)"
-          :placeholder="$t('admin.unset')"
-          class="w-full"
-          @update:model-value="model[field.key] = $event == null || $event === '' ? '' : String($event)"
-        />
+      <label
+        class="admin-field-label"
+        :for="`admin-extra-${entry.key}`"
+      >{{ entry.key }}</label>
+      <div class="admin-field-control">
         <UInput
-          v-else
-          :model-value="field.kind === 'date' ? text(field.key).slice(0, 10) : text(field.key)"
-          :type="field.kind === 'date' ? 'date' : 'text'"
-          class="w-full"
-          @update:model-value="model[field.key] = String($event ?? '')"
-        />
-      </UFormField>
-      <UCheckbox
-        v-for="field in flags"
-        :key="field.key"
-        :model-value="model[field.key] === true"
-        :label="$t(field.labelKey)"
-        @update:model-value="model[field.key] = $event === true"
-      />
-    </div>
-
-    <div
-      v-if="extraEntries.length"
-      class="grid gap-3 sm:grid-cols-2"
-    >
-      <UFormField
-        v-for="entry in extraEntries"
-        :key="entry.key"
-        :label="entry.key"
-      >
-        <UInput
+          :id="`admin-extra-${entry.key}`"
           :model-value="entry.value"
+          size="sm"
           class="w-full"
           @update:model-value="setExtra(entry.key, String($event ?? ''))"
         />
-      </UFormField>
+      </div>
     </div>
   </div>
 </template>
@@ -118,25 +84,6 @@ const extraEntries = computed(() => {
     .filter(([key, value]) => !hiddenExtras.has(key) && (value == null || ['string', 'number', 'boolean'].includes(typeof value)))
     .map(([key, value]) => ({ key, value: value == null ? '' : String(value) }))
 })
-
-function text(key: string) {
-  const value = model.value[key]
-  return value == null ? '' : String(value)
-}
-
-function tags(key: string) {
-  const value = model.value[key]
-  return Array.isArray(value) ? value.map(item => String(item)) : []
-}
-
-function enumItems(field: ContentField) {
-  const items = [...(field.options ?? [])]
-  const current = text(field.key)
-  if (current && !items.includes(current)) {
-    items.unshift(current)
-  }
-  return items
-}
 
 function setExtra(key: string, value: string) {
   const next = { ...(parsedExtras.value ?? {}), [key]: value }

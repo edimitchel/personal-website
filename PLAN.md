@@ -202,7 +202,7 @@ Décision : **Better Auth** (`@nuxtjs/better-auth` + `better-auth` 1.7, CLI `aut
 
 ### Étape 7 — Traduction du contenu dans l’admin
 
-Dépend des étapes 3 (brouillon D1 + commit GitHub) et 4 (UEditor). N’installe pas la PR Content #3753. Ne déplace pas les fichiers `content/` dans cette étape.
+Dépend des étapes 3 (brouillon D1 + commit GitHub) et 4 (UEditor). Essai en cours de la PR [nuxt/content#3753](https://github.com/nuxt/content/pull/3753) (`pkg.pr.new`) sur les collections publiques. Les fichiers restent où ils sont : anglais à la racine, français dans `fr/`. La locale par défaut de la collection est `en`, pas celle du site.
 
 npm i https://pkg.pr.new/@nuxt/content@3753
 

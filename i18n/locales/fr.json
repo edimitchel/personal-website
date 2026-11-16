@@ -193,6 +193,24 @@
     },
     "viewEdit": "Édition",
     "viewSplit": "Côte à côte",
+    "locales": {
+      "fr": "Français",
+      "en": "English"
+    },
+    "toolbar": {
+      "undo": "Annuler",
+      "redo": "Rétablir",
+      "h2": "Titre 2",
+      "h3": "Titre 3",
+      "bullet": "Liste",
+      "ordered": "Liste numérotée",
+      "quote": "Citation",
+      "codeBlock": "Bloc de code",
+      "bold": "Gras",
+      "italic": "Italique",
+      "strike": "Barré",
+      "code": "Code en ligne"
+    },
     "documentTitle": "Titre du document",
     "storedTitle": "Sera enregistré comme titre : {title}",
     "missingTitle": "Ajoutez un titre pour enregistrer. C'est le premier titre du document.",

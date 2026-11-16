@@ -1,20 +1,22 @@
 <template>
-  <aside class="border-default min-h-[32rem] rounded-lg border bg-transparent">
-    <header class="border-default flex items-center justify-between gap-2 border-b px-3 py-2">
-      <p class="text-muted text-sm">
+  <aside class="admin-col">
+    <header class="admin-col-head">
+      <p class="min-w-0 truncate">
         {{ otherLabel }}
       </p>
       <UButton
         v-if="otherPath"
+        class="ms-auto shrink-0"
         size="xs"
         color="neutral"
         variant="ghost"
-        :label="otherLabel"
+        icon="i-lucide-pencil"
+        :label="$t('admin.open')"
         @click="openOther"
       />
     </header>
 
-    <div class="px-4 py-4">
+    <div class="admin-col-scroll admin-col-pad">
       <AdminLivePreview
         v-if="otherMarkdown"
         bare
@@ -22,34 +24,33 @@
       />
       <p
         v-else
-        class="text-muted text-sm"
+        class="text-sm text-[var(--admin-muted)]"
       >
         {{ $t('admin.parallel.empty') }}
       </p>
 
       <div
         v-if="pending.length"
-        class="mt-6 grid gap-3"
+        class="admin-suggestions"
       >
         <article
           v-for="(paragraph, index) in pending"
           :key="paragraph"
-          class="border-default/70 rounded-md border border-dashed px-3 py-2"
+          class="admin-suggestion"
         >
-          <p class="text-muted text-xs">
+          <p class="text-xs text-[var(--admin-muted)]">
             {{ $t('admin.parallel.missing') }}
           </p>
-          <p class="mt-1 text-sm">
+          <p class="text-sm">
             {{ paragraph }}
           </p>
           <p
             v-if="suggestions[index]"
-            class="mt-2 text-sm"
+            class="text-sm"
           >
             {{ suggestions[index] }}
           </p>
           <UButton
-            class="mt-2"
             size="xs"
             color="neutral"
             variant="ghost"
@@ -88,7 +89,7 @@ const otherPath = computed(() => {
     ? pathForLocale(props.collection as 'articles', stem.value, otherLocale.value)
     : ''
 })
-const otherLabel = computed(() => otherLocale.value === 'fr' ? 'Français' : 'English')
+const otherLabel = computed(() => t(`admin.locales.${otherLocale.value}`))
 
 const { data: otherDocument, refresh } = await useAsyncData(
   () => `parallel-${props.collection}-${otherPath.value}`,

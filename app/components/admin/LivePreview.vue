@@ -1,14 +1,16 @@
 <template>
-  <aside :class="bare ? '' : 'border-default flex min-h-[32rem] flex-col overflow-hidden rounded-lg border bg-transparent'">
+  <section :class="bare ? '' : 'admin-col'">
     <header
       v-if="!bare"
-      class="border-default flex items-center gap-2 border-b px-3 py-2 text-sm"
+      class="admin-col-head"
     >
-      <span class="bg-success size-1.5 rounded-full" />
       <span>{{ $t('admin.preview') }}</span>
     </header>
-    <div :class="bare ? '' : 'min-h-0 flex-1 overflow-auto px-4 py-6'">
-      <div class="prose mx-auto max-w-[600px]">
+    <div :class="bare ? '' : 'admin-col-scroll admin-col-pad'">
+      <div
+        class="admin-preview prose max-w-[600px]"
+        :class="bare ? '' : 'mx-auto'"
+      >
         <Suspense>
           <Markdown
             :value="rendered"
@@ -21,7 +23,7 @@
         </Suspense>
       </div>
     </div>
-  </aside>
+  </section>
 </template>
 
 <script setup lang="ts">
