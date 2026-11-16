@@ -225,13 +225,9 @@ jobs:
         env:
           NUXT_OG_IMAGE_SECRET: ${{ secrets.NUXT_OG_IMAGE_SECRET }}
 
-      # Deploy preview — pull requests
-      - name: Deploy to Cloudflare Workers (preview)
-        if: github.event_name == 'pull_request'
-        run: pnpm exec wrangler deploy --env preview
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      # No deploy on pull requests. Nitro writes .output/server/wrangler.json
+      # without the preview environment, so `wrangler deploy --env preview`
+      # publishes the production worker `website`.
 
       # Deploy production — main branch only
       - name: Deploy to Cloudflare Workers (production)
@@ -263,5 +259,5 @@ jobs:
             echo "🎉 PR validation completed!"
             echo "📊 Summary:"
             echo "  - Translation: ⏸️ Disabled on branches"
-            echo "  - Deployment: ✅ Preview deployed"
+            echo "  - Deployment: skipped (pull requests do not deploy)"
           fi
