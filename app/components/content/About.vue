@@ -66,7 +66,7 @@
       </h2>
       <div class="grid grid-cols-1 lg:grid-cols-2">
         <div v-for="(passion, index) in passions" :key="passion.title"
-          class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
+          class="passion-card rounded-lg bg-tone-50 p-2 transition-all duration-300"
           :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }">
 
           <div class="text-4xl mb-4 text-center"><i class="block" :class="passion.icon" /></div>
