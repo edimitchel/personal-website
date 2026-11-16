@@ -105,14 +105,11 @@
           <div
             v-for="(passion, index) in passions"
             :key="passion.title"
-            class="passion-card bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-2 transition-all duration-300"
+            class="passion-card rounded-lg bg-tone-50 p-4 text-center transition-all duration-300"
             :class="{ 'lg:col-span-2': index % 2 === 0 && index === passions.length - 1 }"
           >
-            <div class="text-4xl mb-4 text-center">
-              <i
-                class="block"
-                :class="passion.icon"
-              />
+            <div class="mb-3 text-4xl leading-none">
+              {{ passion.icon }}
             </div>
             <h4 class="text-lg font-semibold mb-2 text-center text-ink">
               {{ passion.title }}

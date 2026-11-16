@@ -1,9 +1,9 @@
 <template>
-  <div ref="containerRef" class="w-full h-[280px] md:h-[250px]">
+  <div ref="containerRef" class="w-full h-[320px] md:h-[300px]">
     <div class="carousel absolute overflow-hidden inset-x-0 py-4 mb-4 w-full" :style="{
       maxWidth: maxWidth ? `${maxWidth}px` : '100%'
     }">
-      <div class="relative w-full min-h-[170px]" v-on="sliderEvents">
+      <div class="relative mb-6 w-full min-h-[170px]" v-on="sliderEvents">
         <div v-if="!isInitialized" class="absolute inset-0 flex items-center justify-center text-center">
           <div class="text-tone-600 animate-pulse">{{ $t('carousel.loading') }}...</div>
         </div>
@@ -50,9 +50,9 @@
         <Transition name="fade" mode="out-in">
           <button :key="isAutoplaying ? 'pause' : 'play'"
             @click="() => isAutoplaying ? stopAutoplay() : startAutoplay()"
-            class="block w-3 h-3 cursor-pointer ring-1 ring-tone-600"
-            aria-label="$t('carousel.toggle_autoplay')">
-            <UIcon class="w-3 h-3" :name="isAutoplaying ? 'i-ic-baseline-pause' : 'i-ic-baseline-play-arrow'" />
+            class="inline-flex size-3 cursor-pointer items-center justify-center rounded-full ring-1 ring-tone-600"
+            :aria-label="$t('carousel.toggle_autoplay')">
+            <UIcon class="size-2.5" :name="isAutoplaying ? 'i-ic-baseline-pause' : 'i-ic-baseline-play-arrow'" />
           </button>
         </Transition>
       </div>

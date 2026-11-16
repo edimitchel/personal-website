@@ -434,17 +434,25 @@ ul a.router-link-active::before {
 }
 
 .contact-button {
+  --contact-tilt: -22.5deg;
   bottom: 45px;
   left: 92%;
-  rotate: -22.5deg;
+  right: auto;
+  rotate: var(--contact-tilt);
   transition: all 400ms ease;
+}
+
+.contact-button > :deep(.iconify) {
+  width: 1em;
+  height: 1em;
+  rotate: calc(var(--contact-tilt) * -1);
 }
 
 @variant md {
   .contact-button {
+    --contact-tilt: -23.5deg;
     bottom: 44px;
     left: 94%;
-    rotate: -23.5deg;
   }
 }
 
